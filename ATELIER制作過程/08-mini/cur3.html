@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>いま本体に入っている3つ ── 糸通し／まっすぐ縫い／裁断</title>
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body{ margin:0; padding:0; height:100%; background:#e7e0d6;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif; }
+  body{ display:flex; align-items:center; justify-content:center; overscroll-behavior:none; }
+  #phone{ position:relative; width:390px; height:844px; background:#241b2e; overflow:hidden;
+    box-shadow:0 18px 60px rgba(60,44,58,.34); }
+  @media (max-width:420px),(max-height:880px){ #phone{ width:100vw; height:100vh; height:100dvh; } }
+  #mnCv{ position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; }
+  #menu{ position:absolute; inset:0; z-index:5; background:#f3eee7; padding:24px 20px; overflow-y:auto; }
+  #menu h1{ font-size:18px; font-weight:800; color:#2a2430; margin:2px 0 4px; }
+  #menu .sub{ font-size:11.5px; font-weight:700; color:#8a7c88; line-height:1.7; margin:0 0 16px; }
+  .card{ display:block; width:100%; text-align:left; border:0; background:#fbf3e6; border-radius:15px;
+    padding:13px 15px; margin:0 0 10px; box-shadow:0 2px 0 rgba(124,90,112,.13); cursor:pointer; }
+  .card b{ font-size:16px; color:#2a2430; }
+  .card p{ font-size:11.5px; font-weight:700; color:#6d6270; line-height:1.7; margin:6px 0 0; }
+  #bar{ position:absolute; top:0; left:0; right:0; height:52px; z-index:4; display:none;
+    align-items:center; justify-content:space-between; padding:0 14px; }
+  #bar.on{ display:flex; }
+  #bar span{ font-size:14px; font-weight:800; color:#fdf6ec; }
+  #bar button{ border:0; background:rgba(255,255,255,.14); color:#fdf6ec; font-size:11.5px;
+    font-weight:800; border-radius:9px; padding:7px 12px; cursor:pointer; font-family:inherit; }
+  body.embed #menu, body.embed #bar{ display:none !important; }
+</style>
+</head>
+<body>
+<div id="phone">
+  <canvas id="mnCv"></canvas>
+  <div id="bar"><span id="mnTitle"></span><button id="mnQuit">やめる</button></div>
+  <div id="menu">
+    <h1>いま本体に入っている3つ</h1>
+    <p class="sub"><b>src/mini/mini.js</b> の中身をそのまま写したものです。<br>
+      新しい案と見くらべるために置いてあります。</p>
+    <button class="card" data-g="needle"><b>糸通し</b>
+      <p>針が左右にゆれる。糸の真上に穴が来た瞬間にタップ。細い針ほどむずかしい。ぜんぶで3本。</p></button>
+    <button class="card" data-g="seam"><b>まっすぐ縫い</b>
+      <p>押しているあいだ針は右へ、はなすと左へ。チャコの線の上を縫う。</p></button>
+    <button class="card" data-g="cut"><b>裁断</b>
+      <p>指をはさみにして、上から下へ。裁ちばさみの線からできるだけ外れないように。</p></button>
+  </div>
+  <div id="mnHint" style="display:none"></div>
+</div>
+<script>
+"use strict";
+const OVW=390, OVH=844;
+const mnCvEl=document.getElementById("mnCv"), mnCtx=mnCvEl.getContext("2d");
+(function(){ const d=Math.min(2,window.devicePixelRatio||1);
+  mnCvEl.width=OVW*d; mnCvEl.height=OVH*d; mnCtx.setTransform(d,0,0,d,0,0); })();
+let mini=null, last=0, demoOn=false, loopOn=false, demoName=null;
+const barEl=document.getElementById("bar"), menuEl=document.getElementById("menu");
+
+function miniCloth(g, col1, col2, oy){
+  const gr = g.createLinearGradient(0, 0, 0, OVH);
+  gr.addColorStop(0, col1); gr.addColorStop(1, col2);
+  g.fillStyle = gr; g.fillRect(0, 0, OVW, OVH);
+  g.strokeStyle = "rgba(255,255,255,.045)"; g.lineWidth = 1;
+  for(let i = -1; i < 30; i++){
+    const y = ((i*32 + (oy||0)) % (OVH+64)) - 32;
+    g.beginPath(); g.moveTo(0, y); g.lineTo(OVW, y + 14); g.stroke();
+  }
+}
+
+const MINIS = {
+
+/* ---------- 糸通し。針がゆれる。真下に来た瞬間にタップ ---------- */
+needle: {
+  title:"糸通し",
+  hint:"針は左右にゆれる。糸の真上に穴が来た瞬間にタップ！\n細い針ほど、むずかしい。ぜんぶで3本。",
+  init(){ return { r:0, hits:0, res:[], ph:"aim", pt:0, eyeX:OVW/2,
+                   fly:0, msg:"一本目：ふつうの針", msgT:1.6 }; },
+  tol(r){ return [15, 10, 6.5][r]; },
+  spd(r){ return [1.25, 1.85, 2.5][r]; },
+  tick(m, dt){
+    m.pt += dt;
+    if(m.msgT > 0) m.msgT -= dt;
+    if(m.ph === "aim"){
+      const w = this.spd(m.r);
+      m.eyeX = OVW/2 + 88*Math.sin(m.pt*w) + 30*Math.sin(m.pt*w*1.63 + 1.3);
+    }
+    if(m.ph === "fly"){
+      m.fly += dt*3.4;
+      if(m.fly >= 1){
+        const hit = Math.abs(m.hitX - OVW/2) <= this.tol(m.r);
+        if(hit) m.hits++;
+        m.res.push(hit);
+        m.ph = hit ? "hit" : "miss"; m.pt = 0;
+      }
+    } else if(m.ph === "hit" || m.ph === "miss"){
+      if(m.pt > 0.9){
+        m.r++;
+        if(m.r >= 3){ m.ph = "done"; m.pt = 0; }
+        else {
+          m.ph = "aim"; m.pt = 0; m.fly = 0;
+          m.msg = ["", "二本目：細い針", "三本目：極細！"][m.r]; m.msgT = 1.6;
+        }
+      }
+    } else if(m.ph === "done"){
+      if(m.pt > 1.6) miniEnd(m.hits);
+    }
+  },
+  tap(m){ if(m.ph === "aim"){ m.ph = "fly"; m.fly = 0; m.hitX = m.eyeX; } },
+  draw(m, g){
+    miniCloth(g, "#2c2136", "#4a3550", 0);
+    const cx = OVW/2, eyeY = 320, tipY0 = 560;
+
+    /* 進みの玉 */
+    for(let i = 0; i < 3; i++){
+      g.beginPath(); g.arc(cx - 44 + i*44, 96, 10, 0, 6.2832);
+      g.fillStyle = i < m.res.length
+        ? (m.res[i] ? "#7ade9a" : "#e06a80") : "rgba(255,255,255,.16)";
+      g.fill();
+    }
+
+    /* 糸まき。下にどっしり */
+    g.fillStyle = "#8a6a4a";
+    g.fillRect(cx - 34, 640, 68, 76);
+    g.fillStyle = "#a8845c";
+    g.beginPath(); g.ellipse(cx, 640, 40, 12, 0, 0, 6.2832); g.fill();
+    g.beginPath(); g.ellipse(cx, 716, 40, 12, 0, 0, 6.2832); g.fill();
+    g.fillStyle = "#c9485e";
+    g.fillRect(cx - 30, 652, 60, 52);
+    g.strokeStyle = "rgba(255,255,255,.14)"; g.lineWidth = 2;
+    for(let i = 0; i < 5; i++)
+      { g.beginPath(); g.moveTo(cx-30, 658+i*10); g.lineTo(cx+30, 660+i*10); g.stroke(); }
+
+    /* 糸。まき から 先端へ */
+    const prog = m.ph === "fly" ? Math.min(1, m.fly)
+               : (m.ph === "hit" ? 1 : 0);
+    const tipY = tipY0 - prog*(tipY0 - eyeY + (m.ph === "hit" ? 44 : 0));
+    const sway = (m.ph === "aim") ? Math.sin(m.pt*2.1)*10 : 0;
+    g.strokeStyle = "#e8506a"; g.lineWidth = 3.4; g.lineCap = "round";
+    g.beginPath();
+    g.moveTo(cx, 648);
+    g.quadraticCurveTo(cx + 26 + sway, (648+tipY)/2 + 40, cx + sway*0.4, tipY + 26);
+    g.lineTo(cx, tipY);
+    g.stroke();
+    if(m.ph === "miss"){                     /* はじかれて、くたっ */
+      g.beginPath();
+      g.moveTo(cx, eyeY + 60);
+      g.quadraticCurveTo(cx + 30, eyeY + 40, cx + 44, eyeY + 78);
+      g.stroke();
+    }
+    /* 糸先 */
+    g.fillStyle = "#e8506a";
+    g.beginPath(); g.arc(cx, tipY, 4, 0, 6.2832); g.fill();
+
+    /* 針。ゆれる。穴の位置がすべて */
+    const nx = m.eyeX;
+    const grad = g.createLinearGradient(nx-8, 0, nx+8, 0);
+    grad.addColorStop(0, "#b9c2cc"); grad.addColorStop(0.45, "#eef3f7");
+    grad.addColorStop(1, "#98a2ae");
+    g.fillStyle = grad;
+    g.beginPath();                            /* 上が頭、下がとがった先 */
+    g.moveTo(nx - 7, eyeY - 78);
+    g.quadraticCurveTo(nx, eyeY - 96, nx + 7, eyeY - 78);
+    g.lineTo(nx + 4.2, eyeY + 60);
+    g.lineTo(nx, eyeY + 118);
+    g.lineTo(nx - 4.2, eyeY + 60);
+    g.closePath(); g.fill();
+    /* 穴。ここを糸が通る */
+    const tol = this.tol(m.r);
+    g.fillStyle = "#241b2e";
+    g.beginPath(); g.ellipse(nx, eyeY - 40, Math.max(3.4, tol*0.42), 26, 0, 0, 6.2832); g.fill();
+    g.strokeStyle = "rgba(255,255,255,.5)"; g.lineWidth = 1.4;
+    g.beginPath(); g.ellipse(nx, eyeY - 40, Math.max(3.4, tol*0.42), 26, 0, 0, 6.2832); g.stroke();
+
+    /* 通った糸 */
+    if(m.ph === "hit"){
+      g.strokeStyle = "#e8506a"; g.lineWidth = 3.4;
+      g.beginPath();
+      g.moveTo(cx, eyeY - 30);
+      g.quadraticCurveTo(nx, eyeY - 66, nx + 30, eyeY - 96);
+      g.quadraticCurveTo(nx + 52, eyeY - 118, nx + 40, eyeY - 140);
+      g.stroke();
+      for(let i = 0; i < 5; i++){             /* きらきら */
+        const a2 = m.pt*3 + i*1.26, rr = 26 + m.pt*30;
+        const sx = nx + Math.cos(a2)*rr, sy2 = eyeY - 44 + Math.sin(a2)*rr*0.7;
+        g.fillStyle = "rgba(255,226,130,"+Math.max(0, 0.9-m.pt)+")";
+        g.beginPath(); g.arc(sx, sy2, 2.4, 0, 6.2832); g.fill();
+      }
+    }
+
+    /* ことば */
+    g.textAlign = "center";
+    if(m.msgT > 0 && (m.ph === "aim" || m.ph === "fly")){
+      g.fillStyle = "rgba(253,246,236,"+Math.min(1, m.msgT)+")";
+      g.font = "800 21px sans-serif";
+      g.fillText(m.msg, cx, 176);
+    }
+    if(m.ph === "hit"){ g.fillStyle = "#a8e8bc"; g.font = "800 26px sans-serif";
+      g.fillText("通った！", cx, 176); }
+    if(m.ph === "miss"){ g.fillStyle = "#f0a0b2"; g.font = "800 26px sans-serif";
+      g.fillText("はずれた…", cx, 176); }
+    if(m.ph === "done"){
+      g.fillStyle = "#fdf6ec"; g.font = "800 30px sans-serif";
+      g.fillText(m.hits+"本 通った！", cx, 300);
+      g.font = "800 40px sans-serif";
+      g.fillText("★".repeat(m.hits) + "☆".repeat(3-m.hits), cx, 360);
+    }
+  },
+},
+
+/* ---------- まっすぐ縫い。チャコの線を追いかける ---------- */
+seam: {
+  title:"まっすぐ縫い",
+  hint:"押しているあいだ、針は右へ。はなすと左へ。\nチャコの線の上を縫おう。",
+  init(){
+    return { time:13, y:0, nx:OVW/2, err:0, n:0, st:[], stAt:0,
+             p1:Math.random()*6.28, p2:Math.random()*6.28, done:false, doneT:0,
+             warm:1.2 };
+  },
+  pathX(m, wy){
+    return OVW/2 + 62*Math.sin(wy*0.0085 + m.p1) + 34*Math.sin(wy*0.021 + m.p2);
+  },
+  tick(m, dt){
+    const NY = 380;
+    if(m.done){
+      m.doneT += dt;
+      if(m.doneT > 1.8){
+        const avg = m.err / Math.max(1, m.n);
+        miniEnd(avg <= 11 ? 3 : avg <= 19 ? 2 : avg <= 30 ? 1 : 0);
+      }
+      return;
+    }
+    if(m.warm > 0){ m.warm -= dt; return; }   /* かまえる時間 */
+    m.time -= dt;
+    const v = 165*dt;
+    m.nx = Math.max(40, Math.min(OVW-40, m.nx + (m.press ? v : -v)));
+    m.y += 130*dt;
+    const w = m.y + NY;
+    const px = this.pathX(m, w);
+    m.err += Math.abs(m.nx - px); m.n++;
+    if(w - m.stAt > 13){ m.stAt = w; m.st.push({ w, x:m.nx });
+      if(m.st.length > 90) m.st.shift(); }
+    if(m.time <= 0){ m.done = true; m.doneT = 0; }
+  },
+  draw(m, g){
+    const NY = 380;
+    miniCloth(g, "#39445e", "#526180", m.y*0.35);
+
+    /* チャコの線 */
+    g.strokeStyle = "rgba(255,255,255,.75)"; g.lineWidth = 2.6;
+    g.setLineDash([9, 8]);
+    g.beginPath();
+    for(let sy = -10; sy <= OVH+10; sy += 8){
+      const x = this.pathX(m, m.y + sy);
+      if(sy === -10) g.moveTo(x, sy); else g.lineTo(x, sy);
+    }
+    g.stroke();
+    g.setLineDash([]);
+
+    /* 縫い目。過ぎたところに残る */
+    g.strokeStyle = "#e8506a"; g.lineWidth = 3.2; g.lineCap = "round";
+    for(const s2 of m.st){
+      const sy = s2.w - m.y;
+      if(sy < -8 || sy > OVH+8) continue;
+      g.beginPath(); g.moveTo(s2.x, sy - 4); g.lineTo(s2.x, sy + 4); g.stroke();
+    }
+
+    /* おさえがねと針 */
+    g.fillStyle = "rgba(20,14,26,.28)";
+    g.beginPath(); g.ellipse(m.nx, NY+16, 26, 8, 0, 0, 6.2832); g.fill();
+    const grad = g.createLinearGradient(m.nx-16, 0, m.nx+16, 0);
+    grad.addColorStop(0, "#aab4bf"); grad.addColorStop(0.5, "#e8eef4");
+    grad.addColorStop(1, "#8c96a2");
+    g.fillStyle = grad;
+    g.beginPath();                             /* おさえがね（フォークの形） */
+    g.moveTo(m.nx - 16, NY - 4); g.lineTo(m.nx + 16, NY - 4);
+    g.lineTo(m.nx + 12, NY + 14); g.lineTo(m.nx + 4, NY + 14);
+    g.lineTo(m.nx + 4, NY + 2);  g.lineTo(m.nx - 4, NY + 2);
+    g.lineTo(m.nx - 4, NY + 14); g.lineTo(m.nx - 12, NY + 14);
+    g.closePath(); g.fill();
+    g.fillStyle = "#5a636e";                   /* 針棒 */
+    g.fillRect(m.nx - 2.4, NY - 58, 4.8, 54);
+    g.fillStyle = "#eef3f7";
+    g.fillRect(m.nx - 1.2, NY - 12, 2.4, 16);
+
+    /* 残り時間 */
+    g.fillStyle = "rgba(255,255,255,.16)";
+    g.fillRect(40, 120, OVW-80, 8);
+    g.fillStyle = "#ffd98a";
+    g.fillRect(40, 120, (OVW-80)*Math.max(0, m.time)/13, 8);
+
+    g.textAlign = "center";
+    if(m.warm > 0 && !m.done){
+      g.fillStyle = "#fdf6ec"; g.font = "800 24px sans-serif";
+      g.fillText("線の上を、まっすぐ", OVW/2, 200);
+    }
+    if(m.done){
+      const avg = m.err / Math.max(1, m.n);
+      const sc = avg <= 11 ? 3 : avg <= 19 ? 2 : avg <= 30 ? 1 : 0;
+      g.fillStyle = "#fdf6ec"; g.font = "800 30px sans-serif";
+      g.fillText(sc >= 3 ? "みごとな縫い目！" : sc >= 2 ? "いい縫い目" :
+                 sc >= 1 ? "まずまず" : "線はどこへ…", OVW/2, 290);
+      g.font = "800 40px sans-serif";
+      g.fillText("★".repeat(sc) + "☆".repeat(3-sc), OVW/2, 348);
+      g.font = "700 14px sans-serif"; g.fillStyle = "rgba(253,246,236,.7)";
+      g.fillText("線からのずれ　平均 "+avg.toFixed(0)+"px", OVW/2, 390);
+    }
+  },
+},
+
+/* ---------- 裁断。カッティングマットの上、線に沿って指をすべらせる ---------- */
+cut: {
+  title:"裁断",
+  hint:"指をハサミにして、上から下へ。裁ちばさみの線からできるだけ外れないように。",
+  TOP: 150, BOT: 650,
+  pathX(m, y){ return OVW/2 + 58*Math.sin(y*0.0105 + m.p1) + 22*Math.sin(y*0.024 + m.p2); },
+  init(){
+    return { p1:Math.random()*6.28, p2:Math.random()*6.28,
+             cutY:150, err:0, n:0, time:0, done:false, doneT:0, warm:1.1,
+             px:null, py:null };
+  },
+  tick(m, dt){
+    if(m.done){
+      m.doneT += dt;
+      if(m.doneT > 1.8){
+        const avg = m.n > 0 ? m.err / m.n : Infinity;
+        miniEnd(m.n < 8 ? 0 : avg <= 15 ? 3 : avg <= 26 ? 2 : avg <= 40 ? 1 : 0);
+      }
+      return;
+    }
+    if(m.warm > 0){ m.warm -= dt; return; }
+    m.time += dt;
+    if(m.press && m.py != null){
+      const ty = Math.max(this.TOP, Math.min(this.BOT, m.py));
+      let y = m.cutY;
+      while(y < ty){
+        y = Math.min(ty, y + 6);
+        const tx = this.pathX(m, y);
+        m.err += Math.abs((m.px != null ? m.px : tx) - tx);
+        m.n++;
+      }
+      m.cutY = ty;
+    }
+    if(m.cutY >= this.BOT - 18 || m.time > 15){ m.done = true; m.doneT = 0; }
+  },
+  draw(m, g){
+    /* 自己修復マット。緑の下地に方眼、端にオレンジの目盛り */
+    g.fillStyle = "#33523f"; g.fillRect(0, 0, OVW, OVH);
+    g.strokeStyle = "rgba(255,255,255,.07)"; g.lineWidth = 1;
+    for(let x = 0; x <= OVW; x += 26){ g.beginPath(); g.moveTo(x, 0); g.lineTo(x, OVH); g.stroke(); }
+    for(let y = 0; y <= OVH; y += 26){ g.beginPath(); g.moveTo(0, y); g.lineTo(OVW, y); g.stroke(); }
+    g.strokeStyle = "rgba(255,205,110,.5)"; g.lineWidth = 1;
+    for(let x = 0; x <= OVW; x += 130){ g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 10); g.stroke(); }
+
+    /* 裁ちの線。チャコ */
+    g.strokeStyle = "rgba(255,255,255,.8)"; g.lineWidth = 2.4;
+    g.setLineDash([8, 7]);
+    g.beginPath();
+    for(let y = this.TOP; y <= this.BOT; y += 6){
+      const x = this.pathX(m, y);
+      if(y === this.TOP) g.moveTo(x, y); else g.lineTo(x, y);
+    }
+    g.stroke(); g.setLineDash([]);
+
+    /* 切り終えた側。線の左をわずかにどけて、割れた感じ */
+    g.save();
+    g.beginPath();
+    g.rect(0, this.TOP, OVW, Math.max(0, m.cutY - this.TOP));
+    g.clip();
+    g.fillStyle = "rgba(0,0,0,.16)";
+    for(let y = this.TOP; y <= m.cutY; y += 6){
+      const x = this.pathX(m, y);
+      g.fillRect(x - 14, y, 8, 7);
+    }
+    g.restore();
+
+    /* ハサミ。指の位置に追従 */
+    const hx = m.px != null ? m.px : this.pathX(m, m.cutY), hy = m.py != null ? m.py : m.cutY;
+    g.strokeStyle = "#e8eef4"; g.lineWidth = 3.2; g.lineCap = "round";
+    g.beginPath(); g.moveTo(hx - 12, hy - 16); g.lineTo(hx + 3, hy + 3); g.stroke();
+    g.beginPath(); g.moveTo(hx + 12, hy - 16); g.lineTo(hx - 3, hy + 3); g.stroke();
+    g.fillStyle = "#ffd98a";
+    g.beginPath(); g.arc(hx - 9, hy - 20, 5, 0, 6.2832); g.fill();
+    g.beginPath(); g.arc(hx + 9, hy - 20, 5, 0, 6.2832); g.fill();
+
+    /* 進み具合 */
+    g.fillStyle = "rgba(255,255,255,.16)";
+    g.fillRect(40, 120, OVW-80, 8);
+    g.fillStyle = "#ffd98a";
+    g.fillRect(40, 120, (OVW-80)*Math.max(0, m.cutY - this.TOP)/(this.BOT - this.TOP), 8);
+
+    g.textAlign = "center";
+    if(m.warm > 0 && !m.done){
+      g.fillStyle = "#fdf6ec"; g.font = "800 22px sans-serif";
+      g.fillText("線を、指でなぞって", OVW/2, 200);
+    }
+    if(m.done){
+      const avg = m.n > 0 ? m.err / m.n : Infinity;
+      const sc = m.n < 8 ? 0 : (avg <= 15 ? 3 : avg <= 26 ? 2 : avg <= 40 ? 1 : 0);
+      g.fillStyle = "#fdf6ec"; g.font = "800 30px sans-serif";
+      g.fillText(sc >= 3 ? "きれいな裁ち目！" : sc >= 2 ? "いい裁ち目" :
+                 sc >= 1 ? "まずまず" : "線からそれた…", OVW/2, 300);
+      g.font = "800 40px sans-serif";
+      g.fillText("★".repeat(sc) + "☆".repeat(3-sc), OVW/2, 360);
+    }
+  },
+},
+};
+
+function miniStart(name){
+  mini=MINIS[name].init(); mini.name=name; mini.t=0; mini.press=false;
+  document.getElementById("mnTitle").textContent=MINIS[name].title;
+  menuEl.style.display="none"; barEl.classList.add("on");
+}
+function miniEnd(score){
+  barEl.classList.remove("on"); mini=null;
+  if(loopOn && demoName) setTimeout(()=>miniStart(demoName),1500);
+  else menuEl.style.display="";
+}
+/* ---- 見本の動き ---- */
+const DEMO={
+  needle(m,dt){ if(m.ph!=="aim") return; m._t=(m._t||0)+dt;
+    if(Math.abs(m.eyeX-OVW/2)<=MINIS.needle.tol(m.r)*0.8) MINIS.needle.tap(m); },
+  seam(m,dt){ if(m.warm>0||m.done) return;
+    const px=MINIS.seam.pathX(m,m.y+380); m.press = m.nx < px; },
+  cut(m,dt){ if(m.warm>0||m.done) return;
+    const S=MINIS.cut; m._y=(m._y==null?S.TOP:m._y)+dt*46;
+    m.press=true; m.px=S.pathX(m,Math.min(m._y,S.BOT)); m.py=Math.min(m._y,S.BOT); },
+};
+function loop(ts){
+  requestAnimationFrame(loop);
+  const dt=Math.min(.05,(ts-last)/1000||0); last=ts;
+  if(!mini) return;
+  if(demoOn){ const f=DEMO[mini.name]; if(f){ try{ f(mini,dt); }catch(e){} } }
+  if(!mini) return;
+  mini.t+=dt; MINIS[mini.name].tick(mini,dt);
+  if(!mini) return;
+  mnCtx.clearRect(0,0,OVW,OVH); MINIS[mini.name].draw(mini,mnCtx);
+}
+requestAnimationFrame(loop);
+mnCvEl.addEventListener("pointerdown",e=>{ e.preventDefault(); if(!mini) return;
+  mini.press=true; const M=MINIS[mini.name]; if(M.tap) M.tap(mini); });
+mnCvEl.addEventListener("pointermove",e=>{ if(!mini) return;
+  const r=mnCvEl.getBoundingClientRect();
+  mini.px=(e.clientX-r.left)/r.width*OVW; mini.py=(e.clientY-r.top)/r.height*OVH; });
+addEventListener("pointerup",()=>{ if(mini) mini.press=false; });
+addEventListener("pointercancel",()=>{ if(mini) mini.press=false; });
+document.getElementById("mnQuit").onclick=()=>{ if(mini) miniEnd(0); };
+for(const b of document.querySelectorAll(".card")) b.onclick=()=>miniStart(b.dataset.g);
+(function(){ const q=new URLSearchParams(location.hash.replace(/^#/,""));
+  const g=q.get("g"); if(g&&MINIS[g]){ demoOn=q.get("demo")==="1"; loopOn=q.get("loop")==="1"; demoName=g;
+    document.body.classList.add("embed"); miniStart(g); } })();
+window.__mini={ miniStart, get m(){return mini;}, MINIS };
+</script>
+</body>
+</html>

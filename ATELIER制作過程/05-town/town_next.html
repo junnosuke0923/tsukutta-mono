@@ -1,0 +1,3573 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>05 街と建築 ── 一年が巡る街</title>
+<style>
+  :root{
+    --paper:#f3eee7; --ink:#3a2b3d; --sub:#7d6d84; --line:#e0d6dd;
+    --plum:#7c5a70; --card:#fffdfa; --sage:#6f9a58;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink);
+    font:15px/1.9 "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:40px 22px 90px; }
+  h1{ font-size:26px; line-height:1.5; margin:0 0 6px; letter-spacing:.01em; }
+  h2{ font-size:19px; margin:64px 0 6px; padding-bottom:8px;
+    border-bottom:2px solid var(--plum); letter-spacing:.02em; }
+  h3{ font-size:15px; margin:30px 0 4px; color:var(--plum); letter-spacing:.06em; }
+  p{ margin:6px 0 14px; }
+  .lead{ color:var(--sub); font-size:14px; }
+  b{ color:var(--plum); }
+  .note{ background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:14px 18px; margin:14px 0 8px; font-size:14px; }
+  .note ul{ margin:6px 0 0; padding-left:1.2em; }
+  .fixed{ border-left:4px solid var(--sage); background:#f4f7ef; }
+  .row{ display:flex; flex-wrap:wrap; gap:14px; margin:12px 0 6px; }
+  .shot{ width:228px; }
+  .shot canvas{ width:228px; height:234px; display:block; border-radius:12px;
+    background:#efe7f2; border:1px solid var(--line); }
+  .shot .frame{ width:228px; height:234px; overflow:hidden; border-radius:12px;
+    border:1px solid var(--line); background:#efe7f2; }
+  .shot .frame canvas{ border:0; border-radius:0; }
+  .cap{ font-size:12px; line-height:1.65; color:var(--sub); margin:6px 2px 0;
+    position:relative; z-index:2; }
+  .cap b{ color:var(--ink); }
+  table{ border-collapse:collapse; width:100%; font-size:13.5px; margin:12px 0; }
+  th,td{ border-bottom:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top; }
+  th{ color:var(--sub); font-weight:700; white-space:nowrap; }
+  .tag{ display:inline-block; border-radius:999px; padding:1px 10px; font-size:12px;
+    margin-left:8px; vertical-align:2px; color:#fff; }
+  .ok{ background:var(--sage); } .pick{ background:var(--plum); }
+  footer{ margin-top:70px; color:var(--sub); font-size:13px;
+    border-top:1px solid var(--line); padding-top:18px; }
+  @media (max-width:700px){
+    .shot, .shot canvas, .shot .frame{ width:160px; }
+    .shot canvas, .shot .frame{ height:164px; } }
+  /* 動く街 */
+  #live{ display:inline-block; }
+  canvas.big{ width:390px; height:400px; display:block; border-radius:20px;
+    background:#efe7f2; border:1px solid var(--line); }
+  .ctrl{ display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+    width:390px; margin:10px 0 0; font-size:12.5px; }
+  .clock{ font-weight:800; font-variant-numeric:tabular-nums; min-width:112px; }
+  .slider{ flex:1; min-width:150px; accent-color:var(--plum); }
+  .ctrl select, .btn{ font:12.5px/1.6 inherit; color:var(--ink);
+    background:var(--card); border:1px solid var(--line); border-radius:9px; padding:3px 8px; }
+  .btn{ cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>一年が巡る街と、そこを歩く人</h1>
+<p class="lead">
+  05 街と建築。前回の案に対する先生の判断を入れて作り直しました。
+  <b>季節は案C（木＋行事の記号）で確定</b>、<b>自宅は街に置かない</b>、
+  <b>行ける／行けないは案C（縁の点）</b>、<b>名札はぜんぶ出す</b>。
+  そのうえで、<b>街の人が時間帯とタイミングで変わる</b>ようにしました（1節）。
+  決まったことを入れたうえで、残っている判断は5節（名札に足す2案）だけです。
+</p>
+
+<div class="note fixed">
+  <b>先生の判断で決まったこと（2026-08-17）</b>
+  <ul>
+    <li><b>季節＝案C。</b>「空だけでは物足りない。手前に木がある方がいい。空も変わっていく。
+        月によって少しずつ変わっているのが面白いので、行事の記号もぜひ」</li>
+    <li><b>自宅は街に置かない。</b>「このマップに配置するのは狭すぎる。
+        夜になったら勝手にそっちに行くような感じで、ここに配置する必要はなかった」</li>
+    <li><b>行ける／行けない＝案C</b>（縁の点）</li>
+    <li><b>学校の看板は CULTURA に変えてよい。</b>ただし名前は変わるかもしれない</li>
+    <li><b>名札はぜんぶ出す。</b>「まだ行けないけど、こんなのもあるんだというのが
+        見えていた方が、後々の楽しみが広がる」</li>
+  </ul>
+</div>
+
+<h2>1. 街を歩く人 ── 動かして見てください<span class="tag pick">今回のあたらしいところ</span></h2>
+<p>
+  <b>時刻のつまみを動かしてください。</b>人の数と行き先が変わります。
+  月も変えられます（6月にすると傘をさします）。案A・B・Cも切り替えられます。
+</p>
+<div id="live"></div>
+<div class="note fixed">
+  <b>建物と人の前後（奥行き）を直しました（2026-08-17・3回目の指摘）</b>
+  <ul>
+    <li><b>原因</b>：描く順を「奥行きの値ひとつ」（建物は中心の y、人は自分の y）で
+        並べていました。横に流れる人には効きますが、<b>縦の通路を歩く人ではまるで当たりません</b>
+        ── 建物の左どなりにいる人は、建物の中心より手前なら建物の上に描かれ、
+        奥なら建物に埋もれます。ご指摘の「上に行く／中に埋もれる」はこれです</li>
+    <li><b>直しかた</b>：アイソメで正しい決めかた
+        ── <b>A が B の左か奥にあれば A を先に描く</b> ── を、
+        描くもの全部の組（建物・人・車・木・街灯・猫）について集め、矛盾しないように
+        一列に並べてから描くようにしました（位相ソート）。建物は格子に並んで重ならないので、
+        矛盾は起きません</li>
+    <li>ついでに見つけた不具合：<b>車が画面の端で折り返すときに消えていました</b>
+        （人の式を車にも使っていて、車には無い値を足して NaN になっていた）。
+        これが描く順の計算まで狂わせていました。直しました</li>
+    <li>確かめかたに<b>「建物と人の前後が逆な組」</b>を足しました。5こまごとに描く順を作り、
+        画面で重なるのに手前の人が先／奥の人が後になっている組を数えます。
+        建物どうしも見ます。<b>75,600こまで 0</b></li>
+  </ul>
+</div>
+
+<div class="note fixed">
+  <b>2回目の指摘を直しました（2026-08-17）</b>
+  <ul>
+    <li><b>傘はやめました。</b>「自然な感じで差すのであれば、差さない方がいい」。
+        傘は人が<b>持ち物として持つ</b>形でないと、奥の人にさしたときに
+        人が建物に隠れているのに傘だけ屋根の上に浮きます。
+        そこは <code>src/staff/person.js</code>（04 キャラクター）の仕事なので、
+        いったん引っこめました。雨は<b>水たまりと急ぎ足</b>だけで見せています</li>
+    <li><b>縦の通路が通れず、突っかかっていたのを直しました。</b>ご指摘のとおりでした。
+        歩き方を毎こま「いちばん近い歩道はどこか」から考え直していたので、
+        <b>通路を縦断している途中に「まず歩道へ戻れ」と判断が入り、
+        行っては戻りをくり返していました</b>。
+        道すじを<b>「いまどの脚を歩いているか」で持つ</b>形に組み直しました
+        ── 歩道の上を通路の入口まで → 通路を縦断（このあいだ横には動かさない）→
+        目的の歩道の上を店の前まで → 建物へ半歩寄る。<br>
+        あわせて、<b>通路を出るときの目標も「その場所で通れる高さ」</b>にしました。
+        カフェの黒板のように歩道へ少し食い込んだ張り出しに、頭を押さえられて
+        進めなくなっていたためです</li>
+    <li><b>人同士の当たり判定をやめました。すり抜けてすれ違います。</b>
+        「ぶつかるくらいだったら、人同士はすり抜けてもらって構わない」という許しをいただいたので、
+        押し離す処理を<b>撤去</b>しました。これがぶつかり合いの元でした
+        ── 進行方向に押し返して足が止まり、直すと釣り合って止まり、
+        直すと小刻みに揺れて「ぶつかり合って」見えていました。<br>
+        そのかわり、<b>一人ひとりに道の中の固有のずれ（レーン）</b>を持たせました。
+        歩道では奥行きに ±0.17マス、縦の通路では左右に ±0.20マス。
+        <b>奥行きが違えば、画面で重なっても前後に描かれるので自然に見えます。</b>
+        歩く速さの幅も広げたので、ふたりが長く並んで歩くことがありません。<br>
+        <b>建物との当たり判定は捨てていません。</b>捨てたのは人と人だけです</li>
+    <li><b>名札の重なりを直しました。</b>手前から順に置いて、ぶつかった名札だけを上へ持ち上げます。
+        奥の列（生地問屋・カフェ・出版社）はアイソメで画面の同じあたりに集まるので、
+        そのまま置くと重なります</li>
+    <li><b>物体同士の位置関係。</b>ご指摘のショー会場は、<b>円いホールが敷地より
+        前後に 0.4 マスずつ出ていました</b>。だから手前を歩く人や、うしろの道を走る車と
+        前後が崩れていました。半径を敷地に収まる大きさにしました。
+        あわせて<b>建物ごとに「実際に場所を取っている範囲」</b>を持たせました
+        ── どの建物も入口の階段が手前へ出ていて、学校は門柱、ショー会場はポーチと柱、
+        工場は車止め、カフェは黒板が出ています。人はそこに入れません</li>
+    <li><b>街の地面を1マス手前に広げました。</b>そうしないと、手前の列の建物の前に
+        歩道を通す土地がありません（入口の階段やポーチと重なってしまいます）</li>
+    <li><b>人の大きさは 0.56倍で確定</b>にしました（「今のサイズで良い」）</li>
+  </ul>
+  <p style="margin:10px 0 0">
+    確かめかた：<code>node proposals/05-town/check.mjs 4200</code><br>
+    6つの時刻 × 3つの案 × 4200こま（<b>75,600こま</b>）走らせて、
+    <b>建物の中に入った回数 0／詰まって動かなくなった人 0／
+    小刻みな行き戻り 0／進めずに突っかかった回数 0／建物と人の前後が逆な組 0</b>。<br>
+    <b>「進めずに突っかかった回数」を新しく足しました。</b>
+    2秒のあいだに、その人の速さから期待される距離の1/4も進めなかったら数えます。
+    はじめは「目的地まで何秒かかったか」で測っていましたが、それでは
+    遠い店へ向かっている人まで拾ってしまい、本当の突っかかりが埋もれていました。
+  </p>
+</div>
+
+<div class="note">
+  <b>変えたこと</b>
+  <ul>
+    <li><b>縦の通路を2本通しました</b>（x＝3.25 と 6.55）。
+        「人は建物と建物の間を歩いていく」を、この2本で作っています。
+        どの列の建物にも当たらないことを確かめて選んだ場所です</li>
+    <li><b>手前にもう1本、並木の歩道を通しました。</b>これも要です。
+        いまの道は2本（学校の前と、アトリエの前）だけで、
+        <b>いちばん手前の列（スタジオ・ショー会場・工場）は建物の裏側が道に面している</b>ため、
+        道にいる人は建物に隠れてしまい、「店の前に人がいる」を作れませんでした。
+        手前に歩道を通すと前列の店の前に立てるようになり、街のいちばん手前にも人が歩きます</li>
+    <li><b>人の数が時刻で変わります。</b>朝8時は登校で10人、
+        夕方17時は下校と買い物でいちばん多く11人、夜23時は2人、深夜3時は1人。
+        猫は逆で、夜のほうが増えます（街が静かなことの記号）。車も夜は減ります</li>
+    <li><b>行き先を持ちます。</b>ただ左右に流れるのではなく、
+        <b>開いている拠点</b>を選んで、その前まで歩き、数秒立ち止まって、また次へ向かいます。
+        閉まっている店の前には人が立ちません</li>
+    <li><b>朝は学校へ吸われ、夕方は学校から吐き出されて店へ散ります。</b>
+        夜は編集部（締切）とカフェに寄ります</li>
+    <li><b>雨の月（6月）は急ぎ足になります。</b>夜はゆっくり歩きます</li>
+    <li>傘は<b>手前の歩道にいる人だけ</b>にさしています。奥の人にさすと、
+        人が建物に隠れているのに傘だけ屋根の上に浮いて見えてしまうためです。
+        傘は本来<b>人が持ち物として持つべきもの</b>で、そこは 04 キャラクターの仕事なので、
+        必要になったらお願いする形になります</li>
+  </ul>
+</div>
+
+<h3>建物と人の前後 ── 縦の通路に人を立たせて確かめたところ</h3>
+<p class="lead">
+  縦の通路の途中、建物の<b>左どなり</b>に3人ずつ立たせました。手前ぎわの人は見え、
+  奥の人は建物に隠れる ── これが正しい前後です。前は「建物の中心より手前なら上に乗り、
+  奥なら埋もれる」になっていました。
+</p>
+<div class="row" id="orderCheck"></div>
+
+<h3>ショー会場のまわり ── 位置関係を直したところ</h3>
+<p class="lead">
+  ショー会場の円いホールは、<b>敷地より前後に 0.4 マスずつ出ていました</b>。
+  そのため手前を歩く人や、うしろの道を走る車と前後が崩れていました。
+  半径を敷地に収まる大きさにしたので、<b>ホールは少し小さくなっています</b>。<br>
+  <b>もし前の大きさを保ちたい場合は、ショー会場の敷地を奥行き方向に広げる（1.9→2.7マス）
+  こともできます。</b>そのときは街全体がもう1マス手前に伸びます。どちらがよいか教えてください。
+</p>
+<div class="row" id="fixVenue"></div>
+
+<h3>時刻で人の数が変わるところ</h3>
+<div class="row" id="crowdTime"></div>
+
+<h3>案A・B・C（同じ夕方17時で）</h3>
+<p class="lead">
+  どこまでやるかを3段階にしました。案Aは<b>いまと同じ動き</b>で、数だけが時刻で変わります。
+</p>
+<div class="row" id="crowdLv"></div>
+
+<h3>朝は学校へ、夕方は学校から（案C・学校のまわりを拡大）</h3>
+<div class="row" id="crowdSchool"></div>
+
+<h3>雨の月（6月）</h3>
+<div class="row" id="crowdRain"></div>
+
+<h3>まだ開いていない店の前には、人がいない</h3>
+<p class="lead">
+  1年生の街と4年生の街。鍵のかかった店の前には誰も立ちません。
+  <b>街が開いていくと、人も増えていきます。</b>
+</p>
+<div class="row" id="crowdOpen"></div>
+
+<h2>2. 季節 ── 案Cで確定<span class="tag ok">決定</span></h2>
+<p>
+  <b>案C＝空と遠景＋木＋月ごとの行事の記号ひとつ</b>です。念のため、
+  何がどれだけ効いているかを段階で残しておきます（同じ4か月で見比べられます）。
+  <span class="lead">この節は絵をよく見てもらうため、名札を外して撮っています。</span>
+</p>
+
+<h3>参考 ── 空と遠景だけ（これだけでは物足りない、と先生の判断）</h3>
+<div class="row" id="sA"></div>
+
+<h3>参考 ── ＋手前の並木（木が入ると、季節が街のものになる）</h3>
+<div class="row" id="sB"></div>
+
+<h3>案C＝確定 ── ＋月ごとの行事の記号ひとつ<span class="tag ok">これで進めます</span></h3>
+<p class="lead">
+  4月＝校門の紅白幕と立て看板、6月＝傘と水たまり、7月＝作品展の幟、9月＝産地へ行くトラック、
+  11月＝校庭のテントと幟、1月＝雪だるまと降る雪、3月＝卒業の立て看板と花。
+  <b>1か月にひとつだけ</b>という縛りを守ります。これを超えると街が読みにくくなります。
+</p>
+<div class="row" id="sC"></div>
+
+<h2>3. 10か月ぜんぶ（確定した案Cで）</h2>
+<p>
+  4月に始まり3月で終わります。8月と2月はゲームに無い月です（<code>docs/GAME.md</code> の推し案A）。
+  行事の記号がまだ無いのは5月・10月・12月の3つです。そこは
+  <b>できごと（09）で何が起きるかが決まってから</b>足すほうが噛み合うと思います。
+</p>
+<div class="row" id="sAll"></div>
+
+<h2>4. 季節と時間帯は喧嘩しないか</h2>
+<p>
+  11月（学園祭の月）を、朝・昼・夕・夜で。季節の色を
+  <code>docs/ART.md</code> の DAY 表の<b>上に薄い一枚</b>として重ねているので、
+  前に入れた一日の変化（朝は雨戸が閉じ、夕方に看板が灯る）はそのまま残っています。
+</p>
+<div class="row" id="sTime"></div>
+
+<h2>5. 名札 ── ぜんぶ出します<span class="tag ok">決定</span></h2>
+<div class="note fixed">
+  <b>先生の判断</b>：「まだ行けないけど、こんなのもあるんだというのが見えていた方が、
+  後々の楽しみが広がる。<b>そこに行けるようになりたいな</b>、みたいな気持ちが高まる気がする。
+  街が隠れてしまうのは分かるけれど、そんなには気にならない」
+</div>
+<p>
+  そのとおりだと思います。街の絵の見やすさより、<b>「あそこに行けるようになりたい」</b>のほうが
+  ずっと大事です。減らす案はやめて、10枚とも出します。<br>
+  そのうえで、その気持ちをもう一段強めるための小さな案を2つだけ出します。
+  <b>どちらも「まだ行けない場所」の見せ方だけの話</b>で、枚数は減りません。
+</p>
+<div class="row" id="plate"></div>
+
+<div class="note">
+  <b>足すとしたら</b>
+  <ul>
+    <li><b>案1 開く条件を小さく添える。</b>
+        鍵の札の下に「2年から」「名声12で開く」と一行。
+        <b>行けない理由ではなく、行ける道すじが見えます。</b>
+        いまは鍵を見ても「どうすれば開くのか」が分からないので、
+        「行きたい」が「行ける気がする」に変わりません。この一行がその橋になります</li>
+    <li><b>案2 まだの場所を暗くしない。</b>いまは暗い札にしていますが、
+        これは「行けない」を強く言いすぎています。明るい札のまま鍵だけ付けると、
+        <b>「行けない場所」ではなく「まだの場所」</b>に見えます。
+        案1と一緒に使えます</li>
+    <li><b>案1＋案2 を両方。</b><span class="tag pick">推し</span>
+        明るい札に「2年から」「名声40で開く」が並びます。
+        <b>「まだ行けない」が「もうすぐ行ける」に見える</b>のが、いちばん強いと思います</li>
+    <li>何も足さず<b>いまのまま</b>でも、もちろん成立します</li>
+  </ul>
+</div>
+
+<h3>学年が上がるにつれて、鍵がひとつずつ外れていくところ（案1＋案2で）</h3>
+<p class="lead">同じ4月の街を、1年・2年・3年・4年で。</p>
+<div class="row" id="plateYear"></div>
+
+<h3>参考 ── 減らす案（見送りになったもの）</h3>
+<p class="lead">
+  判断の記録として残しておきます。街の絵はよく見えますが、
+  「まだ行けない場所がある」ことが伝わらなくなります。
+</p>
+<div class="row" id="plateRef"></div>
+
+<h2>6. 学校の看板 ── CULTURA へ<span class="tag ok">決定</span></h2>
+<p>
+  <b>名前が変わるかもしれない</b>とのことなので、<b>コードの1か所を書き換えるだけで
+  差し替えられる形</b>にしてあります（<code>SCHOOL_SIGN</code> という変数ひとつ）。
+  文字数が変わっても看板の幅に合わせて自動で縮むので、
+  短い名前でも長い名前でもそのまま入ります。
+</p>
+<div class="row" id="sign"></div>
+
+<h2>7. 行ける／行けない ── 案Cで確定<span class="tag ok">決定</span></h2>
+<p>
+  縁の点です。通えば通うほど点が塗られ、<b>2つ以上でインターンに行ける</b>
+  （<code>docs/GAME.md</code>）。塗りの色は、<b>就職先になれる5つ</b>
+  （アトリエ・学校・生地問屋・出版社・工場）だけモーヴ、
+  バイト先と見学先は灰色にしてあります。4年目に「あそこは選べないんだ」と分かる
+  （<code>docs/WORLD.md</code>）ための下ごしらえです。
+</p>
+<div class="row" id="acc"></div>
+
+<h2>8. 自宅について ── 街には置きません<span class="tag ok">決定</span></h2>
+<p>
+  ご指摘のとおりで、置いてみて<b>私も同じことを思いました</b>。
+  一度アトリエの右どなりに挟んだら3案とも同じにしか見えず、
+  手前の列に出したら今度は街の顔になってしまいました。
+  この街は10棟でもう埋まっていて、11棟目の余地がありません。
+</p>
+<p>
+  そのうえで、ひとつだけお伝えしておきたいことがあります。
+  <code>docs/WORLD.md</code> では自宅が<b>夜の主舞台</b>で、
+  「自主制作の途中の服がラックに掛かっていき、見えるところにその人の4年が積もる」
+  と書かれています。<b>そこは街の地図ではなく、部屋の画面（06 の担当）で見せるもの</b>です。
+  街の役目は「昼、どこへ行くかを選ぶ地図」で、自宅は
+  <b>夕方に「帰る」を選んだら画面が切り替わる先</b>。役割が分かれているほうがきれいです。
+</p>
+<p class="lead">
+  街の側で残ることは1つだけあります。「帰る」を選んだときに<b>街から自宅へ移る一瞬をどう見せるか</b>
+  （そのまま切り替える／街が暗くなって寄っていく／帰り道を歩く）。
+  これは 06 と 10 にまたがる話なので、必要になったときに相談させてください。
+</p>
+
+<h2>まとめ</h2>
+<table>
+  <tr><th>街の人</th><td><b>A 数だけ</b> ／ <b>B ＋店の前で立ち止まる</b> ／
+      <b>C ＋登下校の流れ</b>（推し）<br>
+      <span class="lead">建物のすり抜け・詰まり・ガタガタはすべて 0（25,200こま）。
+      人同士はすり抜けてすれ違います。人の大きさは 0.56倍で確定。傘はやめました。</span></td></tr>
+  <tr><th>街の地面</th><td><b>1マス手前へ広げて、歩道を通す。</b>縦の通路も2本<br>
+      <span class="lead">ショー会場のホールを敷地に収めたぶん小さくなりました。
+      前の大きさを保つなら、ショー会場の敷地を奥行き 1.9→2.7 マスに広げる手もあります
+      （街がもう1マス手前へ伸びます）。</span></td></tr>
+  <tr><th>季節</th><td><b>案C で確定。</b>10か月ぶんの色と木は入れました。
+      行事の記号は7つ。残る3つ（5月・10月・12月）は 09 のできごとが決まってから</td></tr>
+  <tr><th>名札</th><td><b>ぜんぶ出すことで確定。</b>まだ行けない場所が見えていることが、
+      次に行きたい場所になる<br>
+      <span class="lead">足すとしたら「開く条件を小さく添える」＋「まだの場所を暗くしない」の
+      両方（推し）。どちらも枚数は減りません。何も足さなくても成立します。</span></td></tr>
+  <tr><th>学校の看板</th><td><b>CULTURA で進めます。</b>1か所（<code>SCHOOL_SIGN</code>）で差し替えられます</td></tr>
+  <tr><th>行ける／行けない</th><td><b>案C（縁の点）で確定</b></td></tr>
+  <tr><th>自宅</th><td><b>街には置きません。</b>夕方に「帰る」を選んだら画面が切り替わる先として、
+      06 の部屋の画面にお任せします</td></tr>
+</table>
+
+<footer>
+  05 街と建築 ／ 2026-08-17 ／ <code>node proposals/05-town/make.mjs</code> で作り直せます。<br>
+  絵のコードは <code>src/town/</code> をそのまま読み込んでいます（本体は触っていません）。
+</footer>
+
+</div>
+<script>
+/* ==================================================================
+   1. アイソメトリック描画の土台
+   ================================================================== */
+let cv  = document.getElementById("cv") || document.createElement("canvas");
+let ctx = cv.getContext("2d");
+
+const VW = 390, VH = 400;
+const R_TW = 64, R_TH = 32;          // アトリエの中のタイル
+const T_TW = 46, T_TH = 23;          // 街のタイル（全体が縦画面に収まる大きさ）
+const T_ZS = 0.81;                   // 街は建物を高く見せたいので、高さの縮尺を別に持つ
+let TW = R_TW, TH = R_TH, ZS = TH/42;
+let GW = 8, GD = 6;                  // アトリエの床（広げられる）
+const GW_MAX = 11, GD_MAX = 9;
+const TGW = 10, TGD = 10;             // 街の地面
+const WALLH = 150;
+const SLAB = 22;
+let OX = 0, OY = 0;
+let view = "room";                   // "room" か "town"
+function useRoomScale(){ TW = R_TW; TH = R_TH; ZS = TH/42; fitOrigin(); }
+function useTownScale(){ TW = T_TW; TH = T_TH; ZS = T_ZS;
+  OX = VW/2 - (TGW-TGD)*(TW/2)/2; OY = 156; }
+
+/* いま描いている什器の枠。回して置いた什器のあいだだけ入る。
+   {x, y, w, d} は回す前の場所と大きさ */
+let FRAME = null;
+function iso(gx, gy, gz){
+  if(FRAME){
+    const u = gx - FRAME.x, v = gy - FRAME.y;
+    gx = FRAME.x + FRAME.d - v;
+    gy = FRAME.y + u;
+  }
+  return { x: OX + (gx-gy)*(TW/2), y: OY + (gx+gy)*(TH/2) - (gz||0)*ZS };
+}
+/* 画面の座標を床のマス目に戻す（什器を動かすときに使う） */
+function unIso(px, py){
+  const sx = px-OX, sy = py-OY;
+  return { gx:(sx/(TW/2) + sy/(TH/2))/2, gy:(sy/(TH/2) - sx/(TW/2))/2 };
+}
+/* #rrggbb でも rgb(...) でも受ける。
+   shade() の結果をそのまま box() や bolt() に渡しても壊れないようにするため。 */
+function shade(col, f){
+  let r, g, b;
+  if(col.charAt(0) === "#"){
+    const n = parseInt(col.slice(1),16);
+    r = (n>>16)&255; g = (n>>8)&255; b = n&255;
+  } else {
+    const m = col.match(/\d+/g);
+    r = +m[0]; g = +m[1]; b = +m[2];
+  }
+  const c = v => Math.min(255, Math.round(v*f));
+  return "rgb("+c(r)+","+c(g)+","+c(b)+")";
+}
+function poly(pts, fill){
+  ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
+  for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i].x, pts[i].y);
+  ctx.closePath(); ctx.fillStyle = fill; ctx.fill();
+}
+function box(gx, gy, w, d, h, color, base){
+  const z = base||0;
+  /* 90度まわすと、手前に来る面が入れかわる。
+     光の向きは変わらないので、陰の濃さも入れかえる。
+     面そのものも入れかえること。まわすと「y=gy+d」は左へ回り込んで見えなくなり、
+     代わりに「y=gy」が右面として出てくる。ここを直さないと右面が一枚欠ける */
+  const s1 = FRAME ? .54 : .70, s2 = FRAME ? .70 : .54;
+  const yf = FRAME ? gy : gy+d;
+  poly([iso(gx,yf,z+h), iso(gx+w,yf,z+h), iso(gx+w,yf,z), iso(gx,yf,z)], shade(color,s1));
+  poly([iso(gx+w,gy,z+h), iso(gx+w,gy+d,z+h), iso(gx+w,gy+d,z), iso(gx+w,gy,z)], shade(color,s2));
+  poly([iso(gx,gy,z+h), iso(gx+w,gy,z+h), iso(gx+w,gy+d,z+h), iso(gx,gy+d,z+h)], shade(color,1));
+}
+function cyl(gx, gy, r, h, color, base){
+  const z = base||0;
+  const c0 = iso(gx,gy,z), c1 = iso(gx,gy,z+h);
+  const rx = r*TW/2, ry = r*TH/2;
+  ctx.fillStyle = shade(color,.60);
+  ctx.beginPath();
+  ctx.moveTo(c0.x-rx, c0.y); ctx.lineTo(c1.x-rx, c1.y);
+  ctx.ellipse(c1.x, c1.y, rx, ry, 0, Math.PI, 0, true);
+  ctx.lineTo(c0.x+rx, c0.y);
+  ctx.ellipse(c0.x, c0.y, rx, ry, 0, 0, Math.PI, false);
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle = shade(color,1);
+  ctx.beginPath(); ctx.ellipse(c1.x, c1.y, rx, ry, 0, 0, 6.2832); ctx.fill();
+}
+/* 反物・ロール。2点のあいだを太い線で結び、両端に断面をつける */
+function bolt(gx1, gy1, gx2, gy2, z, r, col){
+  const a = iso(gx1,gy1,z), b = iso(gx2,gy2,z);
+  ctx.strokeStyle = shade(col,.92); ctx.lineWidth = r*2; ctx.lineCap = "butt";
+  ctx.beginPath(); ctx.moveTo(a.x, a.y-r); ctx.lineTo(b.x, b.y-r); ctx.stroke();
+  ctx.strokeStyle = shade(col,1.12); ctx.lineWidth = r*0.7;
+  ctx.beginPath(); ctx.moveTo(a.x, a.y-r*1.5); ctx.lineTo(b.x, b.y-r*1.5); ctx.stroke();
+  ctx.fillStyle = shade(col,1.2);
+  ctx.beginPath(); ctx.ellipse(a.x, a.y-r, r*0.5, r, 0, 0, 6.2832); ctx.fill();
+  ctx.fillStyle = shade(col,.72);
+  ctx.beginPath(); ctx.ellipse(b.x, b.y-r, r*0.5, r, 0, 0, 6.2832); ctx.fill();
+}
+/* 画面上の円（はずみ車やノブ） */
+function disc(gx, gy, z, r, col){
+  const p = iso(gx,gy,z);
+  ctx.fillStyle = shade(col,.7);
+  ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 6.2832); ctx.fill();
+  ctx.fillStyle = shade(col,1.1);
+  ctx.beginPath(); ctx.arc(p.x, p.y, r*0.55, 0, 6.2832); ctx.fill();
+}
+/* 傾いた天板の、奥から手前への高さを求める */
+function tiltZ(f, v, zBack, zFront){ return zBack + (zFront-zBack)*(v-f.y)/FURN[f.type].d; }
+
+/* トルソー（ボディ）の輪郭。肩→バスト→ウエスト→ヒップの断面をたどる */
+const TORSO_PROFILE = [
+  [0.00,0.80],[0.10,0.87],[0.22,0.85],[0.33,0.70],[0.44,0.53],[0.54,0.63],
+  [0.65,0.86],[0.74,0.90],[0.82,0.79],[0.88,0.60],[0.93,0.33],[0.97,0.19],[1.00,0.17]
+];
+function torsoShape(px, py, H, W){
+  ctx.beginPath();
+  ctx.moveTo(px - W*TORSO_PROFILE[0][1], py);
+  for(let i=1;i<TORSO_PROFILE.length;i++)
+    ctx.lineTo(px - W*TORSO_PROFILE[i][1], py - H*TORSO_PROFILE[i][0]);
+  for(let i=TORSO_PROFILE.length-1;i>=0;i--)
+    ctx.lineTo(px + W*TORSO_PROFILE[i][1], py - H*TORSO_PROFILE[i][0]);
+  ctx.closePath();
+}
+
+/* 壁に貼るもの。back = 奥の広い壁、left = 左の壁 */
+function wallQuad(f, w, h, color, du, dz){
+  const u = f.u + (du||0), z = f.z - (dz||0);
+  if(f.wall==="back") poly([iso(u,0,z), iso(u+w,0,z), iso(u+w,0,z-h), iso(u,0,z-h)], color);
+  else                poly([iso(0,u,z), iso(0,u+w,z), iso(0,u+w,z-h), iso(0,u,z-h)], color);
+}
+/* 壁の面の上の1点。(du, dz) — dz は下向き。ネオンやカーテンの曲線に使う */
+function wallPt(f, du, dz){
+  const u = f.u + du, z = f.z - dz;
+  return f.wall==="back" ? iso(u,0,z) : iso(0,u,z);
+}
+
+
+
+/* src/core/state.js から、街に要るぶんだけ。値は本体と同じ */
+const M_OPEN = 0.05, M_CLOSE = 0.76, M_GONE = 0.86;
+let mp = 0.30, fame = 300, showIdx = 3, staff = [];
+function hourOf(){
+  if(mp < M_CLOSE) return 8 + mp/M_CLOSE * 10;
+  if(mp < M_GONE)  return 18 + (mp-M_CLOSE)/(M_GONE-M_CLOSE)*2;
+  return (20 + (mp-M_GONE)/(1-M_GONE)*12) % 24;
+}
+const partOfDay = () => mp < M_OPEN ? "朝" : mp < 0.55 ? "昼" : mp < M_GONE ? "夕" : "夜";
+const pick = a => a[Math.floor(Math.random()*a.length)];
+
+/* ==================================================================
+   13. 時間帯
+   ================================================================== */
+/* t は一日のうちの位置（0=0時, 0.25=6時, 0.5=12時, 0.75=18時） */
+const DAY = [
+  {t:0.00, a:"#3e3760", b:"#251f3c", tint:"42,36,64",    amt:0.00, night:1.00},  //  0時
+  {t:0.20, a:"#5b4a70", b:"#3a2f52", tint:"48,40,72",    amt:0.00, night:0.80},  //  5時
+  {t:0.27, a:"#ffdcc2", b:"#f6b8a4", tint:"255,178,124", amt:0.18, night:0.20},  //  6.5時
+  {t:0.38, a:"#fdf1e4", b:"#f7e3d6", tint:"255,255,255", amt:0.00, night:0.00},  //  9時
+  {t:0.62, a:"#fdf1e4", b:"#f7e3d6", tint:"255,255,255", amt:0.00, night:0.00},  // 15時
+  {t:0.74, a:"#ffd9bd", b:"#f0ac9c", tint:"255,140,80",  amt:0.22, night:0.18},  // 17.8時
+  {t:0.82, a:"#7a5e80", b:"#4a3a5e", tint:"70,54,96",    amt:0.00, night:0.62},  // 19.7時
+  {t:0.90, a:"#3e3760", b:"#251f3c", tint:"42,36,64",    amt:0.00, night:1.00},  // 21.6時
+  {t:1.00, a:"#3e3760", b:"#251f3c", tint:"42,36,64",    amt:0.00, night:1.00},
+];
+function dayT_(){ return hourOf()/24; }
+function dayMix(){
+  const dayT = dayT_();
+  let i = 0; while(i+1<DAY.length-1 && dayT>=DAY[i+1].t) i++;
+  const a = DAY[i], b = DAY[i+1];
+  const k = Math.max(0, Math.min(1, (dayT-a.t)/(b.t-a.t)));
+  const lerpC = (p,q)=>{
+    const P=parseInt(p.slice(1),16), Q=parseInt(q.slice(1),16);
+    const m=j=>Math.round((((P>>j)&255)*(1-k))+(((Q>>j)&255)*k));
+    return "rgb("+m(16)+","+m(8)+","+m(0)+")";
+  };
+  const t1 = a.tint.split(",").map(Number), t2 = b.tint.split(",").map(Number);
+  return { a:lerpC(a.a,b.a), b:lerpC(a.b,b.b),
+           tint:t1.map((v,j)=>Math.round(v*(1-k)+t2[j]*k)).join(","),
+           amt:a.amt*(1-k)+b.amt*k, night:a.night*(1-k)+b.night*k };
+}
+function nightAmount(){ return dayMix().night; }
+const TODICON = () => { const p2 = partOfDay();
+  return p2==="朝" ? "🌅" : p2==="昼" ? "☀️" : p2==="夕" ? "🌇" : "🌙"; };
+
+
+/* ==================================================================
+   街。ファッションが動いている場所を、拠点として並べる。
+   すべてがアトリエの中で起きるわけではない、というのがこの画面の主張。
+   ================================================================== */
+const PLACES = [
+  { id:"atelier", name:"アトリエ", en:"Atelier", x:3.6, y:3.0, w:2.6, d:2.0, h:48,
+    wall:"#f0e0cc", roof:"#c9846f", need:null, enter:true,
+    lead:"服を作る場所。ここが本拠地です。",
+    what:"リサーチ、デザイン、パターン、素材選び、裁断、縫製、仕上げ。一着ができるまでのほとんどがここで起きます。人が増え、什器が増えるほど、できることが増えていきます。",
+    who:["designer","patterner","textile","sewer","producer","md","press","intern","embroid"] },
+
+  { id:"school", name:"ファッションスクール", en:"Fashion School", x:0.3, y:0.3, w:2.8, d:1.5, h:44,
+    wall:"#e6e2d6", roof:"#8fa3b0", need:{fame:0},
+    lead:"人が生まれてくる場所。",
+    what:"学生がパターンを引き、トワルを組み、卒業制作に向かっています。インターンはここから来ます。卒業生が数年後に一人前になって、また訪ねてくることもあります。",
+    who:["先生","学生","インターン候補"] },
+
+  { id:"fabric", name:"生地問屋", en:"Fabric Wholesaler", x:3.7, y:0.3, w:2.2, d:1.5, h:40,
+    wall:"#ddd0bb", roof:"#a98a63", need:{fame:12},
+    lead:"生地を、触って選びに行く場所。",
+    what:"反物が天井まで積まれています。同じ「白」でも何十種類もあり、光にかざし、握って、頬に当てて選びます。産地まで足を運べば、工場でしか出せない織りや加工に出会えます。",
+    who:["テキスタイルデザイナー","問屋の担当者","産地の職人"] },
+
+  { id:"press", name:"出版社・編集部", en:"Publisher", x:7.6, y:0.3, w:1.9, d:1.5, h:96,
+    wall:"#d8dde4", roof:"#7d8794", need:{fame:40},
+    lead:"何を世に出すかが決まる場所。",
+    what:"編集者が特集を組み、ライターが言葉にし、フォトグラファーとスタイリストが誌面を作ります。ここに載ると、作った人の考えが言葉になって残ります。取材は宣伝ではなく、記録です。",
+    who:["編集者","ライター","フォトグラファー","スタイリスト"] },
+
+  { id:"shop", name:"ショップ", en:"Shop", x:0.3, y:3.0, w:2.3, d:1.7, h:46,
+    wall:"#f2e6ea", roof:"#c98ba4", need:{chapter:2},
+    lead:"服とお客さんが出会う、最後の場所。",
+    what:"作った服がここに並び、毎日売れていきます。店長が発注し、VMDが見せ方を作り、スタッフが接客する。ここで聞いたひと言が、次のシーズンの設計に返っていきます。",
+    who:["店長","ショップスタッフ","VMD","アルバイト"] },
+
+  { id:"showroom", name:"PRショールーム", en:"PR Showroom", x:7.5, y:3.0, w:2.2, d:1.7, h:52,
+    wall:"#f3f2ef", roof:"#b9b4ae", need:{fame:70},
+    lead:"服を、外の人に見せて貸し出す場所。",
+    what:"スタイリストや編集者が服を借りに来ます（リース）。撮影が終われば返ってきますが、掲載されればブランドの名前が世に出ます。プレスがここで人とつながっています。",
+    who:["プレス／PR","スタイリスト","編集者"] },
+
+  { id:"studio", name:"撮影スタジオ", en:"Photo Studio", x:0.3, y:6.2, w:2.4, d:1.7, h:50,
+    wall:"#eceae6", roof:"#9a9590", need:{fame:100},
+    lead:"服が、一枚の絵になる場所。",
+    what:"白ホリゾント、ストロボ、レフ板。同じ服でも光の当て方で生地の表情がまったく変わります。ここで撮った写真が、そのブランドの第一印象になります。",
+    who:["フォトグラファー","スタイリスト","モデル","ヘアメイク"] },
+
+  { id:"factory", name:"工場", en:"Factory", x:6.9, y:6.2, w:2.9, d:1.9, h:42,
+    wall:"#dfe2e6", roof:"#8a919b", need:{chapter:3},
+    lead:"同じものを、たくさん作る場所。",
+    what:"一点ものを作るアトリエとは、まったく違う技術が要ります。工程を分け、機械に流し、検品して出荷する。一着あたりの利益は小さくても、数が桁違いです。作品と商品の差が、ここで分かります。",
+    who:["工場長","裁断士","縫製オペレーター","検品","グレーダー"] },
+
+  { id:"venue", name:"ショー会場", en:"Show Venue", x:3.4, y:6.2, w:2.7, d:1.9, h:58,
+    wall:"#e4dae8", roof:"#8a7a9c", need:{fame:26},
+    lead:"一年の答えを出す場所。",
+    what:"ランウェイ、音、照明、順番。10分ですべてが終わります。そのために半年かけて作ったものが、ここで初めて他人の目に触れます。発表会はここで行われます。",
+    who:["モデル","スタイリスト","演出","音響"] },
+
+  { id:"cafe", name:"たまり場のカフェ", en:"Cafe", x:6.2, y:1.0, w:1.3, d:1.0, h:34,
+    wall:"#f0e2d2", roof:"#c9a06c", need:{fame:6},
+    lead:"業界のうわさが集まる場所。",
+    what:"どこの誰が独立した、あそこは人を探している、あの生地屋がいい。仕事の半分はここで決まります。ときどき、うちのスタッフが他社の人と話しているのを見かけます。",
+    who:["いろんな人"] },
+];
+
+/* ---------- 街を歩いているもの ---------- */
+const ROADY = [2.5, 5.5];
+const WCOL = ["#e08fa8","#8fa8d8","#e8c46a","#8fcaa8","#b79ad0","#e8a47a","#7fb8c8","#d09090"];
+let actors = [], planeT = 14, plane = null, birds = [];
+
+function makeWalker(){
+  const dir = Math.random()<0.5 ? 1 : -1;
+  return { kind:"walk", gx: Math.random()*TGW, gy: pick(ROADY)+(Math.random()-.5)*0.5,
+           dir, spd: 0.20+Math.random()*0.20, t: Math.random()*9,
+           col: pick(WCOL), hair: pick(["#3b3242","#5b3a2e","#8a5a3c","#2f3a4a","#a34f5e"]),
+           skin: pick(["#f8ddc6","#f1cbab","#e2b48f","#cf9a72"]), long: Math.random()<0.45,
+           tall: 0.9+Math.random()*0.25 };
+}
+function initActors(){
+  actors = [];
+  for(let i=0;i<9;i++) actors.push(makeWalker());
+  for(let i=0;i<2;i++)
+    actors.push({ kind:"cat", gx:Math.random()*TGW, gy:pick(ROADY)+(Math.random()-.5)*0.6,
+                  dir: Math.random()<0.5?1:-1, spd:0.14, t:0, rest:0,
+                  col: pick(["#f4ebdb","#3b3641","#d8a86c"]) });
+  for(let i=0;i<2;i++)
+    actors.push({ kind:"car", gx:Math.random()*TGW, gy:pick(ROADY),
+                  dir: Math.random()<0.5?1:-1, spd:0.9+Math.random()*0.5, t:0,
+                  col: pick(["#e0655f","#5f8fd0","#f0f0f0","#4b4453","#e8c46a"]) });
+  birds = [];
+  for(let i=0;i<6;i++)
+    birds.push({ x: Math.random()*VW, y: 30+Math.random()*46,
+                 sp: 9+Math.random()*7, ph: Math.random()*6 });
+}
+function stepActors(dt){
+  for(const a of actors){
+    a.t += dt;
+    if(a.kind === "cat" && a.rest > 0){ a.rest -= dt; continue; }
+    a.gx += a.dir * a.spd * dt;
+    if(a.gx < -1.2){ a.gx = TGW+1.0; a.gy = pick(ROADY)+(Math.random()-.5)*0.5; }
+    if(a.gx > TGW+1.2){ a.gx = -1.0; a.gy = pick(ROADY)+(Math.random()-.5)*0.5; }
+    if(a.kind === "cat" && Math.random() < dt*0.08) a.rest = 2+Math.random()*4;
+  }
+  for(const b of birds){ b.x += b.sp*dt; if(b.x > VW+30) b.x = -30; }
+  if(plane){
+    plane.x += plane.sp*dt;
+    if(plane.x > VW+80) plane = null;
+  } else {
+    planeT -= dt;
+    if(planeT <= 0){
+      planeT = 26 + Math.random()*34;
+      plane = { x:-80, y: 22+Math.random()*26, sp: 44+Math.random()*22 };
+    }
+  }
+}
+/* 街の歩行者。遠くの人なので背を詰めた型を使うが、
+   面の割りかたと光の向きはアトリエの人と同じ（src/staff/person.js） */
+function drawWalker(a){
+  const p = iso(a.gx, a.gy, 0);
+  pxWalker(ctx, a, p.x, p.y, 1);
+}
+function drawTownCat(a){
+  const p = iso(a.gx, a.gy, 0), rest = a.rest > 0;
+  const y = p.y - (rest ? 0 : Math.abs(Math.sin(a.t*9))*0.5);
+  ctx.fillStyle = "rgba(80,70,60,.16)";
+  ctx.beginPath(); ctx.ellipse(p.x, p.y, 4.6, 2, 0, 0, 6.2832); ctx.fill();
+  ctx.strokeStyle = a.col; ctx.lineWidth = 1.3; ctx.lineCap = "round";
+  ctx.beginPath(); ctx.moveTo(p.x-3.4*a.dir, y-3);
+  ctx.quadraticCurveTo(p.x-6.4*a.dir, y-4.6, p.x-5.6*a.dir, y-7.6); ctx.stroke();
+  ctx.fillStyle = a.col;
+  ctx.beginPath(); ctx.ellipse(p.x, y-3.4, 4.2, rest?2.2:2.7, 0, 0, 6.2832); ctx.fill();
+  const hx = p.x+3.4*a.dir, hy = y-(rest?4.4:6);
+  ctx.beginPath(); ctx.moveTo(hx-2,hy-1); ctx.lineTo(hx-1,hy-3.6); ctx.lineTo(hx-0.2,hy-1.4);
+  ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(hx+2,hy-1); ctx.lineTo(hx+1,hy-3.6); ctx.lineTo(hx+0.2,hy-1.4);
+  ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.arc(hx, hy, 2.6, 0, 6.2832); ctx.fill();
+}
+function drawCar(a){
+  const p = iso(a.gx, a.gy, 0);
+  ctx.fillStyle = "rgba(80,70,60,.20)";
+  ctx.beginPath(); ctx.ellipse(p.x, p.y, 9, 3.4, 0, 0, 6.2832); ctx.fill();
+  box(a.gx-0.30, a.gy-0.14, 0.60, 0.28, 7, a.col, 1.5);
+  box(a.gx-0.16, a.gy-0.12, 0.30, 0.24, 6, shade(a.col,1.18), 8.5);
+  ctx.fillStyle = "rgba(40,36,44,.7)";
+  ctx.beginPath(); ctx.arc(p.x-6, p.y-1, 1.7, 0, 6.2832); ctx.fill();
+  ctx.beginPath(); ctx.arc(p.x+6, p.y-1, 1.7, 0, 6.2832); ctx.fill();
+  if(nightAmount() > 0.4){
+    ctx.fillStyle = "rgba(255,236,180,.5)";
+    ctx.beginPath();
+    ctx.ellipse(p.x+13*a.dir, p.y-3, 12, 3.4, 0, 0, 6.2832); ctx.fill();
+  }
+}
+function drawSkyLife(){
+  const nt = nightAmount();
+  /* 鳥 */
+  ctx.strokeStyle = nt>0.5 ? "rgba(220,214,240,.5)" : "rgba(110,100,120,.42)";
+  ctx.lineWidth = 1.2;
+  for(const b of birds){
+    const f = Math.sin(b.x*0.08 + b.ph)*2.4;
+    ctx.beginPath();
+    ctx.moveTo(b.x-3.4, b.y+f); ctx.lineTo(b.x, b.y-1.4); ctx.lineTo(b.x+3.4, b.y+f);
+    ctx.stroke();
+  }
+  /* 飛行機 */
+  if(plane){
+    ctx.strokeStyle = "rgba(255,255,255,.42)"; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(plane.x-52, plane.y+1.5); ctx.lineTo(plane.x-6, plane.y+0.5);
+    ctx.stroke();
+    ctx.fillStyle = nt>0.5 ? "#c9c4dc" : "#f2f0f6";
+    ctx.beginPath();
+    ctx.moveTo(plane.x+9, plane.y); ctx.lineTo(plane.x-6, plane.y+2.4);
+    ctx.lineTo(plane.x-8, plane.y); ctx.lineTo(plane.x-6, plane.y-2.4);
+    ctx.closePath(); ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(plane.x-1, plane.y); ctx.lineTo(plane.x-7, plane.y-6);
+    ctx.lineTo(plane.x-3, plane.y); ctx.closePath(); ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(plane.x-1, plane.y); ctx.lineTo(plane.x-7, plane.y+6);
+    ctx.lineTo(plane.x-3, plane.y); ctx.closePath(); ctx.fill();
+  }
+}
+
+/* 確認しやすいように、いまは全部の拠点を開けてある。
+   「街」タブの切り替えで、章と名声による段階解禁に戻せる。
+   URLに `?locked` を付けて開いたときだけ（例 `atelier_phone.html?locked#catalog`）、
+   段階解禁の見えかた——名札に鍵が付き、建物が灰色になる——を確かめられる。
+   ハッシュは `#catalog` の完全一致で見られているので、こちらは検索文字列を使う。
+   ゲーム本体は IIFE に包まれていて外から変数を触れないため、この口が要る。 */
+const LOCK_DEMO = /(^|[?&])locked($|[&=])/.test(location.search);
+let unlockAll = true;
+function placeOpen(p){
+  if(unlockAll && !LOCK_DEMO) return true;
+  if(!p.need) return true;
+  if(p.need.chapter != null) return showIdx >= p.need.chapter - 1;
+  if(p.need.fame != null) return fame >= p.need.fame;
+  return true;
+}
+function placeNeedText(p){
+  if(unlockAll) return "いまは全部開けてあります";
+  if(!p.need) return "";
+  if(p.need.chapter != null) return "第"+p.need.chapter+"章から";
+  return "名声 "+p.need.fame+" で開きます";
+}
+
+
+/* ==================================================================
+   拠点の一日。街の建物だけが使う。
+
+   街の10棟は、開く時刻も閉まる時刻も違う。工場は朝いちばんに動きだし、
+   ブティックは昼まで開かない。編集部は締切で夜中まで灯りが消えない。
+   **その時刻の差が、名札を読まなくても業種を伝える。**
+   絵の記号（看板・ピクトグラム）が「何屋か」を言うのに対して、
+   ここは「どういう働き方の店か」を言う。
+
+   時刻は core/state.js の hourOf() に合わせ、朝8時から数えた 8〜32 で書く。
+   26 と書けば翌2時のこと。日をまたぐ店（編集部・カフェ・ショー会場）が
+   あるので、0〜24 に折り返さないほうが読みやすい。
+   ================================================================== */
+
+/* いまが「その日の何時か」。深夜は 24 を足して、朝8時から一本の線にする */
+function townHour(){ const h = hourOf(); return h < 8 ? h + 24 : h; }
+
+/* なめらかに 0→1。a で 0、b で 1 */
+function ramp(v, a, b){
+  const t = (v - a) / (b - a);
+  return t <= 0 ? 0 : t >= 1 ? 1 : t*t*(3 - 2*t);
+}
+/* a 時に開いて b 時に閉じる帯。境目は fade 時間かけて上げ下げする */
+function band(h, a, b, fade){
+  return Math.min(ramp(h, a - fade, a), 1 - ramp(h, b, b + fade));
+}
+/* 2色を混ぜる。#rrggbb でも rgb(...) でも受ける */
+function tMix(a, b, k){
+  const rd = c => c.charAt(0) === "#"
+    ? [parseInt(c.slice(1,3),16), parseInt(c.slice(3,5),16), parseInt(c.slice(5,7),16)]
+    : c.match(/\d+/g).map(Number);
+  const P = rd(a), Q = rd(b), t = Math.max(0, Math.min(1, k));
+  return "rgb(" + P.map((v,i)=>Math.round(v*(1-t) + Q[i]*t)).join(",") + ")";
+}
+
+/* ------------------------------------------------------------------
+   拠点ごとの一日。時刻は 8〜32（8=朝8時、26=翌2時）。
+     open/close … 雨戸・シャッターが上がっている時間
+     sign/signOff … 看板に灯が入っている時間
+     night … 閉めたあとも残る明かり（0で真っ暗）。夜勤と締切
+   ------------------------------------------------------------------ */
+const TOWN_HOURS = {
+  /* 工場。朝がいちばん早く、夜勤が残る */
+  factory:  { open: 8.0, close:19.0, sign:15.5, signOff:20.0, night:0.50 },
+  /* カフェ。朝から夜まで開けている街の台所 */
+  cafe:     { open: 8.0, close:23.0, sign:15.5, signOff:23.5, night:0.10 },
+  /* 学校。定時できっちり終わる。時計塔だけは終夜まわる */
+  school:   { open: 8.0, close:17.0, sign:16.5, signOff:21.0, night:0.06 },
+  /* 自分のアトリエ。夜まで人が残っている */
+  atelier:  { open: 8.5, close:21.0, sign:16.5, signOff:22.5, night:0.22 },
+  /* 生地問屋。問屋は早じまい。夕方には反物をしまう */
+  fabric:   { open: 9.0, close:17.0, sign:15.5, signOff:18.5, night:0.00 },
+  /* 編集部。締切があるので、深夜まで階が灯っている */
+  press:    { open:10.0, close:26.0, sign:16.0, signOff:26.5, night:0.62 },
+  /* ショールーム。アポイント制できっちり閉まる */
+  showroom: { open:10.0, close:18.0, sign:16.0, signOff:19.0, night:0.04 },
+  /* ブティック。昼まで開かず、夜は遅い */
+  shop:     { open:11.0, close:20.0, sign:16.0, signOff:21.5, night:0.08 },
+  /* 撮影スタジオ。昼から夜が本番 */
+  studio:   { open:12.0, close:23.0, sign:16.0, signOff:23.5, night:0.14 },
+  /* ショー会場。夕方に開いて、終演は夜中 */
+  venue:    { open:17.0, close:25.0, sign:15.5, signOff:25.5, night:0.05 },
+};
+
+/* いまのこの拠点の明かり。建物を描くまえに一度だけ呼ぶ。
+     shut … 雨戸・シャッターの上がり具合（0=閉めきり 1=開ききり）
+     sign … 看板の灯り（0〜1）
+     win  … 窓の中の明かり（0〜1）。外が明るいうちは見えない */
+function townLight(p, open){
+  const H = TOWN_HOURS[p.id] || TOWN_HOURS.atelier;
+  const h = townHour(), nt = nightAmount();
+  const shut = band(h, H.open, H.close, 0.7);
+  /* 中の明かりは、外が暗くなってはじめて見える */
+  const dark = ramp(nt, 0.10, 0.40);
+  const on   = Math.max(shut, H.night);
+  return open
+    ? { shut, sign: band(h, H.sign, H.signOff, 0.5), win: on * dark, nt }
+    : { shut, sign: 0, win: 0, nt };            /* まだ入れない拠点は暗いまま */
+}
+
+/* 窓ごとのばらつき。同じ建物の同じ窓なら、いつも同じ値になる */
+function winSeed(id, i){
+  let s = (i + 1) * 2654435761;
+  for(let k = 0; k < id.length; k++) s = (Math.imul(s, 31) + id.charCodeAt(k)) >>> 0;
+  return ((s >>> 9) % 997) / 997;
+}
+/* この窓に灯が入っているか。窓ごとに点く時刻を少しずらす */
+function litW(L, id, i){ return L.win > 0.20 + winSeed(id, i) * 0.52; }
+
+/* 灯りの見せかた（docs/ART.md 4章・6章）
+     ・放射グラデーションは使わない。光も面で置く
+     ・**光をかけてよいのは地面だけ。** 建物の壁にかぶせない
+   したがって「看板が灯る」は、板と文字の色が転ぶことだけで見せる。
+   まわりへのにじみは描かない。地面に落ちる光だまりだけが例外。 */
+
+/* まだ開いていない拠点の名札に付ける、小さな南京錠。
+   OS絵文字は画面に出さない方針（docs/ART.md 6章）なので、線と面で描く。
+   鍵穴は描かない（情報量の上限。この大きさでは点にしかならない） */
+function townLock(cx, cy, col){
+  ctx.strokeStyle = col; ctx.lineWidth = 1.2; ctx.lineCap = "round";
+  ctx.beginPath(); ctx.arc(cx, cy-1.5, 1.9, Math.PI, 0); ctx.stroke();
+  ctx.fillStyle = col;
+  ctx.beginPath(); ctx.roundRect(cx-2.8, cy-1.3, 5.6, 4.6, 1.1); ctx.fill();
+}
+
+/* 地面に落ちる光だまり。十二角形を2段。街灯や入口の足もとに置く。
+   建物より先に置くので、手前の建物がふつうに上書きする */
+function townLampPool(gx, gy, r, amt, col){
+  if(amt < 0.03) return;
+  const c = col || "255,226,150";
+  ctx.save(); ctx.globalCompositeOperation = "screen";
+  for(const [rr, al] of [[r, 0.13*amt], [r*0.55, 0.16*amt]]){
+    ctx.fillStyle = "rgba(" + c + "," + al + ")";
+    ctx.beginPath();
+    for(let i = 0; i < 12; i++){
+      const t = i/12*6.2832, q = iso(gx + Math.cos(t)*rr, gy + Math.sin(t)*rr, 0.4);
+      i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y);
+    }
+    ctx.closePath(); ctx.fill();
+  }
+  ctx.restore();
+}
+
+/* ==================================================================
+   建物。方針（2026-08-16 先生の指示）：
+     ・透けさせない。窓は不透明（暗いガラス／夜は明かり）、中身は描かない
+     ・壁で塞いだ「建物」として見せ、外側の記号で業種を伝える
+       （看板＋ピクトグラム・日よけ・煙突・時計塔・マーキー…）
+   見えている面は 手前＝ y = p.y+p.d、右＝ x = p.x+p.w の2面。
+   ファサードは必ずこの2面に描く（裏の面に描くと屋根の上に浮いて見える）。
+   ================================================================== */
+
+/* 接地の影。建物の足もとをやわらかく落とす */
+function bShadow(p, extra){
+  const e = extra || 0.30;
+  ctx.save(); ctx.globalCompositeOperation = "multiply";
+  poly([iso(p.x-e*0.4, p.y+p.d), iso(p.x+p.w+e, p.y+p.d),
+        iso(p.x+p.w+e, p.y+p.d+e*0.9), iso(p.x-e*0.4, p.y+p.d+e*0.9)], "rgba(70,60,66,.40)");
+  poly([iso(p.x+p.w, p.y-e*0.2), iso(p.x+p.w+e, p.y-e*0.2),
+        iso(p.x+p.w+e, p.y+p.d+e*0.9), iso(p.x+p.w, p.y+p.d)], "rgba(70,60,66,.30)");
+  ctx.restore();
+}
+/* 壁の根元の暗み（AO）。箱を描いたあとに呼ぶ */
+function bBaseAO(p){
+  const F = p.y+p.d, RX = p.x+p.w;
+  ctx.save(); ctx.globalCompositeOperation = "multiply";
+  poly([iso(p.x,F+0.004,3.5), iso(RX,F+0.004,3.5), iso(RX,F+0.004,0), iso(p.x,F+0.004,0)], "rgba(60,50,60,.22)");
+  poly([iso(RX+0.004,p.y,3.5), iso(RX+0.004,F,3.5), iso(RX+0.004,F,0), iso(RX+0.004,p.y,0)], "rgba(60,50,60,.22)");
+  ctx.restore();
+}
+/* 円筒の「手前半分だけ」の帯。丸い建物に巻くと、上の楕円が壁の上に漏れない */
+function bRing(gx, gy, r, z0, z1, col){
+  const c0 = iso(gx,gy,z0), c1 = iso(gx,gy,z1);
+  const rx = r*TW/2, ry = r*TH/2;
+  ctx.fillStyle = col;
+  ctx.beginPath();
+  ctx.ellipse(c1.x, c1.y, rx, ry, 0, 0, Math.PI, false);
+  ctx.ellipse(c0.x, c0.y, rx, ry, 0, Math.PI, 0, true);
+  ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = shade(col,1.12); ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.ellipse(c1.x, c1.y, rx, ry, 0, 0, Math.PI, false); ctx.stroke();
+}
+/* 手前の面の窓（面 y=gy）。枠 → 不透明な暗いガラス → 反射 → 桟 → 窓台 */
+function bWindow(gx, gy, gz, w, h, lit, opt){
+  opt = opt || {};
+  const q = (u, z) => iso(gx+u, gy, z);
+  const frame = opt.frame || "#e9e4dc";
+  poly([q(-0.02,gz+h+1.6), q(w+0.02,gz+h+1.6), q(w+0.02,gz-1), q(-0.02,gz-1)], frame);
+  poly([q(0,gz+h), q(w,gz+h), q(w,gz), q(0,gz)], lit ? "#ffe6a8" : (opt.dark || "#3a4250"));
+  if(!lit){
+    poly([q(0,gz+h), q(w*0.5,gz+h), q(w*0.16,gz), q(0,gz)], "rgba(190,215,235,.42)");
+    poly([q(w*0.62,gz+h), q(w,gz+h), q(w,gz+h*0.5), q(w*0.8,gz+h*0.2)], "rgba(190,215,235,.24)");
+  } else {
+    poly([q(0,gz+h), q(w*0.5,gz+h), q(w*0.16,gz), q(0,gz)], "rgba(255,255,255,.18)");
+  }
+  if(opt.bars !== false){
+    ctx.strokeStyle = frame; ctx.lineWidth = 0.9;
+    const a = q(w*0.5,gz+h), b = q(w*0.5,gz);
+    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    if(h > 12){
+      const c2 = q(0,gz+h*0.5), d2 = q(w,gz+h*0.5);
+      ctx.beginPath(); ctx.moveTo(c2.x,c2.y); ctx.lineTo(d2.x,d2.y); ctx.stroke();
+    }
+  }
+  poly([q(-0.03,gz-1), q(w+0.03,gz-1), q(w+0.03,gz-2.4), q(-0.03,gz-2.4)], shade(frame,.8));
+}
+/* 右の面の窓（面 x=gx） */
+function bWindowR(gx, gy, gz, w, h, lit){
+  const q = (v, z) => iso(gx, gy+v, z);
+  poly([q(-0.02,gz+h+1.6), q(w+0.02,gz+h+1.6), q(w+0.02,gz-1), q(-0.02,gz-1)], "#d9d4cc");
+  poly([q(0,gz+h), q(w,gz+h), q(w,gz), q(0,gz)], lit ? "#f5d890" : "#2f3743");
+  if(!lit) poly([q(0,gz+h), q(w*0.45,gz+h), q(w*0.12,gz), q(0,gz)], "rgba(190,215,235,.32)");
+  poly([q(-0.03,gz-1), q(w+0.03,gz-1), q(w+0.03,gz-2.2), q(-0.03,gz-2.2)], "#b9b4ac");
+}
+/* 手前の面の金属シャッター（面 y=gy）。amt=1 で上がりきり、0 で下ろしきり。
+   窓や搬入口と同じ矩形を渡す。巻き取りの箱は昼でも見えている */
+function bShutter(gx, gy, gz, w, h, amt, col){
+  const q = (u,z) => iso(gx+u, gy+0.005, z);
+  const c = col || "#9aa1a8";
+  const top = gz + h, a = Math.max(0, Math.min(1, amt));
+  const bot = gz + h*a;                     /* 下端。上がるほど高くなる */
+  if(h*(1-a) > 1.2){
+    poly([q(0,top), q(w,top), q(w,bot), q(0,bot)], c);
+    ctx.strokeStyle = "rgba(0,0,0,.17)"; ctx.lineWidth = 0.9;
+    for(let z = bot+2.0; z < top-0.8; z += 2.2){
+      const s = q(0,z), e = q(w,z);
+      ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(e.x,e.y); ctx.stroke();
+    }
+    poly([q(0,bot+1.2), q(w,bot+1.2), q(w,bot), q(0,bot)], shade(c,.66));   /* 下端の重い桟 */
+    if(a < 0.06){                                                          /* 閉めきりの鍵穴 */
+      poly([q(w*0.5-0.06,gz+2.6), q(w*0.5+0.06,gz+2.6), q(w*0.5+0.06,gz+1.4), q(w*0.5-0.06,gz+1.4)], shade(c,.48));
+    }
+  }
+  poly([q(-0.03,top+3.2), q(w+0.03,top+3.2), q(w+0.03,top), q(-0.03,top)], shade(c,.60));
+}
+/* 手前の面の木の雨戸（よろい戸）。amt=1 で開ききり、0 で閉めきり。
+   開くと壁に畳まれて細くなり、閉じると左右から窓をふさぐ */
+function bStorm(gx, gy, gz, w, h, amt, col){
+  const a = Math.max(0, Math.min(1, amt));
+  const c = col || "#8a6a4a";
+  const pw = (w*0.09)*a + (w*0.5)*(1-a);          /* 片側の板の幅 */
+  if(pw < 0.012) return;
+  for(const [u, sh] of [[gx, 1.06], [gx+w-pw, 0.88]]){
+    const q = (t,z) => iso(u+t, gy+0.007, z);
+    poly([q(0,gz+h+0.8), q(pw,gz+h+0.8), q(pw,gz-0.8), q(0,gz-0.8)], shade(c, sh));
+    ctx.strokeStyle = "rgba(0,0,0,.20)"; ctx.lineWidth = 0.8;   /* よろいの羽 */
+    for(let z = gz+1.6; z < gz+h-0.4; z += 2.0){
+      const s = q(pw*0.12,z), e = q(pw*0.88,z);
+      ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(e.x,e.y); ctx.stroke();
+    }
+  }
+}
+/* 厚みのある陸屋根。パラペットの縁 */
+function bFlatRoof(p, RF, lip){
+  const L = lip == null ? 0.08 : lip;
+  box(p.x-L, p.y-L, p.w+L*2, p.d+L*2, 3.5, RF, p.h);
+  poly([iso(p.x-L,p.y-L,p.h+3.5), iso(p.x+p.w+L,p.y-L,p.h+3.5),
+        iso(p.x+p.w+L,p.y+p.d+L,p.h+3.5), iso(p.x-L,p.y+p.d+L,p.h+3.5)], "rgba(0,0,0,.05)");
+  poly([iso(p.x+0.06,p.y+0.06,p.h+3.5), iso(p.x+p.w-0.06,p.y+0.06,p.h+3.5),
+        iso(p.x+p.w-0.06,p.y+p.d-0.06,p.h+3.5), iso(p.x+0.06,p.y+p.d-0.06,p.h+3.5)], shade(RF,.94));
+}
+/* 入口。手前の面 y=gy に扉、手前へ階段2段、上に小さな庇 */
+function bDoor(gx, gy, w, col, opt){
+  opt = opt || {};
+  const q = (u,z) => iso(gx+u, gy+0.008, z);
+  box(gx-0.06, gy, w+0.12, 0.20, 2.5, "#c9c2b6", 0);
+  box(gx-0.03, gy, w+0.06, 0.11, 2.5, "#d6cfc3", 2.5);
+  poly([q(0,20), q(w,20), q(w,5), q(0,5)], "#3c3a40");
+  poly([q(0.03,19), q(w-0.03,19), q(w-0.03,5), q(0.03,5)], col || "#5b4a44");
+  if(opt.glass){
+    poly([q(0.06,18), q(w-0.06,18), q(w-0.06,8), q(0.06,8)], "#8fb0c4");
+    poly([q(0.06,18), q(w*0.5,18), q(0.2,8), q(0.06,8)], "rgba(255,255,255,.35)");
+  }
+  const kn = q(w-0.08, 12);
+  ctx.fillStyle = "#e6c46a"; ctx.beginPath(); ctx.arc(kn.x, kn.y, 0.9, 0, 6.2832); ctx.fill();
+  if(opt.awning !== false) box(gx-0.08, gy, w+0.16, 0.16, 1.6, opt.awningCol || "#6f6a72", 21);
+}
+/* 屋上の設備。室外機・貯水タンク */
+function bRoofStuff(p, kind){
+  if(kind === "ac"){
+    box(p.x+p.w-0.5, p.y+0.2, 0.34, 0.26, 7, "#c9cdd2", p.h+3.5);
+    const f = iso(p.x+p.w-0.33, p.y+0.2, p.h+7.5);
+    ctx.fillStyle="#7d858e"; ctx.beginPath(); ctx.arc(f.x, f.y, 2.6, 0, 6.2832); ctx.fill();
+  }
+  if(kind === "tank"){
+    cyl(p.x+0.4, p.y+0.4, 0.16, 12, "#b8bec6", p.h+3.5);
+    cyl(p.x+0.4, p.y+0.4, 0.18, 2, "#98a0aa", p.h+15.5);
+  }
+}
+/* 手前の面に沿った文字（面 y=gy）。x方向へ進む文字は画面で右下がり */
+function bTextF(gx, gy, gz, text, size, col){
+  const q = iso(gx, gy, gz);
+  ctx.save(); ctx.fillStyle = col; ctx.font = "800 "+size+"px sans-serif";
+  ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.translate(q.x, q.y); ctx.transform(1, 0.5, 0, 1, 0, 0); ctx.fillText(text, 0, 0); ctx.restore();
+}
+/* 右の面に沿った文字（面 x=gx）。y方向へ進む文字は画面で右上がり */
+function bTextR(gx, gy, gz, text, size, col){
+  const q = iso(gx, gy, gz);
+  ctx.save(); ctx.fillStyle = col; ctx.font = "800 "+size+"px sans-serif";
+  ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.translate(q.x, q.y); ctx.transform(1, -0.5, 0, 1, 0, 0); ctx.fillText(text, 0, 0); ctx.restore();
+}
+/* 業種のピクトグラム。看板の上に置く。原点中心、s は半径ぐらいの大きさ(px)。
+   bg は看板の色（穴を抜くかわりに塗り戻す） */
+function bPicto(kind, s, col, bg){
+  const P = Math.PI;
+  ctx.fillStyle = col; ctx.strokeStyle = col; ctx.lineCap = "round"; ctx.lineJoin = "round";
+  if(kind === "scissors"){
+    ctx.lineWidth = s*0.30;
+    ctx.beginPath(); ctx.moveTo(-s*0.55, -s*0.95); ctx.lineTo(s*0.34, s*0.28); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(s*0.55, -s*0.95); ctx.lineTo(-s*0.34, s*0.28); ctx.stroke();
+    ctx.lineWidth = s*0.24;
+    ctx.beginPath(); ctx.arc(-s*0.48, s*0.62, s*0.34, 0, 6.2832); ctx.stroke();
+    ctx.beginPath(); ctx.arc( s*0.48, s*0.62, s*0.34, 0, 6.2832); ctx.stroke();
+  } else if(kind === "hanger"){
+    ctx.lineWidth = s*0.26;
+    ctx.beginPath(); ctx.arc(0, -s*0.7, s*0.24, P*0.55, P*1.95); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, -s*0.46); ctx.lineTo(0, -s*0.28);
+    ctx.lineTo(s*0.98, s*0.44); ctx.lineTo(-s*0.98, s*0.44); ctx.closePath(); ctx.stroke();
+  } else if(kind === "cup"){
+    ctx.beginPath(); ctx.roundRect(-s*0.72, -s*0.22, s*1.15, s*0.9, [0,0,s*.32,s*.32]); ctx.fill();
+    ctx.lineWidth = s*0.2; ctx.beginPath(); ctx.arc(s*0.5, s*0.18, s*0.32, -P*0.5, P*0.5); ctx.stroke();
+    ctx.lineWidth = s*0.15;
+    for(const dx of [-s*0.4, -s*0.1, s*0.2]){
+      ctx.beginPath(); ctx.moveTo(dx, -s*0.42); ctx.quadraticCurveTo(dx+s*0.16, -s*0.62, dx, -s*0.86); ctx.stroke(); }
+    ctx.fillRect(-s*0.9, s*0.74, s*1.55, s*0.16);
+  } else if(kind === "camera"){
+    ctx.beginPath(); ctx.roundRect(-s, -s*0.5, s*2, s*1.25, s*0.18); ctx.fill();
+    ctx.fillRect(-s*0.5, -s*0.76, s*0.62, s*0.32);
+    ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(s*0.12, s*0.12, s*0.42, 0, 6.2832); ctx.fill();
+    ctx.fillStyle = col; ctx.beginPath(); ctx.arc(s*0.12, s*0.12, s*0.24, 0, 6.2832); ctx.fill();
+    ctx.fillRect(s*0.6, -s*0.36, s*0.22, s*0.16);
+  } else if(kind === "bolt"){
+    ctx.fillRect(-s*1.05, -s*0.42, s*1.6, s*0.84);
+    ctx.beginPath(); ctx.arc(s*0.55, 0, s*0.42, 0, 6.2832); ctx.fill();
+    ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(s*0.55, 0, s*0.22, 0, 6.2832); ctx.fill();
+    ctx.fillStyle = col; ctx.beginPath(); ctx.arc(s*0.55, 0, s*0.08, 0, 6.2832); ctx.fill();
+  } else if(kind === "gear"){
+    for(let i=0;i<8;i++){ ctx.save(); ctx.rotate(i*P/4); ctx.fillRect(-s*0.18, -s*0.98, s*0.36, s*0.42); ctx.restore(); }
+    ctx.beginPath(); ctx.arc(0,0,s*0.68,0,6.2832); ctx.fill();
+    ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(0,0,s*0.28,0,6.2832); ctx.fill();
+  } else if(kind === "mag"){
+    ctx.beginPath(); ctx.roundRect(-s*0.7, -s*0.95, s*1.4, s*1.9, s*0.1); ctx.fill();
+    ctx.fillStyle = bg; ctx.fillRect(-s*0.5, -s*0.75, s*1.0, s*0.36);
+    for(let k=0;k<3;k++) ctx.fillRect(-s*0.5, -s*0.18+k*s*0.32, s*1.0, s*0.14);
+  } else if(kind === "star"){
+    ctx.beginPath();
+    for(let i=0;i<10;i++){ const a=-P/2+i*P/5, rr = i%2 ? s*0.42 : s;
+      const x=Math.cos(a)*rr, y=Math.sin(a)*rr; i ? ctx.lineTo(x,y) : ctx.moveTo(x,y); }
+    ctx.closePath(); ctx.fill();
+  } else if(kind === "cap"){
+    ctx.beginPath(); ctx.moveTo(0,-s*0.72); ctx.lineTo(s,-s*0.22); ctx.lineTo(0,s*0.28); ctx.lineTo(-s,-s*0.22); ctx.closePath(); ctx.fill();
+    ctx.fillRect(-s*0.45, s*0.02, s*0.9, s*0.46);
+    ctx.lineWidth = s*0.12; ctx.beginPath(); ctx.moveTo(s*0.86,-s*0.16); ctx.lineTo(s*0.86, s*0.5); ctx.stroke();
+    ctx.beginPath(); ctx.arc(s*0.86, s*0.6, s*0.14, 0, 6.2832); ctx.fill();
+  } else if(kind === "sewing"){
+    ctx.fillRect(-s*1.0, s*0.45, s*2.0, s*0.4);
+    ctx.beginPath(); ctx.roundRect(-s*0.95, -s*0.5, s*0.6, s*1.0, s*0.1); ctx.fill();
+    ctx.fillRect(-s*0.95, -s*0.85, s*1.75, s*0.5);
+    ctx.fillRect(s*0.5, -s*0.85, s*0.3, s*0.9);
+    ctx.lineWidth = s*0.12; ctx.beginPath(); ctx.moveTo(s*0.65, s*0.05); ctx.lineTo(s*0.65, s*0.42); ctx.stroke();
+    ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(-s*0.65, 0, s*0.14, 0, 6.2832); ctx.fill();
+    ctx.fillStyle = col;
+  } else if(kind === "dress"){
+    ctx.beginPath(); ctx.moveTo(-s*0.36,-s*0.95); ctx.lineTo(s*0.36,-s*0.95); ctx.lineTo(s*0.28,-s*0.3);
+    ctx.lineTo(s*0.86,s*0.92); ctx.lineTo(-s*0.86,s*0.92); ctx.lineTo(-s*0.28,-s*0.3); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = bg; ctx.beginPath(); ctx.moveTo(-s*0.22,-s*0.95); ctx.quadraticCurveTo(0,-s*0.5,s*0.22,-s*0.95); ctx.fill();
+  }
+}
+function bIconF(gx, gy, gz, kind, s, col, bg){
+  const q = iso(gx, gy, gz);
+  ctx.save(); ctx.translate(q.x, q.y); ctx.transform(1, 0.5, 0, 1, 0, 0); bPicto(kind, s, col, bg); ctx.restore();
+}
+/* 手前の面に貼った看板（少しだけ壁から出る板）。文字とピクトグラムをのせる。
+   lit（0〜1）を渡すと灯が入り、板が明るく、文字が電球色に転ぶ。
+   まわりへのにじみは描かない（docs/ART.md 4章。壁に光をかぶせない） */
+function bSignF(gx, gy, gz, w, h, bg, text, size, col, icon, iconS, lit){
+  const L = lit || 0;
+  /* にじみを描かないので、灯りは板と文字の色だけで見せる。
+     板を明るくしすぎると文字が沈むので、動かすのは主に文字のほう */
+  const plate = L > 0.02 ? tMix(bg,  "#fff2cc", L*0.30) : bg;
+  const ink   = L > 0.02 ? tMix(col, "#e8a02c", L*0.95) : col;
+  box(gx, gy, w, 0.05, h, plate, gz);
+  const fy = gy + 0.056;
+  /* 文字とピクトグラムをひとかたまりにして、板の幅の中央にそろえる。
+     板からはみ出すと、となりの窓枠や壁に文字が乗って読めなくなる。
+     x方向の1マスは画面で TW/2 ピクセル。そこで px をマスに直して測る */
+  const u1 = TW/2;
+  let sz = size;
+  ctx.font = "800 " + sz + "px sans-serif";
+  let tw = ctx.measureText(text).width / u1;
+  const iw = icon ? (iconS || 3.5)*2.0 / u1 : 0, gap = icon ? 4/u1 : 0;
+  const room = w - 0.06;
+  if(iw + gap + tw > room){          /* 入らないときは縮める。はみ出すより読める */
+    sz = Math.max(3, sz * (room - iw - gap) / tw);
+    ctx.font = "800 " + sz + "px sans-serif";
+    tw = ctx.measureText(text).width / u1;
+  }
+  let u = gx + Math.max(0.02, (w - (iw + gap + tw))*0.5);
+  if(icon){ bIconF(u + iw*0.5, fy, gz+h*0.5, icon, iconS || 3.5, ink, plate); u += iw + gap; }
+  bTextF(u + tw*0.5, fy, gz+h*0.5, text, sz, ink);
+}
+/* 手前へ傾いたしま模様の日よけ。z は壁につく側の高さ、outは張り出し */
+function bAwning(gx, gy, w, z, out, n, colA, colB){
+  const sw = w/n;
+  for(let i=0;i<n;i++){
+    const u = gx + i*sw, col = i%2 ? colB : colA;
+    poly([iso(u,gy,z+3), iso(u+sw,gy,z+3), iso(u+sw,gy+out,z), iso(u,gy+out,z)], col);
+    poly([iso(u,gy+out,z), iso(u+sw,gy+out,z), iso(u+sw,gy+out,z-2.2), iso(u,gy+out,z-2.2)], shade(col,.86));
+  }
+  ctx.fillStyle = shade(colA,.86);
+  for(let i=0;i<n*2;i++){ const q = iso(gx+w*(i+0.5)/(n*2), gy+out, z-2.2);
+    ctx.beginPath(); ctx.arc(q.x, q.y, 1.6, 0, Math.PI); ctx.fill(); }
+}
+/* 屋根の縁の厚み（軒先の板）。a→b の稜線の下に h だけ垂らす */
+function bFascia(a, b, h, col){
+  poly([iso(a[0],a[1],a[2]), iso(b[0],b[1],b[2]), iso(b[0],b[1],b[2]-h), iso(a[0],a[1],a[2]-h)], col);
+}
+
+function drawBuilding(p, open){
+  const W = open ? p.wall : "#cac4be", RF = open ? p.roof : "#a8a29b";
+  /* きょうのこの店の一日。雨戸の上がり具合・看板の灯り・窓の明かり */
+  const TL = townLight(p, open);
+  const nt = TL.nt;
+  const lit = i => litW(TL, p.id, i);       /* i 番の窓に灯が入っているか */
+  const glow = (a, b) => tMix(a, b, TL.win);/* 暗い窓から電球色へ、なめらかに */
+  const F = p.y + p.d, RX = p.x + p.w, mid = p.x + p.w/2;   /* 手前の面・右の面・中央 */
+  const fq = (u,z) => iso(p.x+u, F+0.006, z);                /* 手前の面の上の点 */
+  const inkF = "rgba(0,0,0,.08)";
+
+  bShadow(p);
+
+  /* ---------------- 編集部：カーテンウォールの塔・屋上のPRESS ---------------- */
+  if(p.id === "press"){
+    box(p.x, p.y, p.w, p.d, p.h, W, 0);
+    bBaseAO(p);
+    for(let f=0; f<5; f++){
+      const z = 8 + f*17;
+      poly([fq(0.08,z+11), fq(p.w-0.08,z+11), fq(p.w-0.08,z), fq(0.08,z)],
+           lit(f) ? "#ffe6a8" : "#39434f");
+      poly([fq(0.08,z+11), fq(0.6,z+11), fq(0.28,z), fq(0.08,z)], "rgba(190,215,235,.30)");
+      ctx.strokeStyle = "#e6e9ee"; ctx.lineWidth = 0.9;
+      for(let i=1;i<4;i++){
+        const a = iso(p.x+0.08+(p.w-0.16)*i/4, F+0.007, z+11), b = iso(p.x+0.08+(p.w-0.16)*i/4, F+0.007, z);
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+      }
+    }
+    for(let f=0; f<5; f++) for(let i=0;i<2;i++)
+      bWindowR(RX+0.006, p.y+0.2+i*0.6, 12+f*17, 0.4, 9, lit(20+f*2+i));
+    bFlatRoof(p, RF, 0.06);
+    bRoofStuff(p, "ac"); bRoofStuff(p, "tank");
+    /* 屋上のサインボード（手前の縁）。締切のあいだ夜通し灯っている */
+    box(p.x+0.2, F-0.22, 1.5, 0.10, 20, "#2e3540", p.h+3.5);
+    { const ink = tMix("#f4f1ea", "#ffd070", TL.sign);
+      bIconF(p.x+0.55, F-0.114, p.h+13.5, "mag", 5.2, ink, "#2e3540");
+      bTextF(p.x+1.2, F-0.114, p.h+13.5, "PRESS", 6, ink);
+ }
+    bDoor(p.x+0.55, F, 0.7, "#2f3743", {glass:true, awningCol:"#48505c"});
+    return;
+  }
+
+  /* ---------------- 工場：のこぎり屋根・煙突・搬入シャッター ---------------- */
+  if(p.id === "factory"){
+    box(p.x, p.y, p.w, p.d, p.h, W, 0);
+    bBaseAO(p);
+    ctx.strokeStyle = inkF; ctx.lineWidth = 1;
+    for(let u=0.08; u<p.w; u+=0.16){
+      const a = fq(u, p.h-1), b = fq(u, 3);
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    }
+    /* のこぎり屋根：手前の面に妻の三角、その上に斜面とすりガラスの立面 */
+    const n = 4, sw = p.w/n;
+    for(let i=0;i<n;i++){
+      const u = p.x + i*sw;
+      poly([iso(u,F+0.006,p.h), iso(u+sw*0.55,F+0.006,p.h+14), iso(u+sw,F+0.006,p.h)], shade(W,.98));
+    }
+    for(let i=0;i<n;i++){
+      const u = p.x + i*sw;
+      poly([iso(u,p.y,p.h), iso(u+sw*0.55,p.y,p.h+14), iso(u+sw*0.55,F,p.h+14), iso(u,F,p.h)], shade(RF,1.06));
+      ctx.strokeStyle = "rgba(0,0,0,.08)"; ctx.lineWidth = 0.8;
+      for(let k=1;k<5;k++){
+        const a = iso(u+sw*0.55*k/5, p.y, p.h+14*k/5), b = iso(u+sw*0.55*k/5, F, p.h+14*k/5);
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+      }
+      poly([iso(u+sw*0.55,p.y,p.h+14), iso(u+sw,p.y,p.h), iso(u+sw,F,p.h), iso(u+sw*0.55,F,p.h+14)],
+           glow("#c3ccd4", "#e6cf9c"));
+      ctx.strokeStyle = "#e6e9ee"; ctx.lineWidth = 0.9;
+      for(let k=1;k<4;k++){
+        const a = iso(u+sw*(0.55+0.45*k/4), p.y, p.h+14*(1-k/4)), b = iso(u+sw*(0.55+0.45*k/4), F, p.h+14*(1-k/4));
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+      }
+      /* 妻の縁 */
+      ctx.strokeStyle = shade(RF,.62); ctx.lineWidth = 1.2;
+      const e0 = iso(u,F+0.01,p.h), e1 = iso(u+sw*0.55,F+0.01,p.h+14), e2 = iso(u+sw,F+0.01,p.h);
+      ctx.beginPath(); ctx.moveTo(e0.x,e0.y); ctx.lineTo(e1.x,e1.y); ctx.lineTo(e2.x,e2.y); ctx.stroke();
+    }
+    /* 煙突。段のあるレンガと、うすい煙。本ラインが動いているあいだだけ煙が出る */
+    cyl(RX-0.32, p.y+0.34, 0.17, 30, "#a8776a", p.h);
+    cyl(RX-0.32, p.y+0.34, 0.20, 3, "#8c5f54", p.h+30);
+    for(let k=0;k<2;k++){ const q = iso(RX-0.32, p.y+0.34, p.h+34+k*8);
+      ctx.fillStyle = "rgba(255,255,255,"+((0.24-k*0.1)*TL.shut)+")";
+      ctx.beginPath(); ctx.ellipse(q.x+k*3, q.y-2, 4+k*1.5, 2.6+k*0.6, 0, 0, 6.2832); ctx.fill(); }
+    /* 搬入口のシャッター。朝いちばんに上がり、定時に下りる。車止めは出しっぱなし */
+    { const gx = p.x+0.35, w = 0.9;
+      poly([iso(gx,F+0.006,26), iso(gx+w,F+0.006,26), iso(gx+w,F+0.006,0), iso(gx,F+0.006,0)],
+           glow("#2b3038", "#c8a86a"));                    /* 開いた奥は暗い土間 */
+      bShutter(gx, F, 0, w, 26, TL.shut, "#5f666f");
+      for(const u of [gx-0.02, gx+w-0.04]){
+        box(u, F+0.03, 0.06, 0.12, 4.5, "#e2b23c", 0);
+        poly([iso(u,F+0.156,3), iso(u+0.06,F+0.156,3), iso(u+0.06,F+0.156,1.8), iso(u,F+0.156,1.8)], "#2f2f33");
+      }
+    }
+    for(let i=0;i<2;i++) bWindow(p.x+1.55+i*0.62, F+0.006, 12, 0.46, 12, lit(i));
+    bSignF(p.x+0.2, F, p.h-13, 1.7, 9, "#3a4048", "FACTORY", 5, "#f4f1ea", "sewing", 3.2, TL.sign);
+    for(let i=0;i<2;i++) bWindowR(RX+0.006, p.y+0.3+i*0.8, 12, 0.5, 12, lit(4+i));
+    return;
+  }
+
+  /* ---------------- ショー会場：丸いホール・マーキー・入口ポーチと赤いカーペット ---------------- */
+  if(p.id === "venue"){
+    const cxv = mid, cyv = p.y+p.d/2, r = Math.min(p.w, p.d)*0.5;
+    /* 円いホールを敷地に収めたぶん、横に空き地が残る。
+       そこへ**敷地いっぱいの基壇と、両脇の袖（ホワイエ）**を置いて、
+       建物としての大きさを取り戻す。どちらも敷地の中なので位置関係は崩れない */
+    box(p.x, p.y+0.05, p.w, p.d-0.10, 4, shade(W,.84), 0);
+    for(let wi = 0; wi < 2; wi++){
+      const wx = wi ? RX-0.52 : p.x+0.04;
+      box(wx, p.y+0.30, 0.48, p.d-0.34, 30, shade(W,.99), 4);
+      box(wx-0.05, p.y+0.26, 0.58, p.d-0.26, 3, shade(RF,1.02), 34);
+      if(wi) bWindowR(wx+0.483, p.y+0.52, 12, 0.62, 12, lit(30));
+      else   bWindow(wx+0.06, p.y+p.d-0.038, 12, 0.34, 12, lit(31));
+    }
+    cyl(cxv, cyv, r, p.h, W, 0);
+    /* 壁の丸みを、明るい帯でひとつ */
+    ctx.save();
+    for(let k=0;k<5;k++){
+      const a0 = 0.55+k*0.16, a1 = a0+0.16, al = [0.05,0.09,0.12,0.09,0.05][k];
+      const P0 = [cxv+Math.cos(a0)*r, cyv+Math.sin(a0)*r], P1 = [cxv+Math.cos(a1)*r, cyv+Math.sin(a1)*r];
+      poly([iso(P0[0],P0[1],4), iso(P1[0],P1[1],4), iso(P1[0],P1[1],p.h-16), iso(P0[0],P0[1],p.h-16)], "rgba(255,255,255,"+al+")");
+    }
+    ctx.restore();
+    /* 基壇のリング（手前半分だけ） */
+    bRing(cxv, cyv, r*1.03, 0, 4, shade(W,.82));
+    /* マーキー：明るい帯（手前半分だけ）と電球 */
+    bRing(cxv, cyv, r*1.05, p.h-16, p.h-9, "#f4ede0");
+    /* マーキーの電球。開演が近づくと、ひとつずつ点いていく */
+    { let k = 0;
+      for(let a=-0.75; a<2.35; a+=0.19){
+        if(a > 0.5 && a < 1.06) continue;
+        const q = iso(cxv+Math.cos(a)*r*1.058, cyv+Math.sin(a)*r*1.058, p.h-12.5);
+        const on = TL.sign > 0.10 + winSeed("venue", k++)*0.40;
+        ctx.fillStyle = on ? "#ffe27a" : "#e2bd5c";
+        ctx.beginPath(); ctx.arc(q.x, q.y, 1.25, 0, 6.2832); ctx.fill();
+        if(on){ ctx.fillStyle = "rgba(255,226,120,.35)";
+          ctx.beginPath(); ctx.arc(q.x, q.y, 2.6, 0, 6.2832); ctx.fill();
+ }
+      }
+    }
+    { const q = iso(cxv+0.7071*r*1.062, cyv+0.7071*r*1.062, p.h-12.5);
+      ctx.save(); ctx.fillStyle = tMix("#5b4460", "#7a4a3a", TL.sign); ctx.font = "800 5.5px sans-serif";
+      ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText("SHOW", q.x, q.y); ctx.restore(); }
+    /* ポスター（右前の壁面に） */
+    { const a = 0.12, k = -0.5*Math.cos(2*a), c = iso(cxv+Math.cos(a)*r*1.012, cyv+Math.sin(a)*r*1.012, 30);
+      const hw = 7.5, hh = 12;
+      const pt = (dx,dy) => ({x:c.x+dx, y:c.y+dy+dx*k});
+      poly([pt(-hw,-hh), pt(hw,-hh), pt(hw,hh), pt(-hw,hh)], "#f6efe6");
+      poly([pt(-hw,-hh), pt(hw,-hh), pt(hw,-hh+3.5), pt(-hw,-hh+3.5)], "#c98ba4");
+      ctx.save(); ctx.translate(c.x, c.y-1.5); ctx.transform(1, k, 0, 1, 0, 0);
+      bPicto("dress", 5.2, "#5b4460", "#f6efe6");
+      ctx.fillStyle = "#8b7d92"; ctx.fillRect(-5, 7.5, 10, 1.1); ctx.restore();
+    }
+    /* 入口ポーチ：箱・扉・しまのキャノピー・柱・赤いカーペット */
+    { const py = cyv + r - 0.34;
+      box(cxv-0.45, py, 0.9, 0.40, 22, shade(W,1.02), 0);
+      const fy = py + 0.40;
+      /* 開演中は、マーキーの明かりが入口の前の地面に落ちる */
+      townLampPool(cxv, fy + 0.5, 0.85, TL.sign * TL.shut);
+      bDoor(cxv-0.28, fy, 0.56, "#3a3242", {glass:true, awning:false});
+      /* 赤いカーペット。開演のときだけ手前へ伸びる。ふだんは巻いて端に置いてある */
+      { const e = fy + 0.22 + 0.40*TL.shut;
+        poly([iso(cxv-0.2, fy+0.22, 0.3), iso(cxv+0.2, fy+0.22, 0.3), iso(cxv+0.2, e, 0.3), iso(cxv-0.2, e, 0.3)], "#b04a5a");
+        poly([iso(cxv-0.2, fy+0.22, 0.31), iso(cxv-0.17, fy+0.22, 0.31), iso(cxv-0.17, e, 0.31), iso(cxv-0.2, e, 0.31)], "#d6a24a");
+        poly([iso(cxv+0.17, fy+0.22, 0.31), iso(cxv+0.2, fy+0.22, 0.31), iso(cxv+0.2, e, 0.31), iso(cxv+0.17, e, 0.31)], "#d6a24a");
+        if(TL.shut < 0.94) box(cxv-0.2, e, 0.4, 0.07, 3.4, "#8e3c4a", 0); }   /* 巻いた残り */
+      for(const u of [-0.47, 0.47]) cyl(cxv+u, fy+0.36, 0.03, 22, "#d8d0c4", 0);
+      box(cxv-0.52, fy, 1.04, 0.42, 2.4, "#5a4468", 22);
+      const ws = 1.04/6;
+      for(let i=0;i<6;i++) poly([iso(cxv-0.52+i*ws, fy, 24.4), iso(cxv-0.52+(i+1)*ws, fy, 24.4),
+                                 iso(cxv-0.52+(i+1)*ws, fy+0.42, 24.4), iso(cxv-0.52+i*ws, fy+0.42, 24.4)],
+                                i%2 ? "#7b5c8e" : "#ece3f0");
+    }
+    /* ドーム。層をなす */
+    cyl(cxv, cyv, r*1.06, 6, RF, p.h);
+    cyl(cxv, cyv, r*0.82, 7, shade(RF,1.06), p.h+6);
+    cyl(cxv, cyv, r*0.56, 7, shade(RF,1.12), p.h+13);
+    cyl(cxv, cyv, r*0.26, 8, shade(RF,1.2), p.h+20);
+    { const q = iso(cxv, cyv, p.h+30);
+      ctx.fillStyle = "#e6c46a"; ctx.beginPath(); ctx.arc(q.x, q.y-2, 2.4, 0, 6.2832); ctx.fill(); }
+    return;
+  }
+
+  /* ---------------- ショップ：日よけ・ショーウィンドウ（暗いガラス）・BOUTIQUE ---------------- */
+  if(p.id === "shop"){
+    box(p.x, p.y, p.w, p.d, p.h, W, 0);
+    bBaseAO(p);
+    /* 腰壁の帯 */
+    poly([fq(0,4), fq(p.w,4), fq(p.w,0), fq(0,0)], shade(W,.86));
+    for(const u of [0.16, p.w-0.16-0.72]){
+      const q = (a,z)=>iso(p.x+u+a, F+0.006, z);
+      poly([q(-0.03,p.h-16), q(0.75,p.h-16), q(0.75,3), q(-0.03,3)], "#f4efe6");
+      poly([q(0,p.h-17), q(0.72,p.h-17), q(0.72,4), q(0,4)], glow("#5a6470", "#f0cf8a"));
+      poly([q(0,p.h-17), q(0.34,p.h-17), q(0.12,4), q(0,4)], "rgba(200,222,240,.38)");
+      poly([q(0.5,p.h-17), q(0.72,p.h-17), q(0.72,p.h*0.5), q(0.62,p.h*0.4)], "rgba(200,222,240,.22)");
+      ctx.strokeStyle = "#f4efe6"; ctx.lineWidth = 1.1;
+      { const a=q(0.36,p.h-17), b=q(0.36,4); ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+      /* 閉店中はショーウィンドウごとシャッターで塞ぐ */
+      bShutter(p.x+u, F, 4, 0.72, p.h-21, TL.shut, "#b6aeb2");
+      /* 窓の下の花箱 */
+      box(p.x+u, F, 0.72, 0.10, 3, "#8a6a4a", 3);
+      for(let k=0;k<4;k++){
+        cyl(p.x+u+0.1+k*0.17, F+0.05, 0.06, 3, "#7fae66", 6);
+        const d = iso(p.x+u+0.1+k*0.17, F+0.05, 10);
+        ctx.fillStyle = k%2 ? "#e07a92" : "#f2c14e"; ctx.beginPath(); ctx.arc(d.x, d.y, 1.1, 0, 6.2832); ctx.fill();
+      }
+    }
+    bDoor(mid-0.2, F, 0.4, "#7a5a70", {glass:true, awning:false});
+    /* 日よけは開店してから張り出す。閉めるとほとんど畳まれて壁に沿う */
+    bAwning(p.x+0.1, F, p.w-0.2, p.h-15, 0.05 + 0.25*TL.shut, 7, "#c98ba4", "#f2e6ea");
+    bSignF(p.x+0.25, F, p.h-11, p.w-0.5, 8, "#fff6ee", "BOUTIQUE", 4.9, "#7c5a70", "hanger", 3.2, TL.sign);
+    bFlatRoof(p, RF, 0.08);
+    /* 鉢植えと、開店中だけ出すA型看板 */
+    cyl(RX-0.16, F+0.16, 0.09, 6, "#b47a5c", 0);
+    cyl(RX-0.16, F+0.16, 0.13, 6, "#7fae66", 6);
+    if(TL.shut > 0.5){
+      box(p.x+0.22, F+0.30, 0.18, 0.10, 8, "#5b4a4e", 0);
+      poly([iso(p.x+0.24,F+0.406,7), iso(p.x+0.38,F+0.406,7), iso(p.x+0.38,F+0.406,1.5), iso(p.x+0.24,F+0.406,1.5)], "#f6efe6");
+    }
+    return;
+  }
+
+  /* ---------------- カフェ：木のファサード・しまの日よけ・テラス席とパラソル ---------------- */
+  if(p.id === "cafe"){
+    box(p.x, p.y, p.w, p.d, p.h, W, 0);
+    bBaseAO(p);
+    poly([fq(0,p.h-8), fq(p.w,p.h-8), fq(p.w,2), fq(0,2)], "#8a6a4a");
+    ctx.strokeStyle = "rgba(0,0,0,.12)"; ctx.lineWidth = 0.9;
+    for(let u=0.1; u<p.w; u+=0.14){ const a=fq(u,p.h-8), b=fq(u,2);
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    bWindow(p.x+0.12, F+0.007, 8, 0.5, 15, lit(0), {frame:"#f2e6d0"});
+    bStorm(p.x+0.12, F+0.012, 8, 0.5, 15, TL.shut, "#7a5a3e");   /* 木の雨戸 */
+    bDoor(p.x+0.75, F, 0.4, "#5b4a44", {glass:true, awning:false});
+    bAwning(p.x+0.04, F, p.w-0.08, p.h-9, 0.05 + 0.19*TL.shut, 5, "#c96f66", "#f4e7d2");
+    bFlatRoof(p, RF, 0.06);
+    /* 黒板。閉めているあいだは店の中にしまう */
+    if(TL.shut > 0.5){
+      box(p.x+0.02, F+0.26, 0.24, 0.10, 12, "#3a3a3a", 0);
+      ctx.strokeStyle = "rgba(255,255,255,.7)"; ctx.lineWidth = 0.8;
+      for(let k=0;k<3;k++){ const a=iso(p.x+0.06, F+0.366, 9.5-k*2.6), b=iso(p.x+0.22, F+0.366, 9.5-k*2.6);
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    }
+    /* 屋上テラス：丸テーブル2つ、いす、パラソル。手前の建物に隠れても、ここは見える */
+    { const Z = p.h+3.5, tcx = p.x+0.62, tcy = p.y+0.5;
+      /* 屋上の手すり */
+      for(const [ax,ay,bx,by] of [[p.x+0.08,F-0.08,RX-0.08,F-0.08],[RX-0.08,p.y+0.08,RX-0.08,F-0.08]]){
+        const a=iso(ax,ay,Z+6), b=iso(bx,by,Z+6);
+        ctx.strokeStyle="#8a8078"; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        for(let t=0;t<=1.001;t+=0.2){ const q0=iso(ax+(bx-ax)*t, ay+(by-ay)*t, Z), q1=iso(ax+(bx-ax)*t, ay+(by-ay)*t, Z+6);
+          ctx.beginPath(); ctx.moveTo(q0.x,q0.y); ctx.lineTo(q1.x,q1.y); ctx.stroke(); }
+      }
+      for(const [tx,ty] of [[tcx-0.28, tcy+0.22],[tcx+0.3, tcy-0.18]]){
+        cyl(tx, ty, 0.03, 8, "#6a615a", Z); cyl(tx, ty, 0.12, 1.5, "#e9e0d2", Z+8);
+        for(const dx of [-0.17, 0.17]) box(tx+dx-0.05, ty-0.05, 0.10, 0.10, 5, "#a9784c", Z);
+      }
+      cyl(tcx, tcy, 0.035, 24, "#8a8078", Z);
+      /* パラソル。閉店するとすぼめて、細い束になる */
+      const R = 0.09 + 0.37*TL.shut, drop = 24 + 4*(1-TL.shut);
+      for(let k=0;k<8;k++){
+        const a0 = k*Math.PI/4, a1 = (k+1)*Math.PI/4;
+        poly([iso(tcx,tcy,Z+30), iso(tcx+Math.cos(a0)*R, tcy+Math.sin(a0)*R, Z+drop), iso(tcx+Math.cos(a1)*R, tcy+Math.sin(a1)*R, Z+drop)],
+             k%2 ? "#e08f8c" : "#f7ece2");
+      }
+      const t = iso(tcx, tcy, Z+31); ctx.fillStyle="#8a8078"; ctx.beginPath(); ctx.arc(t.x,t.y,1.4,0,6.2832); ctx.fill();
+      /* 屋上の看板：CAFE */
+      { const plate = tMix("#f4e7d2", "#fff4d8", TL.sign*0.5), ink = tMix("#6a4a3a", "#c9702a", TL.sign*0.8);
+        box(p.x+0.08, F-0.16, 1.15, 0.08, 9, plate, Z);
+        bIconF(p.x+0.34, F-0.074, Z+4.5, "cup", 2.7, ink, plate);
+        bTextF(p.x+0.82, F-0.074, Z+4.5, "CAFE", 4.6, ink);
+ }
+    }
+    return;
+  }
+
+  /* ---------------- 学校：寄棟の校舎・時計塔・柱のある玄関・旗・校門 ---------------- */
+  if(p.id === "school"){
+    box(p.x, p.y, p.w, p.d, p.h, W, 0);
+    bBaseAO(p);
+    poly([fq(0,7), fq(p.w,7), fq(p.w,0), fq(0,0)], shade(W,.86));
+    /* 窓は中央を大きく空ける。1階は玄関、2階は校名の板が入る場所 */
+    const SWIN = [0.12, 0.56, null, 1.92, 2.36];
+    for(let f=0;f<2;f++) for(let i=0;i<5;i++){
+      if(SWIN[i] == null) continue;
+      bWindow(p.x+SWIN[i], F+0.006, 10+f*17, 0.34, 11, lit(i+f*5));
+    }
+    for(let f=0;f<2;f++) for(let i=0;i<2;i++)
+      bWindowR(RX+0.006, p.y+0.25+i*0.6, 10+f*17, 0.36, 11, lit(20+f*2+i));
+    /* 寄棟屋根 */
+    { const L=0.1, r=8;
+      const A=[p.x-L,p.y-L,p.h], B=[RX+L,p.y-L,p.h], C=[RX+L,F+L,p.h], D=[p.x-L,F+L,p.h];
+      const a=[p.x+0.5,p.y+0.4,p.h+r], b=[RX-0.5,p.y+0.4,p.h+r], c=[RX-0.5,F-0.4,p.h+r], d=[p.x+0.5,F-0.4,p.h+r];
+      const P = v => iso(v[0],v[1],v[2]);
+      poly([P(A),P(B),P(b),P(a)], shade(RF,.9));      /* 奥 */
+      poly([P(A),P(D),P(d),P(a)], shade(RF,.9));      /* 左 */
+      poly([P(a),P(b),P(c),P(d)], shade(RF,.96));     /* 天 */
+      poly([P(D),P(C),P(c),P(d)], shade(RF,1.05));    /* 手前 */
+      poly([P(B),P(C),P(c),P(b)], shade(RF,.78));     /* 右 */
+      ctx.strokeStyle="rgba(0,0,0,.08)"; ctx.lineWidth=0.8;
+      for(let k=1;k<4;k++){ const t=k/4;
+        const q1=iso(p.x-L+(0.5+L)*t, F+L-(0.4+L)*t, p.h+r*t), q2=iso(RX+L-(0.5+L)*t, F+L-(0.4+L)*t, p.h+r*t);
+        ctx.beginPath(); ctx.moveTo(q1.x,q1.y); ctx.lineTo(q2.x,q2.y); ctx.stroke(); }
+      bFascia(D, C, 2.5, shade(RF,.7)); bFascia(B, C, 2.5, shade(RF,.55));
+    }
+    /* 時計塔（手前寄り） */
+    { const tx = mid, ty = p.y+0.75;
+      box(tx-0.26, ty-0.26, 0.52, 0.52, 28, shade(W,1.04), p.h+8);
+      box(tx-0.3, ty-0.3, 0.6, 0.6, 3, RF, p.h+32);
+      poly([iso(tx+0.3,ty-0.3,p.h+35), iso(tx+0.3,ty+0.3,p.h+35), iso(tx,ty,p.h+50)], shade(RF,.8));
+      poly([iso(tx-0.3,ty+0.3,p.h+35), iso(tx+0.3,ty+0.3,p.h+35), iso(tx,ty,p.h+50)], shade(RF,1.1));
+      /* 文字盤は終夜あかりが入っている。学校が閉まっても、街の時計は止まらない */
+      const q = iso(tx, ty+0.268, p.h+18);
+      const dial = ramp(nt, 0.12, 0.45);
+      ctx.fillStyle = tMix("#fdf8ee", "#ffeec4", dial); ctx.beginPath(); ctx.arc(q.x, q.y, 5.4, 0, 6.2832); ctx.fill();
+      ctx.strokeStyle = "#8a7d6a"; ctx.lineWidth = 0.9; ctx.stroke();
+      ctx.fillStyle = "#8a7d6a";
+      for(let k=0;k<12;k+=3){ const a=k/12*6.2832; ctx.beginPath(); ctx.arc(q.x+Math.sin(a)*4.2, q.y-Math.cos(a)*4.2, 0.55, 0, 6.2832); ctx.fill(); }
+      ctx.strokeStyle = "#5b5060"; ctx.lineWidth = 1;
+      const h = hourOf();
+      ctx.beginPath(); ctx.moveTo(q.x,q.y);
+      ctx.lineTo(q.x+Math.sin((h/12)*6.2832)*3, q.y-Math.cos((h/12)*6.2832)*3); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(q.x,q.y);
+      ctx.lineTo(q.x+Math.sin(((h%1)*1)*6.2832)*4.2, q.y-Math.cos(((h%1)*1)*6.2832)*4.2); ctx.stroke(); }
+    /* 玄関：扉、2本の柱と厚い庇。上の壁に学帽の紋章 */
+    bDoor(mid-0.28, F, 0.56, "#6a5648", {awning:false});
+    for(const u of [-0.42, 0.42]) cyl(mid+u, F+0.18, 0.045, 23, "#f2ede4", 0);
+    box(mid-0.52, F, 1.04, 0.26, 3, "#e9e4dc", 23);
+    bIconF(mid, F+0.266, 24.5, "cap", 2.6, "#4b3d52", "#e9e4dc");   /* 庇の前縁に学帽 */
+    /* 校名は2階の高さに。低いところに置くと、手前の建物の屋根に隠れて読めない。
+       幅は左右の窓のあいだいっぱい。紋章は庇のほうへ逃がした */
+    bSignF(mid-0.49, F, 27, 0.98, 10, "#f4efe6", SCHOOL_SIGN, 4.4, "#4b3d52", null, 0, TL.sign);
+    /* 校門の柱、旗、校庭の木。旗は下校とともに降ろす */
+    for(const u of [p.x+0.55, RX-0.55]) box(u-0.06, F+0.36, 0.12, 0.12, 12, "#bdb5a8", 0);
+    cyl(p.x+0.28, F+0.32, 0.022, 58, "#d9d4cc", 0);
+    { const fz = 6 + 52*TL.shut;
+      poly([iso(p.x+0.28,F+0.32,fz), iso(p.x+0.62,F+0.32,fz-2.5), iso(p.x+0.28,F+0.32,fz-5.5)], "#c96f66"); }
+    cyl(RX+0.36, F-0.3, 0.06, 12, "#8a6a4a", 0);
+    cyl(RX+0.36, F-0.3, 0.30, 12, "#6f9a58", 11);
+    cyl(RX+0.36, F-0.3, 0.20, 9, "#86b56e", 22);
+    return;
+  }
+
+  /* ---------------- 生地問屋：板張りの倉庫・閉じたシャッター・大きな屋号 ---------------- */
+  if(p.id === "fabric"){
+    box(p.x, p.y, p.w, p.d, p.h, W, 0);
+    bBaseAO(p);
+    ctx.strokeStyle="rgba(0,0,0,.09)"; ctx.lineWidth=0.9;
+    for(let z=6; z<p.h-4; z+=5){ const a=fq(0,z), b=fq(p.w,z);
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    /* 右の面の三角（片流れの妻） */
+    poly([iso(RX+0.004,p.y,p.h), iso(RX+0.004,p.y,p.h+7.4), iso(RX+0.004,F,p.h)], shade(W,.54));
+    /* 片流れ屋根：奥が高く、手前へ下る波板 */
+    poly([iso(p.x-0.1,p.y-0.1,p.h+8), iso(RX+0.1,p.y-0.1,p.h+8), iso(RX+0.1,F+0.1,p.h), iso(p.x-0.1,F+0.1,p.h)], RF);
+    ctx.strokeStyle="rgba(0,0,0,.10)"; ctx.lineWidth=0.9;
+    for(let u=0; u<p.w+0.2; u+=0.14){ const a=iso(p.x-0.1+u,p.y-0.1,p.h+8), b=iso(p.x-0.1+u,F+0.1,p.h);
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    bFascia([p.x-0.1,F+0.1,p.h], [RX+0.1,F+0.1,p.h], 2.4, shade(RF,.7));
+    bFascia([RX+0.1,p.y-0.1,p.h+8], [RX+0.1,F+0.1,p.h], 2.4, shade(RF,.55));
+    /* 荷さばき口のシャッター。問屋は9時に開けて、夕方には下ろす */
+    { const gx = p.x+0.3, w = 1.1;
+      poly([iso(gx,F+0.006,26), iso(gx+w,F+0.006,26), iso(gx+w,F+0.006,0), iso(gx,F+0.006,0)],
+           glow("#2c3038", "#c4a878"));
+      bShutter(gx, F, 0, w, 26, TL.shut, "#9aa1a8");
+    }
+    bWindow(p.x+1.55, F+0.006, 10, 0.46, 12, lit(0), {frame:"#e0d6c6"});
+    bSignF(p.x+0.2, F, p.h-14, 1.75, 11, "#f4ede0", "FABRIC", 5.4, "#7a5a3c", "bolt", 3.4, TL.sign);
+    bWindowR(RX+0.006, p.y+0.45, 12, 0.5, 12, lit(1));
+    /* 屋上の屋号。奥の高い縁に立てるので、手前の建物ごしにも見える */
+    { const Z = p.h+5.5, by = p.y+0.16, bw = p.w-0.6;
+      const plate = tMix("#f4ede0", "#fff4d8", TL.sign*0.5), ink = tMix("#7a5a3c", "#c98a3a", TL.sign*0.8);
+      box(p.x+0.3, by, bw, 0.10, 16, plate, Z);
+      const sw = ["#d9737f","#6f9fd8","#e0b354","#77c295","#b98ed4"];
+      for(let i=0;i<5;i++) poly([iso(p.x+0.36+i*0.2, by+0.106, Z+15), iso(p.x+0.36+(i+1)*0.2, by+0.106, Z+15),
+                                 iso(p.x+0.36+(i+1)*0.2, by+0.106, Z+11.5), iso(p.x+0.36+i*0.2, by+0.106, Z+11.5)], sw[i]);
+      bIconF(p.x+0.58, by+0.106, Z+5.5, "bolt", 3.4, ink, plate);
+      bTextF(p.x+0.3+bw*0.66, by+0.106, Z+5.5, "FABRIC", 5.4, ink);
+    }
+    /* 外に積んだ反物のパレット（右どなり）。閉めるときに中へしまう */
+    box(RX+0.1, p.y+0.25, 0.7, 0.5, 3, "#a9784c", 0);
+    if(TL.shut > 0.35){
+      const cols2 = ["#d9737f","#6f9fd8","#e0b354","#77c295","#b98ed4"];
+      for(let i=0;i<5;i++)
+        bolt(RX+0.14, p.y+0.33+(i%2)*0.2, RX+0.76, p.y+0.33+(i%2)*0.2, 3+Math.floor(i/2)*7, 3.4, cols2[i]);
+    }
+    return;
+  }
+
+  /* ---------------- 撮影スタジオ：打ち放しの箱・高窓・大きな搬入扉・天窓・STUDIO ---------------- */
+  if(p.id === "studio"){
+    box(p.x, p.y, p.w, p.d, p.h, W, 0);
+    bBaseAO(p);
+    ctx.strokeStyle=inkF; ctx.lineWidth=0.9;
+    for(let u=0.3; u<p.w; u+=0.6){ const a=fq(u,p.h-2), b=fq(u,2);
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    { const q=(u,z)=>fq(u,z);
+      poly([q(0.2,p.h-6), q(p.w-0.2,p.h-6), q(p.w-0.2,p.h-18), q(0.2,p.h-18)], "#e9e4dc");
+      poly([q(0.24,p.h-7), q(p.w-0.24,p.h-7), q(p.w-0.24,p.h-17), q(0.24,p.h-17)], glow("#c9d8e2", "#fff0c8"));
+      ctx.strokeStyle="#e9e4dc"; ctx.lineWidth=1;
+      for(let i=1;i<6;i++){ const a=q(0.24+(p.w-0.48)*i/6,p.h-7), b=q(0.24+(p.w-0.48)*i/6,p.h-17);
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    }
+    bDoor(mid-0.4, F, 0.8, "#6a7078", {glass:false, awningCol:"#4b5058"});
+    bSignF(mid-0.8, F, p.h-27, 1.6, 8, "#2f3238", "STUDIO", 5.2, "#f4f1ea", "camera", 3.0, TL.sign);
+    bFlatRoof(p, RF, 0.08);
+    /* 天窓：手前へ下るガラス面 */
+    { const sx=p.x+0.4, sy=p.y+0.3, sw=p.w-0.8, sd=p.d-0.6;
+      poly([iso(sx+sw,sy,p.h+11), iso(sx+sw,sy+sd,p.h+3.5), iso(sx+sw,sy,p.h+3.5)], shade(W,.7));
+      poly([iso(sx,sy,p.h+11), iso(sx+sw,sy,p.h+11), iso(sx+sw,sy+sd,p.h+3.5), iso(sx,sy+sd,p.h+3.5)], glow("#b9cbd6", "#e0cfa0"));
+      ctx.strokeStyle="#e9e4dc"; ctx.lineWidth=1;
+      for(let i=1;i<5;i++){ const a=iso(sx+sw*i/5,sy,p.h+11), b=iso(sx+sw*i/5,sy+sd,p.h+3.5);
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+      { const a=iso(sx,sy,p.h+11), b=iso(sx+sw,sy,p.h+11); ctx.strokeStyle=shade(W,.7); ctx.lineWidth=1.4;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    }
+    bRoofStuff(p, "ac");
+    /* 屋上のソフトボックス（スタンドの上の白い箱） */
+    { const lx = p.x+0.32, ly = F-0.34, Z = p.h+3.5;
+      cyl(lx, ly, 0.03, 16, "#4a4e56", Z);
+      for(const [dx,dy] of [[-0.14,0],[0.1,0.1],[0.1,-0.1]]) { const a=iso(lx,ly,Z+2), b=iso(lx+dx,ly+dy,Z); ctx.strokeStyle="#4a4e56"; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+      /* ソフトボックスは、撮影が始まっているあいだ光っている（昼でも点く） */
+      box(lx-0.16, ly-0.16, 0.32, 0.32, 5, "#f4f1ea", Z+16);
+      poly([iso(lx-0.16,ly+0.164,Z+21), iso(lx+0.16,ly+0.164,Z+21), iso(lx+0.16,ly+0.164,Z+16), iso(lx-0.16,ly+0.164,Z+16)],
+           tMix("#e4e0d8", "#fff6d2", TL.shut));
+    }
+    return;
+  }
+
+  /* ---------------- ショールーム：白い箱・上に帯窓・下に大きなロゴ・キャノピー ---------------- */
+  if(p.id === "showroom"){
+    box(p.x, p.y, p.w, p.d, p.h, W, 0);
+    bBaseAO(p);
+    { const n=5, sw=(p.w-0.28)/n;
+      for(let i=0;i<n;i++){ const u=0.14+i*sw;
+        poly([fq(u+0.02,p.h-20), fq(u+sw-0.02,p.h-20), fq(u+sw-0.02,24), fq(u+0.02,24)],
+             lit(i) ? "#f6e7c0" : "#d3dbe1");
+        poly([fq(u+0.02,p.h-20), fq(u+sw*0.45,p.h-20), fq(u+sw*0.15,24), fq(u+0.02,24)], "rgba(255,255,255,.35)");
+      }
+      poly([fq(0.12,p.h-19), fq(p.w-0.12,p.h-19), fq(p.w-0.12,p.h-20), fq(0.12,p.h-20)], "#c9c4bc");
+      poly([fq(0.12,24), fq(p.w-0.12,24), fq(p.w-0.12,23), fq(0.12,23)], "#c9c4bc");
+    }
+    bDoor(mid-0.28, F, 0.56, "#3a3a44", {glass:true, awning:false});
+    box(mid-0.55, F, 1.1, 0.34, 1.6, "#4a4a52", 22);
+    /* 上の帯に大きなロゴ（手前の建物に隠れにくい高さ） */
+    { const plate = tMix(shade(W,.93), "#fff4d8", TL.sign*0.45);
+      const ink   = tMix("#5e5a56", "#c98a3a", TL.sign*0.8);
+      poly([fq(0,p.h-16), fq(p.w,p.h-16), fq(p.w,p.h-4), fq(0,p.h-4)], plate);
+      bIconF(p.x+0.4, F+0.008, p.h-10, "dress", 5.2, tMix("#4b3d52","#c98a3a",TL.sign*0.8), plate);
+      bTextF(p.x+p.w*0.6, F+0.008, p.h-10, "SHOWROOM", 5.6, ink);
+ }
+    bFlatRoof(p, RF, 0.10);
+    box(mid-0.4, F+0.2, 0.8, 0.14, 1.2, "#3a3a44", 0);
+    for(let i=0;i<3;i++){ const px = p.x+0.4+i*0.5;
+      box(px-0.14, F-0.42, 0.28, 0.24, 4, "#8a8078", p.h+3.5);
+      cyl(px, F-0.3, 0.1, 5, "#7fae66", p.h+7.5); }
+    return;
+  }
+
+  /* ---------------- アトリエ：切妻（手前が妻面）・ドーマー・丸窓・はさみのATELIER ---------------- */
+  box(p.x, p.y, p.w, p.d, p.h, W, 0);
+  bBaseAO(p);
+  bWindow(p.x+0.30, F+0.006, 12, 0.5, 14, lit(0), {frame:"#f6efe2"});
+  bWindow(RX-0.80, F+0.006, 12, 0.5, 14, lit(1), {frame:"#f6efe2"});
+  /* 木の雨戸。朝いちばんに来た人が開け、最後に帰る人が閉める */
+  bStorm(p.x+0.30, F+0.012, 12, 0.5, 14, TL.shut, "#8a6a4a");
+  bStorm(RX-0.80, F+0.012, 12, 0.5, 14, TL.shut, "#8a6a4a");
+  bDoor(mid-0.24, F, 0.48, "#7a5a44", {glass:true, awningCol:"#c9846f"});
+  bWindowR(RX+0.006, p.y+0.45, 14, 0.5, 12, lit(2));
+  bWindowR(RX+0.006, p.y+1.15, 14, 0.5, 12, lit(3));
+  const L = 0.14, R = 18;
+  /* 妻の三角（手前） */
+  poly([fq(0,p.h), fq(p.w/2,p.h+R-1.5), fq(p.w,p.h)], shade(W,1.02));
+  /* 屋根の2斜面。棟はy方向 */
+  poly([iso(p.x-L,p.y-L,p.h-1), iso(mid,p.y-L,p.h+R), iso(mid,F+L,p.h+R), iso(p.x-L,F+L,p.h-1)], shade(RF,1.05));
+  poly([iso(mid,p.y-L,p.h+R), iso(RX+L,p.y-L,p.h-1), iso(RX+L,F+L,p.h-1), iso(mid,F+L,p.h+R)], shade(RF,.76));
+  ctx.strokeStyle="rgba(0,0,0,.09)"; ctx.lineWidth=0.9;
+  for(let k=1;k<6;k++){
+    const t=k/6;
+    const a=iso(p.x-L+(mid-p.x+L)*t, p.y-L, p.h-1+(R+1)*t), b=iso(p.x-L+(mid-p.x+L)*t, F+L, p.h-1+(R+1)*t);
+    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    const c2=iso(mid+(RX+L-mid)*t, p.y-L, p.h+R-(R+1)*t), d2=iso(mid+(RX+L-mid)*t, F+L, p.h+R-(R+1)*t);
+    ctx.beginPath(); ctx.moveTo(c2.x,c2.y); ctx.lineTo(d2.x,d2.y); ctx.stroke();
+  }
+  { const a=iso(mid,p.y-L,p.h+R+1), b=iso(mid,F+L,p.h+R+1);
+    ctx.strokeStyle=shade(RF,.6); ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+  /* 軒先の厚み */
+  bFascia([p.x-L,F+L,p.h-1], [mid,F+L,p.h+R], 2.4, shade(RF,.7));
+  bFascia([mid,F+L,p.h+R], [RX+L,F+L,p.h-1], 2.4, shade(RF,.7));
+  bFascia([RX+L,p.y-L,p.h-1], [RX+L,F+L,p.h-1], 2.4, shade(RF,.55));
+  /* ドーマー窓（右の斜面、手前寄り） */
+  { const dx = mid+0.55, dy = p.y+0.95;
+    box(dx-0.2, dy-0.2, 0.4, 0.4, 10, shade(W,1.0), p.h+12);
+    poly([iso(dx+0.26,dy-0.26,p.h+22), iso(dx+0.26,dy+0.26,p.h+22), iso(dx,dy+0.26,p.h+28), iso(dx,dy-0.26,p.h+28)], shade(RF,.86));
+    poly([iso(dx-0.26,dy-0.26,p.h+22), iso(dx,dy-0.26,p.h+28), iso(dx,dy+0.26,p.h+28), iso(dx-0.26,dy+0.26,p.h+22)], shade(RF,1.12));
+    bFascia([dx-0.26,dy+0.26,p.h+22],[dx,dy+0.26,p.h+28],1.6,shade(RF,.7));
+    bFascia([dx,dy+0.26,p.h+28],[dx+0.26,dy+0.26,p.h+22],1.6,shade(RF,.7));
+    bFascia([dx+0.26,dy-0.26,p.h+22],[dx+0.26,dy+0.26,p.h+22],1.6,shade(RF,.55));
+    { const a=iso(dx,dy-0.26,p.h+28.6), b=iso(dx,dy+0.26,p.h+28.6);
+      ctx.strokeStyle=shade(RF,.6); ctx.lineWidth=1.4; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    poly([iso(dx-0.2,dy+0.206,p.h+22), iso(dx,dy+0.206,p.h+27), iso(dx+0.2,dy+0.206,p.h+22)], shade(W,1.0));
+    poly([iso(dx-0.12,dy+0.206,p.h+20), iso(dx+0.12,dy+0.206,p.h+20), iso(dx+0.12,dy+0.206,p.h+14), iso(dx-0.12,dy+0.206,p.h+14)], lit(4) ? "#ffe6a8" : "#3a4250");
+  }
+  /* 妻の丸窓 */
+  { const q = fq(p.w/2, p.h+6.5);
+    ctx.fillStyle="#f6efe2"; ctx.beginPath(); ctx.arc(q.x,q.y,3.8,0,6.2832); ctx.fill();
+    ctx.fillStyle= lit(5) ? "#ffe6a8" : "#3a4250"; ctx.beginPath(); ctx.arc(q.x,q.y,2.7,0,6.2832); ctx.fill();
+    ctx.strokeStyle="#f6efe2"; ctx.lineWidth=0.8; ctx.beginPath(); ctx.moveTo(q.x-2.7,q.y); ctx.lineTo(q.x+2.7,q.y); ctx.moveTo(q.x,q.y-2.7); ctx.lineTo(q.x,q.y+2.7); ctx.stroke(); }
+  bSignF(p.x+0.42, F, p.h-11, p.w-0.84, 9, "#fff6ee", "ATELIER", 5.2, "#4b3d52", "scissors", 3.5, TL.sign);
+  /* 鉢植えとベンチ */
+  cyl(RX-0.28, F+0.18, 0.1, 6, "#b47a5c", 0);
+  cyl(RX-0.28, F+0.18, 0.16, 8, "#7fae66", 6);
+  box(p.x+0.12, F+0.06, 0.36, 0.12, 4, "#a9784c", 0);
+}
+
+
+/* ==================================================================
+   4b. 人物（ローポリ）
+   ------------------------------------------------------------------
+   人はここでしか描かない。アトリエのスタッフも、街の歩行者も、
+   会話画面の顔も、すべてこの関数を通す。倍率（U）だけを変えて拡大するので、
+   どの場面でも同じ手の絵になる。
+
+   絵の手本は proposals/01-art/people_variety4.html（E案）。体・頭・腕・脚は
+   game/art_room_styles.html の A（試作A）そのまま。2026-08-17 先生の判断：
+   「方向性はいい。この方向で進める」。決めごとは docs/ART.md 1-2：
+     ・面だけで作る。輪郭線なし、グラデーションなし
+     ・光は左上。左の面を明るく、右の面を沈ませる
+     ・丸いものは八角形（頭）
+     ・鼻・口・まゆ・指は描かない。目は小さな菱形、頬の紅なし
+     ・胴は肩から裾まで一枚の台形。上着を腰で切って上下に分けない
+       （分けるのは「色の分け目」だけ。形は台形のまま）
+
+   座標：足もとを (0,0) とし、上が −。背の高さはおよそ 56（＝U倍して使う）
+   ================================================================== */
+
+/* アトリエの中での倍率。ここを変えると人の背丈がまとめて変わる */
+const PXU  = 1;
+/* 靴と脚。服の色に関わらず共通（ART.md 2-3 の墨系） */
+const PX_LEG  = "#6a6076";
+const PX_LEGD = "#4a4256";
+const PX_SHOE = "#2e2a34";
+const PX_EYE  = "#2e2634";
+
+/* 体つき3種。sh は肩の半幅、up は脚の長さ（背の高さに効く） */
+const PX_BODY = [
+  { name:"すらり",   sh:6.0, up:3 },
+  { name:"ふつう",   sh:6.6, up:0 },
+  { name:"がっしり", sh:7.4, up:-2 },
+];
+/* 髪の型12種。先頭の4型は試作A（art_room_styles.html）の 0〜3 と同じ形 */
+const PX_HAIR = ["ショート","ロング","おだんご","トップノット","ボブ","ツイン",
+                 "アシメ","刈り上げ","カール","三つ編み","ウルフ","ベリーショート"];
+
+/* 服の型32。0〜3 は試作A、4〜15 は E案、16〜31 はあとから足した。
+   増やしてよいのは「裾の高さ・幅・かたむき／記号ひとつ／色の分け方」の3つだけ。
+   台形そのものは崩さない（ART.md 1-2） */
+const PX_WEAR = [
+  { name:"ジャケット",         bot:-10, wB:8.5  },
+  { name:"ワンピース",         bot:-4,  wB:11   },
+  { name:"エプロン",           bot:-10, wB:8.5  },
+  { name:"トップス＋スカート", bot:-6,  wB:10   },
+  { name:"ロングコート",       bot:-3,  wB:10.5 },
+  { name:"ケープ",             bot:-10, wB:8.5  },
+  { name:"ワイドパンツ",       bot:-8,  wB:9.5  },
+  { name:"Aラインロング",      bot:-3,  wB:12   },
+  { name:"エプロンコート",     bot:-3,  wB:10.5 },
+  { name:"トップス＋タイト",   bot:-6,  wB:7.6  },
+  { name:"オーバーサイズ",     bot:-12, wB:10.5, wT:9.0 },
+  { name:"コクーン",           bot:-8,  wB:7.5,  mid:11 },
+  { name:"アシメヘム",         bot:-4,  wB:10,   tilt:6 },
+  { name:"サロペット",         bot:-8,  wB:9    },
+  { name:"シャツワンピ",       bot:-5,  wB:10.5 },
+  { name:"ベスト重ね",         bot:-10, wB:8.5  },
+  /* 16〜31：2026-08-17 先生の希望「服がテーマのゲームなので、型はもっとあってよい」で足した。
+     作りかたは同じ。台形の3つの数（裾の高さ・幅・中ほどの幅）と、記号ひとつだけで差をつける */
+  { name:"トレンチコート",     bot:-2,  wB:11   },
+  { name:"スーツ",             bot:-8,  wB:8    },
+  { name:"ニットワンピ",       bot:-6,  wB:8.5,  mid:7.2 },
+  { name:"プリーツスカート",   bot:-5,  wB:11   },
+  { name:"タイトスカート",     bot:-7,  wB:7    },
+  { name:"バルーン",           bot:-9,  wB:7,    mid:12.5 },
+  { name:"マーメイド",         bot:-3,  wB:13,   mid:6.4 },
+  { name:"ティアード",         bot:-4,  wB:12   },
+  { name:"ラップドレス",       bot:-5,  wB:10   },
+  { name:"ハイウエスト",       bot:-5,  wB:10.5 },
+  { name:"チャイナ",           bot:-6,  wB:7.8  },
+  { name:"羽織",               bot:-4,  wB:11.5 },
+  { name:"ジレ",               bot:-6,  wB:9.5  },
+  { name:"パフ",               bot:-7,  wB:10,   mid:11.5 },
+  { name:"スリップドレス",     bot:-4,  wB:9,    wT:4.6 },
+  { name:"チュール",           bot:-2,  wB:13.5, wT:6.0 },
+];
+
+/* --- 色の名前簿（ART.md 2章。roles.js の HAIRCOL/SKIN/ACCENT とは別に、
+       この絵のためのひとそろい。個性的な人だけがはみ出す色を持つ） --- */
+const PX_SKIN   = ["#f6dcc4","#f2d2b8","#eac3a4","#e9c2a2"];
+const PX_HAIRC  = ["#3b3242","#5b3a2e","#8a5a3c","#c98a55","#7d5f8c",
+                   "#2f3a4a","#a34f5e","#4a4a52","#2a2430","#d8c9a8"];
+const PX_HAIRODD= ["#d8c9a8","#e9a7b4","#6f9fd8","#c9c3d6","#7fae66","#f2c14e"];  /* 個性的な人だけ */
+const PX_SECOND = ["#2a2430","#4b3d52","#f4efe6","#efe6da","#c9a982",
+                   "#7c5a70","#3d4a63","#5c6470","#8c3b3b","#d9c27a"];             /* 2色目・落ち着いた10色 */
+const PX_ACCENT = ["#f6c667","#f2a2b8","#9db8e8","#c9a7e0","#f4efe6","#4b3d52","#e08f8c","#7c5a70"];
+const PX_VIVID  = ["#f2c14e","#e0473f","#2f5fd0","#d43aa0","#1fa38a","#f27d1c","#7b3fe0"];
+const PX_PALE   = ["#f4efe6","#efe6da","#e9dfe6","#dfe9ee","#f3e4ea","#e6f0e8"];
+const PX_EARTH  = ["#c9a982","#a67c52","#8c6b4a","#6f6a52","#b0806a","#d9c27a"];
+const PX_HATC   = ["#4b3d52","#3d4a63","#8c3b3b","#c9a982","#2a2430"];
+const PX_COORD  = ["職種色＋2色目","全身黒","全身白","モノトーン","ペール","ビビッド","補色","アースカラー"];
+const PX_PAT    = ["無地","チェック","ストライプ","水玉","裾のボーダー","ピンストライプ"];
+const PX_ODD    = ["宇宙人","ねこ","ロボット","トルソー","くま","ゆうれい","糸巻き","ボタン",
+                   "まち針","はさみ","ハンガー","巻き尺","指ぬき","うさぎ","パグ","リボン"];
+
+/* 色のコーデ8種。主色・2色目・差し色をまとめて決める。
+   mode 0 のときだけ主色を null にして、役職の色（opt.col）を通す */
+function pxCoord(rnd, mode, second, accent){
+  const one = (arr) => arr[Math.floor(rnd()*arr.length)];
+  switch(mode){
+    case 1: return { col:"#2a2430", c2:"#3a3340", accent:"#4b3d52" };                 /* 全身黒 */
+    case 2: return { col:"#f4efe6", c2:"#efe6da", accent:"#e6d8c4" };                 /* 全身白 */
+    case 3: return { col:one(["#2a2430","#f4efe6"]),
+                     c2:one(["#5c6470","#a9b6c4","#f4efe6","#2a2430"]), accent:"#8c3b3b" };  /* モノトーン */
+    case 4: return { col:one(PX_PALE), c2:one(PX_PALE),
+                     accent:one(["#e9a7b4","#c9a7e0","#9db8e8"]) };                   /* ペール */
+    case 5: { const v = one(PX_VIVID);
+              return { col:v, c2:one(PX_VIVID.filter(x => x !== v)), accent:"#f4efe6" }; }   /* ビビッド */
+    case 6: { const p = one([["#7c5a70","#7fae66"],["#3d4a63","#e0966f"],
+                             ["#8c3b3b","#5fb0a0"],["#c9a15c","#6f9fd8"]]);
+              return { col:p[0], c2:p[1], accent:"#f4efe6" }; }                       /* 補色 */
+    case 7: return { col:one(PX_EARTH), c2:one(PX_EARTH), accent:"#f4efe6" };         /* アースカラー */
+    default: return { col:null, c2:second || one(PX_SECOND), accent:accent || one(PX_ACCENT) };
+  }
+}
+
+/* 見た目をひとつ抽選する。出現率は ART.md 1-2 の表（ガチャの感覚）。
+   rnd は 0〜1 を返す関数。opts で一部を決め打ちできる（一覧ページ用） */
+function pxLook(rnd, opts){
+  rnd = rnd || Math.random; opts = opts || {};
+  const one = (arr) => arr[Math.floor(rnd()*arr.length)];
+  const roll   = rnd();
+  const odd    = opts.head   != null ? opts.head > 0 : roll < 0.03;   /* ★★超レア 3% */
+  const unique = opts.unique != null ? opts.unique   : roll < 0.11;   /* ★個性的  8% */
+  const semi   = !unique && roll < 0.23;                              /* 色のコーデだけ違う 12% */
+  const mode   = opts.coord != null ? opts.coord
+               : ((unique || semi) ? 1 + Math.floor(rnd()*7) : 0);
+  const c = pxCoord(rnd, mode, opts.c2, opts.accent);
+  const look = {
+    body:   opts.body != null ? opts.body : Math.floor(rnd()*3),
+    wear:   opts.wear != null ? opts.wear : Math.floor(rnd()*32),
+    hair:   opts.hair != null ? opts.hair : Math.floor(rnd()*12),
+    hairC:  (unique && rnd() < 0.5) ? one(PX_HAIRODD) : one(PX_HAIRC),
+    hairC2: (unique && rnd() < 0.25) ? one(PX_HAIRODD) : null,        /* 2色の髪 */
+    skin:   one(PX_SKIN),
+    col:    c.col, c2:c.c2, accent:c.accent, coord:mode,
+    pattern:opts.pattern != null ? opts.pattern
+            : ((unique ? rnd() < 0.6 : rnd() < 0.04) ? 1 + Math.floor(rnd()*5) : 0),
+    hat:    (unique && rnd() < 0.35) ? 1 + Math.floor(rnd()*2) : 0,   /* 帽子は個性的な人だけ */
+    hatC:   one(PX_HATC),
+    glasses:rnd() < 0.25 ? (rnd() < 0.7 ? 1 : 2) : 0,                 /* 1 丸／2 四角 */
+    head:   opts.head != null ? opts.head : (odd ? 1 + Math.floor(rnd()*16) : 0),
+    unique, semi, tall: 1.94,
+  };
+  /* 全身黒・全身白のときは、柄を反対がわの色で置く（同化して消えないように） */
+  if(mode === 1 && look.pattern){ look.patC = "#5c6470"; look.patC2 = "#4b3d52"; }
+  if(mode === 2 && look.pattern){ look.patC = "#c9a982"; look.patC2 = "#a9b6c4"; }
+  look.tall = 1.94 + look.body*0.10;             /* 吹き出しの高さに使う（古くからの値） */
+  return look;
+}
+
+/* 見た目の値をこの絵の流儀に直す。古い形の appearance も受け取れる */
+function pxNorm(a){
+  a = a || {};
+  return {
+    body:   Math.min(2, Math.max(0, a.body != null ? a.body|0 : 1)),
+    wear:   Math.min(31, Math.max(0, a.wear != null ? a.wear|0 : (a.outfit|0) % 32)),
+    hair:   Math.min(11, Math.max(0, (a.hair|0) % 12)),
+    hairC:  a.hairC  || "#3b3242",
+    hairC2: a.hairC2 || null,
+    skin:   a.skin   || "#f1cbab",
+    col:    a.col    || null,                 /* null なら役職の色（opt.col）を使う */
+    c2:     a.c2     || "#efe6da",
+    accent: a.accent || "#f2a2b8",
+    tint:   a.tint   || 1,
+    pattern:Math.min(5, Math.max(0, a.pattern|0)),
+    patC:   a.patC || null, patC2: a.patC2 || null,
+    hat:    Math.min(2, Math.max(0, a.hat|0)),
+    hatC:   a.hatC || "#4b3d52",
+    glasses:a.glasses === true ? 1 : Math.min(2, Math.max(0, a.glasses|0)),
+    head:   Math.min(16, Math.max(0, a.head|0)),   /* 0 は人間の頭 */
+  };
+}
+/* 骨組み。肩の高さを決めれば、あとは全部そこからぶら下がる */
+function pxRig(n){
+  const B = PX_BODY[n.body];
+  const sh = -36 - B.up;                      /* 肩の高さ */
+  return { B, sh, head: sh - 10, R: 10, H: -(sh - 22) };
+}
+function pxHeight(a){ return pxRig(pxNorm(a)).H; }
+
+/* --- 動き。腕の先は肩からの相対、脚は上げ幅 --- */
+const PX_WORK = {           /* 試作A（art_room_styles.html の MOTION）と同じ式 */
+  sewing: (t) => ({ lean:5, aL:[-8,17+Math.sin(t*10)*1.2], aR:[8,17+Math.sin(t*10)*1.2],
+                    head:0.6, pedal:Math.abs(Math.sin(t*9))*2.4 }),
+  cut:    (t) => ({ lean:5, aL:[-10,16], aR:[6+Math.sin(t*6)*6, 17+Math.abs(Math.sin(t*6))*2], head:Math.sin(t*6)*0.8 }),
+  iron:   (t) => ({ lean:4, aL:[-9,16], aR:[5+Math.sin(t*3)*5, 17], steam:true }),
+  desk:   (t) => ({ lean:2, aL:[-9,15+Math.sin(t*5)*1.5], aR:[9,14+Math.sin(t*11)*4], head:Math.sin(t*3)*0.8 }),
+  pc:     (t) => ({ lean:2, aL:[-9,15+Math.sin(t*7)*1.2], aR:[9,15+Math.sin(t*13)*1.6], head:Math.sin(t*3)*0.6 }),
+  draft:  (t) => ({ lean:3, aL:[-9,16], aR:[5+Math.sin(t*4)*5, 16], head:Math.sin(t*4)*0.6 }),
+  books:  (t) => ({ lean:0, aL:[-6,6],  aR:[6,6] }),
+  torso:  (t) => ({ lean:0, aL:[-7,10+Math.floor(t*5)%2], aR:[7,9-Math.floor(t*5)%2] }),
+  shelf:  (t) => ({ lean:0, aL:[-8-Math.floor(t*2)%2,6], aR:[8+Math.floor(t*2)%2,6] }),
+  dyepot: (t) => ({ lean:2, aL:[-4,15], aR:[4+Math.floor(t*4)%2, 15], steam:true }),
+  board:  (t) => ({ lean:0, aL:[-5,15], aR:[6, 2+Math.floor(t*2.4)%3] }),
+  mirror: (t) => ({ lean:0, aL:[-6,12], aR:[6,12] }),
+  sofa:   (t) => ({ lean:0, aL:[-7,14], aR:[7,14] }),
+  vitrine:(t) => ({ lean:0, aL:[-6,11], aR:[6,11] }),
+};
+/* --- 会話画面のときだけ使う、目のかたち（2026-08-17 先生の判断）。
+       ART.md 1-2 の「目は小さな菱形ふたつだけ」の例外は**胸像に閉じてある**。
+       部屋の中の人・街の歩行者はいままでどおり菱形のまま。
+       w は横半分、h はたて半分、out は外がわの角、in は内がわの角の上下 --- */
+const PX_MOOD = {
+  idle:     { w:1.45, h:1.45, out:0,    in:0 },     /* ふつう */
+  smile:    { wedge:true },                         /* にっこり（への字） */
+  joy:      { wedge:true },
+  trouble:  { w:1.6,  h:1.2,  out:1.1,  in:-0.6 },  /* こまり（八の字） */
+  sad:      { w:1.5,  h:1.2,  out:0.9,  in:0.3, tear:true },  /* かなしい（涙ひとつ） */
+  angry:    { w:1.6,  h:1.2,  out:-0.9, in:1.1 },   /* おこり（逆八の字） */
+  surprise: { w:2.0,  h:2.3,  out:0,    in:0 },     /* おどろき（大きく） */
+};
+
+/* --- しぐさ。会話のときに体でも見せる（2026-08-17 先生の希望）。
+       顔の作りは変えず、腕と頭の高さだけで気持ちを出す --- */
+const PX_GEST = {
+  raise:  (t) => ({ aL:[-9,16], aR:[5+Math.sin(t*7)*2.5, -10], head:-0.6 }),   /* 手を上げる */
+  think:  (t) => ({ aL:[-8,15], aR:[3.4, 1.6+Math.sin(t*2)*0.5], head:0.8, lean:-1 }), /* 考える */
+  open:   (t) => ({ aL:[-13-Math.sin(t*2)*0.8, 7], aR:[13+Math.sin(t*2)*0.8, 7] }),    /* 両手を開く */
+  bow:    (t) => ({ aL:[-7,15], aR:[7,15], head:2.6, lean:2 }),                 /* うつむく・おじぎ */
+  point:  (t) => ({ aL:[-8,15], aR:[14+Math.sin(t*5)*1.2, 5] }),                /* 指さす */
+  nod:    (t) => ({ aL:[-9,16], aR:[9,16], head:Math.abs(Math.sin(t*3))*2.2 }), /* うなずく */
+
+  /* --- 踊る（2026-08-17 先生の希望）。1秒に約2拍。
+         腕を左右で入れかえ、腰（lean）を振り、跳ね（jump）と足踏み（step）を合わせる --- */
+  dance:  (t) => { const b = t*Math.PI*2, sw = Math.sin(b), up = Math.abs(Math.sin(b*2));
+    return { lean: sw*4, jump: up*2.6, step: sw*0.9, head: -up*0.9,
+             aL: [-8 - sw*3, 3 + sw*13], aR: [8 - sw*3, 3 - sw*13] }; },
+  /* ひねる。跳ねずに、腰と肩だけで振る */
+  twist:  (t) => { const b = t*Math.PI*2, sw = Math.sin(b);
+    return { lean: sw*5.5, head: sw*0.7,
+             aL: [-11 + sw*5, 9 - sw*3], aR: [11 + sw*5, 9 + sw*3] }; },
+  /* ステップ。横へ寄せて足をそろえる。腕は開いたまま小さく上下 */
+  sidestep:(t) => { const b = t*Math.PI*2, sw = Math.sin(b), up = Math.abs(Math.sin(b));
+    return { lean: sw*2.4, jump: up*1.2, step: -sw,
+             aL: [-13, 6 + sw*2], aR: [13, 6 - sw*2] }; },
+
+  /* --- ふだんの動き。立っているあいだ、ひとりでに出る小さなもの --- */
+  stretch:  (t) => { const u = Math.sin(t*1.6);                        /* 伸びをする */
+    return { aL:[-4, -12-u*2], aR:[4, -12-u*2], head:-1.2-u*0.6, lean:-1.5, jump:Math.max(0,u)*0.8 }; },
+  yawn:     (t) => { const u = Math.abs(Math.sin(t*1.1));              /* あくび */
+    return { aL:[-9,16], aR:[3.2, -1-u*1.5], head:-1.4*u, lean:-1 }; },
+  tired:    (t) => ({ aL:[-8,17], aR:[8,17], head:1.8+Math.sin(t*1.2)*0.6, lean:1.5 }),  /* つかれる */
+  lookaround:(t)=> { const u = Math.sin(t*1.3);                        /* きょろきょろ */
+    return { aL:[-9,16], aR:[9,16], hx:u*2.2, lean:u*1.5 }; },
+  fold:     (t) => ({ aL:[-2.6,7], aR:[2.6,7], head:Math.sin(t*1.5)*0.4 }),               /* 腕を組む */
+  hum:      (t) => { const b = Math.sin(t*3);                          /* 鼻歌 */
+    return { aL:[-6.5,15], aR:[6.5,15], head:b*0.9, lean:b*1.6, jump:Math.abs(b)*0.5 }; },
+  shiver:   (t) => { const j = Math.sin(t*22)*0.5;                     /* 寒がる */
+    return { aL:[-2.4,6], aR:[2.4,6], hx:j, lean:j, head:0.8 }; },
+  sneeze:   (t) => { const p = (t*0.8)%1;                              /* くしゃみ */
+    return p < 0.7 ? { aL:[-9,16], aR:[3.4,-1], head:-1.6, lean:-2 }
+                   : { aL:[-8,15], aR:[3.0,2],  head:2.6, lean:5 }; },
+  sip:      (t) => ({ aL:[-9,16], aR:[3.0, 1.5+Math.sin(t*1.4)*1.2], head:-0.8 }),        /* 飲む */
+
+  /* --- やりとりの動き。人に向けて出すもの --- */
+  wave:     (t) => ({ aL:[-9,16], aR:[6+Math.sin(t*9)*3.5, -10], head:-0.5 }),            /* 手を振る */
+  clap:     (t) => { const u = Math.abs(Math.sin(t*7));                /* 拍手 */
+    return { aL:[-1.4-u*3, 5], aR:[1.4+u*3, 5], head:-0.4, jump:u*0.4 }; },
+  shrug:    (t) => ({ aL:[-12,4], aR:[12,4], head:1.4 }),                                 /* 肩をすくめる */
+  shakehead:(t) => ({ aL:[-9,16], aR:[9,16], hx:Math.sin(t*5)*2.4 }),                     /* 首を振る */
+  laugh:    (t) => { const u = Math.abs(Math.sin(t*5));                /* 笑う */
+    return { aL:[-4,8], aR:[10,12], head:-1.2-u*0.8, lean:-3.5, jump:u*1.2 }; },
+  cry:      (t) => { const j = Math.sin(t*8)*0.5;                      /* 泣く */
+    return { aL:[-2.6,-1], aR:[2.6,-1], head:1.6, lean:j, hx:j }; },
+  mad:      (t) => { const j = Math.sin(t*16)*0.6;                     /* おこる */
+    return { aL:[-7.5,12], aR:[7.5,12], lean:-2.5+j, hx:j, head:-0.6 }; },
+  bowdeep:  (t) => ({ aL:[-6,15], aR:[6,15], head:4.5, lean:4.5 }),                       /* 深いおじぎ */
+  present:  (t) => ({ aL:[-6.5,4], aR:[6.5,4], head:-0.4, lean:-1 }),                     /* 差し出す */
+
+  /* --- 特別なとき。ここぞの場面で --- */
+  jumpjoy:  (t) => { const u = Math.abs(Math.sin(t*4.5));              /* 跳んで喜ぶ */
+    return { aL:[-6,-11], aR:[6,-11], jump:u*4.5, head:-1.2 }; },
+  spin:     (t) => { const s = Math.sin((t*1.2)%1*Math.PI*2);          /* 回る */
+    return { lean:s*7, hx:s*3, aL:[-12-s*2,2], aR:[12-s*2,2], jump:Math.abs(s)*1.4 }; },
+  pose:     (t) => ({ aL:[-6.5,9], aR:[5.5,-9], lean:-2.5, head:-0.6 }),                  /* ポーズを決める */
+  catwalk:  (t) => { const s = Math.sin(t*5);                          /* ランウェイを歩く */
+    return { aL:[-10,16+s*5], aR:[10,16-s*5], step:s, lean:s*3.5, head:-0.8 }; },
+  measure:  (t) => { const u = Math.sin(t*2.4);                        /* 採寸する */
+    return { aL:[-13,6+u*5], aR:[13,6-u*5], head:0.3 }; },
+  faint:    (t) => { const u = Math.sin(t*2.2);                        /* よろける */
+    return { aL:[-12+u*3,3], aR:[12+u*3,3], lean:u*6, hx:u*3.5, head:1.2 }; },
+};
+
+/* 立っているあいだに、ひとりでに出る小さな動き。
+   人ごとに違う間（ま）で出るよう、見た目から決まる種でずらしている。
+   8秒でひと回りし、そのうち3分の1ほどだけ何かをする */
+const PX_IDLE_MIX = ["stretch","yawn","lookaround","fold","hum","think","nod","sip"];
+function pxIdleMix(t, seed){
+  const p = t/8 + (seed % 97)/97;
+  const cyc = Math.floor(p);
+  if(p - cyc > 0.34) return null;                    /* ふだんはふつうに立っている */
+  return PX_IDLE_MIX[((cyc*2654435761 + seed*40503) >>> 0) % PX_IDLE_MIX.length];
+}
+
+function pxPose(phase, station, t, seed){
+  const base = { lean:0, aL:[-9,16], aR:[9,16], step:0, head:0, face:"idle" };
+  if(phase === "cheer"){                              /* 喜ぶ。人によって3通りに分かれる */
+    const k = seed == null ? 0 : seed % 3;
+    if(k === 1) return Object.assign({}, base, PX_GEST.dance(t),   { face:"joy" });
+    if(k === 2) return Object.assign({}, base, PX_GEST.jumpjoy(t), { face:"joy" });
+    const j = [0,1,2,3,3,2,1,0][Math.floor(t*7) % 8];
+    return { lean:0, aL:[-6,-8], aR:[6,-8], jump:j, face:"joy", step:0 };
+  }
+  if(phase === "walk"){                                 /* 試作の WALK */
+    return { lean:0, aL:[-9,16+Math.sin(t*8)*4], aR:[9,16-Math.sin(t*8)*4], step:Math.sin(t*8), face:"walk" };
+  }
+  if(phase === "work" && station){
+    const m = (PX_WORK[station] || PX_WORK.desk)(t);
+    return { lean:m.lean, aL:m.aL, aR:m.aR, step:0, face:"work", head:m.head||0,
+             pedal:m.pedal||0, steam:m.steam };
+  }
+  const g = PX_GEST[phase];
+  if(g) return Object.assign({}, base, g(t));
+  /* 立っているとき。ときどき、ひとりでに小さな動きが出る */
+  const mix = seed != null ? pxIdleMix(t, seed) : null;
+  if(mix) return Object.assign({}, base, PX_GEST[mix](t),
+                               { face:(Math.floor(t*0.9) % 7 === 0) ? "blink" : "idle" });
+  /* 試作の IDLE：頭がわずかに揺れる */
+  return { lean:0, aL:[-9,16], aR:[9,16], step:0, head:Math.sin(t*2)*0.6,
+           face:(Math.floor(t*0.9) % 7 === 0) ? "blink" : "idle" };
+}
+
+/* 服の型ごとの、裾の高さと半幅。体つきのぶんだけ横に広げる */
+function pxSil(n, R){
+  const W = PX_WEAR[n.wear] || PX_WEAR[0], w = R.B.sh - 6.6;
+  return { bot:W.bot, wB:W.wB + w, wT:(W.wT || 6.5) + w*0.5,
+           mid:W.mid ? W.mid + w : 0, tilt:W.tilt || 0 };
+}
+
+/* ------------------------------------------------------------------
+   本体。(fx,fy) が足もと、U が倍率
+   opt: {col, phase, station, t, flip, mug, mood}
+   ------------------------------------------------------------------ */
+function pxPerson(g, a, opt, fx, fy, U){
+  const n = pxNorm(a), R = pxRig(n), S = pxSil(n, R);
+  const t = opt.t || 0, fl = opt.flip < 0 ? -1 : 1;
+  /* 人ごとの種。ふだんの動きの「間」と、喜びかたの違いに使う。
+     会話画面（opt.bust）では混ぜない ── 話している最中にあくびをされては困るので */
+  const seed = opt.bust ? null
+             : (n.hair*17 + n.body*29 + n.wear*7
+                + (n.hairC.charCodeAt(4)|0)*3 + (n.skin.charCodeAt(3)|0)) >>> 0;
+  const P = pxPose(opt.phase, opt.station, t, seed);
+  const col = shade(n.col || opt.col || "#8a7f9c", n.tint);
+  const c2 = n.c2, acc = n.accent;
+  const L = shade(col, 1.14), D = shade(col, .70);
+  const L2 = shade(c2, 1.14), D2 = shade(c2, .70);
+  const lean = (P.lean || 0), jump = (P.jump || 0) + (P.pedal || 0);
+  const W = n.wear;
+
+  g.save();
+  g.translate(fx, fy);
+  g.scale(fl * U, U);
+
+  /* 面をひとつ置く。y は上が − のまま渡す */
+  const tri = (pts, c) => {
+    g.fillStyle = c; g.beginPath();
+    g.moveTo(pts[0][0], pts[0][1] - jump);
+    for(let i=1;i<pts.length;i++) g.lineTo(pts[i][0], pts[i][1] - jump);
+    g.closePath(); g.fill();
+  };
+  /* 接地の影。ひし形（ART.md 4章。楕円のぼかしは使わない）。影は跳ねない */
+  g.fillStyle = "rgba(70,60,66,.20)"; g.beginPath();
+  g.moveTo(-13,-1); g.lineTo(0,-5.5); g.lineTo(13,-1); g.lineTo(0,3.5); g.closePath(); g.fill();
+
+  /* 脚と靴。歩くときだけ片方を持ち上げる */
+  const st = P.step || 0;
+  for(const [x0, s2] of [[-5.5, st], [1.0, -st]]){
+    const lift = Math.max(0, s2*2);
+    tri([[x0,-11+lift],[x0+2.2,-11+lift],[x0+2.2,-3+lift],[x0,-3+lift]], PX_LEG);
+    tri([[x0+2.2,-11+lift],[x0+4.4,-11+lift],[x0+4.4,-3+lift],[x0+2.2,-3+lift]], PX_LEGD);
+    tri([[x0-0.4,-3.2+lift],[x0+4.8,-3.2+lift],[x0+5.4,lift],[x0-1,lift]], PX_SHOE);
+  }
+
+  /* 胴：肩から裾まで一枚の台形を、左（明）と右（沈む）の2面に割る */
+  const top = R.sh, wT = S.wT, wB = S.wB, cx = lean;
+  const botL = S.bot, botR = S.bot + S.tilt, bot = S.bot, mid = S.mid;
+  const my = (top + bot) / 2;
+  const body = (cL, cR) => {
+    if(mid){                                              /* コクーン：中ほどがふくらむ */
+      tri([[-wB,bot],[-mid,my],[-wT+cx,top],[cx*1.2,top],[cx*0.4,my],[cx*0.3,bot]], cL);
+      tri([[cx*0.3,bot],[cx*0.4,my],[cx*1.2,top],[wT+cx,top],[mid,my],[wB,bot]], cR);
+    } else {
+      tri([[-wB,botL],[-wT+cx,top],[cx*1.2,top],[cx*0.4,(botL+botR)/2]], cL);
+      tri([[cx*0.4,(botL+botR)/2],[cx*1.2,top],[wT+cx,top],[wB,botR]], cR);
+    }
+  };
+  /* 色の分け目（形は台形のまま）。上を2色目、腰から下を主色に */
+  const split = (y, cL, cR) => {
+    tri([[-wB,botL],[-wT+cx*.5,y],[cx*.5,y],[cx*0.4,(botL+botR)/2]], cL);
+    tri([[cx*0.4,(botL+botR)/2],[cx*.5,y],[wT+cx*.5,y],[wB,botR]], cR);
+  };
+  if(W === 9 || W === 3 || W === 25){ body(L2, D2); split(W === 9 ? -18 : W === 3 ? -23 : -29, L, D); }
+  else if(W === 15){                                      /* ベスト重ね：中は2色目、両脇に主色 */
+    body(L2, D2);
+    tri([[-wB,bot],[-wT+cx,top],[-2.2+cx,top],[-2.6,bot]], L);
+    tri([[2.6,bot],[2.2+cx,top],[wT+cx,top],[wB,bot]], D);
+  }
+  else body(L, D);
+
+  /* 柄。胴の台形で切り抜いて、服より一段暗い色で置く（ART.md 1-2） */
+  if(n.pattern){
+    g.save(); g.beginPath();
+    const bp = mid ? [[-wB,bot],[-mid,my],[-wT+cx,top],[wT+cx,top],[mid,my],[wB,bot]]
+                   : [[-wB,botL],[-wT+cx,top],[wT+cx,top],[wB,botR]];
+    g.moveTo(bp[0][0], bp[0][1]-jump);
+    for(let i=1;i<bp.length;i++) g.lineTo(bp[i][0], bp[i][1]-jump);
+    g.closePath(); g.clip();
+    const pc = n.patC || shade(col,.78), pc2 = n.patC2 || shade(col,1.18);
+    g.fillStyle = pc;
+    if(n.pattern === 1){                                          /* チェック */
+      for(let x=-14;x<=14;x+=5) g.fillRect(x-0.8, top-jump, 1.6, bot-top+4);
+      for(let y=top;y<=bot+2;y+=5) g.fillRect(-14, y-0.8-jump, 28, 1.6);
+      g.fillStyle = pc2;
+      for(let x=-11.5;x<=14;x+=5) g.fillRect(x-0.5, top-jump, 1.0, bot-top+4);
+    }
+    if(n.pattern === 2) for(let y=top+3;y<=bot+2;y+=4.6) g.fillRect(-14, y-0.9-jump, 28, 1.8);   /* ストライプ */
+    if(n.pattern === 3){                                          /* 水玉（菱形で置く） */
+      for(let y=top+3;y<=bot+2;y+=5)
+        for(let x=-12+((Math.round((y-top)/5)%2)?2.5:0);x<=14;x+=5){
+          g.beginPath(); g.moveTo(x-1.1,y-jump); g.lineTo(x,y-1.1-jump);
+          g.lineTo(x+1.1,y-jump); g.lineTo(x,y+1.1-jump); g.closePath(); g.fill(); }
+    }
+    if(n.pattern === 4){ g.fillRect(-14, bot-6-jump, 28, 1.6); g.fillRect(-14, bot-3-jump, 28, 1.6); }  /* 裾のボーダー */
+    if(n.pattern === 5) for(let x=-14;x<=14;x+=3.2) g.fillRect(x-0.45, top-jump, 0.9, bot-top+4);       /* ピンストライプ */
+    g.restore();
+  }
+
+  /* 型ごとの記号。ひとつだけ（飾りで差をつけない） */
+  if(W === 0){                                                     /* ジャケット：襟と裾の帯 */
+    tri([[-4.6+cx,top],[-1+cx,top+3.6],[-4.8+cx,top+3]], acc);
+    tri([[4.6+cx,top],[1+cx,top+3.6],[4.8+cx,top+3]], shade(acc,.8));
+    tri([[-wB,bot],[wB,bot],[wB,bot+2.2],[-wB,bot+2.2]], shade(col,.6)); }
+  if(W === 1) tri([[-7+cx*.5,top+11],[7+cx*.5,top+11],[7+cx*.5,top+13],[-7+cx*.5,top+13]], acc);
+  if(W === 2) tri([[-4.5,-9],[-3.6+cx,top+3],[3.6+cx,top+3],[4.5,-9]], c2);            /* エプロン */
+  if(W === 3) tri([[-7.6+cx*.5,-23],[7.6+cx*.5,-23],[7.6+cx*.5,-21.6],[-7.6+cx*.5,-21.6]], acc);
+  if(W === 4){                                                     /* ロングコート：前あわせ＋襟 */
+    tri([[cx*1.2-0.9,top],[cx*1.2+0.9,top],[cx*.4+0.9,bot],[cx*.4-0.9,bot]], shade(col,.5));
+    tri([[-4.6+cx,top],[-1+cx,top+3.6],[-4.8+cx,top+3]], shade(col,1.3));
+    tri([[4.6+cx,top],[1+cx,top+3.6],[4.8+cx,top+3]], shade(col,1.05)); }
+  if(W === 6){                                                     /* ワイドパンツ：股の線＋ベルト */
+    tri([[cx*.4-0.8,-19],[cx*.4+0.8,-19],[cx*.4+0.8,bot],[cx*.4-0.8,bot]], shade(col,.55));
+    tri([[-wB+1,-19],[wB-1,-19],[wB-1,-17.6],[-wB+1,-17.6]], acc); }
+  if(W === 7) tri([[-7.4+cx*.5,top+14],[7.4+cx*.5,top+14],[7.4+cx*.5,top+15.6],[-7.4+cx*.5,top+15.6]], acc);
+  if(W === 8){                                                     /* エプロンコート：長い前かけ＋肩ひも */
+    tri([[-3.6+cx,top+3],[3.6+cx,top+3],[6.2,bot+1],[-6.2,bot+1]], c2);
+    tri([[-3.4+cx,top+3],[-4.6+cx,top],[-2.6+cx,top]], c2);
+    tri([[3.4+cx,top+3],[4.6+cx,top],[2.6+cx,top]], c2); }
+  if(W === 9)  tri([[-2.4+cx,top],[2.4+cx,top],[2.4+cx,top+2.4],[-2.4+cx,top+2.4]], shade(c2,.8));
+  if(W === 10) tri([[-3.2+cx*1.2,top],[3.2+cx*1.2,top],[2.2+cx,top+3.4],[-2.2+cx,top+3.4]], shade(col,.6));
+  if(W === 11) tri([[-1+cx*.9,top+2],[1+cx*.9,top+2],[0.6+cx*.4,bot-2],[-0.6+cx*.4,bot-2]], shade(col,1.35));
+  if(W === 12) tri([[-wB+1,botL-4],[-wB+3,botL-4],[wB-1,botR-2],[wB-2,botR-1]], shade(col,.6));
+  if(W === 13){                                                    /* サロペット：胸当て */
+    tri([[-3.6+cx*.8,top+5],[3.6+cx*.8,top+5],[4.2,-16],[-4.2,-16]], c2);
+    tri([[-3.4+cx*.8,top+5],[-4.6+cx,top],[-2.6+cx,top]], c2);
+    tri([[3.4+cx*.8,top+5],[4.6+cx,top],[2.6+cx,top]], c2); }
+  if(W === 14){                                                    /* シャツワンピ：襟＋ベルト */
+    tri([[-4+cx,top],[-1+cx,top+3.2],[-4.4+cx,top+2.6]], "#f4efe6");
+    tri([[4+cx,top],[1+cx,top+3.2],[4.4+cx,top+2.6]], "#f4efe6");
+    tri([[-6.8+cx*.5,top+13],[6.8+cx*.5,top+13],[6.8+cx*.5,top+14.6],[-6.8+cx*.5,top+14.6]], acc); }
+  if(W === 16){                                                    /* トレンチ：太いベルト */
+    tri([[-wB+0.6,top+15],[wB-0.6,top+15],[wB-0.6,top+17.4],[-wB+0.6,top+17.4]], shade(col,.5));
+    tri([[-1.6+cx*.5,top+15],[1.6+cx*.5,top+15],[1.6+cx*.5,top+17.4],[-1.6+cx*.5,top+17.4]], acc); }
+  if(W === 17){                                                    /* スーツ：襟のノッチ */
+    tri([[-4.8+cx,top],[cx,top+7],[-1.4+cx,top]], shade(col,1.28));
+    tri([[4.8+cx,top],[cx,top+7],[1.4+cx,top]], shade(col,.55)); }
+  if(W === 18){                                                    /* ニットワンピ：裾のリブ */
+    tri([[-wB,bot+1.6],[wB,bot+1.6],[wB,bot+2.8],[-wB,bot+2.8]], shade(col,.66));
+    tri([[-wB,bot+3.6],[wB,bot+3.6],[wB,bot+4.8],[-wB,bot+4.8]], shade(col,.66)); }
+  if(W === 19){                                                    /* プリーツ：腰から下のたたみ線 */
+    tri([[-wB+1,-22],[wB-1,-22],[wB-1,-20.8],[-wB+1,-20.8]], shade(col,.55));
+    for(let q=-3;q<=3;q++) tri([[q*2.6*0.55,-21],[q*2.6*0.55+0.7,-21],[q*2.6+0.9,bot],[q*2.6,bot]], shade(col,.78)); }
+  if(W === 20) tri([[cx*.4-0.7,bot+7],[cx*.4+0.7,bot+7],[cx*.4+0.7,bot],[cx*.4-0.7,bot]], shade(col,.5));  /* タイト：裾のスリット */
+  if(W === 21) tri([[-wB-0.4,bot],[wB+0.4,bot],[wB+0.4,bot+2.6],[-wB-0.4,bot+2.6]], shade(col,.55));       /* バルーン：裾の絞り */
+  if(W === 22) tri([[-mid-0.6,my],[mid+0.6,my],[mid+0.6,my+1.4],[-mid-0.6,my+1.4]], shade(col,.55));       /* マーメイド：切り替え */
+  if(W === 23){                                                    /* ティアード：段の帯2本 */
+    tri([[-9.4,-17],[9.4,-17],[9.4,-15.6],[-9.4,-15.6]], shade(col,.6));
+    tri([[-11,-10],[11,-10],[11,-8.6],[-11,-8.6]], shade(col,.6)); }
+  if(W === 24) tri([[-wT+cx,top+1],[wB-1.4,bot],[wB-3.4,bot],[-wT+cx+1.8,top+1]], shade(col,.55));         /* ラップ：斜めの合わせ */
+  if(W === 25){                                                    /* ハイウエスト：高い切り替え */
+    tri([[-6.6+cx*.7,-30],[6.6+cx*.7,-30],[6.6+cx*.7,-28.4],[-6.6+cx*.7,-28.4]], acc); }
+  if(W === 26){                                                    /* チャイナ：立ち襟 */
+    tri([[-3+cx,top-1],[3+cx,top-1],[3+cx,top+2.2],[-3+cx,top+2.2]], shade(col,.55));
+    tri([[-0.6+cx,top-1],[0.6+cx,top-1],[0.6+cx,top+2.2],[-0.6+cx,top+2.2]], acc); }
+  if(W === 27){                                                    /* 羽織：太い腰ひも */
+    tri([[-wB+1,-24],[wB-1,-24],[wB-1,-20.4],[-wB+1,-20.4]], acc); }
+  if(W === 28){                                                    /* ジレ：前が開いて中が見える */
+    tri([[-2.8,bot],[-2.2+cx,top],[2.2+cx,top],[2.8,bot]], shade(c2,1.02)); }
+  if(W === 29){                                                    /* パフ：キルトの横線3本 */
+    for(let q=0;q<3;q++){ const y = top + 6 + q*6;
+      tri([[-mid+1,y],[mid-1,y],[mid-1,y+1.1],[-mid+1,y+1.1]], shade(col,.68)); } }
+  if(W === 30){                                                    /* スリップ：細い肩ひも2本 */
+    tri([[-3.4+cx,top-4],[-2.6+cx,top-4],[-2.2+cx,top+1],[-3.0+cx,top+1]], col);
+    tri([[3.4+cx,top-4],[2.6+cx,top-4],[2.2+cx,top+1],[3.0+cx,top+1]], shade(col,.7)); }
+  if(W === 31){                                                    /* チュール：裾のうすい層 */
+    tri([[-wB-1.6,bot],[-wB+1.4,bot-9],[wB-1.4,bot-9],[wB+1.6,bot]], shade(col,1.22)); }
+
+  /* 腕。肩から手先へ、明るい面と沈む面の2枚（試作Aの armPts K=1.2）。袖の色＝上半身の色 */
+  const sleeve = (W === 9 || W === 3 || W === 15 || W === 25 || W === 28) ? c2 : col;
+  const sy = top + 2;
+  const out = Math.max(wB, mid) + 2.2;                     /* 服のいちばん張り出した所の外 */
+  for(const [sx, arm] of [[-wT, P.aL], [wT, P.aR]]){
+    let ex = sx + arm[0]*1.2 + cx;
+    const ey = sy + arm[1]*1.2;
+    /* 下ろした腕が胴に埋もれないよう、外へ押し出す（本体で起きた事故への対策） */
+    if(arm[1] > 8) ex = (sx < 0) ? Math.min(ex, -out) : Math.max(ex, out);
+    const dx = ex - (sx + cx), dy = ey - sy, len = Math.hypot(dx, dy) || 1;
+    const nx = -dy/len*1.9, ny = dx/len*1.9;
+    tri([[sx+cx-nx,sy-ny],[sx+cx,sy],[ex,ey],[ex-nx,ey-ny]], shade(sleeve,1.05));
+    tri([[sx+cx,sy],[sx+cx+nx,sy+ny],[ex+nx,ey+ny],[ex,ey]], shade(sleeve,.62));
+    tri([[ex-2,ey],[ex,ey-2],[ex+2,ey],[ex,ey+2.4]], n.skin);       /* 手 */
+  }
+  /* ケープは腕の上にかぶさる */
+  if(W === 5){
+    tri([[-13,-14],[-3+cx,top-1],[cx*1.2,top-1],[cx*.4,-14]], shade(c2,1.1));
+    tri([[cx*.4,-14],[cx*1.2,top-1],[3+cx,top-1],[13,-14]], shade(c2,.72));
+  }
+  /* マグカップ（休憩中） */
+  if(opt.mug){
+    const mx = wT + P.aR[0] + cx, my2 = sy + P.aR[1];
+    tri([[mx-1,my2-4],[mx+3,my2-4],[mx+3,my2],[mx-1,my2]], "#f2ece1");
+    tri([[mx+3,my2-3],[mx+4.6,my2-2],[mx+3,my2-1]], "#d8d0c2");
+  }
+  /* 首 */
+  tri([[-2.4+cx,top+1],[2.4+cx,top+1],[2.4+cx,top-5],[-2.4+cx,top-5]], shade(n.skin,.86));
+
+  /* 頭 */
+  const hx = cx*1.3 + (P.hx || 0), hy = R.head + (P.head || 0), Rr = R.R;
+  if(n.head) pxOddHead(tri, g, n, hx, hy, Rr, jump, col);
+  else {
+    /* 八角形を4枚の面に割る */
+    const oct = r => { const p=[];
+      for(let i=0;i<8;i++){ const q = Math.PI/8 + i*Math.PI/4;
+        p.push([hx + Math.cos(q)*r, hy + Math.sin(q)*r]); } return p; };
+    const o = oct(Rr);
+    tri([o[3],o[4],o[5],[hx,hy]], shade(n.skin,1.06));
+    tri([o[5],o[6],o[7],[hx,hy]], shade(n.skin,.98));
+    tri([o[7],o[0],o[1],[hx,hy]], shade(n.skin,.86));
+    tri([o[1],o[2],o[3],[hx,hy]], shade(n.skin,.94));
+
+    pxHair(tri, n, hx, hy, Rr);
+    /* 個性的な人：右半分だけ髪の色を変える（面ひとつ） */
+    if(n.hairC2){
+      const drop = n.hair === 0 ? Rr*0.85 : Rr*0.35;
+      tri([[hx,hy+drop*0.6],[hx,hy-Rr*1.12],[hx+Rr*0.5,hy-Rr*1.05],
+           [hx+Rr*1.05,hy-Rr*0.2],[hx+Rr*1.05,hy+drop]], n.hairC2);
+    }
+    /* 帽子（個性的な人だけ）。1 ベレー／2 キャップ */
+    if(n.hat === 1){
+      tri([[hx-Rr*1.25,hy-Rr*0.7],[hx-Rr*0.9,hy-Rr*1.45],[hx+Rr*0.4,hy-Rr*1.55],
+           [hx+Rr*1.1,hy-Rr*1.0],[hx+Rr*0.9,hy-Rr*0.6]], n.hatC);
+      tri([[hx-Rr*1.25,hy-Rr*0.7],[hx+Rr*0.9,hy-Rr*0.6],[hx+Rr*0.5,hy-Rr*0.35],
+           [hx-Rr*0.9,hy-Rr*0.45]], shade(n.hatC,.7));
+    }
+    if(n.hat === 2){
+      tri([[hx-Rr*1.0,hy-Rr*0.55],[hx-Rr*0.9,hy-Rr*1.3],[hx,hy-Rr*1.55],
+           [hx+Rr*0.9,hy-Rr*1.3],[hx+Rr*1.0,hy-Rr*0.55]], n.hatC);
+      tri([[hx-Rr*0.2,hy-Rr*0.55],[hx+Rr*1.9,hy-Rr*0.5],[hx+Rr*1.9,hy-Rr*0.2],
+           [hx-Rr*0.2,hy-Rr*0.3]], shade(n.hatC,.7));
+    }
+    /* 目。小さな菱形ふたつ。まばたきは横一本に。
+       会話画面（opt.bust）のときだけ、目のかたちで表情を出す */
+    const md = opt.bust ? (PX_MOOD[opt.mood] || PX_MOOD.idle) : null;
+    const blink = P.face === "blink" && !(md && opt.mood && opt.mood !== "idle");
+    for(const ex of [-3.4, 3.4]){
+      const x = hx + ex, y = hy + 3.6, side = ex < 0 ? -1 : 1;
+      if(blink){ tri([[x-1.4,y-0.2],[x+1.4,y-0.2],[x+1.4,y+0.6],[x-1.4,y+0.6]], PX_EYE); continue; }
+      if(!md){ tri([[x-1.2,y],[x,y-1.2],[x+1.2,y],[x,y+1.2]], PX_EYE); continue; }
+      if(md.wedge){ tri([[x-1.8,y+1.2],[x,y-1.5],[x+1.8,y+1.2],[x,y+0.2]], PX_EYE); continue; }
+      tri([[x+side*md.w, y+md.out],[x, y-md.h],[x-side*md.w, y+md.in],[x, y+md.h]], PX_EYE);
+      if(md.tear) tri([[x+side*1.1,y+1.8],[x+side*1.8,y+2.9],[x+side*1.1,y+3.7]], "rgba(150,200,235,.85)");
+    }
+    /* 眼鏡。1 丸（八角形の線）／2 四角 */
+    if(n.glasses){
+      g.strokeStyle = "#3a3340"; g.lineWidth = 0.9;
+      for(const ex of [-3.4, 3.4]){
+        g.beginPath();
+        if(n.glasses === 1){
+          for(let i=0;i<8;i++){ const q = i*Math.PI/4;
+            const x = hx+ex+Math.cos(q)*2.6, y = hy+3.6+Math.sin(q)*2.6-jump;
+            i ? g.lineTo(x,y) : g.moveTo(x,y); }
+        } else g.rect(hx+ex-2.6, hy+1.2-jump, 5.2, 4.6);
+        g.closePath(); g.stroke();
+      }
+      g.beginPath(); g.moveTo(hx-1, hy+3.6-jump); g.lineTo(hx+1, hy+3.6-jump); g.stroke();
+    }
+  }
+  /* 喜ぶ：頭の上にきらめきを1つ */
+  if(opt.phase === "cheer"){
+    const k = Math.floor(t*7)%2;
+    tri([[hx-1,hy-Rr-4-k],[hx,hy-Rr-7-k],[hx+1,hy-Rr-4-k],[hx,hy-Rr-2-k]], "#f2c14e");
+  }
+  g.restore();
+  return { H: R.H, steam: P.steam, top: fy - (R.H + jump) * U };
+}
+
+/* 髪12種。地の面（左＝明・右＝沈む）＋ 型ごとの追加の面ひとつ。0〜3は試作Aそのまま */
+function pxHair(tri, n, hx, hy, R){
+  const H = n.hairC, hL = shade(H,1.25), hD = shade(H,.7);
+  const k = n.hair;
+  /* 前髪の落ちる深さ。試作A：ショート .85／それ以外 .35。刈り上げ・ベリーショートは浅く */
+  const drop = k===0 ? R*0.85 : (k===7 || k===11) ? R*0.18 : k===4 ? R*0.55 : R*0.35;
+  /* うしろへ流れる毛（先に置く） */
+  if(k===10) tri([[hx-R*1.0,hy+R*0.2],[hx-R*1.5,hy+R*1.9],[hx+R*1.5,hy+R*1.9],[hx+R*1.0,hy+R*0.2]], hD);
+  /* 地の面 */
+  tri([[hx-R*1.05,hy+drop],[hx-R*1.05,hy-R*0.2],[hx-R*0.5,hy-R*1.05],[hx,hy-R*1.12],[hx,hy+drop*0.6]], hL);
+  tri([[hx,hy+drop*0.6],[hx,hy-R*1.12],[hx+R*0.5,hy-R*1.05],[hx+R*1.05,hy-R*0.2],[hx+R*1.05,hy+drop]], H);
+  /* 型ごとの追加 */
+  if(k===1)  tri([[hx-R*1.05,hy-R*0.2],[hx-R*1.35,hy+R*1.3],[hx-R*0.7,hy+R*1.1],[hx-R*1.05,hy+drop]], hD);  /* ロング（試作A 1） */
+  if(k===2)  tri([[hx+R*0.5,hy-R*1.05],[hx+R*1.1,hy-R*1.5],[hx+R*1.4,hy-R*0.7],[hx+R*1.05,hy-R*0.2]], hD);  /* おだんご（試作A 2） */
+  if(k===3)  tri([[hx-R*0.5,hy-R*1.05],[hx,hy-R*1.75],[hx+R*0.5,hy-R*1.05]], hD);                             /* トップノット（試作A 3） */
+  if(k===4)  tri([[hx-R*1.05,hy-R*0.1],[hx-R*1.3,hy+R*1.0],[hx-R*0.6,hy+R*0.9]], hD);                         /* ボブの張り */
+  if(k===5){ for(const s of [-1,1])
+               tri([[hx+s*R*0.95,hy-R*0.3],[hx+s*R*1.6,hy+R*0.3],[hx+s*R*1.4,hy+R*1.6],[hx+s*R*0.9,hy+R*0.6]], hD); } /* ツイン */
+  if(k===6)  tri([[hx-R*1.05,hy-R*0.2],[hx-R*1.45,hy+R*1.4],[hx-R*0.55,hy+R*1.2],[hx-R*0.9,hy+drop]], hD); /* アシメ */
+  if(k===7)  tri([[hx-R*1.05,hy-R*0.05],[hx+R*1.05,hy-R*0.05],[hx+R*1.05,hy+R*0.28],[hx-R*1.05,hy+R*0.28]], hD); /* 刈り上げ */
+  if(k===8){ for(const s of [-1,1])
+               tri([[hx+s*R*0.5,hy-R*1.06],[hx+s*R*1.25,hy-R*0.7],[hx+s*R*1.1,hy+R*0.2],[hx+s*R*0.8,hy-R*0.5]], hL); } /* カール */
+  if(k===9)  tri([[hx-R*0.95,hy+R*0.3],[hx-R*1.3,hy+R*1.4],[hx-R*0.85,hy+R*2.0],[hx-R*0.55,hy+R*1.2]], hD); /* 三つ編み */
+  if(k===10) tri([[hx-R*0.5,hy-R*1.05],[hx,hy-R*1.35],[hx+R*0.5,hy-R*1.05]], hL);                 /* ウルフの立ち上がり */
+}
+
+/* ------------------------------------------------------------------
+   ★★超レア：頭だけ人間でない16体（ART.md 1-2）。
+   服はちゃんと着ている（体・腕・脚は同じ台形の作り）。
+   作法も同じ：面だけ、丸いものは八角形、目は小さな菱形
+   ------------------------------------------------------------------ */
+function pxOddHead(tri, g, n, hx, hy, R, jump, col){
+  const k = n.head;
+  const oct = (cx, cy, r, ry) => { const p=[];
+    for(let i=0;i<8;i++){ const q = Math.PI/8 + i*Math.PI/4;
+      p.push([cx + Math.cos(q)*r, cy + Math.sin(q)*(ry || r)]); } return p; };
+  const face4 = (o, c, cx, cy) => {
+    tri([o[3],o[4],o[5],[cx,cy]], shade(c,1.06)); tri([o[5],o[6],o[7],[cx,cy]], shade(c,.98));
+    tri([o[7],o[0],o[1],[cx,cy]], shade(c,.86)); tri([o[1],o[2],o[3],[cx,cy]], shade(c,.94)); };
+  const eye = (x, y, w, c) => tri([[x-w,y],[x,y-w],[x+w,y],[x,y+w]], c || PX_EYE);
+
+  if(k===1){ const c="#bfd8a8"; face4(oct(hx,hy-1,R*1.15,R*1.25),c,hx,hy-1);          /* 宇宙人 */
+    tri([[hx-6.5,hy+2],[hx-3.5,hy-2.5],[hx-0.5,hy+2],[hx-3.5,hy+5.5]],PX_EYE);
+    tri([[hx+0.5,hy+2],[hx+3.5,hy-2.5],[hx+6.5,hy+2],[hx+3.5,hy+5.5]],PX_EYE);
+    tri([[hx-1,hy-R*1.2],[hx-2,hy-R*1.8],[hx,hy-R*1.75],[hx+0.5,hy-R*1.2]],c); }
+  if(k===2){ const c=n.skin; face4(oct(hx,hy,R*1.02,R*.95),c,hx,hy);                  /* ねこ */
+    tri([[hx-R*.9,hy-R*.5],[hx-R*.75,hy-R*1.45],[hx-R*.15,hy-R*.9]],c);
+    tri([[hx+R*.9,hy-R*.5],[hx+R*.75,hy-R*1.45],[hx+R*.15,hy-R*.9]],c);
+    tri([[hx-R*.8,hy-R*.6],[hx-R*.7,hy-R*1.2],[hx-R*.3,hy-R*.85]],"#e9a7b4");
+    tri([[hx+R*.8,hy-R*.6],[hx+R*.7,hy-R*1.2],[hx+R*.3,hy-R*.85]],"#e9a7b4");
+    tri([[hx-4.6,hy+3],[hx-2.2,hy+3],[hx-2.2,hy+4],[hx-4.6,hy+4]],PX_EYE);
+    tri([[hx+2.2,hy+3],[hx+4.6,hy+3],[hx+4.6,hy+4],[hx+2.2,hy+4]],PX_EYE);
+    eye(hx,hy+6,1,"#e9a7b4"); }
+  if(k===3){ const c="#a9b6c4";                                                        /* ロボット */
+    tri([[hx-R,hy+R*.9],[hx-R,hy-R*.9],[hx,hy-R*.9],[hx,hy+R*.9]],shade(c,1.1));
+    tri([[hx,hy+R*.9],[hx,hy-R*.9],[hx+R,hy-R*.9],[hx+R,hy+R*.9]],shade(c,.72));
+    tri([[hx-1,hy-R*.9],[hx-1,hy-R*1.6],[hx+1,hy-R*1.6],[hx+1,hy-R*.9]],"#5c6470");
+    eye(hx,hy-R*1.75,1.6,"#e08f8c");
+    tri([[hx-5.5,hy+1],[hx-2,hy+1],[hx-2,hy+4],[hx-5.5,hy+4]],"#f2c14e");
+    tri([[hx+2,hy+1],[hx+5.5,hy+1],[hx+5.5,hy+4],[hx+2,hy+4]],"#f2c14e");
+    tri([[hx-4,hy+6.5],[hx+4,hy+6.5],[hx+4,hy+7.5],[hx-4,hy+7.5]],"#5c6470"); }
+  if(k===4){ const c="#efe6da"; face4(oct(hx,hy,R*.95),c,hx,hy);                       /* トルソー */
+    tri([[hx-R*.9,hy-R*.9],[hx+R*.9,hy-R*.9],[hx+R*.6,hy-R*1.25],[hx-R*.6,hy-R*1.25]],"#cfc6ba");
+    tri([[hx-.5,hy-R*.9],[hx+.5,hy-R*.9],[hx+.5,hy+R*.9],[hx-.5,hy+R*.9]],"rgba(110,95,110,.35)"); }
+  if(k===5){ const c="#a67c52"; face4(oct(hx,hy,R*1.05),c,hx,hy);                      /* くま */
+    face4(oct(hx-R*.85,hy-R*.85,R*.38),c,hx-R*.85,hy-R*.85);
+    face4(oct(hx+R*.85,hy-R*.85,R*.38),c,hx+R*.85,hy-R*.85);
+    tri([[hx-2.6,hy+4],[hx,hy+2.4],[hx+2.6,hy+4],[hx,hy+6.5]],"#efe6da");
+    eye(hx,hy+4.2,1.1); eye(hx-3.6,hy+1.5,1); eye(hx+3.6,hy+1.5,1); }
+  if(k===6){ const c="#f4efe6"; face4(oct(hx,hy-2,R*1.02,R*1.1),c,hx,hy-2);            /* ゆうれい */
+    tri([[hx-R,hy+R*.2],[hx-R*.6,hy+R*.9],[hx-R*.2,hy+R*.2],[hx+R*.2,hy+R*.9],
+         [hx+R*.6,hy+R*.2],[hx+R,hy+R*.9],[hx+R,hy-R*.2],[hx-R,hy-R*.2]],shade(c,.96));
+    eye(hx-3.2,hy+1.5,1.1); eye(hx+3.2,hy+1.5,1.1); }
+  if(k===7){ const wood="#c9a982", th=col;                                             /* 糸巻き */
+    tri([[hx-R*.9,hy-R*1.05],[hx+R*.9,hy-R*1.05],[hx+R*.9,hy-R*.75],[hx-R*.9,hy-R*.75]],wood);
+    tri([[hx-R*.9,hy+R*.75],[hx+R*.9,hy+R*.75],[hx+R*.9,hy+R*1.05],[hx-R*.9,hy+R*1.05]],wood);
+    tri([[hx-R*.75,hy-R*.75],[hx+R*.75,hy-R*.75],[hx+R*.75,hy+R*.75],[hx-R*.75,hy+R*.75]],shade(th,1.1));
+    for(let y=-R*.6;y<R*.7;y+=3.2)
+      tri([[hx-R*.75,hy+y],[hx+R*.75,hy+y-1.2],[hx+R*.75,hy+y+.4],[hx-R*.75,hy+y+1.6]],shade(th,.75));
+    eye(hx-3,hy+1,1); eye(hx+3,hy+1,1); }
+  if(k===8){ const c=col; face4(oct(hx,hy,R*1.1),c,hx,hy); face4(oct(hx,hy,R*.75),shade(c,1.12),hx,hy);  /* ボタン */
+    for(const [dx,dy] of [[-2.8,-2.4],[2.8,-2.4],[-2.8,3.2],[2.8,3.2]]) eye(hx+dx,hy+dy,1.5,shade(c,.55)); }
+  if(k===9){ const c="#e08f8c"; face4(oct(hx,hy+1,R*1.0,R*.9),c,hx,hy+1);              /* まち針（針山） */
+    tri([[hx-R*.9,hy+R*.6],[hx+R*.9,hy+R*.6],[hx+R*.9,hy+R*.9],[hx-R*.9,hy+R*.9]],shade(c,.7));
+    for(const [dx,ang,pc] of [[-4,-.5,"#f2c14e"],[1,-.15,"#6f9fd8"],[5,.3,"#7fae66"]]){
+      const x0=hx+dx, y0=hy-R*.4, x1=x0+Math.sin(ang)*9, y1=y0-Math.cos(ang)*9;
+      tri([[x0-.4,y0],[x0+.4,y0],[x1+.4,y1],[x1-.4,y1]],"#5c6470"); eye(x1,y1-1,1.6,pc); }
+    eye(hx-3,hy+2,1); eye(hx+3,hy+2,1); }
+  if(k===10){ const c="#8a929c";                                                       /* はさみ */
+    tri([[hx-1.2,hy-R*.2],[hx-4.5,hy-R*1.9],[hx-3,hy-R*1.95],[hx+.4,hy-R*.2]],shade(c,1.1));
+    tri([[hx+1.2,hy-R*.2],[hx+4.5,hy-R*1.9],[hx+3,hy-R*1.95],[hx-.4,hy-R*.2]],shade(c,.8));
+    face4(oct(hx-4.6,hy+3,R*.55,R*.62),"#c9a15c",hx-4.6,hy+3);
+    face4(oct(hx+4.6,hy+3,R*.55,R*.62),"#c9a15c",hx+4.6,hy+3);
+    tri([[hx-4.6,hy+3],[hx-2.6,hy+1],[hx-2.6,hy+5]],"#f0e8dc");
+    tri([[hx+4.6,hy+3],[hx+2.6,hy+1],[hx+2.6,hy+5]],"#f0e8dc");
+    eye(hx-4.6,hy+3,1); eye(hx+4.6,hy+3,1); eye(hx,hy-R*.1,1.2,"#5c6470"); }
+  if(k===11){ const c="#c9a982";                                                       /* ハンガー */
+    tri([[hx-R*1.05,hy+R*.6],[hx,hy-R*.6],[hx+R*1.05,hy+R*.6],[hx+R*1.05,hy+R*.95],[hx-R*1.05,hy+R*.95]],c);
+    tri([[hx-R*.75,hy+R*.6],[hx,hy-R*.2],[hx+R*.75,hy+R*.6]],"#f0e8dc");
+    tri([[hx-.7,hy-R*.6],[hx+.7,hy-R*.6],[hx+.7,hy-R*1.2],[hx-.7,hy-R*1.2]],"#8a929c");
+    tri([[hx-.7,hy-R*1.2],[hx+2.6,hy-R*1.75],[hx+2.6,hy-R*1.45],[hx+.7,hy-R*1.2]],"#8a929c");
+    eye(hx-3.2,hy+R*.78,1); eye(hx+3.2,hy+R*.78,1); }
+  if(k===12){ const c="#f2c14e"; face4(oct(hx,hy,R*1.05),c,hx,hy);                     /* 巻き尺 */
+    face4(oct(hx,hy,R*.4),shade(c,.7),hx,hy);
+    tri([[hx+R*.9,hy+2],[hx+R*1.9,hy+1],[hx+R*1.9,hy+4.5],[hx+R*.9,hy+5.5]],"#f4efe6");
+    for(let i=0;i<3;i++)
+      tri([[hx+R*1.1+i*3,hy+1.6],[hx+R*1.1+i*3+.7,hy+1.6],[hx+R*1.1+i*3+.7,hy+3.6],[hx+R*1.1+i*3,hy+3.6]],PX_EYE);
+    eye(hx-3.6,hy-1.5,1); eye(hx+3.6,hy-1.5,1); }
+  if(k===13){ const c="#a9b6c4";                                                       /* 指ぬき */
+    tri([[hx-R*.9,hy+R*.9],[hx-R*.65,hy-R*.9],[hx,hy-R*.9],[hx,hy+R*.9]],shade(c,1.1));
+    tri([[hx,hy+R*.9],[hx,hy-R*.9],[hx+R*.65,hy-R*.9],[hx+R*.9,hy+R*.9]],shade(c,.72));
+    tri([[hx-R*.65,hy-R*.9],[hx+R*.65,hy-R*.9],[hx+R*.5,hy-R*1.15],[hx-R*.5,hy-R*1.15]],shade(c,1.2));
+    for(const [dx,dy] of [[-4,-4],[0,-5],[4,-4],[-5,0],[5,0]]) eye(hx+dx,hy+dy,.8,shade(c,.6));
+    eye(hx-3,hy+3.5,1); eye(hx+3,hy+3.5,1); }
+  if(k===14){ const c=n.skin; face4(oct(hx,hy,R*1.0,R*.98),c,hx,hy);                   /* うさぎ */
+    for(const sx of [-1,1]){
+      tri([[hx+sx*R*.55,hy-R*.6],[hx+sx*R*.35,hy-R*2.2],[hx+sx*R*.85,hy-R*2.1],[hx+sx*R*.95,hy-R*.7]],c);
+      tri([[hx+sx*R*.55,hy-R*.9],[hx+sx*R*.5,hy-R*1.9],[hx+sx*R*.75,hy-R*1.85],[hx+sx*R*.8,hy-R*1.0]],"#e9a7b4"); }
+    eye(hx-3.4,hy+2.4,1.1); eye(hx+3.4,hy+2.4,1.1); eye(hx,hy+5.5,.9,"#e9a7b4"); }
+  if(k===15){ const c="#d9c27a"; face4(oct(hx,hy,R*1.05,R*.98),c,hx,hy);               /* パグ */
+    tri([[hx-R*1.05,hy-R*.5],[hx-R*.5,hy-R*.9],[hx-R*.45,hy+R*.2],[hx-R*1.1,hy+R*.3]],"#4b3d52");
+    tri([[hx+R*1.05,hy-R*.5],[hx+R*.5,hy-R*.9],[hx+R*.45,hy+R*.2],[hx+R*1.1,hy+R*.3]],"#4b3d52");
+    face4(oct(hx,hy+3.5,R*.5,R*.42),"#4b3d52",hx,hy+3.5);
+    eye(hx-3.6,hy+.5,1.3); eye(hx+3.6,hy+.5,1.3); }
+  if(k===16){ const c=col;                                                             /* リボン */
+    tri([[hx-1.5,hy],[hx-R*1.2,hy-R*.9],[hx-R*1.25,hy+R*.9]],shade(c,1.1));
+    tri([[hx+1.5,hy],[hx+R*1.2,hy-R*.9],[hx+R*1.25,hy+R*.9]],shade(c,.75));
+    tri([[hx-2.2,hy-3],[hx+2.2,hy-3],[hx+2.2,hy+3],[hx-2.2,hy+3]],shade(c,.9));
+    eye(hx-6,hy+.5,1); eye(hx+6,hy+.5,1); }
+}
+
+/* ------------------------------------------------------------------
+   街の歩行者。遠くの人なので背を詰めるが、面の割りかたは同じ。
+   歩行者のデータ（src/town/）は昔のままなので、足りないぶんは
+   その人の位置から決まる種で補う（同じ人はいつも同じ見た目になる）
+   ------------------------------------------------------------------ */
+function pxWalker(g, w, fx, fy, U){
+  if(!w.__look){
+    let s = Math.floor((w.gx || 0) * 733 + (w.gy || 0) * 197 + 1) >>> 0;
+    const rnd = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+    w.__look = pxLook(rnd, {
+      body: (w.tall > 1.05 ? 0 : w.tall < 0.95 ? 2 : 1),
+      hair: (typeof w.hair === "number") ? w.hair : undefined,
+    });
+    if(typeof w.hair === "string") w.__look.hairC = w.hair;
+    if(w.skin) w.__look.skin = w.skin;
+  }
+  return pxPerson(g, w.__look, { col: w.col, phase:"walk", t: w.t || 0,
+                                 flip: w.dir > 0 ? 1 : -1 }, fx, fy, U * 0.62);
+}
+
+/* ------------------------------------------------------------------
+   会話画面の胸像。上半身だけを大きく出す。
+   mood は PX_MOOD の名前（idle／smile／trouble／sad／angry／surprise）、
+   gest は PX_GEST の名前（raise／think／open／bow／point／nod）。どちらも省いてよい
+   ------------------------------------------------------------------ */
+function pxBust(g, P, cx, by, U, mood, t, gest){
+  const a = pxNorm(P.appear || P);
+  const col = P.col || P.cloth || "#8a7f9c";
+  g.save();
+  /* 足もとの延長線上に立たせ、胸から上だけを見せる */
+  g.beginPath(); g.rect(cx - 30*U, by - 34*U, 60*U, 34*U); g.clip();
+  pxPerson(g, a, { col, phase: gest || "idle", t: t || 0, flip: 1, mood, bust:true },
+           cx, by + 24*U, U);
+  g.restore();
+}
+
+/* ------------------------------------------------------------------
+   確認スクリプト用の口。URLに #catalog を付けたときだけ生える。
+   ふだんの遊びには一切関わらない（tools/shot_people.js が使う）
+   ------------------------------------------------------------------ */
+if(typeof window !== "undefined" && String(location.hash).indexOf("catalog") >= 0){
+  window.__px = { PX_WEAR, PX_HAIR, PX_BODY, PX_ODD, PX_COORD, PX_PAT, PX_MOOD, PX_GEST,
+                  pxPerson, pxWalker, pxBust, pxLook, pxNorm, pxHeight };
+}
+
+/* ==================================================================
+   05 街と建築 ── 提案ぶんのコード。
+   ここから下だけが新しく書いたもの。上は src/ をそのまま写したもの。
+
+   決まっていること（読んだ場所）
+     ・docs/WORLD.md  学校＝CULTURA／10棟はそのまま使う／自宅が夜の主舞台／
+                      就職先は5つ、ほかはバイト先・見学先／1年＝10週
+     ・docs/GAME.md   暦の推し案A＝10日を 4・5・6・7・9・10・11・12・1・3月に当てる。
+                      8月と2月は「休みの一枚」。画面には「1年 11月」と月が出る
+     ・docs/ART.md    光は左上／面で塗る／グラデーションを面に使わない／
+                      朝夕の色は DAY 表どおり（変えない）
+   ================================================================== */
+
+/* ------------------------------------------------------------------
+   1. 月ごとの街
+
+   **DAY 表（朝夕の色）は変えない。** 季節は、その上に薄い一枚を重ねるだけにする。
+   こうすれば「朝の11月」と「夜の4月」が両方ちゃんと出る。
+   ------------------------------------------------------------------ */
+const MONTH_ORDER = [4, 5, 6, 7, 9, 10, 11, 12, 1, 3];
+const SEASONS = {
+  4:  { jp:"4月",  note:"入学式",       grass:["#b6c894","#abbd88"], road:["#cfc4b4","#c8bcab"],
+        tree:"sakura", sky:"255,196,214", skyA:0.20, far:"172,146,166", ev:"nyugaku" },
+  5:  { jp:"5月",  note:"新緑",         grass:["#a9c47f","#9fba76"], road:["#cfc4b4","#c8bcab"],
+        tree:"fresh",  sky:"210,246,198", skyA:0.15, far:"142,156,146", ev:null },
+  6:  { jp:"6月",  note:"梅雨",         grass:["#93b473","#89aa6a"], road:["#b7b0a6","#b0a99f"],
+        tree:"deep",   sky:"168,182,206", skyA:0.30, far:"126,132,152", ev:"ame" },
+  7:  { jp:"7月",  note:"前期の課題",   grass:["#8fb36c","#85a963"], road:["#d8cebe","#d1c7b6"],
+        tree:"deep",   sky:"255,246,190", skyA:0.20, far:"160,152,150", ev:"sakuhin" },
+  9:  { jp:"9月",  note:"産地へ行く",   grass:["#a3b276","#99a86d"], road:["#cfc4b4","#c8bcab"],
+        tree:"early",  sky:"255,228,178", skyA:0.16, far:"162,146,146", ev:"sanchi" },
+  10: { jp:"10月", note:"学園祭の支度", grass:["#b2ab73","#a8a16a"], road:["#cbbfae","#c4b8a6"],
+        tree:"autumn", sky:"255,204,142", skyA:0.20, far:"168,144,138", ev:null },
+  11: { jp:"11月", note:"学園祭",       grass:["#b6a271","#ac9868"], road:["#c7baa8","#c0b3a1"],
+        tree:"fall",   sky:"255,182,116", skyA:0.24, far:"172,138,128", ev:"gakuensai" },
+  12: { jp:"12月", note:"冬の入口",     grass:["#a89b80","#9e9177"], road:["#c4b9ab","#bdb2a4"],
+        tree:"bare",   sky:"196,204,228", skyA:0.22, far:"138,140,164", ev:null },
+  1:  { jp:"1月",  note:"締切",         grass:["#e4e5ea","#d9dae1"], road:["#e9e8eb","#e1e0e5"],
+        tree:"snow",   sky:"192,212,242", skyA:0.28, far:"146,154,180", ev:"yuki" },
+  3:  { jp:"3月",  note:"年度の終わり", grass:["#adb887","#a3ae7d"], road:["#cfc4b4","#c8bcab"],
+        tree:"bud",    sky:"248,226,236", skyA:0.15, far:"166,150,164", ev:"sotsugyo" },
+};
+
+/* 街路樹。幹はどの季節も同じ。上に載る「かさ」だけが月で変わる。
+   かさは**3段で上へすぼめる**。1段だと、大きくしたときに円柱にしか見えない。
+   裸の月は枝を3本出す。線でできている物なので 1.0〜1.4px（docs/ART.md 3章） */
+const TREE_COL = {
+  sakura: ["#dfa8bd","#e8b8ca","#f0c8d8"],
+  fresh:  ["#71a857","#7fb262","#8dbd6e"],
+  deep:   ["#4e8a49","#578f4f","#5f9856"],
+  early:  ["#7a9b52","#85a459","#90ad60"],
+  autumn: ["#b47a44","#bf8a4e","#c99958"],
+  fall:   ["#ac5940","#b8674a","#c37554"],
+  bud:    ["#8f8478","#9d8d86","#ab9793"],
+};
+function drawTreeS(x, y, kind, sc){
+  const k = sc || 1;
+  cyl(x, y, 0.055*k, 15*k, "#8a6a4a", 0);
+  if(kind === "bare" || kind === "snow"){
+    ctx.strokeStyle = "#7a5c40"; ctx.lineWidth = 1.3*k; ctx.lineCap = "round";
+    for(const [dx, dz] of [[-0.22, 24], [0.22, 26], [0.02, 31]]){
+      const a = iso(x, y, 13*k), b = iso(x + dx*k, y, dz*k);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+    if(kind === "snow"){                      /* 枝に積もった雪 */
+      ctx.strokeStyle = "#f0f2f6"; ctx.lineWidth = 1.7*k;
+      for(const [dx, dz] of [[-0.22, 24], [0.22, 26], [0.02, 31]]){
+        const a = iso(x, y, 16*k), b = iso(x + dx*0.9*k, y, dz*k);
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      }
+    }
+    return;
+  }
+  /* 3段。段の間を詰めて重ねる。離すと輪切りが見えて、団子を積んだように見える */
+  const C = TREE_COL[kind] || TREE_COL.deep;
+  cyl(x, y, 0.34*k, 10*k, C[0], 12*k);
+  cyl(x, y, 0.26*k,  9*k, C[1], 19*k);
+  cyl(x, y, 0.16*k,  8*k, C[2], 25*k);
+}
+
+/* 地面に散らすもの。落ち葉（秋）・花びら（春）。面で置く小さな菱形 */
+function groundLitter(kind){
+  if(!kind) return;
+  const col = kind === "petal" ? "#eec6d4" : "#c4834e";
+  let s = 20250417;
+  const rnd = () => ((s = (s*1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
+  ctx.fillStyle = col;
+  for(let i = 0; i < 90; i++){
+    const gx = rnd()*TGW, gy = rnd()*TGD, q = iso(gx, gy, 0.3);
+    ctx.beginPath();
+    ctx.moveTo(q.x, q.y-1.1); ctx.lineTo(q.x+2.0, q.y);
+    ctx.lineTo(q.x, q.y+1.1); ctx.lineTo(q.x-2.0, q.y);
+    ctx.closePath(); ctx.fill();
+  }
+}
+
+/* 手前の並木。案Bで足す。
+   **大きな木を1本立てる案は捨てた。** アイソメで樹冠を大きく描くと、
+   どう積んでも「輪切りの見える円柱」にしかならず、木に見えなかった
+   （試作は git の履歴に残っている）。小さい木を、隠れない場所に増やすほうが効く。
+   いちばん手前の列は建物に一切隠れないので、ここが季節のいちばんよく効く場所。 */
+/* 手前の並木。4本まで。試しに9本並べたら壁になり、
+   遠目には歩いている人と見分けがつかなくなった */
+const FRONT_TREES = [0.6, 3.2, 6.6, 9.2].map(x => ({ t:"tree", x, y:9.45 }));
+
+/* 降る雪。1月だけ。粒なので面の決まりの外（物として置いている） */
+function drawSnowfall(){
+  let s = 19980112;
+  const rnd = () => ((s = (s*1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
+  ctx.fillStyle = "rgba(255,255,255,.72)";
+  for(let i = 0; i < 110; i++){
+    const x = rnd()*VW, y = rnd()*VH, r = 0.7 + rnd()*1.1;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
+  }
+}
+
+/* ------------------------------------------------------------------
+   2. 行事の記号（案C）。**月ごとにひとつだけ**。
+      ここが増えると街が読みにくくなるので、1か月1つを守る
+   ------------------------------------------------------------------ */
+const SCHOOL = { x:0.3, y:0.3, w:2.8, d:1.5, h:44 };
+function evGate(){ return { gx:SCHOOL.x + SCHOOL.w/2, gy:SCHOOL.y + SCHOOL.d + 0.42 }; }
+
+function drawEvent(ev){
+  if(!ev) return;
+  const g = evGate();
+  if(ev === "nyugaku"){
+    /* 入学式。校門に紅白幕と立て看板 */
+    for(let i = 0; i < 8; i++)
+      poly([iso(g.gx-0.7+i*0.175, g.gy, 17), iso(g.gx-0.7+(i+1)*0.175, g.gy, 17),
+            iso(g.gx-0.7+(i+1)*0.175, g.gy, 9), iso(g.gx-0.7+i*0.175, g.gy, 9)],
+           i%2 ? "#f6f0ea" : "#c8566a");
+    box(g.gx+0.52, g.gy+0.10, 0.42, 0.06, 26, "#f4efe6", 0);
+    bTextF(g.gx+0.73, g.gy+0.17, 14, "CULTURA", 4.2, "#4b3d52");
+  } else if(ev === "ame"){
+    /* 梅雨。傘は歩行者の上に出す（drawTownP の中）。ここは水たまり */
+    ctx.save(); ctx.globalCompositeOperation = "screen";
+    for(const [px, py] of [[2.2,2.6],[7.1,2.4],[4.4,5.6],[8.6,5.4]]){
+      ctx.fillStyle = "rgba(210,224,240,.30)";
+      ctx.beginPath();
+      for(let i = 0; i < 10; i++){
+        const t = i/10*6.2832, q = iso(px+Math.cos(t)*0.34, py+Math.sin(t)*0.22, 0.4);
+        i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y);
+      }
+      ctx.closePath(); ctx.fill();
+    }
+    ctx.restore();
+  } else if(ev === "sakuhin"){
+    /* 前期の作品展。校門に幟2本 */
+    for(const u of [-0.62, 0.62]){
+      cyl(g.gx+u, g.gy, 0.02, 40, "#c9c2b6", 0);
+      poly([iso(g.gx+u, g.gy, 38), iso(g.gx+u+0.30, g.gy, 38),
+            iso(g.gx+u+0.30, g.gy, 16), iso(g.gx+u, g.gy, 16)], "#e8dfd0");
+      bTextF(g.gx+u+0.15, g.gy+0.006, 27, "WORKS", 3.6, "#7c5a70");
+    }
+  } else if(ev === "sanchi"){
+    /* 産地へ行く。生地問屋の前にトラックと積んだ反物 */
+    const tx = 5.05, ty = 2.1;
+    box(tx, ty, 0.86, 0.42, 20, "#cfd4da", 3);
+    box(tx+0.86, ty+0.03, 0.36, 0.36, 15, "#8fa0b0", 3);
+    for(const u of [tx+0.16, tx+0.72, tx+1.06])
+      cyl(u, ty+0.42, 0.09, 5, "#3e424a", 0);
+    const cs = ["#d9737f","#6f9fd8","#e0b354","#77c295"];
+    for(let i = 0; i < 4; i++)
+      bolt(tx+0.1, ty+0.12+(i%2)*0.18, tx+0.76, ty+0.12+(i%2)*0.18, 24+Math.floor(i/2)*7, 3.0, cs[i]);
+  } else if(ev === "gakuensai"){
+    /* 学園祭。校庭にテント2張りと幟 */
+    for(const [tx, ty] of [[g.gx-0.95, g.gy+0.16], [g.gx+0.60, g.gy+0.16]]){
+      for(const [dx, dy] of [[-0.30,-0.20],[0.30,-0.20],[-0.30,0.20],[0.30,0.20]])
+        cyl(tx+dx, ty+dy, 0.022, 20, "#c9c2b6", 0);
+      const ws = 0.72/4;
+      for(let i = 0; i < 4; i++)
+        poly([iso(tx-0.36+i*ws, ty-0.26, 20), iso(tx-0.36+(i+1)*ws, ty-0.26, 20),
+              iso(tx-0.36+(i+1)*ws, ty+0.26, 20), iso(tx-0.36+i*ws, ty+0.26, 20)],
+             i%2 ? "#dcc0cc" : "#f4ede4");
+      poly([iso(tx-0.36, ty+0.26, 20), iso(tx+0.36, ty+0.26, 20),
+            iso(tx+0.36, ty+0.26, 17), iso(tx-0.36, ty+0.26, 17)], "#c2a5b2");
+    }
+    cyl(g.gx, g.gy-0.06, 0.02, 44, "#c9c2b6", 0);
+    poly([iso(g.gx, g.gy-0.06, 42), iso(g.gx+0.34, g.gy-0.06, 42),
+          iso(g.gx+0.34, g.gy-0.06, 22), iso(g.gx, g.gy-0.06, 22)], "#c8566a");
+    bTextF(g.gx+0.17, g.gy-0.054, 32, "FES", 4.0, "#f6f0ea");
+  } else if(ev === "yuki"){
+    /* 締切の月。雪だるまがひとつだけ。街が静かなことの記号 */
+    const sx = g.gx+1.35, sy = g.gy+0.2;
+    cyl(sx, sy, 0.17, 9, "#f2f4f8", 0);
+    cyl(sx, sy, 0.12, 8, "#f8fafc", 9);
+    const f = iso(sx, sy, 14);
+    ctx.fillStyle = "#4b3d52";
+    ctx.beginPath(); ctx.arc(f.x-1.6, f.y-1.0, 0.7, 0, 6.2832); ctx.fill();
+    ctx.beginPath(); ctx.arc(f.x+1.6, f.y-1.0, 0.7, 0, 6.2832); ctx.fill();
+    ctx.fillStyle = "#c9843c";
+    ctx.beginPath(); ctx.moveTo(f.x, f.y); ctx.lineTo(f.x+3.4, f.y+0.7);
+    ctx.lineTo(f.x, f.y+1.3); ctx.closePath(); ctx.fill();
+  } else if(ev === "sotsugyo"){
+    /* 年度の終わり。校門の立て看板と、足もとの花 */
+    box(g.gx-0.24, g.gy+0.10, 0.48, 0.06, 30, "#f4efe6", 0);
+    bTextF(g.gx, g.gy+0.17, 17, "GRADUATION", 3.4, "#4b3d52");
+    for(let i = 0; i < 6; i++){
+      const u = g.gx-0.5+i*0.2;
+      cyl(u, g.gy+0.30, 0.05, 4, "#7fae66", 0);
+      const q = iso(u, g.gy+0.30, 6);
+      ctx.fillStyle = i%2 ? "#e6a8bc" : "#f2d2a0";
+      ctx.beginPath(); ctx.arc(q.x, q.y, 1.5, 0, 6.2832); ctx.fill();
+    }
+  }
+}
+
+/* 傘。梅雨の月だけ、歩行者の上にさす */
+function drawUmbrella(a){
+  const p = iso(a.gx, a.gy, 0);
+  const cx = p.x, cy = p.y - 30;
+  const col = ["#c8566a","#5f7fb0","#e0b354","#6f9a68"][Math.floor(Math.abs(a.gx*7)) % 4];
+  ctx.strokeStyle = "#7d8794"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(cx, cy+2); ctx.lineTo(cx, cy+13); ctx.stroke();
+  for(let i = 0; i < 6; i++){
+    const a0 = Math.PI + i*Math.PI/6, a1 = a0 + Math.PI/6;
+    poly([{x:cx, y:cy-4},
+          {x:cx+Math.cos(a0)*9, y:cy+Math.sin(a0)*3.4},
+          {x:cx+Math.cos(a1)*9, y:cy+Math.sin(a1)*3.4}],
+         i%2 ? col : shade(col, 1.2));
+  }
+}
+
+/* ------------------------------------------------------------------
+   3. 名札 ── 街を覆わずに「どこが何か」を伝える
+
+   いまは10枚の名札を屋根の上に出しているので、街の半分が隠れている。
+   いちばん効くのは**枚数を減らすこと**なので、そこを軸に4案。
+
+   docs/WORLD.md：**就職先に選べるのは5つだけ**（アトリエ・学校・生地問屋・
+   出版社・工場）。ショップ・スタジオ・ショールーム・会場・カフェは
+   バイト先と見学先で、4年目に「あそこは選べないんだ」と分かる。
+   docs/GAME.md：インターン先は「縁が2以上の場所」からしか選べない
+   ------------------------------------------------------------------ */
+const CAREER = ["atelier", "school", "fabric", "press", "factory"];   /* 就職先になれる5つ */
+const EN_DEMO = { atelier:3, school:3, fabric:2, press:0, factory:1,
+                  shop:3, showroom:1, studio:0, venue:1, cafe:2 };    /* 縁の見本 */
+/* 建物の看板と同じ英字。名札を英字にする案で使う */
+const SIGN_TEXT = { atelier:"ATELIER", school:"CULTURA", fabric:"FABRIC", press:"PRESS",
+                    shop:"BOUTIQUE", showroom:"SHOWROOM", studio:"STUDIO",
+                    factory:"FACTORY", venue:"SHOW", cafe:"CAFE" };
+
+/* 名札の高さ。建物ごとに、屋根や煙突を避ける位置 */
+const LABEL_TOP = { school:58, fabric:68, cafe:84, press:70, shop:8, atelier:22,
+                    showroom:8, studio:14, venue:18, factory:18 };
+
+/* 点だけの印。名前のかわりに置く。菱形ひとつ＋足もとの影。
+   まだ行けない場所は、小さく灰色にする（白で抜くと明るい空に消える） */
+function labelDot(x, y, open){
+  const r = open ? 5.8 : 4.2, h = r*0.57;
+  poly([{x, y:y+1.6}, {x:x+r, y:y+h+1.6}, {x, y:y+h*2+1.6}, {x:x-r, y:y+h+1.6}], "rgba(70,50,70,.20)");
+  poly([{x, y}, {x:x+r, y:y+h}, {x, y:y+h*2}, {x:x-r, y:y+h}], open ? "#7c5a70" : "#a09aa8");
+  if(open) poly([{x, y:y+h*0.55}, {x:x+r*0.42, y:y+h}, {x, y:y+h*1.45}, {x:x-r*0.42, y:y+h}],
+                "rgba(255,255,255,.42)");
+}
+
+/* まだ行けない場所が「行けるようになりたい」に変わるための、開く条件。
+   学年（章）と名声のどちらかで開く。docs/GAME.md では1年＝1章にあたる */
+function needShort(p){
+  if(!p.need) return "";
+  if(p.need.chapter != null) return p.need.chapter + "年から";
+  return "名声 " + p.need.fame + " で開く";
+}
+
+/* 名札。plate は名札の出しかた、access は縁の見せかた。
+     plate "all"     … ぜんぶ出す（先生の判断で確定）
+           "need"    … ぜんぶ出し、まだの場所には**開く条件**を小さく添える
+           "soft"    … ぜんぶ出す。まだの場所も暗くせず、鍵だけ付ける
+           "both"    … need と soft の両方
+           "dot"     … ぜんぶ点。タップすると名前が出る
+           "open"    … いま行ける場所だけ名札。まだの場所は点だけ
+           "small"   … ぜんぶ名札。ただし小さく、建物の看板と同じ英字で
+     access "now" … 開く／開かないだけ  "b" … 見学先に目の印  "c" … 縁の点 */
+function drawLabels(plate, access){
+  ctx.textAlign = "center";
+  /* **名札が重なったら、奥のほうを上へずらす。**
+     奥の列（生地問屋・カフェ・出版社）は、アイソメで画面の同じあたりに集まるので、
+     そのまま置くと文字が重なる。手前から順に置いて、ぶつかった名札だけを持ち上げる
+     （奥は空が広いので、上へ逃がすのがいちばん自然） */
+  const placed = [];
+  for(const p of PLACES.slice().sort((a2,b2)=>(b2.y+b2.d*0.5)-(a2.y+a2.d*0.5))){
+    const open = placeOpen(p);
+    const c = iso(p.x+p.w/2, p.y+p.d/2, p.h + (LABEL_TOP[p.id] || 22));
+
+    if(plate === "dot" || (plate === "open" && !open)){ labelDot(c.x, c.y-6, open); continue; }
+
+    const en = plate === "small";
+    const name = en ? (SIGN_TEXT[p.id] || p.id.toUpperCase()) : p.name;
+    const nameFont = en ? "800 7.5px sans-serif"
+                        : "800 9px 'Hiragino Kaku Gothic ProN',sans-serif";
+    const needFont = "700 7.5px 'Hiragino Kaku Gothic ProN',sans-serif";
+    const need = (!open && (plate === "need" || plate === "both")) ? needShort(p) : "";
+    ctx.font = nameFont;
+    const nameW = ctx.measureText(name).width;
+    let needW = 0;
+    if(need){ ctx.font = needFont; needW = ctx.measureText(need).width + 6; }
+
+    const pad = en ? 8 : 11, hh = en ? 12 : 15;
+    const lk = open ? 0 : (en ? 9 : 11);
+    const tail2 = access === "b" ? (open && !CAREER.includes(p.id) ? 12 : 0)
+                : access === "c" ? 17 : 0;
+    const w = nameW + needW + pad + lk + tail2;
+    const x = Math.max(4, Math.min(VW-w-4, c.x-w/2));
+
+    /* 重なりを避けて、置ける高さを探す */
+    let ly = c.y;
+    for(let k = 0; k < 6; k++){
+      const hit = placed.some(r => x < r.x1 + 2 && x + w > r.x0 - 2
+                                && ly-hh+4 < r.y1 + 1 && ly+4 > r.y0 - 1);
+      if(!hit) break;
+      ly -= hh + 3;
+    }
+    placed.push({ x0:x, x1:x+w, y0:ly-hh+4, y1:ly+4 });
+    const cy = ly - hh*0.5 + 4;
+
+    /* まだの場所の札。soft は明るいまま（「行けない」ではなく「まだ」に見せる） */
+    const soft = (plate === "soft" || plate === "both");
+    const back = open ? "rgba(255,255,255,.95)"
+               : soft ? "rgba(241,234,241,.93)" : "rgba(74,64,74,.86)";
+    const ink  = open ? "#3f2c3d" : soft ? "#6d5f72" : "#efe6ef";
+    ctx.fillStyle = "rgba(70,50,70,.22)";
+    ctx.beginPath(); ctx.roundRect(x, ly-hh+5.4, w, hh, hh/2); ctx.fill();
+    ctx.fillStyle = back;
+    ctx.beginPath(); ctx.roundRect(x, ly-hh+4, w, hh, hh/2); ctx.fill();
+    if(!open) townLock(x + (en ? 9 : 10.5), cy, ink);
+
+    ctx.textAlign = "left";
+    ctx.fillStyle = ink; ctx.font = nameFont;
+    ctx.fillText(name, x + lk + pad*0.5, cy + 3.4);
+    if(need){
+      ctx.fillStyle = soft ? "#9a7f95" : "#c9a8bc"; ctx.font = needFont;
+      ctx.fillText(need, x + lk + pad*0.5 + nameW + 6, cy + 3.2);
+    }
+    ctx.textAlign = "center";
+
+    if(access === "b" && tail2){
+      const ex = x + w - 7.5, ey = cy;
+      ctx.strokeStyle = "#9b8ea0"; ctx.lineWidth = 1.1;
+      ctx.beginPath(); ctx.ellipse(ex, ey, 4.0, 2.4, 0, 0, 6.2832); ctx.stroke();
+      ctx.fillStyle = "#9b8ea0";
+      ctx.beginPath(); ctx.arc(ex, ey, 1.3, 0, 6.2832); ctx.fill();
+    }
+    if(access === "c" && tail2){
+      const n = EN_DEMO[p.id] || 0;
+      for(let k = 0; k < 3; k++){
+        const dx = x + w - 14 + k*4.6;
+        ctx.fillStyle = k < n ? (CAREER.includes(p.id) ? "#7c5a70" : "#9b8ea0")
+                              : (open ? "rgba(0,0,0,.14)" : "rgba(255,255,255,.22)");
+        ctx.beginPath(); ctx.arc(dx, cy, 1.7, 0, 6.2832); ctx.fill();
+      }
+    }
+  }
+  ctx.textAlign = "start";
+}
+
+/* ------------------------------------------------------------------
+   3-b. 街を歩く人 ── 時間帯とタイミングで変わる
+
+   いまの歩行者は、道を左右に流れているだけ。夜中でも同じ数の人が同じ速さで歩き、
+   閉まっている店の前にも人がいる。ここを直す。
+
+   **手前にもう1本、並木の歩道（y=8.3）を足す。** これが要になる。
+   いまの道は2本（y=2.5 と 5.5）だが、いちばん手前の列（スタジオ・ショー会場・工場）は
+   奥の面が道5.5に接しているので、道にいる人は建物の裏に回ってしまい、
+   「店の前に人がいる」を作れなかった。手前に歩道を通すと、
+   前列の拠点の前に立てるようになり、街のいちばん手前にも賑わいが出る。
+   ------------------------------------------------------------------ */
+const ROADY3 = [2.5, 5.5, 9.0];
+/* 縦の通路。建物と建物のあいだの抜け。3本の歩道をここでつなぐ。
+   「人は建物と建物の間を歩いていく」（先生）を、この2本で作る。
+   x=3.25 と 6.55 は、どの列の建物にも当たらないことを確かめて選んでいる */
+const AISLE = [3.05, 6.55];
+/* 通路の幅（中心からの左右）。どの列の建物にも当たらない範囲を測って決めた。
+   細いと、行き先の違う人がすれ違うときに重なる */
+const AISLE_W = 0.20;
+/* 歩道の幅（中心からの奥行き）。ここも測って決めた。
+   人が奥行き方向にばらけると、画面で重なっても前後に描かれて自然に見える */
+const BAND_W = 0.17;
+
+/* 街の歩行者の大きさ。**アトリエの中の人より、ずっと小さく描く。**
+   建物1棟が2〜3マスの街で、人がそれに迫る大きさだと、
+   路地を歩いているように見えない（2026-08-17 先生の指摘）。
+   細部が潰れてもよい、という許しをもらっている */
+let WALK_U = 0.56;
+function drawWalker(a){
+  const p = iso(a.gx, a.gy, 0);
+  pxWalker(ctx, a, p.x, p.y, WALK_U);
+}
+
+/* 建物が実際に場所を取っている範囲。PLACES の四角だけでは足りない。
+   どの建物も入口の階段が手前へ出ていて、学校は門柱、ショー会場は入口ポーチと柱が出ている。
+   ここを見ないと「人や車が建物の張り出しに乗る」（先生の指摘）が起きる。
+   front／back は四角からの張り出し（マス） */
+const EXTRA = {
+  school:   { back:0.10, front:0.55 },   /* 門柱と旗のポール */
+  venue:    { back:0.10, front:0.62 },   /* 入口ポーチ・柱・しまのキャノピー */
+  factory:  { back:0.10, front:0.34 },   /* 搬入口の車止め */
+  cafe:     { back:0.10, front:0.42 },   /* 黒板 */
+  shop:     { back:0.10, front:0.46 },   /* A型看板と鉢植え */
+  fabric:   { back:0.10, front:0.30 },
+};
+const DEF_EXTRA = { back:0.10, front:0.32 };   /* 入口の階段ぶん */
+function bounds(p){
+  const e = EXTRA[p.id] || DEF_EXTRA;
+  return { x0:p.x-0.06, x1:p.x+p.w+0.06,
+           y0:p.y-e.back-0.04, y1:p.y+p.d+e.front+0.04 };
+}
+/* そこは建物（と、その張り出し）の中か。**すり抜けないための最後の関門。** */
+function inBuilding(gx, gy){
+  for(const p of PLACES){
+    const b = bounds(p);
+    if(gx > b.x0 && gx < b.x1 && gy > b.y0 && gy < b.y1) return true;
+  }
+  return false;
+}
+/* x と y を別々に近づける。建物に入る向きだけを止めるので、壁に沿って回れる */
+function moveTo(a, tx, ty, sp){
+  const dx = tx - a.gx, dy = ty - a.gy;
+  let blocked = false;
+  if(Math.abs(dx) > 0.004){
+    const nx = a.gx + Math.max(-sp, Math.min(sp, dx));
+    if(!inBuilding(nx, a.gy)) a.gx = nx; else blocked = true;
+    a.dir = dx > 0 ? 1 : -1;
+  }
+  if(Math.abs(dy) > 0.004){
+    const ny = a.gy + Math.max(-sp*0.9, Math.min(sp*0.9, dy));
+    if(!inBuilding(a.gx, ny)) a.gy = ny;
+  }
+  /* 横がふさがれていたら、手前か奥へ半歩よけて角を回りこむ。
+     これが無いと、道に少し食い込んだ張り出し（カフェの黒板など）のすぐ横で足が止まる */
+  if(blocked){
+    const step = (dx > 0 ? 1 : -1) * sp;
+    for(const d of [0.05, -0.05, 0.10, -0.10]){
+      if(!inBuilding(a.gx, a.gy + d) && !inBuilding(a.gx + step, a.gy + d)){
+        a.gy += d; break;
+      }
+    }
+  }
+}
+/* 万一 建物の中に入ってしまったら、いちばん近い歩道へ押し出す。
+   bounds を変えたときや、押し合いで入り込んだときのための安全網。
+   これが無いと、閉じ込められた人がその場で動けなくなる */
+function pushOut(a){
+  if(!inBuilding(a.gx, a.gy)) return;
+  for(const r of ROADY3) if(!inBuilding(a.gx, r)){ a.gy = r; return; }
+  for(let k = 0; k < 24; k++){
+    const gx = Math.random()*TGW, gy = pick(ROADY3);
+    if(!inBuilding(gx, gy)){ a.gx = gx; a.gy = gy; a.goal = null; a.leg = null; return; }
+  }
+}
+/* その x で、歩道の上を通れる y。建物の張り出し（カフェの黒板や学校の門柱）が
+   道に少し食い込んでいる所では、手前へずれて通る。実際の歩行者と同じ振る舞いで、
+   ここが無いと「道が塞がれて進めない人」が出る */
+function laneY(gx, road, lane){
+  let y = road + (lane || 0);
+  for(let k = 0; k < 12 && inBuilding(gx, y); k++) y += 0.06;
+  return y;
+}
+const nearestBand = gy => ROADY3.reduce((b,r)=> Math.abs(r-gy) < Math.abs(b-gy) ? r : b, ROADY3[0]);
+const nearestAisle = gx => AISLE.reduce((b,x)=> Math.abs(x-gx) < Math.abs(b-gx) ? x : b, AISLE[0]);
+
+/* 目的地まで歩く。歩道（横3本）と通路（縦2本）のつながりだけを通るので、
+   建物の上を横切ることがない。着いたら true を返す */
+/* 目的地まで歩く。歩道（横3本）と通路（縦2本）のつながりだけを通る。
+
+   **道すじを「いまどの脚を歩いているか」で持つ。** 前は毎こま
+   「いちばん近い歩道はどこか」から考え直していて、通路を縦断している途中に
+   「まず歩道へ戻れ」と判断が入り、**行っては戻りをくり返して突っかかっていた**
+   （縦の通路の真ん中で足踏みして見えるのは、これが原因だった）。
+
+     toBand  … 歩道から離れているとき、まず歩道へ戻る
+     toAisle … いまの歩道の上を、通路の入口（x）まで歩く
+     cross   … 通路を縦断する。**x は動かさない**
+     toGoalX … 目的の歩道の上を、店の前（x）まで歩く
+     arrive  … 建物のほうへ半歩寄る                                    */
+function walkToGoal(a, sp){
+  const g = a.goal;
+  if(!a.leg){
+    a.band = nearestBand(a.gy);
+    a.ax = nearestAisle(a.gx) + a.laneA;
+    a.leg = Math.abs(a.band - g.road) < 0.01 ? "toGoalX" : "toAisle";
+    if(Math.abs(a.gy - a.band) > 0.45) a.leg = "toBand";
+  }
+  if(a.leg === "toBand"){
+    a.axis = "y";
+    const before = a.gy;
+    moveTo(a, a.gx, laneY(a.gx, a.band, a.laneB), sp);
+    if(Math.abs(a.gy - before) < 1e-4) moveTo(a, a.gx + a.dir*0.4, a.gy, sp);
+    if(Math.abs(a.gy - a.band) < 0.24) a.leg = null;
+    return false;
+  }
+  if(a.leg === "toAisle"){
+    a.axis = "x";
+    moveTo(a, a.ax, laneY(a.ax, a.band, a.laneB), sp);
+    if(Math.abs(a.gx - a.ax) < 0.06) a.leg = "cross";
+    return false;
+  }
+  if(a.leg === "cross"){
+    /* 通路を縦断する。ここでは x を動かさない。横へ振られると建物に当たる */
+    a.axis = "y";
+    /* 目的の歩道に着く y も、その x で通れる値を使う。
+       生のまま（歩道＋自分のずれ）を狙うと、カフェの黒板のように
+       歩道へ少し食い込んだ張り出しに頭を押さえられて進めなくなる */
+    const ty = laneY(a.ax, g.road, a.laneB);
+    moveTo(a, a.ax, ty, sp);
+    if(Math.abs(a.gy - ty) < 0.10){ a.leg = "toGoalX"; a.band = g.road; }
+    return false;
+  }
+  if(a.leg === "toGoalX"){
+    a.axis = "x";
+    moveTo(a, g.gx, laneY(a.gx + a.dir*0.22, g.road, a.laneB), sp);
+    if(Math.abs(a.gx - g.gx) < 0.06) a.leg = "arrive";
+    return false;
+  }
+  a.axis = "y";
+  moveTo(a, g.gx, g.gy, sp);
+  return Math.abs(a.gy - g.gy) < 0.05;
+}
+
+/* 時刻（8〜32）から、街にいる人の数。
+   8時＝登校、15〜19時＝下校と買い物でいちばん多い、深夜はほとんどいない */
+const CROWD = [[8,10],[9,6],[11,5],[12,7],[14,6],[16,10],[17,11],[19,8],
+               [20,5],[22,3],[24,2],[27,1],[31,1],[32,4]];
+function crowdAt(h){
+  if(h <= CROWD[0][0]) return CROWD[0][1];
+  for(let i = 0; i < CROWD.length-1; i++){
+    const [h0,n0] = CROWD[i], [h1,n1] = CROWD[i+1];
+    if(h <= h1) return n0 + (n1-n0)*(h-h0)/(h1-h0);
+  }
+  return CROWD[CROWD.length-1][1];
+}
+
+/* 拠点の前の立ち位置。いちばん近い歩道から、建物のほうへ少し寄る。
+   前列は手前の歩道から寄るので、建物に隠れない */
+function standSpot(p){
+  const F = p.y + p.d;
+  let road = ROADY3[0], best = 1e9;
+  for(const r of ROADY3){ const d = Math.min(Math.abs(r-F), Math.abs(r-p.y));
+    if(d < best){ best = d; road = r; } }
+  /* 建物のほうへ寄る。ただし**張り出しの外**まで。
+     入口の階段や門柱に人が重ならないように、bounds を見て決める */
+  const b = bounds(p), toward = road > F ? -1 : 1;
+  const wall = toward < 0 ? b.y1 : b.y0;
+  const off = Math.max(0.02, Math.min(0.26, Math.abs(road - wall) - 0.04));
+  const gx = p.x + p.w*0.5 + (Math.random()-0.5)*p.w*0.55;
+  /* 立ち位置が張り出しの中に入っていたら、外へ出るまで下げる */
+  let gy = road + toward*off;
+  for(let k = 0; k < 10 && inBuilding(gx, gy); k++) gy -= toward*0.05;
+  return { gx, gy, road, id:p.id };
+}
+
+/* いま人が向かいたい拠点。開いている場所だけ。時刻で行き先の重みが変わる。
+   朝は学校へ吸われ、夕方は学校から吐き出されて店へ散る */
+function pickGoal(h, taken){
+  const open = PLACES.filter(p => placeOpen(p) && !(taken && taken.has(p.id)));
+  if(!open.length) return null;
+  const wt = p => {
+    let w = 1;
+    if(p.id === "school") w *= (h >= 8 && h < 10) ? 7 : (h >= 15 && h < 19) ? 3 : (h < 17 ? 2 : 0.3);
+    if(p.id === "cafe")   w *= (h >= 15 && h < 23) ? 3 : 1;
+    if(p.id === "shop")   w *= (h >= 15 && h < 20) ? 3 : 1;
+    if(p.id === "press")  w *= (h >= 20) ? 3 : 1;
+    if(p.id === "factory") w *= (h >= 8 && h < 10) ? 3 : 1;
+    return w;
+  };
+  let sum = 0; for(const p of open) sum += wt(p);
+  let r = Math.random()*sum;
+  for(const p of open){ r -= wt(p); if(r <= 0) return p; }
+  return open[open.length-1];
+}
+
+/* 人をひとり作る。見た目は src/staff/person.js のまま */
+function makeWalker2(h){
+  const w = { kind:"walk", dir: Math.random()<0.5 ? 1 : -1,
+              /* 歩く速さの幅を広めに取る。速さが近いと、ふたりが長く並んで歩いて
+                 いつまでも重なる。差があれば追い越して離れていく */
+              spd: 0.17+Math.random()*0.30, t: Math.random()*9,
+              col: pick(WCOL), hair: pick(["#3b3242","#5b3a2e","#8a5a3c","#2f3a4a","#a34f5e"]),
+              skin: pick(["#f8ddc6","#f1cbab","#e2b48f","#cf9a72"]), long: Math.random()<0.45,
+              tall: 0.9+Math.random()*0.25,
+              phase:"walk", stand:0, goal:null, gy0:0,
+              /* **一人ひとりが持つ、道の中のずれ。** これが重なりを防ぐ本体。
+                 laneA は縦の通路の中の左右、laneB は歩道の中の奥行き。
+                 ずっと同じ値を守って歩くので、同じ線の上を2人が並ぶことがない */
+              laneA: (Math.random()-0.5)*2*AISLE_W,
+              laneB: (Math.random()-0.5)*2*BAND_W, axis:"x",
+              leg:null, ax:0, band:2.5 };
+  for(let i = 0; i < 40; i++){
+    w.gy = pick(ROADY3) + (Math.random()-.5)*0.24;
+    w.gx = Math.random()*TGW;
+    if(!inBuilding(w.gx, w.gy)) break;
+  }
+  w.gy0 = w.gy;
+  return w;
+}
+
+/* 街の人と猫を、いまの時刻に合わせて入れ替える。
+   lv 0=数だけ 1=＋店の前で立ち止まる 2=＋登下校の流れと雨の急ぎ足 */
+function tuneCrowd(lv, rain){
+  const h = townHour();
+  const want = Math.max(1, Math.round(crowdAt(h) * (lv >= 1 ? 1 : 1)));
+  const walkers = actors.filter(a => a.kind === "walk");
+  for(let i = walkers.length; i < want; i++) actors.push(makeWalker2(h));
+  if(walkers.length > want){
+    let over = walkers.length - want;
+    actors = actors.filter(a => !(a.kind === "walk" && over-- > 0));
+  }
+  /* 猫は夜のほうが多い。街が静かなことの記号 */
+  const wantCat = nightAmount() > 0.5 ? 4 : 1;
+  const cats = actors.filter(a => a.kind === "cat");
+  for(let i = cats.length; i < wantCat; i++)
+    actors.push({ kind:"cat", gx:Math.random()*TGW, gy:pick(ROADY3)+(Math.random()-.5)*0.6,
+                  dir: Math.random()<0.5?1:-1, spd:0.14, t:0, rest:0,
+                  col: pick(["#f4ebdb","#3b3641","#d8a86c"]) });
+  if(cats.length > wantCat){
+    let over = cats.length - wantCat;
+    actors = actors.filter(a => !(a.kind === "cat" && over-- > 0));
+  }
+  /* 車も夜は減る */
+  const wantCar = nightAmount() > 0.6 ? 1 : 2;
+  const cars = actors.filter(a => a.kind === "car");
+  for(let i = cars.length; i < wantCar; i++)
+    actors.push({ kind:"car", gx:Math.random()*TGW, gy:pick([2.5,5.5]),
+                  dir: Math.random()<0.5?1:-1, spd:0.9+Math.random()*0.5, t:0,
+                  col: pick(["#e0655f","#5f8fd0","#f0f0f0","#4b4453","#e8c46a"]) });
+  if(cars.length > wantCar){
+    let over = cars.length - wantCar;
+    actors = actors.filter(a => !(a.kind === "car" && over-- > 0));
+  }
+}
+
+/* 1こま進める。lv 0 のときは、いまと同じ「流れるだけ」。
+   どの段階でも、**建物の中には入らない**（inBuilding が最後の関門） */
+function stepCrowd(dt, lv, rain){
+  const h = townHour();
+  const hurry = (lv >= 2 && rain) ? 1.4 : 1;
+  const slow  = nightAmount() > 0.6 ? 0.82 : 1;     /* 夜はゆっくり歩く */
+  for(const a of actors){
+    a.t += dt;
+    if(a.kind === "walk") pushOut(a);
+    if(a.kind === "cat"){
+      if(a.rest > 0){ a.rest -= dt; continue; }
+      const nx = a.gx + a.dir * a.spd * dt;
+      if(!inBuilding(nx, a.gy)) a.gx = nx; else a.dir *= -1;
+      if(Math.random() < dt*0.08) a.rest = 2+Math.random()*4;
+    } else if(a.kind === "car"){
+      a.gx += a.dir * a.spd * dt;                   /* 車は道の上だけなので当たらない */
+    } else if(a.phase === "stand"){
+      a.stand -= dt;
+      /* 立ち止まっているあいだも a.goal は持ったまま。
+         ここで外すと、別の人が同じ立ち位置に来て重なる */
+      if(a.stand <= 0){ a.phase = "walk"; a.goal = null; a.leg = null; }
+      continue;
+    } else if(lv === 0){
+      const sp = a.spd * dt * slow;
+      const nx = a.gx + a.dir * sp;
+      if(!inBuilding(nx, a.gy)) a.gx = nx;
+      else { moveTo(a, a.gx, nearestBand(a.gy), sp); }
+    } else {
+      if(!a.goal){
+        /* **同じ拠点をふたり同時に目指させない。** 同じ立ち位置に重なって
+           ガタガタする原因になる（先生の指摘） */
+        const taken = new Set();
+        for(const o of actors) if(o !== a && o.goal) taken.add(o.goal.id);
+        const free = PLACES.filter(p => placeOpen(p) && !taken.has(p.id));
+        const g = lv >= 2 ? pickGoal(h, taken) : (free.length ? pick(free) : null);
+        if(g){ a.goal = standSpot(g); a.walkT = 0; a.leg = null; }
+      }
+      const sp = a.spd * dt * hurry * slow;
+      if(a.goal){
+        a.walkT = (a.walkT || 0) + dt;
+        if(walkToGoal(a, sp)){ a.phase = "stand"; a.stand = 1.8 + Math.random()*5; }
+        else if(a.walkT > 14){ a.goal = null; a.leg = null; }   /* たどり着けないときは諦めて次へ */
+      } else {
+        /* 行き先が取れないとき（拠点が全部ほかの人の目的地）は、歩道の上をただ歩く */
+        a.axis = "x";
+        const nx = a.gx + a.dir * sp;
+        if(!inBuilding(nx, a.gy)) a.gx = nx; else a.dir *= -1;
+      }
+    }
+    /* 端まで行ったら反対側から入り直す。**種類ごとに戻る道が違う** ──
+       人は3本の歩道のどれか＋自分のずれ、車は車道2本のどちらか、猫は歩道のどこか。
+       ここを人の式ひとつで済ませていたとき、車の gy が NaN になって
+       （車には laneB が無い）画面から消え、描く順の計算まで狂わせていた */
+    if(a.gx < -1.2 || a.gx > TGW+1.2){
+      a.gx = a.gx < 0 ? TGW+1.0 : -1.0;
+      a.goal = null; a.leg = null;
+      a.gy = a.kind === "walk" ? pick(ROADY3) + a.laneB
+           : a.kind === "car"  ? pick([2.5, 5.5])
+           : pick(ROADY3) + (Math.random()-.5)*0.5;
+    }
+  }
+  /* **人同士は当たり判定を持たない。すり抜けてすれ違う。**（2026-08-17 先生の許可）
+     押し離す処理を入れたら、進行方向に押し返して足が止まり、直すと釣り合って止まり、
+     直すと小刻みに揺れて「ぶつかり合って」見えた。物理的に当たることは誰も求めていない。
+     求められているのは「不自然な動きが見えないこと」。
+     そのかわり、下の lane（一人ひとりの奥行き・左右のずれ）で重なりにくくしている。
+     奥行きが違えば、画面で重なっても前後に描かれるので自然に見える。
+     **建物との当たり判定は捨てない**（inBuilding）。捨てるのは人と人だけ。 */
+  for(const b of birds){ b.x += b.sp*dt; if(b.x > VW+30) b.x = -30; }
+  if(plane){ plane.x += plane.sp*dt; if(plane.x > VW+80) plane = null; }
+  else { planeT -= dt;
+    if(planeT <= 0){ planeT = 26 + Math.random()*34;
+      plane = { x:-80, y: 22+Math.random()*26, sp: 44+Math.random()*22 }; } }
+}
+
+/* ------------------------------------------------------------------
+   3-c. 描く順（奥から手前）── 建物と人の前後関係
+
+   いままでは「奥行きの値ひとつ」（建物は中心の y、人は自分の y）で並べていた。
+   これは横に流れる人には効くが、**縦の通路を歩く人ではまるで当たらない**。
+   人が建物の左どなりにいるとき、y が建物の中心より手前なら建物の上に描かれ、
+   奥なら建物に埋もれる ── 先生が見ていた「上に行く／中に埋もれる」はこれ。
+
+   アイソメで正しいのは、ふたつの物 A・B について
+     **A が B の左（A.x1 ≤ B.x0）か、奥（A.y1 ≤ B.y0）にあれば、A を先に描く**
+   という組ごとの決めかた。人は点、建物は敷地の四角、車は小さな四角。
+   組ごとの「先／後」を集めて、矛盾しないように一列に並べる（位相ソート）。
+   建物は格子に並んでいて重ならないので、まず矛盾は起きない。
+   起きたときは、残ったものを x+y の小さい順で足す。
+   ------------------------------------------------------------------ */
+const PROPS = [
+  {t:"tree", x:0.5, y:2.4}, {t:"tree", x:4.8, y:2.4},
+  {t:"bench",x:6.9, y:2.5}, {t:"tree", x:9.2, y:2.4}, {t:"lamp", x:6.0, y:2.5},
+  {t:"tree", x:1.2, y:5.4}, {t:"lamp", x:3.4, y:5.5}, {t:"tree", x:5.6, y:5.4},
+  {t:"bench",x:7.6, y:5.5}, {t:"tree", x:9.4, y:5.4},
+];
+/* 描くものを集めて、それぞれの「地面の上の四角」を付ける */
+function drawList(lv){
+  const items = [];
+  for(const p of PLACES)
+    items.push({ k:"b", p, fp:{ x0:p.x, x1:p.x+p.w, y0:p.y, y1:p.y+p.d } });
+  const props = lv >= 1 ? PROPS.concat(FRONT_TREES) : PROPS;
+  for(const q of props){
+    const r = q.t === "tree" ? 0.12 : q.t === "bench" ? 0.24 : 0.05;
+    items.push({ k:"p", q, fp:{ x0:q.x-r, x1:q.x+r, y0:q.y-r*0.6, y1:q.y+r*0.6 } });
+  }
+  for(const a of actors){
+    const rx = a.kind === "car" ? 0.30 : 0.02, ry = a.kind === "car" ? 0.14 : 0.02;
+    items.push({ k:"a", a, fp:{ x0:a.gx-rx, x1:a.gx+rx, y0:a.gy-ry, y1:a.gy+ry } });
+  }
+  for(const it of items) it.key = (it.fp.x0+it.fp.x1+it.fp.y0+it.fp.y1)*0.5;
+  return depthOrder(items);
+}
+/* A は B より先に描くべきか（A が B の左か奥にある） */
+function isBehind(A, B){
+  const e = 1e-6;
+  return A.fp.x1 <= B.fp.x0 + e || A.fp.y1 <= B.fp.y0 + e;
+}
+function depthOrder(items){
+  const n = items.length;
+  const after = Array.from({ length:n }, () => []);   /* i を描いたあとで描けるもの */
+  const indeg = new Array(n).fill(0);
+  for(let i = 0; i < n; i++) for(let j = i+1; j < n; j++){
+    const ab = isBehind(items[i], items[j]), ba = isBehind(items[j], items[i]);
+    if(ab && !ba){ after[i].push(j); indeg[j]++; }
+    else if(ba && !ab){ after[j].push(i); indeg[i]++; }
+    else if(!ab && !ba){
+      /* 四角が重なっている（人が建物の中にいるなど、本来は起きない）。x+y で決める */
+      if(items[i].key <= items[j].key){ after[i].push(j); indeg[j]++; }
+      else { after[j].push(i); indeg[i]++; }
+    } else {
+      /* 両方とも「奥」＝斜めの位置関係。ふつうは画面で重ならないが、
+         建物の手前の角にちょうど人が立つと、数ピクセルだけ触れる。
+         そのときは y（手前か奥か）を優先する ── 手前の角にいる人は建物の後に描く */
+      const e = 1e-6, A = items[i].fp, B = items[j].fp;
+      if(A.y1 <= B.y0 + e){ after[i].push(j); indeg[j]++; }
+      else if(B.y1 <= A.y0 + e){ after[j].push(i); indeg[i]++; }
+    }
+  }
+  const out = [], done = new Array(n).fill(false);
+  for(let k = 0; k < n; k++){
+    let best = -1;
+    for(let i = 0; i < n; i++)
+      if(!done[i] && indeg[i] === 0 && (best < 0 || items[i].key < items[best].key)) best = i;
+    if(best < 0){
+      /* 矛盾が残った。残りを x+y の順で足す（起きたら check.mjs が数える） */
+      const rest = [];
+      for(let i = 0; i < n; i++) if(!done[i]) rest.push(i);
+      rest.sort((a,b) => items[a].key - items[b].key);
+      for(const i of rest){ out.push(items[i]); done[i] = true; }
+      break;
+    }
+    done[best] = true; out.push(items[best]);
+    for(const j of after[best]) indeg[j]--;
+  }
+  return out;
+}
+/* 並び順の確認。人と建物の組で、画面が重なるのに前後が逆なものを数える。
+   check.mjs から呼ぶ。0 でなければ直っていない */
+function orderViolations(lv){
+  const list = drawList(lv == null ? 2 : lv);
+  const idx = new Map(); list.forEach((it, i) => idx.set(it, i));
+  let bad = 0; const where = [];
+  for(const P of list){
+    if(P.k !== "a" || P.a.kind !== "walk") continue;
+    const u = P.a.gx - P.a.gy;
+    for(const B of list){
+      if(B.k !== "b") continue;
+      const f = B.fp;
+      /* 画面で重なるか。人の足もとの列 u が、建物の左端〜右端の列にあるか（人の幅ぶん 0.15 を足す） */
+      if(u + 0.15 < f.x0 - f.y1 || u - 0.15 > f.x1 - f.y0) continue;
+      const inFront = P.a.gx >= f.x1 - 1e-6 || P.a.gy >= f.y1 - 1e-6;
+      const later = idx.get(P) > idx.get(B);
+      if(inFront !== later){
+        bad++;
+        if(where.length < 6) where.push({ gx:+P.a.gx.toFixed(2), gy:+P.a.gy.toFixed(2),
+                                          b:B.p.id, inFront, later });
+      }
+    }
+  }
+  /* 建物どうしも見る。片方だけが「奥」なら、その順に描かれていなければならない */
+  const bs = list.filter(it => it.k === "b");
+  for(let i = 0; i < bs.length; i++) for(let j = i+1; j < bs.length; j++){
+    const A = bs[i], B = bs[j];
+    const ab = isBehind(A, B), ba = isBehind(B, A);
+    if(ab === ba) continue;
+    const okOrder = ab ? idx.get(A) < idx.get(B) : idx.get(B) < idx.get(A);
+    if(!okOrder){ bad++; if(where.length < 6) where.push({ b:A.p.id, b2:B.p.id, ab, ba }); }
+  }
+  return { bad, where };
+}
+
+/* ------------------------------------------------------------------
+   4. 街をまるごと描く。src/town/town.js の drawTown を土台に、
+      季節・自宅・名札の差し替えができるようにしたもの
+   ------------------------------------------------------------------ */
+function drawTownP(o){
+  if(o.walkU) WALK_U = o.walkU;
+  const S = SEASONS[o.month] || SEASONS[7];
+  const lv = o.level == null ? 0 : o.level;      /* 0=空と遠景 1=＋木 2=＋行事 */
+  SCHOOL_SIGN = o.school === "cultura" ? "CULTURA" : "SCHOOL";
+  mp = o.mp == null ? 0.30 : o.mp;
+  unlockAll = !o.locked;
+  fame = o.fame == null ? 300 : o.fame;          /* 名声。段階解禁を見るときだけ下げる */
+  showIdx = o.chapter == null ? 3 : o.chapter;
+
+  const dm = dayMix(), nt = dm.night;
+  const sky = ctx.createLinearGradient(0,0,0,VH);
+  sky.addColorStop(0, dm.a); sky.addColorStop(0.6, dm.b); sky.addColorStop(1, dm.b);
+  ctx.fillStyle = sky; ctx.fillRect(0,0,VW,VH);
+
+  const SKYLINE = [46,74,28,96,58,38,84,50,68,32,78,54,40,88,60];
+  let sx = -14;
+  for(let i=0;i<SKYLINE.length;i++){
+    const w = 20 + (i*11)%22, h = SKYLINE[i];
+    ctx.fillStyle = nt>0.4 ? "rgba(84,78,118,.62)" : "rgba("+S.far+",.26)";
+    ctx.fillRect(sx, OY-26-h, w, h+30);
+    if(nt > 0.4){
+      ctx.fillStyle = "rgba(255,226,150,.30)";
+      for(let r=0;r<Math.floor(h/22);r++) for(let c=0;c<2;c++)
+        ctx.fillRect(sx+5+c*(w-13), OY-20-h+r*20, 5, 6);
+    }
+    sx += w + 5;
+  }
+  drawSkyLife();
+
+  /* 地面。草と道の色が月で変わる（案A から効く） */
+  for(let gy=0; gy<TGD; gy++) for(let gx=0; gx<TGW; gx++){
+    const road = (gy===2 || gy===5 || gy===8 || gy===9);  /* 手前は歩道 */
+    poly([iso(gx,gy),iso(gx+1,gy),iso(gx+1,gy+1),iso(gx,gy+1)],
+         road ? ((gx%2) ? S.road[0] : S.road[1]) : ((gx+gy)%2 ? S.grass[0] : S.grass[1]));
+  }
+  ctx.strokeStyle = "rgba(255,255,255,.5)"; ctx.lineWidth = 1.4;
+  ctx.setLineDash([5,6]);
+  for(const gy of [2.5, 5.5, 9.0]){
+    const a2 = iso(0,gy), b2 = iso(TGW,gy);
+    ctx.beginPath(); ctx.moveTo(a2.x,a2.y); ctx.lineTo(b2.x,b2.y); ctx.stroke();
+  }
+  ctx.setLineDash([]);
+  poly([iso(0,TGD), iso(TGW,TGD), iso(TGW,TGD,-14), iso(0,TGD,-14)], "#8e8471");
+  poly([iso(TGW,0), iso(TGW,TGD), iso(TGW,TGD,-14), iso(TGW,0,-14)], "#7a7160");
+
+  if(o.month === 4)  groundLitter("petal");
+  if(o.month === 11) groundLitter("leaf");
+
+  const list = drawList(lv);
+  for(const it of list){
+    if(it.k === "b"){
+      drawBuilding(it.p, placeOpen(it.p));
+    } else if(it.k === "a"){
+      const a = it.a;
+      /* 傘はやめた。「自然な感じで差すのであれば、差さない方がいい」（先生）。
+         人が持ち物として持つ形（src/staff/person.js／04 の担当）でないと、
+         奥の人にさしたとき、傘だけ屋根の上に浮いて見える */
+      if(a.kind === "walk") drawWalker(a);
+      else if(a.kind === "cat") drawTownCat(a);
+      else drawCar(a);
+    } else {
+      const q = it.q;
+      if(q.t === "tree"){
+        drawTreeS(q.x, q.y, lv >= 1 ? S.tree : "deep");
+      } else if(q.t === "bench"){
+        box(q.x-0.22, q.y-0.08, .44, .16, 5, "#8a6440", 0);
+        box(q.x-0.24, q.y-0.10, .48, .20, 3, "#a9784c", 5);
+      } else {
+        const on = ramp(nt, 0.10, 0.40);
+        townLampPool(q.x, q.y, 0.62, on);
+        cyl(q.x, q.y, .05, 26, "#7d8794", 0);
+        cyl(q.x, q.y, .16, 7, tMix("#d8d2c4", "#ffe6a8", on), 26);
+      }
+    }
+  }
+
+  if(lv >= 2) drawEvent(S.ev);
+  if(lv >= 1 && o.month === 1) drawSnowfall();
+  /* 名札。plate に "none"（または plateOff）を渡すと出さない */
+  if(o.plate !== "none" && !o.plateOff) drawLabels(o.plate || "all", o.access || "now");
+
+  /* 時間帯の色（DAY 表。ここは変えていない） */
+  if(dm.amt > 0.005){
+    ctx.fillStyle = "rgba("+dm.tint+","+dm.amt+")"; ctx.fillRect(0,0,VW,VH);
+  }
+  /* 季節の一枚。DAY 表の上に薄くかぶせるだけなので、
+     「朝の11月」「夜の4月」がどちらもちゃんと出る */
+  ctx.fillStyle = "rgba("+S.sky+","+S.skyA+")";
+  ctx.fillRect(0,0,VW,VH);
+}
+
+/* ------------------------------------------------------------------
+   5. ページを組み立てる
+   ------------------------------------------------------------------ */
+let SCHOOL_SIGN = "SCHOOL";
+useTownScale();
+initActors();
+for(let i = 0; i < 60; i++) stepActors(0.1);      /* 人を街に散らしてから止める */
+
+/* 街の人を、その時刻の姿に落ち着かせる。静止画を撮るまえに呼ぶ。
+   歩き出してから店の前に着くまでを、早送りで進めている */
+function settleCrowd(o){
+  mp = o.mp == null ? 0.30 : o.mp;
+  fame = o.fame == null ? 300 : o.fame;
+  showIdx = o.chapter == null ? 3 : o.chapter;
+  unlockAll = !o.locked;
+  const lv = o.crowdLv == null ? 2 : o.crowdLv;
+  const rain = (SEASONS[o.month] || {}).ev === "ame";
+  initActors();
+  actors = actors.filter(a => a.kind !== "walk");
+  tuneCrowd(lv, rain);
+  for(let i = 0; i < 90; i++) stepCrowd(0.35, lv, rain);
+  tuneCrowd(lv, rain);
+}
+
+function shot(host, opt, cap){
+  if(opt.crowdLv != null && !opt.keepActors) settleCrowd(opt);
+  if(typeof cap === "function") cap = cap();
+  const box2 = document.createElement("div");
+  box2.className = "shot";
+  const cv2 = document.createElement("canvas");
+  cv2.width = VW; cv2.height = VH;
+  if(opt.zoom){
+    /* 拡大するときは、切り抜き用の枠に入れる。
+       transform した要素は重ね順が上がるので、枠に入れないと隣を覆う */
+    const [zx, zy, zs] = opt.zoom;
+    const frame = document.createElement("div");
+    frame.className = "frame";
+    cv2.style.transform = "scale(" + zs + ")";
+    cv2.style.transformOrigin = (zx/VW*100) + "% " + (zy/VH*100) + "%";
+    frame.appendChild(cv2);
+    box2.appendChild(frame);
+  } else {
+    box2.appendChild(cv2);
+  }
+  if(cap){ const c = document.createElement("p"); c.className = "cap"; c.innerHTML = cap; box2.appendChild(c); }
+  host.appendChild(box2);
+  ctx = cv2.getContext("2d");
+  useTownScale();
+  drawTownP(opt);
+}
+
+const $ = (id) => document.getElementById(id);
+
+/* --- 0. 動く街。時刻を動かすと、人の数と行き先が変わる --- */
+(function liveTown(){
+  const host = $("live");
+  if(!host) return;
+  const cv2 = document.createElement("canvas");
+  cv2.width = VW; cv2.height = VH; cv2.className = "big";
+  host.appendChild(cv2);
+  const c2 = cv2.getContext("2d");
+
+  const st = { mp:0.30, month:11, crowdLv:2, run:true };
+  const HOURS = h => (h < 10 ? "0" : "") + Math.floor(h%24) + ":" +
+                     (Math.floor((h%1)*60) < 10 ? "0" : "") + Math.floor((h%1)*60);
+
+  /* 操作。時刻・月・案の切り替え */
+  const bar = document.createElement("div"); bar.className = "ctrl";
+  const sl = document.createElement("input");
+  sl.type = "range"; sl.min = 0; sl.max = 1000; sl.value = 300; sl.className = "slider";
+  const lab = document.createElement("span"); lab.className = "clock";
+  const msel = document.createElement("select");
+  for(const m of MONTH_ORDER){
+    const o = document.createElement("option");
+    o.value = m; o.textContent = SEASONS[m].jp + "（" + SEASONS[m].note + "）";
+    if(m === 11) o.selected = true; msel.appendChild(o);
+  }
+  const lsel = document.createElement("select");
+  for(const [v, t] of [[0,"案A 数だけ変える"],[1,"案B ＋店の前で立ち止まる"],[2,"案C ＋登下校の流れ"]]){
+    const o = document.createElement("option"); o.value = v; o.textContent = t;
+    if(v === 2) o.selected = true; lsel.appendChild(o);
+  }
+  const btn = document.createElement("button"); btn.textContent = "止める"; btn.className = "btn";
+  bar.append(lab, sl, msel, lsel, btn); host.appendChild(bar);
+
+  const reseed = () => {
+    mp = st.mp; unlockAll = true;
+    initActors(); actors = actors.filter(a => a.kind !== "walk");
+    tuneCrowd(st.crowdLv, (SEASONS[st.month]||{}).ev === "ame");
+  };
+  sl.oninput = () => { st.mp = +sl.value/1000; reseed(); };
+  msel.onchange = () => { st.month = +msel.value; reseed(); };
+  lsel.onchange = () => { st.crowdLv = +lsel.value; reseed(); };
+  btn.onclick = () => { st.run = !st.run; btn.textContent = st.run ? "止める" : "動かす"; };
+  reseed();
+
+  let last = 0, acc = 0;
+  function frame(now){
+    const dt = last ? Math.min(0.06, (now-last)/1000) : 0.016;
+    last = now;
+    if(st.run){
+      const rain = (SEASONS[st.month]||{}).ev === "ame";
+      mp = st.mp;
+      stepCrowd(dt*1.6, st.crowdLv, rain);
+      acc += dt;
+      if(acc > 1.2){ acc = 0; tuneCrowd(st.crowdLv, rain); }
+    }
+    ctx = c2; useTownScale();
+    drawTownP({ month:st.month, level:2, school:"cultura", mp:st.mp,
+                plate:"both", access:"c", crowdLv:st.crowdLv });
+    lab.textContent = HOURS(townHour()) + "　" + partOfDay() + "　" +
+                      actors.filter(a=>a.kind==="walk").length + "人";
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* --- 0-b. ショー会場のまわり。円いホールが敷地から出ていた所を直した --- */
+for(const [mp2, nm] of [[0.30,"昼"],[0.90,"夜"]])
+  shot($("fixVenue"), { month:10, level:2, school:"cultura", mp:mp2,
+                        plate:"none", crowdLv:2, zoom:[150,300,2.6] },
+       "<b>"+nm+"</b> 入口ポーチ・柱・歩道の前後");
+
+/* --- 0-c. 縦の通路の途中に人を立たせて、建物との前後を見る ---
+   人が建物の左どなりにいるとき、建物の中心より手前なら上に乗り、奥なら埋もれていた。
+   その両方の位置に人を置いて、直ったことを絵で確かめる */
+function placeAt(list){
+  actors = actors.filter(a => a.kind !== "walk");
+  for(const [gx, gy] of list){
+    const w = makeWalker2(12); w.gx = gx; w.gy = gy; w.phase = "stand"; w.stand = 99;
+    actors.push(w);
+  }
+}
+for(const [cap, pts, zoom] of [
+    ["<b>アトリエの左の通路</b><br>手前ぎわ（見える）と、奥（隠れる）", [[3.05,4.85],[3.05,4.15],[3.05,3.35]], [170,232,2.8]],
+    ["<b>ショールームの左の通路</b><br>アトリエの右は、どこにいても見える", [[6.55,4.85],[6.55,4.15],[6.55,3.35]], [250,272,2.8]],
+    ["<b>ショー会場と工場のあいだ</b>", [[6.55,8.75],[6.55,7.9],[6.55,6.9]], [164,318,2.8]],
+    ["<b>スタジオとショー会場のあいだ</b>", [[3.05,8.75],[3.05,7.9],[3.05,6.9]], [85,282,2.8]]]){
+  mp = 0.30; unlockAll = true; initActors(); placeAt(pts);
+  shot($("orderCheck"), { month:10, level:2, school:"cultura", mp:0.30, plate:"none",
+                          keepActors:true, zoom }, cap);
+}
+
+/* --- 1. 人の数が時刻で変わる。同じ月・同じ案で、朝昼夕夜 --- */
+for(const [mp2, nm] of [[0.00,"朝 8時"],[0.30,"昼 12時"],[0.66,"夕 17時"],[0.90,"夜 23時"],[0.95,"深夜 3時"]])
+  shot($("crowdTime"), { month:10, level:2, school:"cultura", mp:mp2,
+                         plate:"both", access:"c", crowdLv:2, plateOff:true,
+                         zoom:[196,300,1.9] },
+       () => "<b>"+nm+"</b> " + actors.filter(a=>a.kind==="walk").length + "人");
+
+/* --- 2. 案A・B・Cの差。同じ夕方（17時）で --- */
+for(const [cl, cap] of [[0,"<b>案A</b> 数だけ変える<br>道を流れるだけ（いまと同じ動き）"],
+                        [1,"<b>案B</b> ＋開いている店の前で立ち止まる"],
+                        [2,"<b>案C</b> ＋登下校の流れ（推し）<br>夕方は学校から出て店へ散る"]])
+  shot($("crowdLv"), { month:10, level:2, school:"cultura", mp:0.66,
+                       plate:"both", access:"c", crowdLv:cl, plateOff:true,
+                       zoom:[196,300,1.9] }, cap);
+
+/* --- 3. 朝は学校へ吸われる（案C） --- */
+for(const [mp2, nm] of [[0.00,"朝 8時 学校へ"],[0.66,"夕 17時 学校から店へ"]])
+  shot($("crowdSchool"), { month:4, level:2, school:"cultura", mp:mp2,
+                           plate:"both", access:"c", crowdLv:2,
+                           zoom:[200,190,2.4] }, "<b>"+nm+"</b>");
+
+/* --- 4. 雨の月は急ぎ足で傘（案C） --- */
+for(const [cl, cap] of [[1,"<b>案B</b> 6月。傘なし"],[2,"<b>案C</b> 6月。傘をさして急ぎ足"]])
+  shot($("crowdRain"), { month:6, level:2, school:"cultura", mp:0.40,
+                         plate:"both", access:"c", crowdLv:cl, plateOff:true,
+                         zoom:[196,300,2.1] }, cap);
+
+/* --- 5. まだ開いていない店の前には人がいない（案B以降） --- */
+for(const [f, ch, nm] of [[6,0,"1年 4月"],[300,3,"4年"]])
+  shot($("crowdOpen"), { month:10, level:2, school:"cultura", mp:0.66,
+                         plate:"both", access:"c", crowdLv:2,
+                         locked:true, fame:f, chapter:ch },
+       "<b>"+nm+"</b> 開いている場所にだけ人がいる");
+
+/* --- 5. 学校の看板 --- */
+shot($("sign"), { month:7, level:1, school:"now", mp:0.30, plate:"none",
+                  zoom:[200,158,3.6] }, "<b>いま</b> SCHOOL");
+shot($("sign"), { month:7, level:1, school:"cultura", mp:0.30, plate:"none",
+                  zoom:[200,158,3.6] }, "<b>これから</b> CULTURA");
+shot($("sign"), { month:4, level:2, school:"cultura", mp:0.30, plate:"none",
+                  zoom:[200,176,3.0] }, "<b>4月</b> 入学式の校門");
+
+/* --- 6. 行ける／行けない。案C（縁の点）が確定 --- */
+for(const [ac, cap] of [["now","<b>いま</b> 開く／開かないの2つだけ"],
+                        ["b","<b>案B</b> 見学だけの場所に目の印"],
+                        ["c","<b>案C（確定）</b> 縁の点。2つ以上でインターンに行ける"]])
+  shot($("acc"), { month:10, level:2, school:"cultura", mp:0.30,
+                   plate:"open", access:ac, locked:true, fame:10, chapter:0 }, cap);
+
+</script>
+</body>
+</html>

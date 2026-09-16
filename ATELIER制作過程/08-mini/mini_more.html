@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>ミニゲーム もっと ── 新しい5案</title>
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body{ margin:0; padding:0; height:100%; background:#e7e0d6;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif; }
+  body{ display:flex; align-items:center; justify-content:center; overscroll-behavior:none; }
+  #phone{ position:relative; width:390px; height:844px; background:#241b2e;
+    overflow:hidden; box-shadow:0 18px 60px rgba(60,44,58,.34); }
+  @media (max-width:420px), (max-height:880px){
+    #phone{ width:100vw; height:100vh; height:100dvh; }
+  }
+  #cv{ position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; }
+  #menu{ position:absolute; inset:0; z-index:5; background:#f3eee7;
+    padding:22px 18px 40px; overflow-y:auto; }
+  #menu h1{ font-size:18px; font-weight:800; color:#2a2430; margin:2px 0 3px; }
+  #menu .sub{ font-size:11.5px; font-weight:700; color:#8a7c88; line-height:1.7; margin:0 0 16px; }
+  .card{ display:block; width:100%; text-align:left; border:0; cursor:pointer;
+    background:#fbf3e6; border-radius:15px; padding:12px 14px; margin:0 0 10px;
+    box-shadow:0 2px 0 rgba(124,90,112,.13); }
+  .card:active{ transform:translateY(1px); }
+  .card .top{ display:flex; align-items:center; gap:9px; margin-bottom:6px; }
+  .card .tag{ font-size:9.5px; font-weight:800; color:#fbf3e6; background:#7c5a70;
+    border-radius:5px; padding:3px 6px; white-space:nowrap; }
+  .card .nm{ font-size:15.5px; font-weight:800; color:#2a2430; }
+  .card .ds{ font-size:11.5px; font-weight:700; color:#6d6270; line-height:1.7; }
+  .card .mt{ font-size:10.5px; font-weight:800; color:#96887f; margin-top:5px; }
+  .card .mt b{ color:#7c5a70; }
+  .note{ font-size:10.5px; font-weight:700; color:#8f8279; line-height:1.8;
+    background:#ece2d3; border-radius:11px; padding:11px 13px; margin-top:14px; }
+  #bar{ position:absolute; top:0; left:0; right:0; height:52px; z-index:4;
+    display:none; align-items:center; justify-content:space-between; padding:0 14px; }
+  #bar.on{ display:flex; }
+  #bar .t{ font-size:14px; font-weight:800; color:#fdf6ec; }
+  #bar button{ border:0; background:rgba(255,255,255,.14); color:#fdf6ec;
+    font-size:11.5px; font-weight:800; border-radius:9px; padding:7px 12px;
+    cursor:pointer; font-family:inherit; }
+  #res{ position:absolute; inset:0; z-index:6; display:none;
+    background:rgba(28,20,36,.72); align-items:center; justify-content:center; padding:26px; }
+  #res.on{ display:flex; }
+  #res .box{ width:100%; background:#f3eee7; border-radius:20px;
+    padding:22px 20px 18px; text-align:center; }
+  #res .rt{ font-size:19px; font-weight:800; color:#2a2430; margin-bottom:5px; }
+  #res .rs{ font-size:32px; letter-spacing:.06em; color:#f2c14e; margin-bottom:8px; }
+  #res .rd{ font-size:12px; font-weight:700; color:#6d6270; line-height:1.8;
+    margin-bottom:15px; white-space:pre-line; }
+  #res button{ width:100%; border:0; border-radius:12px; padding:13px;
+    font-size:14px; font-weight:800; cursor:pointer; font-family:inherit; margin-bottom:8px; }
+  #again{ background:#7c5a70; color:#fbf3e6; }
+  #back{ background:#e6d8c4; color:#5a4d58; }
+
+  /* 一覧ページに埋め込まれたとき */
+  body.embed #menu{ display:none !important; }
+  body.embed #bar{ display:none !important; }
+  body.embed #res .box button{ display:none; }
+  body.embed #phone{ box-shadow:none; }
+</style>
+</head>
+<body>
+<div id="phone">
+  <canvas id="cv"></canvas>
+  <div id="bar"><span class="t"></span><button id="quit">やめる</button></div>
+
+  <div id="menu">
+    <h1>ミニゲーム　もっと</h1>
+    <p class="sub">種類を増やすための5案です。<br>
+      <b>指の動かし方</b>と<b>使う頭のはたらき</b>が、それぞれ違うようにしてあります。</p>
+
+    <button class="card" data-g="swatch">
+      <div class="top"><span class="tag">C</span><span class="nm">生地の山かたづけ</span></div>
+      <div class="ds">散らかった生地見本を、同じ柄で3枚そろえて消す。
+        下に埋もれた見本は取れない。<b>上から順に掘る</b>。</div>
+      <div class="mt"><b>型：</b>トリプルタイル（いま一番流行っている形）<b>／</b>手先より段取り</div>
+    </button>
+
+    <button class="card" data-g="palette">
+      <div class="top"><span class="tag">E</span><span class="nm">配色えらび</span></div>
+      <div class="ds">お題（「静かな朝」など）に合う色を、24色から3つ選ぶ。
+        <b>色相・明度・彩度の関係で採点</b>されます。</div>
+      <div class="mt"><b>型：</b>ほかにない<b>／</b>これだけは<b>センスそのものを鍛える</b></div>
+    </button>
+
+    <button class="card" data-g="drape">
+      <div class="top"><span class="tag">F</span><span class="nm">シルエット合わせ</span></div>
+      <div class="ds">影だけのシルエットに、袖・襟・裾のパーツを合わせる。
+        違う形をはめると、輪郭がずれて見える。</div>
+      <div class="mt"><b>型：</b>形あわせ<b>／</b>服の型の名前を覚える</div>
+    </button>
+
+    <button class="card" data-g="measure">
+      <div class="top"><span class="tag">H</span><span class="nm">採寸</span></div>
+      <div class="ds">メジャーを引いて、指示された寸法でぴたりと止める。
+        目盛りは<b>だんだん見えなくなる</b>ので、体で覚える。</div>
+      <div class="mt"><b>型：</b>止めるタイミング<b>／</b>短い。すきま時間むき</div>
+    </button>
+
+    <button class="card" data-g="bead">
+      <div class="top"><span class="tag">I</span><span class="nm">ビーズ刺繍</span></div>
+      <div class="ds">図案の順にビーズを打つ。<b>次の1粒だけ</b>光ります。
+        速く正しく続けるほど、連なって高得点。</div>
+      <div class="mt"><b>型：</b>リズム／連打<b>／</b>手が勝手に動く気持ちよさ</div>
+    </button>
+
+    <button class="card" data-g="inspect">
+      <div class="top"><span class="tag">J</span><span class="nm">検品</span></div>
+      <div class="ds">仕上がった服から、不具合をぜんぶ見つける。
+        ほつれ・縫い目の曲がり・しみ・ボタンのゆるみ・糸とび。
+        何もない所を押すと空振りになります。</div>
+      <div class="mt"><b>型：</b>まちがい探し<b>／</b>手わざでなく<b>見る目</b>のゲーム</div>
+    </button>
+
+    <button class="card" data-g="sew">
+      <div class="top"><span class="tag">K</span><span class="nm">ボタン付け</span></div>
+      <div class="ds">4つ穴に、見本と同じ順で糸を通す。通し方は
+        平行・クロス・かたばみ・ヨの字の4種類で、毎回変わります。</div>
+      <div class="mt"><b>型：</b>順番を覚えて押す<b>／</b>手が覚える気持ちよさ</div>
+    </button>
+
+    <p class="note">
+      色は docs/ART.md の表のとおり。<b>裁ち合わせ・糸ほどき・アイロン</b>は
+      <b>mini_v2.html</b> のほうにあります。
+    </p>
+  </div>
+
+  <div id="res"><div class="box">
+    <div class="rt"></div><div class="rs"></div><div class="rd"></div>
+    <button id="again">もう一回</button><button id="back">ほかのゲーム</button>
+  </div></div>
+</div>
+
+<script>
+"use strict";
+const W=390, H=844;
+const cv=document.getElementById("cv");
+const g=cv.getContext("2d");
+(function(){ const d=Math.min(2,window.devicePixelRatio||1);
+  cv.width=W*d; cv.height=H*d; g.setTransform(d,0,0,d,0,0); })();
+
+const C={ paper:"#f3eee7", wall:"#fbf3e6", wall2:"#ece2d3", skirt:"#e6d8c4",
+  wood:"#c9a982", metal:"#8a929c", metalD:"#5c6470",
+  cloth:"#efe6da", paper2:"#f6f1e6", mat:"#dfe4e8", ink:"#2a2430",
+  plum:"#7c5a70", sage:"#7fae66", sand:"#c9a982", coral:"#e08f8c", gold:"#f2c14e" };
+const hx=c=>[parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)];
+const rgbs=a=>"#"+a.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,"0")).join("");
+const shade=(c,k)=>rgbs(hx(c).map(v=>v*k));
+const mix=(c1,c2,t)=>{const a=hx(c1),b=hx(c2);return rgbs(a.map((v,i)=>v+(b[i]-v)*t));};
+const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function stars(gg,n,cx,cy){ gg.textAlign="center"; gg.font="800 40px sans-serif";
+  gg.fillStyle=C.gold; gg.fillText("★".repeat(n)+"☆".repeat(3-n),cx,cy); }
+function timeBar(gg,t,max){
+  gg.fillStyle="rgba(255,255,255,.16)"; gg.fillRect(40,74,W-80,7);
+  gg.fillStyle=t/max<.25?C.coral:C.gold; gg.fillRect(40,74,(W-80)*clamp(t,0,max)/max,7); }
+/* HSL → 色。配色えらびで使う */
+function hsl(h,s,l){
+  h=((h%360)+360)%360; s/=100; l/=100;
+  const c=(1-Math.abs(2*l-1))*s, x=c*(1-Math.abs((h/60)%2-1)), mm=l-c/2;
+  let r,g2,b;
+  if(h<60){r=c;g2=x;b=0;} else if(h<120){r=x;g2=c;b=0;}
+  else if(h<180){r=0;g2=c;b=x;} else if(h<240){r=0;g2=x;b=c;}
+  else if(h<300){r=x;g2=0;b=c;} else {r=c;g2=0;b=x;}
+  return rgbs([(r+mm)*255,(g2+mm)*255,(b+mm)*255]);
+}
+
+/* ==================================================================
+   C 生地の山かたづけ（トリプルタイル）
+   同じ柄を3枚そろえると消える。下に埋もれた見本は取れない。
+   ================================================================== */
+const SW = [
+  { n:"チェック",  c:"#a8506a" }, { n:"ストライプ", c:"#4f7fa8" },
+  { n:"水玉",     c:"#c99a3e" }, { n:"無地",     c:"#6f9a72" },
+  { n:"千鳥",     c:"#5d5570" }, { n:"花柄",     c:"#c2707e" },
+];
+const swatch = {
+  title:"生地の山かたづけ",
+  SLOT: 8,
+  KINDS: 5,
+  LAYER: [12,11,9,7,6],                  /* ぜんぶで45枚＝3の倍数 */
+  init(){
+    /* かならず全部消せるよう、1種を3の倍数ずつ作り、**全部を配りきる** */
+    const total = this.LAYER.reduce((a,b)=>a+b,0);      /* 45 */
+    const perKind = total/this.KINDS;                   /* 9 = 3の倍数 */
+    const bag=[];
+    for(let k=0;k<this.KINDS;k++) for(let t=0;t<perKind;t++) bag.push(k);
+    for(let i=bag.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));
+      [bag[i],bag[j]]=[bag[j],bag[i]]; }
+    const tiles=[];
+    let idx=0;
+    for(let l=0;l<this.LAYER.length;l++){
+      for(let t=0;t<this.LAYER[l] && idx<bag.length;t++){
+        const cols=5;
+        const cx = 52 + (t%cols)*62 + (l%2)*17 + (Math.random()-.5)*8;
+        const cy = 208 + Math.floor(t/cols)*62 + l*15 + (Math.random()-.5)*7;
+        tiles.push({ k:bag[idx++], x:clamp(cx,44,W-44), y:clamp(cy,196,596),
+                     l, gone:false });
+      }
+    }
+    return { tiles, slot:[], time:45, done:false, doneT:0, warm:1.8,
+             cleared:false, over:false, msg:"", msgT:0, pop:[] };
+  },
+  /* その札の上に、別の札が重なっているか */
+  buried(m,t){
+    for(const o of m.tiles){
+      if(o===t||o.gone) continue;
+      if(o.l<=t.l) continue;
+      if(Math.abs(o.x-t.x)<34 && Math.abs(o.y-t.y)<30) return true;
+    }
+    return false;
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0) return;
+    /* 上の層から順に当てる */
+    const cand = m.tiles.filter(t=>!t.gone &&
+      x>t.x-30 && x<t.x+30 && y>t.y-26 && y<t.y+26).sort((a,b)=>b.l-a.l);
+    if(!cand.length) return;
+    const t = cand[0];
+    if(this.buried(m,t)){ m.msg="上にほかの見本がのっています"; m.msgT=1.1; return; }
+    if(m.slot.length>=this.SLOT) return;
+    t.gone=true; m.slot.push(t.k);
+    /* 3枚そろったら消す */
+    const cnt={}; for(const k of m.slot) cnt[k]=(cnt[k]||0)+1;
+    for(const k in cnt) if(cnt[k]>=3){
+      let n=0;
+      m.slot = m.slot.filter(v=>{ if(v==k&&n<3){n++;return false;} return true; });
+      m.pop.push({ t:0, n:SW[k].n });
+    }
+    /* 並べかえ（同じ柄が隣に来るように） */
+    m.slot.sort((a,b)=>a-b);
+    if(m.tiles.every(q=>q.gone) && m.slot.length===0){
+      m.cleared=true; m.done=true; m.doneT=0;
+    } else if(m.slot.length>=this.SLOT){
+      m.over=true; m.done=true; m.doneT=0;
+    }
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m), this.info(m)); return; }
+    if(m.msgT>0) m.msgT-=dt;
+    for(let i=m.pop.length-1;i>=0;i--){ m.pop[i].t+=dt; if(m.pop[i].t>.9) m.pop.splice(i,1); }
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  left(m){ return m.tiles.filter(t=>!t.gone).length; },
+  score(m){
+    if(m.over) return 0;
+    if(!m.cleared){ const l=this.left(m); return l<=6?1:0; }
+    return m.time>20?3:m.time>9?2:1;
+  },
+  info(m){
+    if(m.over) return "受け皿がいっぱいになった";
+    if(m.cleared) return "全部かたづいた";
+    return "のこり "+this.left(m)+"枚";
+  },
+  draw(m,gg){
+    gg.fillStyle="#efe7dc"; gg.fillRect(0,0,W,H);
+    gg.fillStyle="#e5dbcd"; gg.fillRect(0,150,W,500);
+
+    /* 山 */
+    const vis = m.tiles.filter(t=>!t.gone).sort((a,b)=>a.l-b.l);
+    for(const t of vis){
+      const bur=this.buried(m,t);
+      gg.fillStyle="rgba(50,38,44,.16)";
+      gg.fillRect(t.x-27,t.y-21,56,46);
+      const col = SW[t.k].c;
+      gg.fillStyle = bur ? mix(col,"#6a6068",.55) : col;
+      gg.fillRect(t.x-28,t.y-24,56,46);
+      gg.fillStyle = bur ? "rgba(255,255,255,.10)" : "rgba(255,255,255,.20)";
+      gg.fillRect(t.x-28,t.y-24,56,13);
+      this.pat(gg,t.k,t.x,t.y,bur);
+      if(bur){ gg.fillStyle="rgba(30,24,32,.34)"; gg.fillRect(t.x-28,t.y-24,56,46); }
+    }
+
+    /* 受け皿 */
+    gg.fillStyle="#d8cbba"; gg.fillRect(24,664,W-48,74);
+    gg.fillStyle="#c9bba8"; gg.fillRect(24,664,W-48,7);
+    for(let i=0;i<this.SLOT;i++){
+      const x=33+i*41;
+      gg.fillStyle="rgba(90,74,80,.13)"; gg.fillRect(x,678,36,46);
+      if(i<m.slot.length){
+        const k=m.slot[i];
+        gg.fillStyle=SW[k].c; gg.fillRect(x,678,36,46);
+        gg.fillStyle="rgba(255,255,255,.20)"; gg.fillRect(x,678,36,12);
+        this.pat(gg,k,x+18,678+23,false,.7);
+      }
+    }
+    gg.textAlign="center"; gg.font="700 10px sans-serif"; gg.fillStyle="#8a7c88";
+    gg.fillText("受け皿（"+m.slot.length+"／"+this.SLOT+"）　3枚そろうと消える", W/2, 752);
+
+    for(const p of m.pop){
+      gg.fillStyle="rgba(127,174,102,"+(1-p.t/.9).toFixed(2)+")";
+      gg.font="800 17px sans-serif";
+      gg.fillText(p.n+" そろった！", W/2, 640-p.t*30);
+    }
+
+    timeBar(gg,m.time,45);
+    gg.textAlign="center"; gg.font="800 14px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("のこり "+this.left(m)+"枚", W/2, 106);
+    gg.font="700 10.5px sans-serif";
+    gg.fillStyle = m.msgT>0 ? C.coral : "#8a7c88";
+    gg.fillText(m.msgT>0 ? m.msg : "暗い見本は、上に何かのっていて取れません", W/2, 126);
+
+    if(m.warm>0){
+      gg.fillStyle="rgba(42,36,48,.86)"; gg.fillRect(0,320,W,150);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("生地見本をかたづける", W/2, 358);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("同じ柄を3枚そろえると消える", W/2, 386);
+      gg.fillStyle=C.coral;
+      gg.fillText("受け皿が8枚でいっぱいになったら負け", W/2, 412);
+      gg.fillStyle=C.gold;
+      gg.fillText("上にのっている見本から先に取る", W/2, 438);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.6)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(m.over?"あふれた…":m.cleared?(sc>=3?"みごと！":"かたづいた"):"時間ぎれ…", W/2, 384);
+      gg.font="700 13px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      gg.fillText(this.info(m), W/2, 414);
+      stars(gg,sc,W/2,472);
+    }
+  },
+  pat(gg,k,cx,cy,dim,sc){
+    sc=sc||1;
+    gg.save(); gg.translate(cx,cy); gg.scale(sc,sc);
+    gg.globalAlpha = dim?.35:.85;
+    const ink="rgba(255,252,246,.9)";
+    gg.fillStyle=ink; gg.strokeStyle=ink; gg.lineWidth=1.6;
+    if(k===0){ for(let i=-1;i<2;i++){ gg.fillRect(i*11-1,-18,2.6,36); gg.fillRect(-24,i*11-1,48,2.6); } }
+    else if(k===1){ for(let i=-2;i<3;i++) gg.fillRect(i*9-1.2,-18,2.6,36); }
+    else if(k===2){ for(let a=-1;a<2;a++) for(let b=-1;b<2;b++){
+      gg.beginPath(); gg.arc(a*15,b*13,3.1,0,6.2832); gg.fill(); } }
+    else if(k===3){ gg.globalAlpha=dim?.18:.30; gg.fillRect(-20,-15,40,30); }
+    else if(k===4){ for(let a=-1;a<2;a++) for(let b=-1;b<2;b++){
+      gg.beginPath(); gg.moveTo(a*16-5,b*13+4); gg.lineTo(a*16,b*13-5);
+      gg.lineTo(a*16+5,b*13+4); gg.closePath(); gg.fill(); } }
+    else { for(let a=-1;a<2;a++) for(let b=-1;b<2;b++){
+      for(let p=0;p<5;p++){ const an=p*1.2566;
+        gg.beginPath(); gg.ellipse(a*16+Math.cos(an)*4, b*13+Math.sin(an)*4, 2.2,3.4,an,0,6.2832);
+        gg.fill(); } } }
+    gg.globalAlpha=1; gg.restore();
+  },
+};
+
+/* ==================================================================
+   E 配色えらび
+   お題に合う色を24色から3つ。色相・明度・彩度の関係で採点する。
+   ================================================================== */
+const THEMES = [
+  { n:"静かな朝",     h:[190,230], s:[10,38], l:[62,86], mood:"うすい・つめたい・明るい" },
+  { n:"夕暮れの街",   h:[10,45],   s:[38,72], l:[38,60], mood:"あたたかい・濃いめ" },
+  { n:"雪あかり",     h:[200,250], s:[4,22],  l:[74,92], mood:"ほぼ無彩色・とても明るい" },
+  { n:"熟した果実",   h:[340,20],  s:[52,86], l:[34,54], mood:"あざやか・重い" },
+  { n:"苔むした庭",   h:[80,150],  s:[16,46], l:[26,50], mood:"くすんだ緑・暗め" },
+  { n:"砂漠の午後",   h:[28,52],   s:[26,58], l:[52,76], mood:"乾いた・明るい" },
+  { n:"深夜のアトリエ", h:[240,290], s:[18,44], l:[18,38], mood:"暗い・青紫" },
+  { n:"洗いざらしの麻", h:[30,60],  s:[8,26],  l:[64,86], mood:"生成り・やわらかい" },
+];
+const inR=(v,r)=> r[0]<=r[1] ? (v>=r[0]&&v<=r[1])
+                             : (v>=r[0]||v<=r[1]);           /* 340→20 のような回り込み */
+function hueDist(a,b){ const d=Math.abs(((a-b)%360+360)%360); return Math.min(d,360-d); }
+
+const palette = {
+  title:"配色えらび",
+  init(){
+    const th = pick(THEMES);
+    /* 24色。お題に合う色を6〜8色まぜ、残りは外れ */
+    const cols=[];
+    const mid = h=> h[0]<=h[1] ? (h[0]+h[1])/2 : (((h[0]+h[1]+360)/2)%360);
+    for(let i=0;i<8;i++){
+      const h = th.h[0]<=th.h[1]
+        ? th.h[0]+Math.random()*(th.h[1]-th.h[0])
+        : (th.h[0]+Math.random()*((th.h[1]+360)-th.h[0]))%360;
+      cols.push({ h, s:th.s[0]+Math.random()*(th.s[1]-th.s[0]),
+                     l:th.l[0]+Math.random()*(th.l[1]-th.l[0]) });
+    }
+    for(let i=0;i<16;i++){
+      let h,s,l,t=0;
+      do{ h=Math.random()*360; s=4+Math.random()*86; l=14+Math.random()*78; t++; }
+      while(t<40 && inR(h,th.h) && s>=th.s[0]&&s<=th.s[1] && l>=th.l[0]&&l<=th.l[1]);
+      cols.push({h,s,l});
+    }
+    for(let i=cols.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));
+      [cols[i],cols[j]]=[cols[j],cols[i]]; }
+    return { th, cols, sel:[], time:26, done:false, doneT:0, warm:2.2,
+             mid:mid(th.h), shown:false };
+  },
+  /* 1色がお題にどれだけ合うか（0〜1） */
+  fit(m,c){
+    const th=m.th;
+    const hd = hueDist(c.h, m.mid);
+    const half = (th.h[0]<=th.h[1] ? (th.h[1]-th.h[0]) : (th.h[1]+360-th.h[0]))/2;
+    const hs = clamp(1-(hd-half)/60, 0, 1);
+    const sc = (c.s>=th.s[0]&&c.s<=th.s[1]) ? 1
+             : clamp(1-Math.min(Math.abs(c.s-th.s[0]),Math.abs(c.s-th.s[1]))/28,0,1);
+    const lc = (c.l>=th.l[0]&&c.l<=th.l[1]) ? 1
+             : clamp(1-Math.min(Math.abs(c.l-th.l[0]),Math.abs(c.l-th.l[1]))/24,0,1);
+    /* 彩度がとても低い色は、どのお題にも馴染む（無彩色の逃げ道） */
+    const neutral = c.s<10 ? .55 : 0;
+    return Math.max(neutral*lc, hs*.45 + sc*.28 + lc*.27);
+  },
+  /* 3色の「まとまり」。ばらばらだと下がる */
+  harmony(m){
+    if(m.sel.length<3) return 0;
+    const cs=m.sel.map(i=>m.cols[i]);
+    let hMax=0;
+    for(let a=0;a<3;a++) for(let b=a+1;b<3;b++)
+      hMax=Math.max(hMax,hueDist(cs[a].h,cs[b].h));
+    /* 色相はまとまっているほうがよい。ただし全部同じだと平板 */
+    const hs = hMax<=12 ? .72 : hMax<=70 ? 1 : clamp(1-(hMax-70)/90,0,1);
+    /* 明度に差があるほうがよい（3色が同じ明るさだとのっぺり） */
+    const ls=cs.map(c=>c.l).sort((a,b)=>a-b);
+    const spread=ls[2]-ls[0];
+    const lsC = spread<8 ? .55 : spread<=46 ? 1 : clamp(1-(spread-46)/40,0,1);
+    return hs*.5 + lsC*.5;
+  },
+  total(m){
+    if(m.sel.length<3) return 0;
+    const f=m.sel.map(i=>this.fit(m,m.cols[i]));
+    const avg=(f[0]+f[1]+f[2])/3;
+    return avg*.68 + this.harmony(m)*.32;
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0) return;
+    /* 決定 */
+    if(m.sel.length===3 && y>700 && y<772){ m.done=true; m.doneT=0; m.shown=true; return; }
+    const c=this.hitCell(x,y);
+    if(c<0) return;
+    const at=m.sel.indexOf(c);
+    if(at>=0) m.sel.splice(at,1);
+    else if(m.sel.length<3) m.sel.push(c);
+  },
+  hitCell(x,y){
+    const CW2=76, CH2=64, X0=21, Y0=232;
+    for(let i=0;i<24;i++){
+      const cx=X0+(i%4)*(CW2+8), cy=Y0+Math.floor(i/4)*(CH2+7);
+      if(x>=cx&&x<=cx+CW2&&y>=cy&&y<=cy+CH2) return i;
+    }
+    return -1;
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.8) end(this.score(m), this.info(m)); return; }
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){
+    const t=this.total(m);
+    return t>=.80?3:t>=.62?2:t>=.42?1:0;
+  },
+  info(m){
+    if(m.sel.length<3) return "3色えらべなかった";
+    return "お題との相性 "+Math.round(this.total(m)*100)+"点";
+  },
+  draw(m,gg){
+    gg.fillStyle="#f3eee7"; gg.fillRect(0,0,W,H);
+    gg.fillStyle="#ece2d3"; gg.fillRect(0,140,W,66);
+
+    gg.textAlign="center";
+    gg.font="800 21px sans-serif"; gg.fillStyle=C.plum;
+    gg.fillText("《"+m.th.n+"》", W/2, 174);
+    gg.font="700 11.5px sans-serif"; gg.fillStyle="#8a7c88";
+    gg.fillText(m.th.mood, W/2, 195);
+
+    const CW2=76, CH2=64, X0=21, Y0=232;
+    for(let i=0;i<24;i++){
+      const cx=X0+(i%4)*(CW2+8), cy=Y0+Math.floor(i/4)*(CH2+7);
+      const c=m.cols[i], col=hsl(c.h,c.s,c.l);
+      const at=m.sel.indexOf(i);
+      gg.fillStyle="rgba(60,46,54,.14)"; gg.fillRect(cx+1,cy+3,CW2,CH2);
+      gg.fillStyle=col; gg.fillRect(cx,cy,CW2,CH2);
+      gg.fillStyle="rgba(255,255,255,.14)"; gg.fillRect(cx,cy,CW2,CH2*.34);
+      if(at>=0){
+        gg.strokeStyle=C.plum; gg.lineWidth=4;
+        gg.strokeRect(cx+2,cy+2,CW2-4,CH2-4);
+        gg.fillStyle=C.plum;
+        gg.beginPath(); gg.arc(cx+CW2-13,cy+13,11,0,6.2832); gg.fill();
+        gg.fillStyle="#fbf3e6"; gg.font="800 12px sans-serif";
+        gg.fillText((at+1)+"", cx+CW2-13, cy+17);
+      }
+      /* 採点後だけ、合っていたかを見せる */
+      if(m.shown){
+        const f=this.fit(m,c);
+        gg.fillStyle = f>=.62 ? "rgba(127,174,102,.90)" : "rgba(40,32,44,.42)";
+        gg.fillRect(cx,cy+CH2-13,CW2,13);
+        gg.fillStyle="#fff"; gg.font="800 9.5px sans-serif";
+        gg.fillText(f>=.62?"合う":"合わない", cx+CW2/2, cy+CH2-3.5);
+      }
+    }
+
+    /* えらんだ3色を並べて見せる */
+    gg.fillStyle="#e6d8c4"; gg.fillRect(0,652,W,40);
+    for(let i=0;i<3;i++){
+      const x=W/2-96+i*66;
+      if(i<m.sel.length){
+        const c=m.cols[m.sel[i]];
+        gg.fillStyle=hsl(c.h,c.s,c.l); gg.fillRect(x,658,60,28);
+      } else {
+        gg.fillStyle="rgba(90,74,80,.14)"; gg.fillRect(x,658,60,28);
+      }
+    }
+    /* 決定 */
+    const can=m.sel.length===3;
+    gg.fillStyle = can ? C.plum : "rgba(124,90,112,.22)";
+    gg.fillRect(60,700,W-120,52);
+    gg.fillStyle = can ? "#fbf3e6" : "rgba(251,243,230,.55)";
+    gg.font="800 15px sans-serif";
+    gg.fillText(can?"これで決める":"3色えらぶ", W/2, 732);
+
+    timeBar(gg,m.time,26);
+    gg.font="800 13px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("お題に合う色を 3つ", W/2, 106);
+    gg.font="700 10.5px sans-serif"; gg.fillStyle="#8a7c88";
+    gg.fillText("もう一度おすと、選び直せます", W/2, 126);
+
+    if(m.warm>0){
+      gg.fillStyle="rgba(42,36,48,.88)"; gg.fillRect(0,300,W,190);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("お題に合う色をえらぶ", W/2, 340);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("24色から3つ。合っているかは色みだけでなく", W/2, 368);
+      gg.fillText("明るさ・鮮やかさ、3色のまとまりでも見ます", W/2, 390);
+      gg.fillStyle=C.gold;
+      gg.fillText("3色が同じ明るさだと、のっぺりして点が下がる", W/2, 418);
+      gg.fillStyle="rgba(253,246,236,.6)"; gg.font="700 11px sans-serif";
+      gg.fillText("終わったあと、どれが合っていたか答え合わせが出ます", W/2, 446);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.55)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(sc>=3?"いい配色！":sc>=2?"悪くない":sc>=1?"ちぐはぐ":"お題とちがう", W/2, 384);
+      gg.font="700 13px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      gg.fillText(this.info(m), W/2, 414);
+      stars(gg,sc,W/2,472);
+      gg.font="700 11px sans-serif"; gg.fillStyle="rgba(253,246,236,.6)";
+      gg.fillText("うしろの札に、合っていた色が出ています", W/2, 510);
+    }
+  },
+};
+
+/* ==================================================================
+   F シルエット合わせ
+   影のシルエットに、袖・襟・裾の形を合わせる。
+   ================================================================== */
+const SLEEVE=[
+  {n:"セット", d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x,y); gg.lineTo(x+22*s,y+8*s);
+    gg.lineTo(x+16*s,y+46*s); gg.lineTo(x-4*s,y+42*s); gg.closePath(); }},
+  {n:"パフ",   d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x,y);
+    gg.quadraticCurveTo(x+38*s,y+6*s,x+26*s,y+34*s);
+    gg.lineTo(x+12*s,y+40*s); gg.quadraticCurveTo(x-6*s,y+22*s,x,y); gg.closePath(); }},
+  {n:"ドルマン", d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x,y);
+    gg.lineTo(x+44*s,y+30*s); gg.lineTo(x+38*s,y+42*s);
+    gg.quadraticCurveTo(x+10*s,y+26*s,x,y); gg.closePath(); }},
+  {n:"ノースリーブ", d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x,y);
+    gg.quadraticCurveTo(x+8*s,y+16*s,x+2*s,y+26*s);
+    gg.lineTo(x-6*s,y+22*s); gg.closePath(); }},
+];
+const COLLAR=[
+  {n:"ラウンド", d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x-16*s,y);
+    gg.quadraticCurveTo(x,y+20*s,x+16*s,y); gg.quadraticCurveTo(x,y+8*s,x-16*s,y); gg.closePath(); }},
+  {n:"V",       d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x-16*s,y);
+    gg.lineTo(x,y+26*s); gg.lineTo(x+16*s,y); gg.lineTo(x,y+8*s); gg.closePath(); }},
+  {n:"スタンド", d:(gg,s,x,y)=>{ gg.beginPath(); gg.rect(x-15*s,y-8*s,30*s,14*s); gg.closePath(); }},
+  {n:"ボート",  d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x-24*s,y+2*s);
+    gg.quadraticCurveTo(x,y+12*s,x+24*s,y+2*s);
+    gg.quadraticCurveTo(x,y+6*s,x-24*s,y+2*s); gg.closePath(); }},
+];
+const HEM=[
+  {n:"ストレート", d:(gg,s,x,y)=>{ gg.beginPath(); gg.rect(x-34*s,y,68*s,10*s); gg.closePath(); }},
+  {n:"Aライン",   d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x-28*s,y);
+    gg.lineTo(x+28*s,y); gg.lineTo(x+44*s,y+12*s); gg.lineTo(x-44*s,y+12*s); gg.closePath(); }},
+  {n:"マーメイド", d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x-20*s,y);
+    gg.lineTo(x+20*s,y); gg.quadraticCurveTo(x+46*s,y+6*s,x+40*s,y+16*s);
+    gg.lineTo(x-40*s,y+16*s); gg.quadraticCurveTo(x-46*s,y+6*s,x-20*s,y); gg.closePath(); }},
+  {n:"アシメ",    d:(gg,s,x,y)=>{ gg.beginPath(); gg.moveTo(x-30*s,y);
+    gg.lineTo(x+30*s,y); gg.lineTo(x+34*s,y+18*s); gg.lineTo(x-30*s,y+6*s); gg.closePath(); }},
+];
+const PARTS=[SLEEVE,COLLAR,HEM];
+const PARTNAME=["袖","襟","裾"];
+
+const drape = {
+  title:"シルエット合わせ",
+  init(){
+    const ans=[Math.floor(Math.random()*4),Math.floor(Math.random()*4),Math.floor(Math.random()*4)];
+    return { ans, sel:[-1,-1,-1], step:0, time:30, done:false, doneT:0, warm:2.0,
+             wrong:0, msgT:0, msg:"" };
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0) return;
+    if(y<560||y>700) return;
+    const i=Math.floor((x-14)/91);
+    if(i<0||i>3) return;
+    if(m.sel[m.step]>=0) return;
+    m.sel[m.step]=i;
+    if(i!==m.ans[m.step]){ m.wrong++; m.msg="形がちがう"; m.msgT=1.1; }
+    else { m.msg="合った！"; m.msgT=1.1; }
+    m.step++;
+    if(m.step>=3){ m.done=true; m.doneT=0; }
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.2) end(this.score(m), this.info(m)); return; }
+    if(m.msgT>0) m.msgT-=dt;
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){
+    const ok=m.sel.filter((v,i)=>v===m.ans[i]).length;
+    return ok;
+  },
+  info(m){
+    const names=[0,1,2].map(i=>{
+      const a=PARTS[i][m.ans[i]].n, s=m.sel[i]>=0?PARTS[i][m.sel[i]].n:"—";
+      return PARTNAME[i]+"＝"+a+(s===a?"":"（えらんだのは "+s+"）");
+    });
+    return names.join("\n");
+  },
+  /* 服のかたち。ans を使えば見本、sel を使えば自分の答え */
+  body(gg,idx,cx,cy,s,col){
+    gg.fillStyle=col;
+    /* 胴 */
+    gg.beginPath();
+    gg.moveTo(cx-30*s,cy-52*s); gg.lineTo(cx+30*s,cy-52*s);
+    gg.lineTo(cx+38*s,cy+58*s); gg.lineTo(cx-38*s,cy+58*s); gg.closePath(); gg.fill();
+    /* 袖 */
+    const S=SLEEVE[idx[0]]; if(S){ S.d(gg,s,cx+30*s,cy-50*s); gg.fill();
+      gg.save(); gg.translate(cx*2,0); gg.scale(-1,1);
+      S.d(gg,s,cx+30*s,cy-50*s); gg.fill(); gg.restore(); }
+    /* 襟 */
+    const K=COLLAR[idx[1]]; if(K){ K.d(gg,s,cx,cy-52*s); gg.fill(); }
+    /* 裾 */
+    const HM=HEM[idx[2]]; if(HM){ HM.d(gg,s,cx,cy+56*s); gg.fill(); }
+  },
+  draw(m,gg){
+    gg.fillStyle="#efe7dc"; gg.fillRect(0,0,W,H);
+    gg.fillStyle="#e2d8ca"; gg.fillRect(0,140,W,400);
+
+    /* 見本＝影 */
+    this.body(gg, m.ans, 112, 330, 1.35, "#5b5060");
+    gg.textAlign="center"; gg.font="800 11px sans-serif"; gg.fillStyle="#8a7c88";
+    gg.fillText("見本（影）", 112, 470);
+
+    /* 自分の答え */
+    const mine=[ m.sel[0]>=0?m.sel[0]:null, m.sel[1]>=0?m.sel[1]:null, m.sel[2]>=0?m.sel[2]:null ];
+    this.body(gg, mine, 278, 330, 1.35, C.cloth);
+    gg.fillStyle="#8a7c88"; gg.fillText("あなたの形", 278, 470);
+
+    /* えらぶところ */
+    const step=Math.min(m.step,2);
+    gg.textAlign="center"; gg.font="800 13px sans-serif"; gg.fillStyle=C.plum;
+    gg.fillText(m.done?"できあがり":(PARTNAME[step]+"　の形をえらぶ"), W/2, 530);
+    for(let i=0;i<4;i++){
+      const x=14+i*91, y=560;
+      const chosen = m.sel[step]===i;
+      gg.fillStyle = chosen ? mix(C.wall,C.plum,.2) : C.wall;
+      gg.fillRect(x,y,84,140);
+      gg.fillStyle="rgba(60,46,54,.10)"; gg.fillRect(x,y+132,84,8);
+      const idx=[null,null,null]; idx[step]=i;
+      /* 部品だけを見せる */
+      gg.fillStyle=C.plum;
+      const P=PARTS[step][i];
+      if(step===0) P.d(gg,1.1,x+26,y+38);
+      else if(step===1) P.d(gg,1.5,x+42,y+56);
+      else P.d(gg,1.0,x+42,y+62);
+      gg.fill();
+      gg.fillStyle=C.ink; gg.font="800 11px sans-serif";
+      gg.fillText(P.n, x+42, y+122);
+    }
+
+    /* 進み */
+    for(let i=0;i<3;i++){
+      gg.beginPath(); gg.arc(W/2-30+i*30, 726, 8, 0, 6.2832);
+      gg.fillStyle = m.sel[i]<0 ? "rgba(90,74,80,.18)"
+                   : m.sel[i]===m.ans[i] ? C.sage : C.coral;
+      gg.fill();
+      gg.fillStyle="#6d6270"; gg.font="800 9.5px sans-serif";
+      gg.fillText(PARTNAME[i], W/2-30+i*30, 750);
+    }
+
+    timeBar(gg,m.time,30);
+    gg.font="800 13px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("影と同じ形にする", W/2, 106);
+    gg.font="700 10.5px sans-serif";
+    gg.fillStyle = m.msgT>0 ? (m.msg==="合った！"?C.sage:C.coral) : "#8a7c88";
+    gg.fillText(m.msgT>0?m.msg:"袖 → 襟 → 裾 の順にえらぶ", W/2, 126);
+
+    if(m.warm>0){
+      gg.fillStyle="rgba(42,36,48,.88)"; gg.fillRect(0,300,W,150);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("影と同じ形をえらぶ", W/2, 340);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("袖・襟・裾を順に3回。名前も覚えられます", W/2, 368);
+      gg.fillStyle=C.gold;
+      gg.fillText("えらぶたびに、右の形がその場で変わります", W/2, 394);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.6)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(sc>=3?"ぴたり！":sc>=2?"おしい":sc>=1?"半分":"ぜんぶちがう", W/2, 340);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      const lines=this.info(m).split("\n");
+      lines.forEach((L,i)=>gg.fillText(L, W/2, 376+i*22));
+      stars(gg,sc,W/2,486);
+    }
+  },
+};
+
+/* ==================================================================
+   H 採寸
+   メジャーが伸びる。指示された寸法でぴたりと止める。
+   目盛りはだんだん見えなくなる。
+   ================================================================== */
+const MPARTS=["バスト","ウエスト","ヒップ","袖丈","着丈"];
+const measure = {
+  title:"採寸",
+  init(){
+    const rounds=[];
+    for(let i=0;i<4;i++){
+      rounds.push({ part:MPARTS[i%MPARTS.length],
+                    target: 40 + Math.floor(Math.random()*8)*10 });   /* 40〜110 */
+    }
+    return { rounds, r:0, len:0, dir:1, ph:"run", pt:0, res:[],
+             done:false, doneT:0, warm:1.9, speed:58, time:34 };
+  },
+  MAX:130,
+  RUNCAP:7,                       /* 1回ぶんの持ち時間。押さなくても次へ進む */
+  down(m){
+    if(m.done||m.warm>0) return;
+    if(m.ph!=="run") return;
+    m.ph="stop"; m.pt=0;
+    const t=m.rounds[m.r], d=Math.abs(m.len-t.target);
+    m.res.push({ got:Math.round(m.len), want:t.target, d });
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.2) end(this.score(m), this.info(m)); return; }
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.pt+=dt; m.time-=dt;
+    if(m.ph==="run"){
+      m.len += m.dir*m.speed*dt*(1+m.r*.16);
+      if(m.len>=this.MAX){ m.len=this.MAX; m.dir=-1; }
+      if(m.len<=0){ m.len=0; m.dir=1; }
+      /* 押さないままでも、次へ進む（止まらないと終われないのを防ぐ） */
+      if(m.pt>this.RUNCAP || m.time<=0){
+        const t=m.rounds[m.r];
+        m.res.push({ got:Math.round(m.len), want:t.target,
+                     d:Math.abs(m.len-t.target) });
+        m.ph="stop"; m.pt=0;
+      }
+    } else if(m.ph==="stop"){
+      if(m.pt>1.25){
+        m.r++;
+        if(m.r>=m.rounds.length){ m.done=true; m.doneT=0; }
+        else { m.ph="run"; m.pt=0; m.len=0; m.dir=1; }
+      }
+    }
+  },
+  score(m){
+    if(!m.res.length) return 0;
+    const avg=m.res.reduce((a,r)=>a+r.d,0)/m.res.length;
+    if(m.res.length<m.rounds.length) return 0;
+    return avg<=3?3:avg<=7?2:avg<=14?1:0;
+  },
+  info(m){
+    if(m.res.length<m.rounds.length) return "最後まで測れなかった";
+    const avg=m.res.reduce((a,r)=>a+r.d,0)/m.res.length;
+    return "平均のずれ "+avg.toFixed(1)+"cm";
+  },
+  draw(m,gg){
+    gg.fillStyle="#efe7dc"; gg.fillRect(0,0,W,H);
+    gg.fillStyle="#e4dacb"; gg.fillRect(0,150,W,470);
+
+    const t=m.rounds[Math.min(m.r,m.rounds.length-1)];
+    const X0=44, X1=W-44, Y=380;
+    const px = v => X0 + (X1-X0)*v/this.MAX;
+
+    /* 目もりの見えかた。回が進むほど薄くなる＝体で覚える */
+    const vis=[1,.62,.3,0][Math.min(m.r,3)];
+
+    /* メジャーの帯 */
+    gg.fillStyle="rgba(60,46,54,.14)"; gg.fillRect(X0,Y-16,X1-X0,44);
+    gg.fillStyle="#f2e2b8"; gg.fillRect(X0,Y-20,X1-X0,44);
+    /* 目もり */
+    for(let v=0;v<=this.MAX;v+=5){
+      const big=(v%10===0);
+      gg.fillStyle="rgba(70,54,40,"+(vis*(big?.75:.4)).toFixed(2)+")";
+      gg.fillRect(px(v)-1, Y-20, big?2:1.2, big?15:9);
+      if(big && v%20===0){
+        gg.textAlign="center"; gg.font="800 9.5px sans-serif";
+        gg.fillStyle="rgba(70,54,40,"+(vis*.85).toFixed(2)+")";
+        gg.fillText(v+"", px(v), Y+18);
+      }
+    }
+    /* 目標のしるし。これは いつも見える */
+    gg.fillStyle=C.plum; gg.fillRect(px(t.target)-1.5, Y-30, 3, 12);
+    gg.beginPath(); gg.moveTo(px(t.target)-7,Y-30); gg.lineTo(px(t.target)+7,Y-30);
+    gg.lineTo(px(t.target),Y-20); gg.closePath(); gg.fill();
+
+    /* いま伸びている分 */
+    gg.fillStyle="rgba(224,143,140,.34)"; gg.fillRect(X0,Y-20,px(m.len)-X0,44);
+    gg.fillStyle=C.coral; gg.fillRect(px(m.len)-2,Y-26,4,56);
+
+    /* 止めた結果 */
+    if(m.ph==="stop"){
+      const r=m.res[m.res.length-1];
+      gg.textAlign="center"; gg.font="800 25px sans-serif";
+      gg.fillStyle = r.d<=3?C.sage : r.d<=8?C.gold : C.coral;
+      gg.fillText(r.d<=3?"ぴたり！":r.d<=8?"おしい":"ずれた", W/2, 300);
+      gg.font="800 15px sans-serif"; gg.fillStyle=C.ink;
+      gg.fillText(r.got+" cm　（目標 "+r.want+" cm）", W/2, 330);
+    }
+
+    /* お題 */
+    gg.textAlign="center";
+    gg.font="800 19px sans-serif"; gg.fillStyle=C.plum;
+    gg.fillText(t.part+"　"+t.target+" cm", W/2, 210);
+    gg.font="700 11px sans-serif"; gg.fillStyle="#8a7c88";
+    gg.fillText(["目もりがはっきり見えます","目もりが薄くなりました",
+                 "目もりがほとんど見えません","目もりなし。体で覚えた寸法で"][Math.min(m.r,3)],
+                W/2, 232);
+
+    /* 進みの玉 */
+    for(let i=0;i<m.rounds.length;i++){
+      gg.beginPath(); gg.arc(W/2-((m.rounds.length-1)*16)+i*32, 132, 8, 0, 6.2832);
+      gg.fillStyle = i<m.res.length
+        ? (m.res[i].d<=3?C.sage : m.res[i].d<=8?C.gold : C.coral)
+        : "rgba(90,74,80,.18)";
+      gg.fill();
+    }
+
+    /* 押すところ */
+    if(m.ph==="run" && m.warm<=0){
+      gg.fillStyle=C.plum; gg.fillRect(60,640,W-120,66);
+      gg.fillStyle="#fbf3e6"; gg.font="800 17px sans-serif";
+      gg.fillText("と　め　る", W/2, 680);
+    }
+
+    timeBar(gg,m.time,34);
+    gg.font="800 13px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("メジャーを、目標でとめる", W/2, 106);
+
+    if(m.warm>0){
+      gg.fillStyle="rgba(42,36,48,.88)"; gg.fillRect(0,320,W,160);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("採寸", W/2, 358);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("メジャーが伸び縮みします。目標でとめる", W/2, 386);
+      gg.fillStyle=C.gold;
+      gg.fillText("回を追うごとに、目もりが見えなくなります", W/2, 414);
+      gg.fillStyle="rgba(253,246,236,.6)"; gg.font="700 11px sans-serif";
+      gg.fillText("紫の印は最後まで見えます。全4回", W/2, 440);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.6)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(sc>=3?"いい目をしている":sc>=2?"まずまず":sc>=1?"あらい":"測り直し", W/2, 384);
+      gg.font="700 13px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      gg.fillText(this.info(m), W/2, 414);
+      stars(gg,sc,W/2,472);
+    }
+  },
+};
+
+/* ==================================================================
+   I ビーズ刺繍
+   図案の順にビーズを打つ。次の1粒だけ光る。
+   ================================================================== */
+const bead = {
+  title:"ビーズ刺繍",
+  init(){
+    /* 図案。曲線に沿った点列 */
+    const pts=[];
+    const kind=Math.floor(Math.random()*3);
+    const N=22;
+    for(let i=0;i<N;i++){
+      const u=i/(N-1);
+      let x,y;
+      if(kind===0){            /* つる草 */
+        x = 70 + u*250;
+        y = 400 + Math.sin(u*6.5)*104 + Math.sin(u*2.1)*40;
+      } else if(kind===1){     /* 渦 */
+        const a=u*8.2, r=22+u*116;
+        x = 195 + Math.cos(a)*r*0.86; y = 400 + Math.sin(a)*r;
+      } else {                 /* 花びら */
+        const a=u*6.2832, r=96+Math.sin(a*5)*40;
+        x = 195 + Math.cos(a)*r*0.86; y = 400 + Math.sin(a)*r;
+      }
+      pts.push({ x:clamp(x,40,W-40), y:clamp(y,210,600), hit:false });
+    }
+    return { pts, i:0, time:30, done:false, doneT:0, warm:1.9,
+             miss:0, combo:0, best:0, flash:0, sparks:[] };
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0) return;
+    const p=m.pts[m.i];
+    if(!p) return;
+    const d=Math.hypot(p.x-x,p.y-y);
+    if(d<30){
+      p.hit=true; m.i++; m.combo++; m.best=Math.max(m.best,m.combo); m.flash=.22;
+      for(let k=0;k<6;k++) m.sparks.push({x:p.x,y:p.y,t:0,
+        a:Math.random()*6.2832, v:40+Math.random()*50});
+      if(m.i>=m.pts.length){ m.done=true; m.doneT=0; }
+    } else {
+      m.miss++; m.combo=0;
+    }
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m), this.info(m)); return; }
+    if(m.flash>0) m.flash-=dt;
+    for(let i=m.sparks.length-1;i>=0;i--){ const s=m.sparks[i]; s.t+=dt;
+      if(s.t>.5) m.sparks.splice(i,1); }
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){
+    const done=m.i/m.pts.length;
+    if(done<1) return done>=.6?1:0;
+    return m.miss<=1?3:m.miss<=5?2:1;
+  },
+  info(m){
+    return "打った "+m.i+"／"+m.pts.length+"粒　外し "+m.miss+"回　最長 "+m.best+"連";
+  },
+  draw(m,gg){
+    gg.fillStyle="#2f2740"; gg.fillRect(0,0,W,H);
+    /* 布 */
+    gg.fillStyle="#453a56"; gg.fillRect(24,180,W-48,450);
+    gg.strokeStyle="rgba(255,255,255,.035)"; gg.lineWidth=1;
+    for(let y=180;y<630;y+=7){ gg.beginPath(); gg.moveTo(24,y); gg.lineTo(W-24,y); gg.stroke(); }
+
+    /* 図案の線 */
+    gg.strokeStyle="rgba(255,255,255,.13)"; gg.lineWidth=2; gg.setLineDash([3,5]);
+    gg.beginPath();
+    m.pts.forEach((p,i)=> i?gg.lineTo(p.x,p.y):gg.moveTo(p.x,p.y));
+    gg.stroke(); gg.setLineDash([]);
+
+    /* 打ったビーズ。糸でつながる */
+    gg.strokeStyle=C.gold; gg.lineWidth=1.6;
+    gg.beginPath();
+    for(let i=0;i<m.i;i++){ const p=m.pts[i]; i?gg.lineTo(p.x,p.y):gg.moveTo(p.x,p.y); }
+    gg.stroke();
+    for(let i=0;i<m.pts.length;i++){
+      const p=m.pts[i];
+      if(p.hit){
+        gg.fillStyle="rgba(0,0,0,.28)";
+        gg.beginPath(); gg.arc(p.x+1,p.y+2,7,0,6.2832); gg.fill();
+        gg.fillStyle=C.gold;
+        gg.beginPath(); gg.arc(p.x,p.y,7,0,6.2832); gg.fill();
+        gg.fillStyle="rgba(255,252,230,.85)";
+        gg.beginPath(); gg.arc(p.x-2,p.y-2.4,2.6,0,6.2832); gg.fill();
+      } else if(i===m.i){
+        const pu=.6+.4*Math.sin(performance.now()/150);
+        gg.fillStyle="rgba(242,193,78,"+(pu*.34).toFixed(2)+")";
+        gg.beginPath(); gg.arc(p.x,p.y,22,0,6.2832); gg.fill();
+        gg.strokeStyle=C.gold; gg.lineWidth=2.4;
+        gg.beginPath(); gg.arc(p.x,p.y,13,0,6.2832); gg.stroke();
+        gg.fillStyle="rgba(255,255,255,.75)";
+        gg.beginPath(); gg.arc(p.x,p.y,3.4,0,6.2832); gg.fill();
+      } else {
+        gg.fillStyle="rgba(255,255,255,.14)";
+        gg.beginPath(); gg.arc(p.x,p.y,3.4,0,6.2832); gg.fill();
+      }
+    }
+    for(const s of m.sparks){
+      const a=1-s.t/.5;
+      gg.fillStyle="rgba(255,232,150,"+(a*.8).toFixed(2)+")";
+      const r=s.t*s.v;
+      gg.beginPath(); gg.arc(s.x+Math.cos(s.a)*r, s.y+Math.sin(s.a)*r, 2.2*a+.6, 0, 6.2832);
+      gg.fill();
+    }
+
+    timeBar(gg,m.time,30);
+    gg.textAlign="center"; gg.font="800 14px sans-serif"; gg.fillStyle="#fdf6ec";
+    gg.fillText(m.i+" ／ "+m.pts.length+" 粒", W/2, 106);
+    gg.font="700 11px sans-serif";
+    gg.fillStyle = m.combo>=5 ? C.gold : "rgba(253,246,236,.6)";
+    gg.fillText(m.combo>=2 ? (m.combo+" 連！") : "光っている所を、順に打つ", W/2, 126);
+    if(m.miss>0){
+      gg.font="700 10.5px sans-serif"; gg.fillStyle=C.coral;
+      gg.fillText("外し "+m.miss, W/2, 664);
+    }
+
+    if(m.warm>0){
+      gg.fillStyle="rgba(28,20,36,.86)"; gg.fillRect(0,320,W,150);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("図案の順にビーズを打つ", W/2, 358);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("光っている１粒だけを、順に押す", W/2, 386);
+      gg.fillStyle=C.gold;
+      gg.fillText("外さず続けるほど、連なって高得点", W/2, 412);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.6)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(m.i>=m.pts.length
+        ? (sc>=3?"みごとな刺繍！":sc>=2?"きれいに打てた":"打ちきった")
+        : "時間ぎれ…", W/2, 384);
+      gg.font="700 13px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      gg.fillText(this.info(m), W/2, 414);
+      stars(gg,sc,W/2,472);
+    }
+  },
+};
+
+/* ==================================================================
+   J 検品
+   仕上がった服から、不具合をぜんぶ見つける。押すだけ。目のゲーム。
+   ================================================================== */
+const FLAW = [
+  { n:"ほつれ",     d:(gg,x,y,t)=>{ gg.strokeStyle="#c96a72"; gg.lineWidth=1.6; gg.lineCap="round";
+      for(let i=0;i<5;i++){ const a=-1.2+i*.5;
+        gg.beginPath(); gg.moveTo(x,y);
+        gg.quadraticCurveTo(x+Math.cos(a)*9,y+Math.sin(a)*9,x+Math.cos(a)*16,y+Math.sin(a)*15);
+        gg.stroke(); } } },
+  { n:"縫い目の曲がり", d:(gg,x,y)=>{ gg.strokeStyle="#b8606a"; gg.lineWidth=2;
+      gg.setLineDash([4,3]); gg.beginPath();
+      gg.moveTo(x-18,y); gg.quadraticCurveTo(x,y+11,x+18,y-3); gg.stroke(); gg.setLineDash([]); } },
+  { n:"しみ",       d:(gg,x,y)=>{ gg.fillStyle="rgba(150,110,70,.5)";
+      gg.beginPath(); gg.ellipse(x,y,9,7,.4,0,6.2832); gg.fill();
+      gg.fillStyle="rgba(150,110,70,.34)";
+      gg.beginPath(); gg.ellipse(x+5,y+4,5,4,0,0,6.2832); gg.fill(); } },
+  { n:"ボタンのゆるみ", d:(gg,x,y)=>{ gg.fillStyle="#cfd6dd";
+      gg.save(); gg.translate(x,y); gg.rotate(.5);
+      gg.beginPath(); gg.arc(0,0,8,0,6.2832); gg.fill();
+      gg.fillStyle="#9aa4ae"; gg.beginPath(); gg.arc(0,0,5,0,6.2832); gg.fill();
+      gg.restore();
+      gg.strokeStyle="#c96a72"; gg.lineWidth=1.4;
+      gg.beginPath(); gg.moveTo(x+4,y+6); gg.lineTo(x+13,y+14); gg.stroke(); } },
+  { n:"糸のとび",   d:(gg,x,y)=>{ gg.strokeStyle="#b8606a"; gg.lineWidth=2.2;
+      gg.beginPath(); gg.moveTo(x-14,y); gg.lineTo(x-4,y);
+      gg.moveTo(x+5,y); gg.lineTo(x+14,y); gg.stroke(); } },
+];
+const inspect = {
+  title:"検品",
+  init(){
+    const n=4+Math.floor(Math.random()*2);           /* 4〜5か所 */
+    const spots=[];
+    for(let k=0;k<n;k++){
+      let p=null;
+      for(let t=0;t<300;t++){
+        const q={ x:96+Math.random()*198, y:224+Math.random()*352 };
+        if(spots.every(o=>Math.hypot(o.x-q.x,o.y-q.y)>72)){ p=q; break; }
+      }
+      if(!p) continue;
+      p.k=Math.floor(Math.random()*FLAW.length); p.found=false;
+      spots.push(p);
+    }
+    return { spots, time:30, done:false, doneT:0, warm:2.0, miss:0,
+             msg:"", msgT:0, pops:[] };
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0) return;
+    let hit=null, bd=34;
+    for(const s of m.spots){
+      if(s.found) continue;
+      const d=Math.hypot(s.x-x,s.y-y);
+      if(d<bd){ bd=d; hit=s; }
+    }
+    if(hit){
+      hit.found=true; m.msg=FLAW[hit.k].n+" を見つけた"; m.msgT=1.2;
+      m.pops.push({x:hit.x,y:hit.y,t:0});
+      if(m.spots.every(s=>s.found)){ m.done=true; m.doneT=0; }
+    } else { m.miss++; m.msg="なんともない所です"; m.msgT=.9; }
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m), this.info(m)); return; }
+    if(m.msgT>0) m.msgT-=dt;
+    for(let i=m.pops.length-1;i>=0;i--){ m.pops[i].t+=dt; if(m.pops[i].t>.7) m.pops.splice(i,1); }
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  found(m){ return m.spots.filter(s=>s.found).length; },
+  score(m){
+    if(this.found(m)<m.spots.length) return this.found(m)>=m.spots.length-1?1:0;
+    return m.miss<=1?3:m.miss<=4?2:1;
+  },
+  info(m){ return "見つけた "+this.found(m)+"／"+m.spots.length+"　空振り "+m.miss+"回"; },
+  draw(m,gg){
+    gg.fillStyle="#e9e1d6"; gg.fillRect(0,0,W,H);
+    gg.fillStyle="#ddd3c4"; gg.fillRect(0,168,W,470);
+    /* 服（トルソーに掛けた一枚） */
+    gg.fillStyle="rgba(50,38,44,.14)";
+    gg.beginPath(); gg.ellipse(195,606,96,16,0,0,6.2832); gg.fill();
+    gg.fillStyle=C.cloth;
+    gg.beginPath();
+    gg.moveTo(150,206); gg.lineTo(240,206);
+    gg.lineTo(276,242); gg.lineTo(258,262); gg.lineTo(246,246);
+    gg.lineTo(252,596); gg.lineTo(138,596); gg.lineTo(144,246);
+    gg.lineTo(132,262); gg.lineTo(114,242); gg.closePath(); gg.fill();
+    gg.fillStyle=shade(C.cloth,.90);
+    gg.beginPath();
+    gg.moveTo(210,206); gg.lineTo(240,206); gg.lineTo(276,242);
+    gg.lineTo(258,262); gg.lineTo(246,246); gg.lineTo(252,596);
+    gg.lineTo(210,596); gg.closePath(); gg.fill();
+    gg.fillStyle="rgba(120,96,84,.16)"; gg.fillRect(192,214,4,382);   /* 前中心 */
+    gg.fillStyle=shade(C.cloth,1.05);
+    gg.beginPath(); gg.moveTo(150,206); gg.quadraticCurveTo(195,232,240,206);
+    gg.quadraticCurveTo(195,218,150,206); gg.closePath(); gg.fill();
+
+    for(const s of m.spots){
+      if(s.found){
+        gg.strokeStyle=C.sage; gg.lineWidth=2.6;
+        gg.beginPath(); gg.arc(s.x,s.y,20,0,6.2832); gg.stroke();
+        gg.globalAlpha=.35; FLAW[s.k].d(gg,s.x,s.y); gg.globalAlpha=1;
+      } else FLAW[s.k].d(gg,s.x,s.y);
+    }
+    for(const p of m.pops){
+      gg.strokeStyle="rgba(127,174,102,"+(1-p.t/.7).toFixed(2)+")"; gg.lineWidth=3;
+      gg.beginPath(); gg.arc(p.x,p.y,20+p.t*34,0,6.2832); gg.stroke();
+    }
+
+    timeBar(gg,m.time,30);
+    gg.textAlign="center"; gg.font="800 14px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("見つけた　"+this.found(m)+" ／ "+m.spots.length, W/2, 106);
+    gg.font="700 10.5px sans-serif";
+    gg.fillStyle = m.msgT>0 ? (m.msg.indexOf("見つけた")>=0?C.sage:C.coral) : "#8a7c88";
+    gg.fillText(m.msgT>0?m.msg:"ほつれ・曲がり・しみ・ゆるみ・糸とび", W/2, 126);
+    gg.font="700 10px sans-serif"; gg.fillStyle="#9c8f9a";
+    gg.fillText("空振り "+m.miss+"回", W/2, 660);
+
+    if(m.warm>0){
+      gg.fillStyle="rgba(42,36,48,.86)"; gg.fillRect(0,320,W,150);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("仕上がりを検品する", W/2, 358);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("不具合のある所を、ぜんぶ押す", W/2, 386);
+      gg.fillStyle=C.coral;
+      gg.fillText("何もない所を押すと、空振りとして数えます", W/2, 412);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.6)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(sc>=3?"見のがしなし！":sc>=2?"よく見ている":sc>=1?"あまい":"見のがした", W/2, 384);
+      gg.font="700 13px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      gg.fillText(this.info(m), W/2, 414);
+      stars(gg,sc,W/2,472);
+    }
+  },
+};
+
+/* ==================================================================
+   K ボタン付け
+   4つ穴に、示された順で糸を通す。速く正しく続けるほどよい。
+   ================================================================== */
+const SEWPAT = [
+  { n:"平行", o:[0,1,2,3] },
+  { n:"クロス", o:[0,3,1,2] },
+  { n:"かたばみ", o:[0,1,3,2] },
+  { n:"ヨの字", o:[0,2,1,3] },
+];
+const sew = {
+  title:"ボタン付け",
+  init(){
+    const rounds=[];
+    for(let i=0;i<4;i++) rounds.push(SEWPAT[Math.floor(Math.random()*SEWPAT.length)]);
+    return { rounds, r:0, step:0, time:30, done:false, doneT:0, warm:2.2,
+             miss:0, msg:"", msgT:0, ph:"sew", pt:0, sewn:[] };
+  },
+  holes(){ return [[-15,-15],[15,-15],[-15,15],[15,15]]; },
+  cx:195, cy:392, R:76,
+  hitHole(x,y){
+    const hs=this.holes();
+    for(let i=0;i<4;i++){
+      const hx=this.cx+hs[i][0]*2.1, hy=this.cy+hs[i][1]*2.1;
+      if(Math.hypot(hx-x,hy-y)<34) return i;
+    }
+    return -1;
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0||m.ph!=="sew") return;
+    const h=this.hitHole(x,y);
+    if(h<0) return;
+    const want=m.rounds[m.r].o[m.step];
+    if(h===want){
+      m.sewn.push(h); m.step++;
+      if(m.step>=4){
+        m.ph="ok"; m.pt=0;
+      }
+    } else { m.miss++; m.msg="順番がちがう"; m.msgT=.8; }
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m), this.info(m)); return; }
+    if(m.msgT>0) m.msgT-=dt;
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt; m.pt+=dt;
+    if(m.ph==="ok" && m.pt>.9){
+      m.r++;
+      if(m.r>=m.rounds.length){ m.done=true; m.doneT=0; }
+      else { m.ph="sew"; m.step=0; m.sewn=[]; m.pt=0; }
+    }
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){
+    if(m.r<m.rounds.length) return m.r>=2?1:0;
+    return m.miss===0?3:m.miss<=3?2:1;
+  },
+  info(m){ return "付けた "+m.r+"／"+m.rounds.length+"個　間違い "+m.miss+"回"; },
+  draw(m,gg){
+    gg.fillStyle="#efe7dc"; gg.fillRect(0,0,W,H);
+    gg.fillStyle=C.cloth; gg.fillRect(0,190,W,410);
+    gg.strokeStyle="rgba(120,96,84,.05)"; gg.lineWidth=1;
+    for(let y=190;y<600;y+=7){ gg.beginPath(); gg.moveTo(0,y); gg.lineTo(W,y); gg.stroke(); }
+
+    const pat=m.rounds[Math.min(m.r,m.rounds.length-1)];
+    const hs=this.holes();
+    const hx=i=>this.cx+hs[i][0]*2.1, hy=i=>this.cy+hs[i][1]*2.1;
+
+    /* ボタン */
+    gg.fillStyle="rgba(50,38,44,.18)";
+    gg.beginPath(); gg.ellipse(this.cx+3,this.cy+6,this.R,this.R*.94,0,0,6.2832); gg.fill();
+    gg.fillStyle="#e2e7ec";
+    gg.beginPath(); gg.arc(this.cx,this.cy,this.R,0,6.2832); gg.fill();
+    gg.fillStyle="#cdd5dd";
+    gg.beginPath(); gg.arc(this.cx,this.cy,this.R*.84,0,6.2832); gg.fill();
+    gg.fillStyle="#eef2f6";
+    gg.beginPath(); gg.arc(this.cx-this.R*.22,this.cy-this.R*.24,this.R*.30,0,6.2832); gg.fill();
+
+    /* 通した糸 */
+    gg.strokeStyle=C.plum; gg.lineWidth=7; gg.lineCap="round";
+    for(let i=0;i+1<m.sewn.length;i+=2){
+      gg.beginPath(); gg.moveTo(hx(m.sewn[i]),hy(m.sewn[i]));
+      gg.lineTo(hx(m.sewn[i+1]),hy(m.sewn[i+1])); gg.stroke();
+    }
+    /* 穴 */
+    for(let i=0;i<4;i++){
+      const next = m.ph==="sew" && pat.o[m.step]===i;
+      gg.fillStyle="#6f7a86";
+      gg.beginPath(); gg.arc(hx(i),hy(i),13,0,6.2832); gg.fill();
+      gg.fillStyle="#4c545e";
+      gg.beginPath(); gg.arc(hx(i),hy(i),9.5,0,6.2832); gg.fill();
+      if(next){
+        const pu=.6+.4*Math.sin(performance.now()/140);
+        gg.strokeStyle="rgba(242,193,78,"+pu.toFixed(2)+")"; gg.lineWidth=4;
+        gg.beginPath(); gg.arc(hx(i),hy(i),22,0,6.2832); gg.stroke();
+      }
+    }
+    /* 見本 */
+    gg.fillStyle="#e6d8c4"; gg.fillRect(0,626,W,96);
+    gg.textAlign="center"; gg.font="800 12px sans-serif"; gg.fillStyle=C.plum;
+    gg.fillText("見本　《"+pat.n+"》　この順に通す", W/2, 648);
+    const sx=W/2, sy=684, s=13;
+    const gh=[[-s,-s],[s,-s],[-s,s],[s,s]];
+    gg.fillStyle="#cdd5dd"; gg.beginPath(); gg.arc(sx,sy,28,0,6.2832); gg.fill();
+    gg.strokeStyle=C.plum; gg.lineWidth=3.4;
+    for(let i=0;i+1<4;i+=2){
+      gg.beginPath();
+      gg.moveTo(sx+gh[pat.o[i]][0],sy+gh[pat.o[i]][1]);
+      gg.lineTo(sx+gh[pat.o[i+1]][0],sy+gh[pat.o[i+1]][1]); gg.stroke();
+    }
+    for(let i=0;i<4;i++){
+      gg.fillStyle="#4c545e";
+      gg.beginPath(); gg.arc(sx+gh[i][0],sy+gh[i][1],4.4,0,6.2832); gg.fill();
+      const at=pat.o.indexOf(i);
+      gg.fillStyle=C.plum; gg.font="800 9px sans-serif";
+      gg.fillText((at+1)+"", sx+gh[i][0]*1.9, sy+gh[i][1]*1.9+3);
+    }
+
+    for(let i=0;i<m.rounds.length;i++){
+      gg.beginPath(); gg.arc(W/2-((m.rounds.length-1)*15)+i*30, 140, 7, 0, 6.2832);
+      gg.fillStyle = i<m.r ? C.sage : "rgba(90,74,80,.18)"; gg.fill();
+    }
+
+    timeBar(gg,m.time,30);
+    gg.textAlign="center"; gg.font="800 14px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText((m.r+1)+"個め　／　"+m.rounds.length+"個", W/2, 106);
+    gg.font="700 10.5px sans-serif";
+    gg.fillStyle = m.msgT>0 ? C.coral : "#8a7c88";
+    gg.fillText(m.msgT>0?m.msg:"光っている穴を、順に押す", W/2, 124);
+
+    if(m.ph==="ok"){
+      gg.fillStyle=C.sage; gg.font="800 22px sans-serif";
+      gg.fillText("ついた！", W/2, 250);
+    }
+    if(m.warm>0){
+      gg.fillStyle="rgba(42,36,48,.86)"; gg.fillRect(0,320,W,150);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("ボタンを付ける", W/2, 358);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("下の見本と同じ順に、4つの穴を押す", W/2, 386);
+      gg.fillStyle=C.gold;
+      gg.fillText("通し方は4種類。毎回変わります", W/2, 412);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.6)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(sc>=3?"手ぎわがいい！":sc>=2?"付けられた":sc>=1?"あやしい":"やり直し", W/2, 384);
+      gg.font="700 13px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      gg.fillText(this.info(m), W/2, 414);
+      stars(gg,sc,W/2,472);
+    }
+  },
+};
+
+const GAMES={ swatch, palette, drape, measure, bead, inspect, sew };
+
+/* ================================================================ */
+let cur=null,m=null,last=0;
+const menuEl=document.getElementById("menu");
+const barEl=document.getElementById("bar");
+const resEl=document.getElementById("res");
+function start(name){
+  cur=GAMES[name]; m=cur.init(); m.name=name;
+  barEl.querySelector(".t").textContent=cur.title;
+  menuEl.style.display="none"; barEl.classList.add("on"); resEl.classList.remove("on");
+}
+function end(score,detail){
+  const sc=clamp(score|0,0,3);
+  resEl.querySelector(".rt").textContent =
+    sc>=3?"みごと":sc>=2?"よくできました":sc>=1?"まずまず":"つぎ、いこう";
+  resEl.querySelector(".rs").textContent="★".repeat(sc)+"☆".repeat(3-sc);
+  resEl.querySelector(".rd").textContent =
+    (detail?detail+"\n":"")+(sc>0?("ボタンを "+(sc+(sc>=3?1:0))+"つ手に入れた"):"もう一回どうぞ");
+  resEl.classList.add("on"); barEl.classList.remove("on"); cur=null;
+  if(loopOn && demoName) setTimeout(()=>{ if(demoName) start(demoName); }, 1500);
+}
+function toMenu(){ cur=null;m=null;
+  resEl.classList.remove("on"); barEl.classList.remove("on");
+  menuEl.style.display=""; g.clearRect(0,0,W,H); }
+for(const b of document.querySelectorAll(".card"))
+  b.addEventListener("click",()=>start(b.dataset.g));
+document.getElementById("quit").onclick=()=>toMenu();
+document.getElementById("back").onclick=()=>toMenu();
+document.getElementById("again").onclick=()=>{const n=m&&m.name; if(n)start(n);};
+
+/* ---- 見本の動き ---- */
+const DEMO={
+  swatch(m,dt){ const G=cur; m._t=(m._t||0)+dt; if(m._t<.42) return; m._t=0;
+    const free=m.tiles.filter(t=>!t.gone && !G.buried(m,t)); if(!free.length) return;
+    const cnt={}; for(const k of m.slot) cnt[k]=(cnt[k]||0)+1;
+    free.sort((a,b)=>(cnt[b.k]||0)-(cnt[a.k]||0));
+    G.down(m,free[0].x,free[0].y); },
+  palette(m,dt){ const G=cur; m._t=(m._t||0)+dt;
+    if(m.sel.length<3){ if(m._t<.75) return; m._t=0;
+      const f=m.cols.map((c,i)=>({i,v:G.fit(m,c)})).filter(o=>!m.sel.includes(o.i)).sort((a,b)=>b.v-a.v);
+      m.sel.push(f[0].i); return; }
+    if(m._t>1.1 && !m.done){ m.done=true; m.doneT=0; m.shown=true; } },
+  drape(m,dt){ const G=cur; m._t=(m._t||0)+dt; if(m._t<1.0) return; m._t=0;
+    const s=Math.min(m.step,2); const i=m.ans[s]; G.down(m,14+i*91+42,600); },
+  measure(m,dt){ const G=cur; if(m.ph!=="run"||m.warm>0) return;
+    const t=m.rounds[m.r]; if(m.dir>0 && m.len>=t.target-1.2) G.down(m,195,670); },
+  bead(m,dt){ const G=cur; m._t=(m._t||0)+dt; if(m._t<.22) return; m._t=0;
+    const p=m.pts[m.i]; if(p) G.down(m,p.x,p.y); },
+  inspect(m,dt){ const G=cur; m._t=(m._t||0)+dt; if(m._t<.9) return; m._t=0;
+    const s=m.spots.find(o=>!o.found); if(s) G.down(m,s.x,s.y); },
+  sew(m,dt){ const G=cur; m._t=(m._t||0)+dt; if(m._t<.4) return; m._t=0;
+    if(m.ph!=="sew") return; const hs=G.holes(), w=m.rounds[m.r].o[m.step];
+    G.down(m, G.cx+hs[w][0]*2.1, G.cy+hs[w][1]*2.1); },
+};
+
+/* ===== 見本の動き。一覧ページ（overview.html）から #g=名前&demo=1&loop=1 で呼ばれる ===== */
+let demoOn=false, loopOn=false, demoName=null;
+function demoTick(dt){ if(!demoOn||!cur||!m) return; const f=DEMO[m.name]; if(f){ try{ f(m,dt); }catch(e){} } }
+(function(){
+  const q=new URLSearchParams(location.hash.replace(/^#/,""));
+  const gname=q.get("g");
+  if(gname && GAMES[gname]){
+    demoOn=q.get("demo")==="1"; loopOn=q.get("loop")==="1"; demoName=gname;
+    document.body.classList.add("embed");
+    addEventListener("load",()=>start(gname));
+    if(document.readyState==="complete") start(gname);
+  }
+})();
+
+function pt(e){ const r=cv.getBoundingClientRect();
+  return [(e.clientX-r.left)/r.width*W,(e.clientY-r.top)/r.height*H]; }
+cv.addEventListener("pointerdown",e=>{ if(!cur)return; e.preventDefault();
+  const [x,y]=pt(e); if(cur.down)cur.down(m,x,y); });
+cv.addEventListener("pointermove",e=>{ if(!cur)return; e.preventDefault();
+  const [x,y]=pt(e); if(cur.move)cur.move(m,x,y); });
+cv.addEventListener("pointerup",e=>{ if(!cur)return; e.preventDefault();
+  const [x,y]=pt(e); if(cur.up)cur.up(m,x,y); });
+function loop(ts){
+  requestAnimationFrame(loop);
+  const dt=Math.min(.05,(ts-last)/1000||0); last=ts;
+  if(!cur||!m) return;
+  demoTick(dt); if(!cur||!m) return; cur.tick(m,dt);
+  if(!cur||!m) return;
+  g.clearRect(0,0,W,H); cur.draw(m,g);
+}
+requestAnimationFrame(loop);
+window.__mini={ start,end,toMenu,GAMES, get m(){return m;}, get cur(){return cur;} };
+</script>
+</body>
+</html>

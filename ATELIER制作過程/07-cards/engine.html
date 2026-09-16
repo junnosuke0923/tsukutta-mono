@@ -1,0 +1,648 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<title>一着をつくる仕組み ── 50の型 × 18の生地 × 掛け合わせ</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--paper:#f3eee7;--ink:#2a2430;--plum:#7c5a70;--sand:#c9a982;--sage:#7fae66;
+  --line:#ddd2c4;--card:#fbf6ee}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic",system-ui,sans-serif;line-height:1.7}
+.wrap{max-width:1200px;margin:0 auto;padding:32px 20px 90px}
+h1{font-size:25px;margin:0 0 6px}
+h2{font-size:19px;margin:48px 0 6px;padding-bottom:6px;border-bottom:2px solid var(--plum)}
+h3{font-size:14px;margin:22px 0 8px;color:var(--plum)}
+.lead{font-size:14px;opacity:.84;max-width:800px;margin:0 0 6px}
+.sub{font-size:12.5px;opacity:.62;margin:2px 0 12px}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--sand);
+  padding:12px 15px;margin:14px 0;font-size:13.5px;border-radius:0 6px 6px 0}
+.note.go{border-left-color:var(--sage)}
+.grid{display:grid;gap:10px;margin:10px 0;grid-template-columns:repeat(auto-fill,minmax(146px,1fr))}
+.it{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px;text-align:center}
+.it canvas{display:block;margin:0 auto;border-radius:5px;cursor:pointer}
+.nm{font-size:11.5px;font-weight:700;margin-top:4px}
+.ds{font-size:10px;opacity:.62;line-height:1.45}
+button{font:inherit;font-size:12.5px;padding:5px 12px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);border-radius:999px;cursor:pointer}
+button.on{background:var(--plum);color:#fff;border-color:var(--plum)}
+.row{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.bar{position:sticky;top:0;background:var(--paper);z-index:5;padding:10px 0;
+  border-bottom:1px solid var(--line)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.mix{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:14px;align-items:start}
+@media(max-width:760px){.mix{grid-template-columns:1fr}}
+select{font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--line);
+  border-radius:6px;background:#fff;color:var(--ink);width:100%}
+input[type=range]{width:100%;accent-color:var(--plum)}
+.sw{width:22px;height:22px;border-radius:5px;border:1px solid rgba(0,0,0,.18);display:inline-block;
+  vertical-align:middle;margin-right:4px}
+.fab{display:inline-flex;align-items:center;font-size:11.5px;padding:3px 8px 3px 3px;
+  border:1px solid var(--line);border-radius:999px;background:var(--card);cursor:pointer}
+.fab.on{background:var(--plum);color:#fff;border-color:var(--plum)}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--card);white-space:nowrap}
+ul{font-size:13.5px;padding-left:20px}li{margin:5px 0}
+code{background:#eee6d8;padding:1px 5px;border-radius:4px;font-size:12px}
+.code{background:#2b2533;color:#e8e0ee;padding:14px 16px;border-radius:8px;
+  font-family:Consolas,monospace;font-size:12px;line-height:1.65;overflow-x:auto;white-space:pre}
+</style>
+
+<div class="wrap">
+<h1>一着をつくる仕組み ── 50の型 × 18の生地 × 掛け合わせ</h1>
+<p class="lead">
+担当 07／2026-08-17。前回はドレス系とアイテム系が<b>別の仕組み</b>で描かれていたので、混ぜられませんでした。
+<b>ぜんぶ同じ21個の数字にそろえ直しました。</b>
+これでドレスと MA-1 も、スカートとコートも掛け合わせられます。<b>ゲームに入れる形で書いてあります。</b>
+</p>
+
+<div class="bar row">
+  <button class="on" data-v="norm">ふつう</button>
+  <button data-v="sil">影絵で見る</button>
+  <span style="width:8px"></span>
+  <button class="on" data-c="all">すべて</button>
+  <button data-c="0">一枚で着る</button><button data-c="1">羽織る</button>
+  <button data-c="2">上に着る</button><button data-c="3">下に履く</button>
+</div>
+
+<h2>1. 型 50 ── ぜんぶ同じ数字でできています</h2>
+<p class="sub">絵をタップすると生地が変わります。「影絵で見る」で、形だけが単調でないか確かめられます。</p>
+<div class="row" id="fabbar"></div>
+<div id="lib"></div>
+
+<h2>2. 掛け合わせ ── どの型どうしでも混ぜられる</h2>
+<p class="sub">
+分類をまたいでも混ざります。<b>ドレス × MA-1</b>、<b>スカート × コート</b>、<b>パンツ × ドレス</b>。
+脚の分かれ方も、袖の生え方も、数字なので途中があります。
+</p>
+<div class="panel">
+  <div class="mix">
+    <div><div class="ds">左の型</div><select id="mA"></select><div id="hA"></div></div>
+    <div style="text-align:center"><div id="hM"></div>
+      <input type="range" id="mT" min="0" max="100" value="50">
+      <div class="ds" id="mLab"></div>
+      <div class="row" style="justify-content:center;margin-top:6px">
+        <button id="rnd">偶然</button><button id="rndF">生地だけ</button>
+        <button id="keep">この形を下に残す</button>
+      </div>
+    </div>
+    <div><div class="ds">右の型</div><select id="mB"></select><div id="hB"></div></div>
+  </div>
+</div>
+<h3>残した形</h3>
+<p class="sub">「この形を下に残す」で溜まります。<b>これがそのまま図鑑になります。</b></p>
+<div class="grid" id="kept"></div>
+
+<h2>3. 無限に出る ── 偶然で12着</h2>
+<p class="sub">型2つ・混ぜ具合・生地を、でたらめに選んで描いています。押すたび別のものが出ます。</p>
+<div class="row"><button id="reroll">もう一度</button></div>
+<div class="grid" id="rndgrid"></div>
+
+<h2>4. 生地 18 ── 同じ型が別の服に見える</h2>
+<p class="sub">下は<b>全部おなじ型</b>（《円をひらく》）。生地だけが違います。</p>
+<div class="grid" id="fabgrid"></div>
+<div class="note go">
+<b>グラデーション・光沢・透けは、先生の許可が出たのでそのまま使っています。</b>
+（`docs/ART.md` の「グラデーションを面に使わない」は先生の意図ではなかった、とのこと。
+<b>01 は ART.md を直してください。</b>）
+</div>
+
+<h2>5. ゲームへの入れかた</h2>
+<div class="note">
+<b>まだ <code>src/</code> には入れていません。</b>分業のきまりで、本体に入れるのは合流係（11-merge）だけなので、
+<b>そのまま置ける形</b>にして待っています。先生の「入れて」の一言で動きます。
+</div>
+
+<h3>置くもの</h3>
+<table>
+<tr><th>ファイル</th><th>中身</th><th>行数の目安</th></tr>
+<tr><td><code>src/game/garment.js</code>（新規）</td>
+    <td>型50・生地18・<code>shapePath()</code>・<code>drawGarment()</code>・<code>mixForm()</code>。
+        このページの <code>&lt;script&gt;</code> の前半がそのまま入る</td><td>約 380</td></tr>
+<tr><td><code>src/_order.json</code></td><td><code>"game/showart.js"</code> の<b>前</b>に1行足す</td><td>1</td></tr>
+<tr><td><code>src/game/showart.js</code></td>
+    <td>いまの <code>garment(ctx,kind,cx,cy,h)</code> を
+        <code>drawGarment(ctx,form,fab,cx,cy,h)</code> の呼び出しに差し替える。
+        <b>もとの4着は型50の中に残してあるので、見た目は変わらない</b></td><td>約 10</td></tr>
+<tr><td><code>src/core/state.js</code></td><td>倉庫（買った反物）と、いま指定している生地</td><td>約 6</td></tr>
+</table>
+
+<h3>一着をどう持つか</h3>
+<div class="code">// 作った一着は、これだけで完全に再現できる
+{ a: 12,        // 左の型の番号
+  b: 31,        // 右の型の番号
+  t: 0.42,      // 混ぜ具合
+  f: 7 }        // 生地の番号
+
+// 文字列にすると 20 文字ほど。src/cards/trade.js の AT1. がそのまま使える
+// → 友達に渡せる。画像では絶対にできない</div>
+
+<h3>直す必要があるところ（前回みつけたもの）</h3>
+<ul>
+<li><b>接地の影は、裾の実際の位置に落とす。</b>いまの <code>garment()</code> は床までのドレスしか
+  描かないので <code>cy+h</code> 決め打ち。短い上着だと影が浮く</li>
+<li><b>下に履くものはクリップのハンガーで吊る。</b>襟あきと肩の線はパンツに付けようがない</li>
+</ul>
+
+<h3>ほかの担当へ（先生の判断のあとで相談します）</h3>
+<table>
+<tr><th>担当</th><th>お願いすること</th></tr>
+<tr><td><b>01</b></td><td><b>ART.md の「グラデーションを面に使わない」を直す</b>（先生の意図ではなかった）</td></tr>
+<tr><td><b>02</b></td><td>反物の値段・在庫・週ごとの入荷。生地の難しさが「出来」の式にどう効くか</td></tr>
+<tr><td><b>05</b></td><td>生地問屋の「今週の入荷」の棚。産地でしか買えない反物</td></tr>
+<tr><td><b>06</b></td><td>倉庫（買った反物が積まれる棚）。生地棚の色が在庫と連動</td></tr>
+<tr><td><b>09</b></td><td>「掘り出し物が入った」「あの反物、もう無いよ」の一言</td></tr>
+</table>
+</div>
+
+<script>
+/* ══════════ ここから下が src/game/garment.js にそのまま入る ══════════ */
+function shade(col,f){
+  let r,g,b;
+  if(col.charAt(0)==="#"){const n=parseInt(col.slice(1),16);r=(n>>16)&255;g=(n>>8)&255;b=n&255;}
+  else{const m=col.match(/\d+/g);r=+m[0];g=+m[1];b=+m[2];}
+  const c=v=>Math.max(0,Math.min(255,Math.round(v*f)));
+  return "rgb("+c(r)+","+c(g)+","+c(b)+")";
+}
+const W=a=>"rgba(255,255,255,"+a+")", K=a=>"rgba(0,0,0,"+a+")";
+
+/* ── 生地 18。drape 0=ハリ 1=とろける／gloss 光沢／sheer 透け／hard 扱いの難しさ ── */
+const FAB=[
+{n:"コットン",   col:"#e9e2d4",drape:.42,gloss:.14,sheer:0,  hard:1,s:"plain"},
+{n:"リネン",     col:"#cfc3a8",drape:.34,gloss:.10,sheer:.06,hard:2,s:"slub"},
+{n:"デニム",     col:"#5a7ba0",drape:.22,gloss:.16,sheer:0,  hard:2,s:"twill"},
+{n:"メルトン",   col:"#3f4a63",drape:.14,gloss:.06,sheer:0,  hard:3,s:"felt"},
+{n:"ツイード",   col:"#8c7d6a",drape:.20,gloss:.08,sheer:0,  hard:3,s:"fleck"},
+{n:"シルクサテン",col:"#c98fa6",drape:.86,gloss:.92,sheer:0, hard:4,s:"plain"},
+{n:"シフォン",   col:"#e3b7bd",drape:.96,gloss:.34,sheer:.52,hard:5,s:"plain"},
+{n:"チュール",   col:"#d8cfe4",drape:.50,gloss:.20,sheer:.62,hard:4,s:"mesh"},
+{n:"オーガンジー",col:"#dfe6e2",drape:.24,gloss:.46,sheer:.55,hard:5,s:"plain"},
+{n:"ベルベット", col:"#5c3350",drape:.72,gloss:.52,sheer:0,  hard:4,s:"nap"},
+{n:"ジャージー", col:"#8f8b96",drape:.92,gloss:.12,sheer:0,  hard:1,s:"knit"},
+{n:"ケーブルニット",col:"#c9a982",drape:.70,gloss:.08,sheer:0,hard:2,s:"cable"},
+{n:"タフタ",     col:"#7c5a70",drape:.10,gloss:.74,sheer:0,  hard:4,s:"crisp"},
+{n:"レザー",     col:"#3a3340",drape:.30,gloss:.62,sheer:0,  hard:5,s:"plain"},
+{n:"ナイロン",   col:"#4f6f5e",drape:.46,gloss:.58,sheer:.05,hard:2,s:"ripstop"},
+{n:"コーデュロイ",col:"#8a5a3c",drape:.36,gloss:.14,sheer:0, hard:2,s:"ridge"},
+{n:"ラメ",       col:"#c8a23c",drape:.60,gloss:1.0,sheer:.08,hard:4,s:"spark"},
+{n:"ギンガム",   col:"#cf6f74",drape:.52,gloss:.12,sheer:0,  hard:1,s:"check"},
+];
+
+/* ── 型は21個の数字。ぜんぶ同じ形なので、どの型どうしでも混ぜられる ── */
+const KEYS=["sh","sv","top","slL","slO","slC","bw","ap","ww","wy","kw","ky",
+            "hw","hy","sweep","hemC","asym","asymY","leg","tier","neck"];
+const BASE={sh:.30,sv:0,top:1,slL:0,slO:.18,slC:.11,bw:.32,ap:.24,ww:.28,wy:.42,
+            kw:.30,ky:.68,hw:.34,hy:.90,sweep:.25,hemC:.02,asym:0,asymY:0,leg:0,tier:0,neck:.15};
+const M=o=>Object.assign({},BASE,o);
+
+const LIB=[
+/* ═ 0 一枚で着る（もとの4着はここに入っている） ═ */
+{c:0,n:"ひらめき",  d:"※もとの4着。非対称に落ちる",e:1,dt:"drape"},
+{c:0,n:"シルエット",d:"※もとの4着。円で開く",      e:1,dt:"drape"},
+{c:0,n:"素材感",    d:"※もとの4着。まっすぐな台形",e:1,dt:"tier"},
+{c:0,n:"仕立て",    d:"※もとの4着。肩が張る",      e:1,dt:"seam"},
+{c:0,n:"面接の日",  d:"裾だけ少し開く",  f:M({sh:.30,ww:.27,wy:.42,kw:.31,ky:.66,hw:.42,hy:.92,sweep:.30,hemC:.03})},
+{c:0,n:"円をひらく",d:"絞って、円で開く",f:M({sh:.28,ww:.21,wy:.34,kw:.50,ky:.66,hw:.98,hy:.98,sweep:.88,hemC:.05,neck:.16})},
+{c:0,n:"人魚",      d:"膝まで沿い、開く",f:M({sh:.26,ww:.24,wy:.36,kw:.21,ky:.68,hw:.74,hy:.99,sweep:.10,hemC:.04,neck:.12})},
+{c:0,n:"Aライン",   d:"一直線に開く",    f:M({sh:.28,ww:.34,wy:.26,kw:.54,ky:.60,hw:.78,hy:.94,sweep:.20,hemC:.04,neck:.16})},
+{c:0,n:"筒",        d:"どこも同じ幅",    f:M({sh:.29,ww:.29,wy:.42,kw:.29,ky:.70,hw:.29,hy:.94,sweep:.10,hemC:0,neck:.13})},
+{c:0,n:"風船",      d:"裾を折り返して膨らむ",f:M({sh:.27,ww:.25,wy:.36,kw:.64,ky:.60,hw:.42,hy:.72,sweep:.95,hemC:-.06})},
+{c:0,n:"コクーン",  d:"腰で太く、裾で締まる",f:M({sh:.31,ww:.48,wy:.38,kw:.46,ky:.62,hw:.25,hy:.86,sweep:.55,hemC:.03})},
+{c:0,n:"肩の建築",  d:"肩が横に張る",    f:M({sh:.24,sv:.66,ww:.21,wy:.40,kw:.24,ky:.70,hw:.31,hy:.92,sweep:.10,neck:.14})},
+{c:0,n:"段を積む",  d:"広がる三段",      f:M({sh:.28,ww:.26,wy:.32,kw:.46,ky:.60,hw:.76,hy:.96,sweep:.35,tier:3})},
+{c:0,n:"階段",      d:"裾が四段",        f:M({sh:.27,ww:.24,wy:.30,kw:.44,ky:.58,hw:.86,hy:.98,sweep:.25,tier:4})},
+{c:0,n:"斜めに落ちる",d:"片側だけ床へ",  f:M({sh:.26,ww:.24,wy:.38,kw:.30,ky:.62,hw:.46,hy:.70,sweep:.45,hemC:.04,asym:.62,asymY:.28})},
+{c:0,n:"ねじる",    d:"右だけ大きく開く",f:M({sh:.29,sv:.20,ww:.21,wy:.44,kw:.27,ky:.62,hw:.44,hy:.78,sweep:.60,hemC:.05,asym:.62,asymY:.20})},
+{c:0,n:"花のように",d:"裾が大きくたわむ",f:M({sh:.26,ww:.22,wy:.34,kw:.44,ky:.60,hw:.92,hy:.90,sweep:.75,hemC:.11,asym:.10,asymY:.04})},
+{c:0,n:"細く長く",  d:"細いまま床まで",  f:M({sh:.20,ww:.19,wy:.40,kw:.18,ky:.72,hw:.22,hy:1.0,sweep:.08,neck:.10})},
+{c:0,n:"ジャンプスーツ",d:"上下ひと続き",f:M({sh:.34,slL:.52,slO:.20,bw:.34,ww:.32,wy:.44,kw:.34,ky:.68,hw:.36,hy:.94,sweep:.15,leg:.9})},
+{c:0,n:"サロペット",d:"胸あてと肩紐",    f:M({sh:.16,neck:.06,bw:.22,ap:.16,ww:.34,wy:.30,kw:.36,ky:.66,hw:.38,hy:.92,sweep:.15,leg:.9})},
+/* ═ 1 羽織る ═ */
+{c:1,n:"MA-1",      d:"短い丈、太い身幅",f:M({sh:.38,slL:.50,slO:.14,bw:.36,ww:.36,wy:.40,kw:.35,ky:.52,hw:.34,hy:.60,sweep:.10}),dt:"rib"},
+{c:1,n:"テーラード",d:"ラペル、腰まで",  f:M({sh:.42,slL:.66,slO:.10,bw:.38,ww:.36,wy:.44,kw:.36,ky:.62,hw:.37,hy:.72,sweep:.10}),dt:"lapel"},
+{c:1,n:"トレンチ",  d:"ベルト、床に近い丈",f:M({sh:.42,slL:.64,slO:.10,bw:.38,ww:.35,wy:.42,kw:.40,ky:.66,hw:.46,hy:.96,sweep:.25}),dt:"trench"},
+{c:1,n:"チェスター",d:"まっすぐな長い外套",f:M({sh:.41,slL:.66,slO:.09,bw:.37,ww:.36,wy:.44,kw:.38,ky:.66,hw:.40,hy:.92,sweep:.15}),dt:"lapel"},
+{c:1,n:"ライダース",d:"斜めのジップ",    f:M({sh:.39,slL:.58,slO:.10,bw:.35,ww:.34,wy:.42,kw:.34,ky:.56,hw:.34,hy:.62,sweep:.10}),dt:"zipd"},
+{c:1,n:"ダウン",    d:"横に走る中綿の段",f:M({sh:.42,slL:.54,slO:.16,bw:.44,ww:.44,wy:.40,kw:.44,ky:.58,hw:.42,hy:.66,sweep:.20}),dt:"quilt"},
+{c:1,n:"デニムJK",  d:"胸ポケットと腰の帯",f:M({sh:.39,slL:.58,slO:.10,bw:.36,ww:.35,wy:.42,kw:.34,ky:.56,hw:.35,hy:.62,sweep:.10}),dt:"denim"},
+{c:1,n:"ケープ",    d:"袖がない。円で落ちる",f:M({sh:.34,bw:.34,ap:.10,ww:.40,wy:.30,kw:.54,ky:.55,hw:.66,hy:.72,sweep:.60,hemC:.05}),dt:"drape"},
+{c:1,n:"ガウンコート",d:"紐で結ぶ長丈",  f:M({sh:.40,slL:.68,slO:.14,bw:.40,ww:.38,wy:.44,kw:.44,ky:.68,hw:.50,hy:.98,sweep:.35}),dt:"belt"},
+{c:1,n:"ダッフル",  d:"フードと留め木",  f:M({sh:.41,slL:.62,slO:.12,bw:.38,ww:.38,wy:.44,kw:.40,ky:.64,hw:.42,hy:.84,sweep:.20}),dt:"hood"},
+/* ═ 2 上に着る ═ */
+{c:2,n:"シャツ",    d:"前立てとカフス",  f:M({sh:.38,slL:.60,slO:.08,bw:.34,ww:.33,wy:.42,kw:.33,ky:.58,hw:.34,hy:.66,sweep:.10,hemC:.04}),dt:"shirt"},
+{c:2,n:"Tシャツ",   d:"半袖。切り替えなし",f:M({sh:.37,slL:.30,slO:.07,bw:.34,ap:.30,ww:.33,wy:.42,kw:.33,ky:.56,hw:.34,hy:.62,sweep:.08})},
+{c:2,n:"パーカー",  d:"フードと前ポケット",f:M({sh:.40,slL:.58,slO:.12,bw:.40,ww:.38,wy:.42,kw:.38,ky:.58,hw:.38,hy:.70,sweep:.10}),dt:"hood"},
+{c:2,n:"スウェット",d:"丸首。裾はリブ",  f:M({sh:.39,slL:.56,slO:.10,bw:.38,ww:.36,wy:.42,kw:.36,ky:.58,hw:.36,hy:.66,sweep:.08}),dt:"rib"},
+{c:2,n:"ニット",    d:"編み目が全面に出る",f:M({sh:.38,slL:.58,slO:.10,bw:.37,ww:.35,wy:.42,kw:.35,ky:.58,hw:.36,hy:.68,sweep:.10}),dt:"rib"},
+{c:2,n:"タートル",  d:"首が立ち、体に沿う",f:M({sh:.34,slL:.58,slO:.06,bw:.30,ww:.29,wy:.42,kw:.29,ky:.58,hw:.29,hy:.62,sweep:.05,neck:.10}),dt:"turtle"},
+{c:2,n:"カーディガン",d:"前が開いたまま",f:M({sh:.38,slL:.60,slO:.09,bw:.36,ww:.35,wy:.42,kw:.35,ky:.62,hw:.36,hy:.72,sweep:.10}),dt:"cardi"},
+{c:2,n:"ベスト",    d:"袖なし。V字の首",f:M({sh:.32,bw:.32,ap:.12,ww:.31,wy:.42,kw:.31,ky:.56,hw:.31,hy:.62,sweep:.05}),dt:"vest"},
+{c:2,n:"ビスチェ",  d:"肩紐なし。短い胴",f:M({sh:.30,top:.45,bw:.30,ap:.06,ww:.28,wy:.24,kw:.29,ky:.34,hw:.30,hy:.44,sweep:.05,neck:.10}),dt:"rib"},
+{c:2,n:"パフスリーブ",d:"袖だけ大きい", f:M({sh:.26,slL:.34,slO:.34,slC:.20,bw:.28,ap:.30,ww:.29,wy:.42,kw:.29,ky:.56,hw:.30,hy:.62,sweep:.08}),dt:"drape"},
+/* ═ 3 下に履く（top:0 ＝ 腰から始まる） ═ */
+{c:3,n:"ワイドパンツ",d:"腰から下へ太い",f:M({top:0,ww:.34,wy:.06,kw:.42,ky:.44,hw:.46,hy:.94,sweep:.20,leg:1})},
+{c:3,n:"スキニー",  d:"脚の線をなぞる",  f:M({top:0,ww:.30,wy:.06,kw:.22,ky:.50,hw:.17,hy:.96,sweep:.05,leg:1})},
+{c:3,n:"デニム",    d:"太腿から裾まで同じ",f:M({top:0,ww:.32,wy:.06,kw:.28,ky:.48,hw:.26,hy:.94,sweep:.08,leg:1}),dt:"denim"},
+{c:3,n:"カーゴ",    d:"太腿に箱ポケット",f:M({top:0,ww:.33,wy:.06,kw:.34,ky:.46,hw:.32,hy:.92,sweep:.10,leg:1}),dt:"cargo"},
+{c:3,n:"ショーツ",  d:"膝より上で切れる",f:M({top:0,ww:.32,wy:.06,kw:.34,ky:.30,hw:.34,hy:.48,sweep:.10,leg:1})},
+{c:3,n:"サルエル",  d:"股が低く、裾で絞る",f:M({top:0,ww:.33,wy:.08,kw:.46,ky:.46,hw:.18,hy:.92,sweep:.40,leg:.55})},
+{c:3,n:"プリーツスカート",d:"折りが放射に開く",f:M({top:0,ww:.30,wy:.05,kw:.42,ky:.40,hw:.56,hy:.72,sweep:.30}),dt:"pleat"},
+{c:3,n:"タイトスカート",d:"膝まで細く落ちる",f:M({top:0,ww:.30,wy:.05,kw:.29,ky:.40,hw:.28,hy:.68,sweep:.05}),dt:"seam"},
+{c:3,n:"フレアスカート",d:"円を描いて広がる",f:M({top:0,ww:.28,wy:.05,kw:.42,ky:.38,hw:.66,hy:.70,sweep:.70,hemC:.05}),dt:"drape"},
+{c:3,n:"マキシスカート",d:"床すれすれまで",f:M({top:0,ww:.29,wy:.05,kw:.36,ky:.44,hw:.48,hy:.98,sweep:.35}),dt:"drape"},
+];
+/* もとの4着は showart.js のベジェをそのまま持つ（数字にしない＝1本も変えない） */
+const RAW={
+"ひらめき":(g,cx,cy,w,h)=>{g.moveTo(cx-w*.42,cy);g.lineTo(cx-w*.26,cy+h*.20);
+  g.quadraticCurveTo(cx-w*.20,cy+h*.32,cx-w*.24,cy+h*.40);
+  g.bezierCurveTo(cx-w*.66,cy+h*.62,cx-w*.98,cy+h*.84,cx-w*.86,cy+h);
+  g.bezierCurveTo(cx-w*.36,cy+h*1.05,cx+w*.14,cy+h*1.02,cx+w*.48,cy+h*.88);
+  g.bezierCurveTo(cx+w*.44,cy+h*.62,cx+w*.34,cy+h*.48,cx+w*.30,cy+h*.38);
+  g.quadraticCurveTo(cx+w*.26,cy+h*.26,cx+w*.30,cy+h*.18);g.lineTo(cx+w*.42,cy);},
+"シルエット":(g,cx,cy,w,h)=>{g.moveTo(cx-w*.30,cy);g.lineTo(cx-w*.20,cy+h*.30);
+  g.bezierCurveTo(cx-w*.62,cy+h*.58,cx-w*.94,cy+h*.86,cx-w*1.02,cy+h);
+  g.bezierCurveTo(cx-w*.40,cy+h*1.07,cx+w*.40,cy+h*1.07,cx+w*1.02,cy+h);
+  g.bezierCurveTo(cx+w*.94,cy+h*.86,cx+w*.62,cy+h*.58,cx+w*.20,cy+h*.30);
+  g.lineTo(cx+w*.30,cy);
+  g.bezierCurveTo(cx+w*.12,cy-h*.05,cx-w*.12,cy-h*.05,cx-w*.30,cy);},
+"素材感":(g,cx,cy,w,h)=>{g.moveTo(cx-w*.30,cy);g.lineTo(cx-w*.22,cy+h*.26);
+  g.lineTo(cx-w*.80,cy+h);
+  g.bezierCurveTo(cx-w*.30,cy+h*1.05,cx+w*.30,cy+h*1.05,cx+w*.80,cy+h);
+  g.lineTo(cx+w*.22,cy+h*.26);g.lineTo(cx+w*.30,cy);
+  g.bezierCurveTo(cx+w*.12,cy-h*.05,cx-w*.12,cy-h*.05,cx-w*.30,cy);},
+"仕立て":(g,cx,cy,w,h)=>{g.moveTo(cx-w*.66,cy-h*.02);
+  g.lineTo(cx-w*.52,cy+h*.06);g.lineTo(cx-w*.40,cy+h*.34);
+  g.lineTo(cx-w*.34,cy+h*.46);g.lineTo(cx-w*.44,cy+h);
+  g.lineTo(cx+w*.44,cy+h);    g.lineTo(cx+w*.34,cy+h*.46);
+  g.lineTo(cx+w*.40,cy+h*.34);g.lineTo(cx+w*.52,cy+h*.06);
+  g.lineTo(cx+w*.66,cy-h*.02);g.lineTo(cx+w*.30,cy-h*.06);
+  g.lineTo(cx-w*.30,cy-h*.06);},
+};
+
+/* ── 生地がシルエットを変える ── */
+function fx(form,fab){
+  const o={}; for(const k of KEYS) o[k]=form[k];
+  const p=fab.drape-0.45;
+  o.hw*=1-p*0.46; o.kw*=1-p*0.28; o.sv*=1-p*0.70; o.slO*=1-p*0.55;
+  o.sweep=Math.max(0,Math.min(1,o.sweep*(1-p*0.34)));
+  o.hemC*=1+p*0.8; o.soft=fab.drape;
+  return o;
+}
+/* ── 21の数字から輪郭を引く。袖・脚・肩の張りは、数字が0なら自然に消える ── */
+function shapePath(g,cx,cy,w,h,f){
+  const X=v=>cx+v*w, Y=v=>cy+v*h;
+  const t=f.top;
+  const sh = f.sh*t + f.ww*(1-t);
+  const slL= f.slL*t, bw = f.bw*t + f.ww*(1-t), ap = f.ap*t + 0.03*(1-t);
+  const hwL=f.hw, hwR=f.hw*(1+f.asym);
+  const hyL=Math.min(1.03,f.hy), hyR=Math.min(1.05,Math.max(0.22,f.hy+f.asymY));
+  const bend=0.26+(f.soft==null?0.4:f.soft)*0.40;
+  g.moveTo(X(-sh),Y(0.015));
+  if(f.sv>0.04&&t>0.4){ g.lineTo(X(-f.sv),Y(0.055)); g.lineTo(X(-f.sv*0.82),Y(0.10)); }
+  if(slL>0.05){
+    g.lineTo(X(-(bw+f.slO)),Y(slL));
+    g.lineTo(X(-(bw+f.slO-f.slC)),Y(slL));
+  }
+  g.lineTo(X(-bw),Y(ap));
+  g.lineTo(X(-f.ww),Y(f.wy));
+  g.bezierCurveTo(X(-(f.ww+(f.kw-f.ww)*0.30)),Y(f.wy+(f.ky-f.wy)*bend),
+                  X(-f.kw),Y(f.ky-(f.ky-f.wy)*0.22),X(-f.kw),Y(f.ky));
+  g.bezierCurveTo(X(-f.kw),Y(f.ky+(hyL-f.ky)*0.22),
+                  X(-(f.kw+(hwL-f.kw)*f.sweep*1.7)),Y(f.ky+(hyL-f.ky)*0.72),X(-hwL),Y(hyL));
+  if(f.leg>0.03){                                  /* 脚が分かれる。0なら分かれない */
+    const cr=f.wy+(Math.max(hyL,hyR)-f.wy)*0.42;
+    const inX=Math.min(hwL,hwR)*0.24+0.015;
+    const nyL=hyL+(cr-hyL)*f.leg, nyR=hyR+(cr-hyR)*f.leg;
+    g.lineTo(X(-inX),Y(hyL)); g.lineTo(X(-inX*0.32),Y(nyL));
+    g.lineTo(X(0),Y(Math.min(nyL,nyR)-0.015));
+    g.lineTo(X(inX*0.32),Y(nyR)); g.lineTo(X(inX),Y(hyR)); g.lineTo(X(hwR),Y(hyR));
+  } else {
+    g.quadraticCurveTo(cx,Y(Math.max(hyL,hyR)+f.hemC),X(hwR),Y(hyR));
+  }
+  g.bezierCurveTo(X(f.kw+(hwR-f.kw)*f.sweep*1.7),Y(f.ky+(hyR-f.ky)*0.72),
+                  X(f.kw),Y(f.ky+(hyR-f.ky)*0.22),X(f.kw),Y(f.ky));
+  g.bezierCurveTo(X(f.kw),Y(f.ky-(f.ky-f.wy)*0.22),
+                  X(f.ww+(f.kw-f.ww)*0.30),Y(f.wy+(f.ky-f.wy)*bend),X(f.ww),Y(f.wy));
+  g.lineTo(X(bw),Y(ap));
+  if(slL>0.05){ g.lineTo(X(bw+f.slO-f.slC),Y(slL)); g.lineTo(X(bw+f.slO),Y(slL)); }
+  if(f.sv>0.04&&t>0.4){ g.lineTo(X(f.sv*0.82),Y(0.10)); g.lineTo(X(f.sv),Y(0.055)); }
+  g.lineTo(X(sh),Y(0.015));
+  g.bezierCurveTo(X(sh*0.4),Y(-0.03),X(-sh*0.4),Y(-0.03),X(-sh),Y(0.015));
+}
+/* ── 生地の表面 ── */
+function surface(g,fab,cx,cy,w,h){
+  const s=fab.s;
+  if(s==="knit"||s==="cable"){ g.strokeStyle=K(s==="cable"?.14:.09); g.lineWidth=s==="cable"?1.6:1;
+    for(let r=0;r<13;r++){const y=cy+h*(0.03+r*0.08); g.beginPath();
+      for(let k=0;k<=26;k++) g.lineTo(cx-w*1.3+k*(w*2.6/26),y+Math.sin(k*(s==="cable"?.9:1.5))*(s==="cable"?3:1.5));
+      g.stroke();} }
+  else if(s==="twill"){ g.strokeStyle=K(.11); g.lineWidth=1;
+    for(let i=-26;i<26;i++){g.beginPath();g.moveTo(cx+i*w*.10,cy);g.lineTo(cx+i*w*.10+w*.5,cy+h);g.stroke();} }
+  else if(s==="ridge"){ for(let i=-15;i<=15;i++){g.strokeStyle=i%2?W(.16):K(.13);g.lineWidth=2.2;
+    g.beginPath();g.moveTo(cx+i*w*.075,cy);g.lineTo(cx+i*w*.075,cy+h);g.stroke();} }
+  else if(s==="mesh"){ g.strokeStyle=W(.22); g.lineWidth=.7;
+    for(let i=-18;i<=18;i++){g.beginPath();g.moveTo(cx+i*w*.07,cy);g.lineTo(cx+i*w*.07+w*.3,cy+h);g.stroke();
+      g.beginPath();g.moveTo(cx+i*w*.07,cy);g.lineTo(cx+i*w*.07-w*.3,cy+h);g.stroke();} }
+  else if(s==="check"){ for(let i=-10;i<=10;i++){g.fillStyle=K(.10);g.fillRect(cx+i*w*.14,cy,w*.07,h);}
+    for(let j=0;j<15;j++){g.fillStyle=K(.10);g.fillRect(cx-w*1.3,cy+j*h*.078,w*2.6,h*.038);} }
+  else if(s==="fleck"){ for(let i=0;i<240;i++){const a=(i*127)%1000/1000,b=(i*311)%1000/1000;
+    g.fillStyle=i%3?K(.13):W(.20); g.fillRect(cx-w*1.2+a*w*2.4,cy+b*h,1.8,1.8);} }
+  else if(s==="slub"){ g.strokeStyle=K(.09); g.lineWidth=1;
+    for(let j=0;j<28;j++){const y=cy+j*h*.037;g.beginPath();g.moveTo(cx-w*1.2,y);g.lineTo(cx+w*1.2,y);g.stroke();}
+    for(let i=0;i<80;i++){const a=(i*173)%1000/1000,b=(i*419)%1000/1000;
+      g.fillStyle=W(.16);g.fillRect(cx-w*1.2+a*w*2.4,cy+b*h,5,1.4);} }
+  else if(s==="ripstop"){ g.strokeStyle=W(.13); g.lineWidth=.8;
+    for(let i=-13;i<=13;i++){g.beginPath();g.moveTo(cx+i*w*.10,cy);g.lineTo(cx+i*w*.10,cy+h);g.stroke();}
+    for(let j=0;j<21;j++){const y=cy+j*h*.05;g.beginPath();g.moveTo(cx-w*1.3,y);g.lineTo(cx+w*1.3,y);g.stroke();} }
+  else if(s==="nap"){ const gr=g.createLinearGradient(cx-w,cy,cx+w,cy+h);
+    gr.addColorStop(0,W(.16));gr.addColorStop(.5,K(.10));gr.addColorStop(1,W(.12));
+    g.fillStyle=gr;g.fillRect(cx-w*1.3,cy,w*2.6,h); }
+  else if(s==="spark"){ for(let i=0;i<150;i++){const a=(i*197)%1000/1000,b=(i*541)%1000/1000;
+    g.fillStyle=W(.10+((i*7)%10)/16); g.fillRect(cx-w*1.2+a*w*2.4,cy+b*h,2.2,2.2);} }
+  else if(s==="felt"){ for(let i=0;i<170;i++){const a=(i*151)%1000/1000,b=(i*367)%1000/1000;
+    g.fillStyle=K(.05); g.fillRect(cx-w*1.2+a*w*2.4,cy+b*h,3,3);} }
+  else if(s==="crisp"){ g.strokeStyle=W(.24); g.lineWidth=1.4;
+    for(let i=-6;i<=6;i++){if(!i)continue;g.beginPath();
+      g.moveTo(cx+i*w*.06,cy+h*.36);g.lineTo(cx+i*w*.18,cy+h);g.stroke();} }
+}
+/* ── 服の描き込み（型ごと） ── */
+const DET={
+ rib:(g,f,cx,cy,w,h)=>{const y=(f.hy||.66)-0.05;
+   g.fillStyle=K(.20);g.fillRect(cx-w*1.3,cy+y*h,w*2.6,h*.05);
+   g.strokeStyle=K(.14);g.lineWidth=1;
+   for(let i=-9;i<=9;i++){g.beginPath();g.moveTo(cx+i*w*.06,cy+y*h);g.lineTo(cx+i*w*.06,cy+(y+.05)*h);g.stroke();}},
+ lapel:(g,f,cx,cy,w,h)=>{g.fillStyle=W(.26);
+   for(const s of[-1,1]){g.beginPath();g.moveTo(cx+s*w*.05,cy+h*.02);
+     g.lineTo(cx+s*w*.34,cy+h*.06);g.lineTo(cx+s*w*.09,cy+h*.30);g.closePath();g.fill();}
+   g.fillStyle=W(.55);for(let i=0;i<3;i++){g.beginPath();g.arc(cx-w*.03,cy+h*(.34+i*.07),1.8,0,6.2832);g.fill();}},
+ trench:(g,f,cx,cy,w,h)=>{DET.lapel(g,f,cx,cy,w,h);DET.belt(g,f,cx,cy,w,h);
+   g.fillStyle=W(.18);g.beginPath();g.moveTo(cx-w*.30,cy+h*.07);g.lineTo(cx-w*.04,cy+h*.11);
+   g.lineTo(cx-w*.04,cy+h*.30);g.lineTo(cx-w*.30,cy+h*.26);g.closePath();g.fill();},
+ belt:(g,f,cx,cy,w,h)=>{const y=(f.wy||.42)+.02;
+   g.fillStyle=K(.24);g.fillRect(cx-w*1.3,cy+y*h,w*2.6,h*.035);
+   g.fillStyle=W(.45);g.fillRect(cx-w*.07,cy+y*h-1,w*.14,h*.045);},
+ zipd:(g,f,cx,cy,w,h)=>{DET.lapel(g,f,cx,cy,w,h);g.strokeStyle=K(.30);g.lineWidth=1.8;
+   g.beginPath();g.moveTo(cx-w*.12,cy+h*.16);g.lineTo(cx+w*.14,cy+h*.58);g.stroke();},
+ quilt:(g,f,cx,cy,w,h)=>{for(let i=0;i<8;i++){const y=cy+h*(.08+i*.072);
+   g.strokeStyle=K(.16);g.lineWidth=1.2;g.beginPath();g.moveTo(cx-w*1.3,y);g.lineTo(cx+w*1.3,y);g.stroke();
+   g.strokeStyle=W(.18);g.beginPath();g.moveTo(cx-w*1.3,y+2);g.lineTo(cx+w*1.3,y+2);g.stroke();}},
+ denim:(g,f,cx,cy,w,h)=>{g.fillStyle=W(.20);g.fillRect(cx-w*.055,cy+h*.03,w*.11,h*.55);
+   g.fillStyle=K(.13);for(const s of[-1,1])g.fillRect(cx+s*w*.20-w*.075,cy+h*.10,w*.15,h*.08);
+   g.fillStyle=W(.55);for(let i=0;i<4;i++){g.beginPath();g.arc(cx,cy+h*(.10+i*.10),1.7,0,6.2832);g.fill();}},
+ shirt:(g,f,cx,cy,w,h)=>{g.fillStyle=W(.26);g.beginPath();g.moveTo(cx-w*.20,cy+h*.02);
+   g.lineTo(cx,cy+h*.10);g.lineTo(cx+w*.20,cy+h*.02);g.lineTo(cx,cy+h*.05);g.closePath();g.fill();
+   g.fillStyle=W(.20);g.fillRect(cx-w*.055,cy+h*.06,w*.11,h*.58);
+   g.fillStyle=W(.55);for(let i=0;i<5;i++){g.beginPath();g.arc(cx,cy+h*(.14+i*.10),1.7,0,6.2832);g.fill();}},
+ hood:(g,f,cx,cy,w,h)=>{g.fillStyle=K(.15);g.beginPath();g.ellipse(cx,cy+h*.055,w*.30,h*.055,0,0,6.2832);g.fill();
+   g.fillStyle=W(.20);g.beginPath();g.ellipse(cx,cy+h*.045,w*.26,h*.040,0,0,6.2832);g.fill();
+   g.fillStyle=K(.12);g.beginPath();g.moveTo(cx-w*.28,cy+h*.38);g.lineTo(cx+w*.28,cy+h*.38);
+   g.lineTo(cx+w*.24,cy+h*.52);g.lineTo(cx-w*.24,cy+h*.52);g.closePath();g.fill();},
+ turtle:(g,f,cx,cy,w,h)=>{g.fillStyle=W(.22);g.fillRect(cx-w*.15,cy-h*.05,w*.30,h*.075);
+   g.strokeStyle=K(.14);g.lineWidth=1;
+   for(let i=-3;i<=3;i++){g.beginPath();g.moveTo(cx+i*w*.04,cy-h*.045);g.lineTo(cx+i*w*.04,cy+h*.02);g.stroke();}},
+ cardi:(g,f,cx,cy,w,h)=>{g.strokeStyle=K(.18);g.lineWidth=1.2;
+   for(const s of[-1,1]){g.beginPath();g.moveTo(cx+s*w*.06,cy+h*.03);g.lineTo(cx+s*w*.06,cy+h*.70);g.stroke();}
+   g.fillStyle=W(.55);for(let i=0;i<6;i++){g.beginPath();g.arc(cx,cy+h*(.12+i*.10),1.7,0,6.2832);g.fill();}},
+ vest:(g,f,cx,cy,w,h)=>{g.fillStyle=K(.15);g.beginPath();g.moveTo(cx-w*.17,cy+h*.02);
+   g.lineTo(cx,cy+h*.24);g.lineTo(cx+w*.17,cy+h*.02);g.closePath();g.fill();},
+ cargo:(g,f,cx,cy,w,h)=>{g.fillStyle=K(.13);
+   for(const s of[-1,1]){g.fillRect(cx+s*w*.28-w*.09,cy+h*.40,w*.18,h*.13);
+     g.strokeStyle=W(.24);g.lineWidth=1;g.strokeRect(cx+s*w*.28-w*.09,cy+h*.40,w*.18,h*.13);}},
+ pleat:(g,f,cx,cy,w,h)=>{for(let i=-7;i<=7;i++){if(!i)continue;
+   g.strokeStyle=i%2?W(.26):K(.13);g.lineWidth=1.3;
+   g.beginPath();g.moveTo(cx+i*w*.038,cy+h*.06);g.lineTo(cx+i*w*.09,cy+h*.74);g.stroke();}},
+ seam:(g,f,cx,cy,w,h)=>{g.strokeStyle=K(.15);g.lineWidth=1.1;
+   for(const s of[-1,1]){g.beginPath();g.moveTo(cx+s*w*.20,cy+h*.10);g.lineTo(cx+s*w*.20,cy+h*.95);g.stroke();}},
+ drape:(g,f,cx,cy,w,h)=>{g.strokeStyle=K(.15);g.lineWidth=1.1;
+   for(let i=0;i<7;i++){const x0=-0.34+i*0.68/6;
+     g.beginPath();g.moveTo(cx+x0*w,cy+h*.18);
+     g.quadraticCurveTo(cx+x0*1.5*w,cy+h*.6,cx+x0*1.9*w,cy+h*.98);g.stroke();}},
+ tier:(g,f,cx,cy,w,h)=>{for(let i=1;i<=3;i++){g.fillStyle=i%2?W(.18):K(.11);
+   g.fillRect(cx-w*1.3,cy+h*(.30+i*.18),w*2.6,h*.032);}},
+};
+
+/* ── 一着を描く（showart.js の garment() と同じ順番） ── */
+function drawGarment(g,form,fab,cx,cy,h,opt){
+  opt=opt||{};
+  const w=h*0.52, base=fab.col, raw=opt.raw;
+  const f=raw?null:fx(form,fab);
+  const path=()=>{ g.beginPath(); if(raw) raw(g,cx,cy,w,h); else shapePath(g,cx,cy,w,h,f); g.closePath(); };
+
+  if(opt.silhouette){                              /* 影絵：形だけを見る */
+    g.fillStyle="#2a2430"; path(); g.fill(); return;
+  }
+  g.fillStyle="rgba(0,0,0,"+(0.30*(1-fab.sheer*0.7))+")";
+  g.beginPath(); g.ellipse(cx,cy+(raw?1:Math.max(f.hy,f.hy+f.asymY))*h+5,
+    w*0.56,h*0.042,0,0,6.2832); g.fill();
+  g.strokeStyle="rgba(255,255,255,.42)"; g.lineWidth=1.6;
+  g.beginPath(); g.moveTo(cx,cy-16); g.lineTo(cx,cy-6); g.stroke();
+  g.beginPath(); g.arc(cx,cy-19,3.4,0,6.2832); g.stroke();
+
+  g.save();
+  if(fab.sheer) g.globalAlpha=1-fab.sheer*0.55;
+  const gl=fab.gloss;
+  const gr=g.createLinearGradient(cx-w*0.7,cy,cx+w*0.7,cy+h);
+  gr.addColorStop(0,shade(base,1.20+gl*0.30));
+  gr.addColorStop(0.55,base);
+  gr.addColorStop(1,shade(base,0.62-gl*0.18));
+  g.fillStyle=gr; path(); g.fill();
+
+  g.save(); g.clip();
+  surface(g,fab,cx,cy,w,h);
+  if(f&&f.tier>0.4) for(let i=1;i<=Math.round(f.tier);i++){
+    g.fillStyle=i%2?W(.18):K(.11);
+    g.fillRect(cx-w*1.3,cy+h*(f.wy+(f.hy-f.wy)*i/(Math.round(f.tier)+1)),w*2.6,h*.030); }
+  if(opt.det&&DET[opt.det]) DET[opt.det](g,f||BASE,cx,cy,w,h);
+  if(gl>0.4){ const hi=g.createLinearGradient(cx-w*0.5,cy,cx+w*0.1,cy+h);
+    hi.addColorStop(0,W(0)); hi.addColorStop(.5,W(0.10+gl*0.26)); hi.addColorStop(1,W(0));
+    g.fillStyle=hi; g.fillRect(cx-w*1.3,cy,w*2.6,h); }
+  if(fab.sheer>0.3){ const hy=f?Math.max(.3,f.hy):1; g.fillStyle=K(.10);
+    g.beginPath(); g.ellipse(cx,cy+h*hy*.74,w*.34,h*hy*.26,0,0,6.2832); g.fill(); }
+  g.restore();
+
+  g.save(); g.globalCompositeOperation="lighter";
+  const rim=g.createLinearGradient(cx+w*0.2,cy,cx+w*1.0,cy+h);
+  rim.addColorStop(0,"rgba(255,240,210,0)");
+  rim.addColorStop(1,"rgba(255,240,210,"+(0.16+gl*0.16)+")");
+  g.fillStyle=rim;
+  g.beginPath(); g.ellipse(cx+w*0.35,cy+h*0.5,w*0.55,h*0.5,0,0,6.2832); g.fill();
+  g.restore(); g.restore();
+
+  /* 襟あきと肩の線／ボトムスはクリップのハンガー */
+  if(f&&f.top<0.35){
+    g.strokeStyle="rgba(255,255,255,.42)"; g.lineWidth=1.6;
+    g.beginPath(); g.moveTo(cx-w*f.ww*.9,cy-3); g.lineTo(cx+w*f.ww*.9,cy-3); g.stroke();
+    g.fillStyle=shade(base,0.42);
+    for(const s of[-1,1]){ g.beginPath(); g.roundRect(cx+s*w*f.ww*.62-3.4,cy-5.5,6.8,9,1.6); g.fill(); }
+  } else {
+    const nw=f?Math.max(0.09,f.neck):0.155, sh=f?Math.max(0.18,(f.sh*f.top+f.ww*(1-f.top))*0.9):0.28;
+    g.fillStyle=shade(base,0.40);
+    g.beginPath(); g.ellipse(cx,cy+h*0.015,w*nw,h*0.036,0,0,6.2832); g.fill();
+    g.fillStyle=shade(base,1.32);
+    g.beginPath(); g.ellipse(cx,cy+h*0.005,w*nw,h*0.030,0,0,6.2832); g.fill();
+    g.strokeStyle="rgba(0,0,0,.22)"; g.lineWidth=1;
+    g.beginPath();
+    g.moveTo(cx-w*nw*.84,cy+h*.03); g.lineTo(cx-w*sh,cy+h*.03);
+    g.moveTo(cx+w*nw*.84,cy+h*.03); g.lineTo(cx+w*sh,cy+h*.03);
+    g.stroke();
+  }
+}
+/* ── 掛け合わせ。数字を混ぜるだけ ── */
+function mixForm(a,b,t,pick){
+  const o={};
+  for(const k of KEYS) o[k]= pick ? (pick[k]?b[k]:a[k]) : a[k]+(b[k]-a[k])*t;
+  return o;
+}
+/* ══════════ ここまでが src/game/garment.js ══════════ */
+
+/* ── 表示 ── */
+const DPR=Math.min(2,devicePixelRatio||1);
+let curFab=5, view="norm", onlyC="all";
+const CAT=["一枚で着る","羽織る","上に着る","下に履く"];
+function mk(host,w,h){const c=document.createElement("canvas");
+  c.width=w*DPR;c.height=h*DPR;c.style.width=w+"px";c.style.height=h+"px";
+  host.appendChild(c);const g=c.getContext("2d");g.setTransform(DPR,0,0,DPR,0,0);return{c,g};}
+function paint(g,cw,ch,item,fab,form){
+  g.clearRect(0,0,cw,ch);
+  drawGarment(g,form||item.f,fab,cw/2,20,ch-46,
+    {raw:item&&item.e?RAW[item.n]:null,det:item&&item.det!==false?item.dt:null,
+     silhouette:view==="sil"});
+}
+/* 1. 型 50 */
+const libHost=document.getElementById("lib"); const libG=[];
+function buildLib(){
+  libHost.innerHTML=""; libG.length=0;
+  for(let c=0;c<4;c++){
+    if(onlyC!=="all"&&+onlyC!==c) continue;
+    const list=LIB.filter(x=>x.c===c);
+    const hh=document.createElement("h3"); hh.textContent=CAT[c]+"　"+list.length+"着"; libHost.appendChild(hh);
+    const gr=document.createElement("div"); gr.className="grid"; libHost.appendChild(gr);
+    for(const it of list){
+      const d=document.createElement("div"); d.className="it"; gr.appendChild(d);
+      const box=document.createElement("div"); d.appendChild(box);
+      const {c:cv,g}=mk(box,128,186);
+      cv.onclick=()=>{curFab=(curFab+1)%FAB.length;redrawAll();};
+      const n=document.createElement("div");n.className="nm";n.textContent=it.n;d.appendChild(n);
+      const s=document.createElement("div");s.className="ds";s.textContent=it.d;d.appendChild(s);
+      libG.push({g,it});
+    }
+  }
+  for(const o of libG) paint(o.g,128,186,o.it,FAB[curFab]);
+}
+const fbar=document.getElementById("fabbar");
+FAB.forEach((f,i)=>{const b=document.createElement("span");b.className="fab"+(i===curFab?" on":"");
+  b.innerHTML='<span class="sw" style="background:'+f.col+'"></span>'+f.n;
+  b.onclick=()=>{curFab=i;redrawAll();};fbar.appendChild(b);});
+
+/* 2. 掛け合わせ */
+const selA=document.getElementById("mA"), selB=document.getElementById("mB");
+LIB.forEach((o,i)=>{const lbl=CAT[o.c]+"／"+o.n;
+  selA.appendChild(new Option(lbl,i)); selB.appendChild(new Option(lbl,i));});
+selA.value=5; selB.value=20;
+const gA=mk(document.getElementById("hA"),128,186);
+const gB=mk(document.getElementById("hB"),128,186);
+const gM=mk(document.getElementById("hM"),164,236);
+let mixFab=5, pick=null;
+function curMix(){
+  const A=LIB[+selA.value], B=LIB[+selB.value];
+  const a=A.e?LIB[4].f:A.f, b=B.e?LIB[4].f:B.f;   /* もとの4着は数字を持たないので代役 */
+  const t=+document.getElementById("mT").value/100;
+  return {A,B,t,form:mixForm(a,b,t,pick),det:(t<0.5?A.dt:B.dt)};
+}
+function drawMix(){
+  const A=LIB[+selA.value], B=LIB[+selB.value], m=curMix();
+  paint(gA.g,128,186,A,FAB[mixFab]); paint(gB.g,128,186,B,FAB[mixFab]);
+  gM.g.clearRect(0,0,164,236);
+  drawGarment(gM.g,m.form,FAB[mixFab],82,20,190,{det:m.det,silhouette:view==="sil"});
+  document.getElementById("mLab").textContent = pick
+    ? "数字ごとに入れかえ（"+KEYS.filter(k=>pick[k]).length+"個は右から）／"+FAB[mixFab].n
+    : "左 "+(100-m.t*100)+"％ ・ 右 "+(m.t*100)+"％／"+FAB[mixFab].n;
+}
+selA.onchange=selB.onchange=()=>{pick=null;drawMix();};
+document.getElementById("mT").oninput=()=>{pick=null;drawMix();};
+const R=n=>Math.floor(Math.random()*n);
+document.getElementById("rnd").onclick=()=>{
+  let ra=R(LIB.length), rb=R(LIB.length); while(rb===ra) rb=R(LIB.length);
+  selA.value=ra; selB.value=rb; mixFab=R(FAB.length);
+  if(Math.random()<0.45){pick={};for(const k of KEYS)pick[k]=Math.random()<0.5;}
+  else{pick=null;document.getElementById("mT").value=20+R(61);}
+  drawMix();
+};
+document.getElementById("rndF").onclick=()=>{mixFab=R(FAB.length);drawMix();};
+/* 残す */
+const keptHost=document.getElementById("kept"); const kept=[];
+document.getElementById("keep").onclick=()=>{
+  const m=curMix();
+  kept.unshift({form:m.form,fab:FAB[mixFab],det:m.det, d:FAB[mixFab].n});
+  if(kept.length>18) kept.pop(); drawKept();
+};
+function drawKept(){
+  keptHost.innerHTML="";
+  for(const k of kept){
+    const d=document.createElement("div");d.className="it";keptHost.appendChild(d);
+    const box=document.createElement("div");d.appendChild(box);
+    const {g}=mk(box,128,186);
+    g.clearRect(0,0,128,186);
+    drawGarment(g,k.form,k.fab,64,20,140,{det:k.det,silhouette:view==="sil"});
+    const s=document.createElement("div");s.className="ds";s.textContent=k.d;d.appendChild(s);
+  }
+}
+/* 3. 偶然12着 */
+const rndHost=document.getElementById("rndgrid"); let rndList=[];
+function roll(){
+  rndList=[];
+  for(let i=0;i<12;i++){
+    let ai=R(LIB.length), bi=R(LIB.length);
+    while(bi===ai) bi=R(LIB.length);
+    const A=LIB[ai], B=LIB[bi];
+    const a=A.e?LIB[4].f:A.f, b=B.e?LIB[4].f:B.f;
+    let p=null, t=0.2+Math.random()*0.6;
+    if(Math.random()<0.45){p={};for(const k of KEYS)p[k]=Math.random()<0.5;}
+    rndList.push({form:mixForm(a,b,t,p),fab:FAB[R(FAB.length)],
+      det:(t<0.5?A.dt:B.dt)});
+  }
+  drawRnd();
+}
+function drawRnd(){
+  rndHost.innerHTML="";
+  for(const k of rndList){
+    const d=document.createElement("div");d.className="it";rndHost.appendChild(d);
+    const box=document.createElement("div");d.appendChild(box);
+    const {g}=mk(box,128,186);
+    g.clearRect(0,0,128,186);
+    drawGarment(g,k.form,k.fab,64,20,140,{det:k.det,silhouette:view==="sil"});
+    const s=document.createElement("div");s.className="ds";s.textContent=k.fab.n;d.appendChild(s);
+  }
+}
+document.getElementById("reroll").onclick=roll;
+/* 4. 生地一覧 */
+const fgHost=document.getElementById("fabgrid"); const fgG=[];
+FAB.forEach(f=>{
+  const d=document.createElement("div");d.className="it";fgHost.appendChild(d);
+  const box=document.createElement("div");d.appendChild(box);
+  const {g}=mk(box,128,186);
+  const n=document.createElement("div");n.className="nm";n.textContent=f.n;d.appendChild(n);
+  const s=document.createElement("div");s.className="ds";
+  s.textContent="ハリ"+(10-Math.round(f.drape*10))+"／光沢"+Math.round(f.gloss*10)+
+    "／透け"+Math.round(f.sheer*10)+"／難しさ"+f.hard; d.appendChild(s);
+  fgG.push({g,fab:f});
+});
+/* 切り替え */
+for(const b of document.querySelectorAll("button[data-v]"))
+  b.onclick=()=>{view=b.dataset.v;
+    for(const o of document.querySelectorAll("button[data-v]"))o.classList.toggle("on",o===b);
+    redrawAll();};
+for(const b of document.querySelectorAll("button[data-c]"))
+  b.onclick=()=>{onlyC=b.dataset.c;
+    for(const o of document.querySelectorAll("button[data-c]"))o.classList.toggle("on",o===b);
+    buildLib();};
+function redrawAll(){
+  for(const o of libG) paint(o.g,128,186,o.it,FAB[curFab]);
+  for(const o of fgG){o.g.clearRect(0,0,128,186);
+    drawGarment(o.g,LIB[5].f,o.fab,64,20,140,{det:"drape",silhouette:view==="sil"});}
+  for(const b of fbar.children) b.classList.toggle("on",[...fbar.children].indexOf(b)===curFab);
+  drawMix(); drawKept(); drawRnd();
+}
+buildLib(); roll(); redrawAll();
+</script>

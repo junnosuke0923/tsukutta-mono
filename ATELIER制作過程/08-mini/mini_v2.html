@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>ミニゲーム 改訂版 ── 裁ち合わせ2種／糸ほどき／アイロン3段階</title>
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body{ margin:0; padding:0; height:100%; background:#e7e0d6;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif; }
+  body{ display:flex; align-items:center; justify-content:center; overscroll-behavior:none; }
+  #phone{ position:relative; width:390px; height:844px; background:#241b2e;
+    overflow:hidden; box-shadow:0 18px 60px rgba(60,44,58,.34); }
+  @media (max-width:420px), (max-height:880px){
+    #phone{ width:100vw; height:100vh; height:100dvh; }
+  }
+  #cv{ position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; }
+
+  #menu{ position:absolute; inset:0; z-index:5; background:#f3eee7;
+    padding:22px 18px 40px; overflow-y:auto; }
+  #menu h1{ font-size:18px; font-weight:800; color:#2a2430; margin:2px 0 3px; }
+  #menu .sub{ font-size:11.5px; font-weight:700; color:#8a7c88; line-height:1.7; margin:0 0 16px; }
+  #menu h2{ font-size:11px; font-weight:800; color:#7c5a70; margin:18px 0 8px;
+    letter-spacing:.08em; }
+  .card{ display:block; width:100%; text-align:left; border:0; cursor:pointer;
+    background:#fbf3e6; border-radius:15px; padding:12px 14px; margin:0 0 10px;
+    box-shadow:0 2px 0 rgba(124,90,112,.13); }
+  .card:active{ transform:translateY(1px); }
+  .card .top{ display:flex; align-items:center; gap:9px; margin-bottom:6px; }
+  .card .tag{ font-size:9.5px; font-weight:800; color:#fbf3e6; background:#7c5a70;
+    border-radius:5px; padding:3px 6px; letter-spacing:.05em; white-space:nowrap; }
+  .card .tag.n{ background:#7fae66; }
+  .card .nm{ font-size:15.5px; font-weight:800; color:#2a2430; }
+  .card .ds{ font-size:11.5px; font-weight:700; color:#6d6270; line-height:1.7; }
+  .card .mt{ font-size:10.5px; font-weight:800; color:#96887f; margin-top:5px; }
+  .card .mt b{ color:#7c5a70; }
+  .note{ font-size:10.5px; font-weight:700; color:#8f8279; line-height:1.8;
+    background:#ece2d3; border-radius:11px; padding:11px 13px; margin-top:14px; }
+
+  #bar{ position:absolute; top:0; left:0; right:0; height:52px; z-index:4;
+    display:none; align-items:center; justify-content:space-between; padding:0 14px; }
+  #bar.on{ display:flex; }
+  #bar .t{ font-size:14px; font-weight:800; color:#fdf6ec; }
+  #bar button{ border:0; background:rgba(255,255,255,.14); color:#fdf6ec;
+    font-size:11.5px; font-weight:800; border-radius:9px; padding:7px 12px;
+    cursor:pointer; font-family:inherit; }
+
+  #res{ position:absolute; inset:0; z-index:6; display:none;
+    background:rgba(28,20,36,.72); align-items:center; justify-content:center; padding:26px; }
+  #res.on{ display:flex; }
+  #res .box{ width:100%; background:#f3eee7; border-radius:20px;
+    padding:22px 20px 18px; text-align:center; }
+  #res .rt{ font-size:19px; font-weight:800; color:#2a2430; margin-bottom:5px; }
+  #res .rs{ font-size:32px; letter-spacing:.06em; color:#f2c14e; margin-bottom:8px; }
+  #res .rd{ font-size:12px; font-weight:700; color:#6d6270; line-height:1.8;
+    margin-bottom:15px; white-space:pre-line; }
+  #res button{ width:100%; border:0; border-radius:12px; padding:13px;
+    font-size:14px; font-weight:800; cursor:pointer; font-family:inherit; margin-bottom:8px; }
+  #again{ background:#7c5a70; color:#fbf3e6; }
+  #back{ background:#e6d8c4; color:#5a4d58; }
+
+  /* 一覧ページに埋め込まれたとき */
+  body.embed #menu{ display:none !important; }
+  body.embed #bar{ display:none !important; }
+  body.embed #res .box button{ display:none; }
+  body.embed #phone{ box-shadow:none; }
+</style>
+</head>
+<body>
+<div id="phone">
+  <canvas id="cv"></canvas>
+  <div id="bar"><span class="t"></span><button id="quit">やめる</button></div>
+
+  <div id="menu">
+    <h1>ミニゲーム　改訂版</h1>
+    <p class="sub">前回いただいた指摘を直したものです。<br>
+      新しくなったところは <b style="color:#7fae66">緑の札</b> で示しています。</p>
+
+    <h2>A 裁ち落とし ── 反物が3種類。地の目の難しさが変わる</h2>
+
+    <button class="card" data-g="drop1">
+      <div class="top"><span class="tag">A 1</span><span class="nm">裁ち落とし　１　もめん</span></div>
+      <div class="ds">型紙が上から落ちてくる。積んだ高さがそのまま「使った丈」。
+        <b>ぜんぶ地の目が通った状態</b>で落ちてくるので、詰めることだけ考えます。</div>
+      <div class="mt">練習用</div>
+    </button>
+
+    <button class="card" data-g="drop2">
+      <div class="top"><span class="tag n">A 2 新</span><span class="nm">裁ち落とし　２　ウール</span></div>
+      <div class="ds">半分ほどが<b>すでに横向きで落ちてきます</b>。回して地の目を直すと
+        <b>形も変わる</b>ので、詰め方をやり直すことになります。</div>
+      <div class="mt"><b>ご提案どおり：</b>回転済みのものが落ちてくる</div>
+    </button>
+
+    <button class="card" data-g="drop3">
+      <div class="top"><span class="tag n">A 3 新</span><span class="nm">裁ち落とし　３　ベルベット</span></div>
+      <div class="ds"><b>毛並みのある反物</b>。上下の<b>向き</b>まで合わせないといけません
+        （180度回しても直りません）。形も変わったものが増えます。</div>
+      <div class="mt"><b>ご提案の「方向」：</b>毛並みは実際に向きを揃えて裁ちます</div>
+    </button>
+
+    <button class="card" data-g="marker">
+      <div class="top"><span class="tag">参考</span><span class="nm">裁ち合わせ（置き型）</span></div>
+      <div class="ds">好きな場所に置ける前回のやり方。見くらべ用に残してあります。</div>
+      <div class="mt">落ち型を採用いただいたので、こちらは参考</div>
+    </button>
+
+    <h2>B・D ── 直したもの</h2>
+
+    <button class="card" data-g="untangle">
+      <div class="top"><span class="tag">B 改</span><span class="nm">糸ほどき</span></div>
+      <div class="ds">交差が消えても<b>すぐには終わりません</b>。指を離して、
+        糸が本当に重なっていないと確かめてから「ほどけた」になります。</div>
+      <div class="mt"><b>直したところ：</b>指を離すまで判定しない／糸が節をかすめている状態も未完成にした</div>
+    </button>
+
+    <button class="card" data-g="iron1">
+      <div class="top"><span class="tag">D 1</span><span class="nm">アイロン　１　もめん</span></div>
+      <div class="ds">ただシワを伸ばすだけ。ただし<b>置きっぱなしにすると焦げる</b>。<br>軽く叩くとかかとで立てられます（本物と同じ）。</div>
+      <div class="mt"><b>ご指摘どおり：</b>触っていなくても、そこにある以上は焦げます</div>
+    </button>
+
+    <button class="card" data-g="iron2">
+      <div class="top"><span class="tag n">D 2 新</span><span class="nm">アイロン　２　ボタンつき</span></div>
+      <div class="ds"><b>しつこい折り目</b>（何度も往復しないと消えない）と、
+        <b>ボタン</b>が出ます。当てると<b>持ち時間が減ります</b>。</div>
+      <div class="mt">指をはなすとアイロンが浮く。浮かせてよける</div>
+    </button>
+
+    <button class="card" data-g="iron3">
+      <div class="top"><span class="tag n">D 3 新</span><span class="nm">アイロン　３　プリーツ</span></div>
+      <div class="ds">さらに<b>プリーツ</b>が入ります。ここは<b>潰してはいけません</b>。
+        しかも<b>後半になるほど時間の減りが速くなります</b>。</div>
+      <div class="mt"><b>ご提案どおり：</b>しくじると持ち時間そのものが削れます（−1.2〜2.0秒）</div>
+    </button>
+
+    <p class="note">
+      色は docs/ART.md の表のとおり。パソコンではマウスでドラッグしてください。<br>
+      <b>この4つ以外の新しいゲーム</b>は <b>mini_more.html</b> のほうにあります。
+    </p>
+  </div>
+
+  <div id="res"><div class="box">
+    <div class="rt"></div><div class="rs"></div><div class="rd"></div>
+    <button id="again">もう一回</button><button id="back">ほかのゲーム</button>
+  </div></div>
+</div>
+
+<script>
+"use strict";
+const W = 390, H = 844;
+const cv = document.getElementById("cv");
+const g  = cv.getContext("2d");
+(function(){ const d = Math.min(2, window.devicePixelRatio||1);
+  cv.width = W*d; cv.height = H*d; g.setTransform(d,0,0,d,0,0); })();
+
+const C = {
+  paper:"#f3eee7", wall:"#fbf3e6", wall2:"#ece2d3", skirt:"#e6d8c4",
+  wood:"#c9a982", metal:"#8a929c", metalD:"#5c6470",
+  cloth:"#efe6da", paper2:"#f6f1e6", mat:"#dfe4e8", ink:"#2a2430",
+  plum:"#7c5a70", sage:"#7fae66", sand:"#c9a982", coral:"#e08f8c", gold:"#f2c14e"
+};
+const hx  = c => [parseInt(c.slice(1,3),16), parseInt(c.slice(3,5),16), parseInt(c.slice(5,7),16)];
+const rgbs= a => "#"+a.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,"0")).join("");
+const shade = (c,k) => rgbs(hx(c).map(v=>v*k));
+const mix   = (c1,c2,t) => { const a=hx(c1), b=hx(c2); return rgbs(a.map((v,i)=>v+(b[i]-v)*t)); };
+const clamp = (v,a,b) => v<a?a:v>b?b:v;
+function stars(gg, n, cx, cy){
+  gg.textAlign="center"; gg.font="800 40px sans-serif"; gg.fillStyle=C.gold;
+  gg.fillText("★".repeat(n)+"☆".repeat(3-n), cx, cy);
+}
+function timeBar(gg, t, max){
+  gg.fillStyle="rgba(255,255,255,.16)"; gg.fillRect(40, 74, W-80, 7);
+  gg.fillStyle = t/max < .25 ? C.coral : C.gold;
+  gg.fillRect(40, 74, (W-80)*clamp(t,0,max)/max, 7);
+}
+
+/* ==================================================================
+   型紙。四角いタイルではなく、実際の型紙の形を描く。
+   ・当たり判定はマス（かんたんで確実）
+   ・見た目はマスの中に収まる曲線（衿ぐり・アームホール・裾の丸み）
+   ・地の目（たて糸の向き）は 0度と180度でだけ合う。90度は置けるが減点
+   ================================================================== */
+function runPath(gg, seg, ox, oy, u){
+  gg.beginPath();
+  for(const s of seg){
+    if(s[0]==="M") gg.moveTo(ox+s[1]*u, oy+s[2]*u);
+    else if(s[0]==="L") gg.lineTo(ox+s[1]*u, oy+s[2]*u);
+    else if(s[0]==="Q") gg.quadraticCurveTo(ox+s[1]*u, oy+s[2]*u, ox+s[3]*u, oy+s[4]*u);
+    else if(s[0]==="Z") gg.closePath();
+  }
+}
+const box = (w,h) => { const c=[]; for(let y=0;y<h;y++) for(let x=0;x<w;x++) c.push([x,y]); return c; };
+
+/* 先生の整理：
+   「ブロックの形状に型紙をぴったり合わせなくてよい。
+     その形状の上に、その型紙が描かれている状態でよい」
+   → **形（マスの並び）と、その上に描く型紙は別もの**として持つ。
+     形は詰めやすさで決め、型紙はその形の縦横比に合うものを当てる。
+     横長には襟やベルト、2マスにはカフス、縦長には身頃や袖。 */
+const PIECES = [
+  /* ============================================================
+     形は先生の資料から写した。
+     ・前身頃／後ろ身頃 … 文化式原型（服飾造形の基礎 4章）。前中心は右、後ろ中心は左
+     ・袖 … 袖山曲線（同 4章）。肘線・折り線・合印
+     ・スカート … セミタイトスカート前（スカートのパターン展開）
+     ・衿 … シャツカラー／台衿（衿のデザインバリエーションの作図）
+     inner = 内側の線（ダーツ・折り線・肘線）。破線で描く
+     ============================================================ */
+  { n:"前身頃", col:"#f4ece0", c:box(2,3),               /* 先生の 原型.dxf（CREACOMPO）P0002 をそのまま */
+    p:[["M",0.322,2.94],["L",0.275,1.756],["L",0.418,1.722],["L",0.525,1.647],["L",0.593,1.537],["L",0.634,1.36],["L",1.328,1.756],["L",0.793,1.163],["L",0.813,0.954],["L",0.807,0.78],["L",0.764,0.561],["L",0.697,0.373],["L",1.473,0.06],["L",1.5,0.239],["L",1.605,0.419],["L",1.745,0.52],["L",1.828,0.549],["L",1.94,0.561],["L",1.94,2.94],["L",1.387,2.94],["L",1.328,1.96],["L",1.268,2.94],["L",0.8,2.94],["L",0.736,1.452],["L",0.672,2.94],["Z"]],
+    inner:[[[0.275,1.756],[0.723,1.756]],[[0.749,1.756],[1.94,1.756]],[[0.774,1.5],[1.44,1.5]]], grain:[1.62,.85,2.75] },
+  { n:"後ろ身頃", col:"#eae0cf", c:box(2,3),             /* 原型.dxf P0001 */
+    p:[["M",0.81,2.94],["L",0.73,1.557],["L",0.65,2.94],["L",0.123,2.94],["L",0.065,0.958],["L",0.06,0.228],["L",0.361,0.202],["L",0.479,0.152],["L",0.564,0.06],["L",0.867,0.158],["L",0.766,0.799],["L",0.989,0.198],["L",1.519,0.37],["L",1.36,0.964],["L",1.333,1.15],["L",1.332,1.336],["L",1.385,1.476],["L",1.458,1.57],["L",1.571,1.656],["L",1.705,1.699],["L",1.657,2.94],["L",1.413,2.94],["L",1.258,1.285],["L",1.101,2.94],["Z"]],
+    inner:[[[1.296,1.699],[1.705,1.699]],[[0.738,1.699],[1.218,1.699]],[[0.086,1.699],[0.722,1.699]],[[0.554,1.5],[1.212,1.5]]], grain:[.36,.6,2.75] },
+  { n:"袖", col:"#f8f3ea", c:box(2,3),                   /* 原型.dxf P0003。袖山曲線・折り線・肘線 */
+    p:[["M",1.843,2.94],["L",0.157,2.94],["L",0.157,0.868],["L",0.255,0.838],["L",0.369,0.747],["L",0.565,0.417],["L",0.684,0.248],["L",0.787,0.146],["L",0.918,0.075],["L",1.014,0.06],["L",1.13,0.069],["L",1.191,0.095],["L",1.285,0.164],["L",1.378,0.283],["L",1.606,0.742],["L",1.72,0.836],["L",1.843,0.868],["Z"]],
+    inner:[[[1.442,0.411],[1.442,2.94]],[[0.6,0.364],[0.6,2.94]],[[1.042,0.06],[1.042,2.94]],[[1.042,0.868],[1.843,0.868]],[[1.042,0.868],[0.157,0.868]],[[0.157,1.638],[1.843,1.638]],[[0.663,1.5],[1.337,1.5]],[[1.042,0.868],[1.164,0.836]],[[1.164,0.836],[1.258,0.767]],[[1.258,0.767],[1.318,0.682]],[[1.318,0.682],[1.442,0.411]],[[0.6,0.364],[0.83,0.747]],[[0.83,0.747],[0.944,0.838]],[[0.944,0.838],[1.042,0.868]]], grain:[1.0,1.3,2.7] },
+  { n:"パンツ後ろ", col:"#e8dfd0", c:box(2,5),           /* パターン作成用.png（後ろ）から */
+    p:[["M",.87,.06],["L",1.74,.12],["Q",1.86,.55,1.86,1.01],["L",1.80,2.86],["L",1.71,4.94],
+       ["L",.41,4.94],["L",.29,2.86],["Q",.20,2.0,.06,1.49],["Q",.30,1.42,.66,.98],["Z"]],
+    inner:[[[.06,1.49],[1.86,1.16]],[[.29,2.86],[1.80,2.86]],[[1.22,.09],[1.27,.62]],[[1.37,.10],[1.27,.62]]],
+    grain:[1.0,.9,4.6] },
+  { n:"パンツ前", col:"#eee5d6", c:box(2,5),             /* 同（前） */
+    p:[["M",.62,.06],["L",1.66,.11],["Q",1.72,.5,1.74,.95],["Q",1.82,1.25,1.98,1.39],
+       ["L",1.92,2.79],["L",1.75,4.88],["L",.68,4.88],["L",.56,2.79],["Q",.50,1.6,.50,.95],["Z"]],
+    inner:[[[.50,.95],[1.74,.95]],[[.56,2.79],[1.92,2.79]],[[.95,.08],[1.02,.56]],[[1.06,.09],[1.02,.56]],
+           [[1.53,.09],[1.60,.85]]],
+    grain:[1.24,.9,4.6] },
+  { n:"タイトスカート", col:"#ece2d2", c:box(2,3),    /* タイトスカート作図_型紙-01.png から */
+    p:[["M",.06,.14],["L",.39,.14],["L",.49,.60],["L",.60,.13],["L",.70,.12],["L",.81,.54],["L",.92,.09],
+       ["L",1.03,.06],["Q",1.13,.30,1.15,.83],["L",1.15,2.94],["L",.06,2.94],["Z"]],
+    inner:[[[.06,.83],[1.15,.83]]], notch:[[1.15,1.10]], grain:[.34,.5,2.7] },
+  { n:"見返し", col:"#e9ddc9", c:box(1,3),
+    p:[["M",.42,.12],["Q",.86,.14,.88,.44],["L",.88,2.88],["L",.14,2.88],
+       ["L",.14,1.20],["Q",.14,.60,.42,.12],["Z"]],
+    grain:[.62,.9,2.6] },
+
+  { n:"シャツカラー", col:"#e0d2bc", c:box(3,1),
+    p:[["M",.10,.24],["L",2.60,.16],["L",2.94,.36],                    /* 衿先 */
+       ["Q",2.40,.82,1.50,.82],["Q",.60,.82,.10,.72],["Z"]],           /* 衿つけ線 */
+    inner:[[[.10,.30],[2.60,.30]]], notch:[[1.50,.82]], grain:[1.5,.28,.7] },
+  { n:"台衿", col:"#e4d7c2", c:box(3,1),
+    p:[["M",.08,.30],["Q",1.5,.24,2.60,.28],["Q",2.94,.32,2.90,.60],
+       ["Q",2.70,.80,2.40,.76],["Q",1.5,.84,.08,.74],["Z"]],
+    notch:[[1.5,.80]], grain:[1.5,.36,.66] },
+  { n:"ヨーク", col:"#e6d9c4", c:box(3,1),
+    p:[["M",.12,.20],["L",2.88,.20],["L",2.84,.80],["Q",1.50,.94,.16,.80],["Z"]],
+    grain:[1.5,.28,.74] },
+  { n:"ベルト", col:"#eee2ce", c:box(4,1),
+    p:[["M",.12,.32],["L",3.62,.32],["Q",3.88,.53,3.62,.74],["L",.12,.74],["Z"]],
+    inner:[[[.12,.53],[3.62,.53]]], notch:[[1.9,.32],[2.9,.32]], grain:[.9,.38,.68] },
+  { n:"カフス", col:"#f2e9d8", c:box(2,1),
+    p:[["M",.14,.26],["L",1.72,.26],["Q",1.86,.26,1.86,.42],["L",1.86,.62],
+       ["Q",1.86,.78,1.72,.78],["L",.14,.78],["Z"]],
+    inner:[[[.14,.52],[1.86,.52]]], grain:[.6,.32,.72] },
+  { n:"スカート", col:"#efe3d0", c:box(3,2),
+    p:[["M",.56,.12],["Q",1.7,.06,2.88,.10],                            /* ウエスト */
+       ["L",2.88,1.90],                                                /* 前中心 */
+       ["Q",1.5,1.94,.16,1.90],                                        /* 裾 */
+       ["Q",.22,1.20,.34,.80],["Q",.42,.40,.56,.12],["Z"]],            /* 脇 */
+    inner:[[[.34,.80],[2.88,.80]],                                     /* ヒップライン */
+           [[1.20,.12],[1.30,.78]],[[1.44,.12],[1.30,.78]],
+           [[2.10,.12],[2.18,.72]],[[2.30,.12],[2.18,.72]]],
+    notch:[[.34,.80]], grain:[2.5,.4,1.7] },
+
+  { n:"ポケット", col:"#f6efe2", c:box(1,1),
+    p:[["M",.14,.14],["L",.86,.14],["L",.86,.66],["L",.72,.86],["L",.28,.86],["L",.14,.66],["Z"]],
+    inner:[[[.14,.30],[.86,.30]]], grain:[.5,.36,.8] },
+  { n:"当て布", col:"#f0e7d8", c:box(2,2),
+    p:[["M",.20,.20],["L",1.80,.20],["L",1.80,1.80],["L",.20,1.80],["Z"]],
+    grain:[1.0,.6,1.5] },
+
+  /* 変わった形。名前は先生と一緒に決め直す（仮） */
+  { n:"衿ぐり見返し", col:"#e7dbc7", c:[[0,0],[0,1],[0,2],[1,2]],
+    p:[["M",.16,.24],["Q",.60,.10,.84,.30],["Q",.86,1.10,.90,2.06],
+       ["Q",1.30,2.10,1.86,2.14],["L",1.86,2.82],["L",.16,2.82],["Z"]],
+    grain:[.5,.6,1.9] },
+  { n:"タック布", col:"#ece0cc", c:[[0,0],[1,0],[2,0],[1,1]],
+    p:[["M",.14,.22],["L",2.86,.22],["L",2.86,.80],["L",1.84,.80],
+       ["L",1.84,1.82],["L",1.16,1.82],["L",1.16,.80],["L",.14,.80],["Z"]],
+    inner:[[[.60,.22],[.60,.80]],[[1.0,.22],[1.0,.80]],[[2.0,.22],[2.0,.80]],[[2.4,.22],[2.4,.80]]],
+    grain:[1.5,.9,1.7] },
+  { n:"フリル", col:"#f2e8d6", c:[[0,0],[1,0],[1,1],[2,1]],
+    p:[["M",.14,.24],["L",1.86,.24],["Q",1.94,.90,1.86,1.24],
+       ["L",2.86,1.24],["L",2.86,1.80],["L",1.14,1.80],
+       ["Q",1.06,1.14,1.14,.80],["L",.14,.80],["Z"]],
+    grain:[.6,.32,.72] },
+];
+
+function rotCells(cells, rot){
+  let c = cells.map(p=>[p[0],p[1]]);
+  for(let r=0;r<(rot&3);r++) c = c.map(p=>[-p[1], p[0]]);
+  const mx = Math.min(...c.map(p=>p[0])), my = Math.min(...c.map(p=>p[1]));
+  return c.map(p=>[p[0]-mx, p[1]-my]);
+}
+const cellsOf = p => rotCells(p.def.c, p.rot);
+const pw = p => Math.max(...cellsOf(p).map(q=>q[0]))+1;
+const phh = p => Math.max(...cellsOf(p).map(q=>q[1]))+1;
+/* 地の目が通っているか。
+   ふつうの反物：90度・270度が横向き＝通っていない（180度は可）
+   毛並みのある反物（ベルベット・コーデュロイ）：**向きも合わせる**ので 0度だけ */
+const grainOK = (p, nap) => nap ? (p.rot & 3) === 0 : (p.rot & 1) === 0;
+
+/* 型紙1枚を描く。ox,oy は左上の画面座標、u は1マスの大きさ */
+/* 見え方。ブロックを半透明にすると反物が透けて、型紙を反物に置いた見た目になる。
+   エディタ（piece_editor.html）の「見え方」で決めた数値をここに入れる */
+const PIECE_STYLE = { block:1.0, edge:1.0, paper:0.17, line:0.62, paperCol:"#f6f1e6" };
+function drawPiece(gg, p, ox, oy, u, opt){
+  opt = opt || {};
+  const d = p.def, rot = p.rot & 3;
+  const bw = d.c.reduce((a,q)=>Math.max(a,q[0]),0)+1;
+  const bh = d.c.reduce((a,q)=>Math.max(a,q[1]),0)+1;
+  gg.save();
+  gg.translate(ox, oy);
+  /* 回した分だけ、描く座標系ごと回す */
+  if(rot===1){ gg.translate(bh*u, 0); gg.rotate(Math.PI/2); }
+  else if(rot===2){ gg.translate(bw*u, bh*u); gg.rotate(Math.PI); }
+  else if(rot===3){ gg.translate(0, bw*u); gg.rotate(-Math.PI/2); }
+
+  const bad = !(opt.grainOK==null ? grainOK(p) : opt.grainOK) && !opt.noGrainMark;
+  const cells = d.c;
+  const fillCells = ()=>{ for(const [cx,cy] of cells) gg.fillRect(cx*u, cy*u, u+.4, u+.4); };
+  const has = (x,y)=> cells.some(q=>q[0]===x&&q[1]===y);
+
+  const A0 = opt.alpha==null ? 1 : opt.alpha;
+  const S = PIECE_STYLE;
+  gg.globalAlpha = A0;
+  if(opt.shadow){
+    gg.save(); gg.translate(3,5);
+    gg.fillStyle="rgba(42,36,48,"+(.20*S.block).toFixed(2)+")"; fillCells(); gg.restore();
+  }
+  /* ① ブロック（詰めるための形）。S.block を下げると反物が透ける */
+  gg.globalAlpha = A0*S.block;
+  gg.fillStyle = bad ? mix(d.col, C.coral, .26) : d.col;
+  fillCells();
+  gg.globalAlpha = A0*S.block*S.edge;
+  gg.fillStyle = shade(bad ? mix(d.col,C.coral,.26) : d.col, .87);
+  for(const [cx,cy] of cells){
+    if(!has(cx+1,cy)) gg.fillRect((cx+1)*u-u*.15, cy*u, u*.15+.4, u+.4);
+    if(!has(cx,cy+1)) gg.fillRect(cx*u, (cy+1)*u-u*.15, u+.4, u*.15+.4);
+  }
+  gg.globalAlpha = A0;
+
+  /* ② その上に型紙（紙）。S.paper を上げると紙らしく不透明になる */
+  gg.save();
+  gg.beginPath();
+  for(const [cx,cy] of cells) gg.rect(cx*u, cy*u, u+.4, u+.4);
+  gg.clip();
+  runPath(gg, d.p, 0, 0, u);
+  gg.globalAlpha = A0*S.paper;
+  gg.fillStyle = bad ? mix(S.paperCol, C.coral, .35) : S.paperCol;
+  gg.fill();
+  gg.globalAlpha = A0;
+  if(u > 20){                                  /* 裁ち切り線 */
+    gg.setLineDash([Math.max(2,u*.09), Math.max(2,u*.07)]);
+    gg.strokeStyle = bad ? "rgba(190,86,92,"+(S.line+.2).toFixed(2)+")" : "rgba(96,76,62,"+S.line.toFixed(2)+")";
+    gg.lineWidth = Math.max(1, u*.035);
+    runPath(gg, d.p, 0, 0, u); gg.stroke();
+    gg.setLineDash([]);
+  }
+  gg.restore();
+
+  if(u > 26){
+    /* 内側の線（ダーツ・折り線・肘線）。細い破線 */
+    if(d.inner){
+      gg.save(); gg.beginPath(); for(const [cx,cy] of cells) gg.rect(cx*u,cy*u,u+.4,u+.4); gg.clip();
+      gg.strokeStyle="rgba(96,76,62,.48)"; gg.lineWidth=1.1; gg.setLineDash([3,3]);
+      for(const [a,b] of d.inner){ gg.beginPath(); gg.moveTo(a[0]*u,a[1]*u); gg.lineTo(b[0]*u,b[1]*u); gg.stroke(); }
+      gg.setLineDash([]); gg.restore();
+    }
+    /* 地の目の線。型紙ごとに置き場所が決まっている（前中心に沿う、袖は中央、など）
+       双方向裁ち＝両矢印（上下どちらでもよい）
+       一方裁ち  ＝**片矢印**。この矢の先が向くほうに、そろえて置く */
+    const gr = d.grain || [bw*.5, bh*.18, bh*.82];
+    const gx0 = gr[0]*u, y0 = gr[1]*u, y1 = gr[2]*u;
+    gg.strokeStyle = bad ? C.coral : "rgba(90,70,60,.52)";
+    gg.lineWidth = bad ? 2.4 : 1.6;
+    gg.beginPath(); gg.moveTo(gx0, y0); gg.lineTo(gx0, y1); gg.stroke();
+    const heads = opt.oneWay ? [[y1,-1]] : [[y0,1],[y1,-1]];
+    for(const [yy,dy] of heads){
+      gg.beginPath(); gg.moveTo(gx0-5, yy+6*dy); gg.lineTo(gx0, yy);
+      gg.lineTo(gx0+5, yy+6*dy); gg.stroke();
+    }
+    if(opt.oneWay){                       /* 反対の端は、切りそろえた線 */
+      gg.beginPath(); gg.moveTo(gx0-4, y0); gg.lineTo(gx0+4, y0); gg.stroke();
+    }
+    /* ノッチ（合印） */
+    if(d.notch) for(const [nx,ny] of d.notch){
+      gg.strokeStyle="rgba(90,70,60,.55)"; gg.lineWidth=1.5;
+      gg.beginPath(); gg.moveTo(nx*u, ny*u-5); gg.lineTo(nx*u, ny*u+5); gg.stroke();
+    }
+    gg.textAlign="center"; gg.font="800 9.5px sans-serif";
+    gg.fillStyle="rgba(84,66,58,.74)";
+    /* 文字の位置。エディタで決めた label があればそこに。無ければ地の目をよけて置く */
+    if(d.label){ gg.fillText(d.n, d.label[0]*u, d.label[1]*u); }
+    else {
+      const nx = d.grain ? (gr[0]>bw*.5 ? bw*u*.36 : bw*u*.62) : bw*u*.5;
+      gg.fillText(d.n, nx, bh*u*.5 + (bh>1?u*.34:u*.30));
+    }
+  }
+  gg.globalAlpha = 1;
+  gg.restore();
+
+  /* 地の目が違うしるしは、回した座標系の外に描く（読めるように） */
+  if(bad && u > 26){
+    gg.fillStyle = C.coral;
+    gg.beginPath(); gg.arc(ox+8, oy+8, 7, 0, 6.2832); gg.fill();
+    gg.fillStyle="#fff"; gg.font="800 10px sans-serif"; gg.textAlign="center";
+    gg.fillText("!", ox+8, oy+11.5);
+  }
+}
+
+/* ==================================================================
+   A-1 裁ち合わせ（置き型・改）
+   ================================================================== */
+const COLS = 6, ROWS = 8, CELL = 50, GX = 45, GY = 150, LIFT = 40;
+
+const marker = {
+  title:"裁ち合わせ（置き型）",
+  init(){
+    const pool = [0,1,2,4,8,10];                /* 前身頃・後ろ身頃・袖・シャツカラー・カフス・ポケット */
+    const ps = pool.map((i,k)=>({ def:PIECES[i], rot:0, placed:false, gx:0, gy:0, k }));
+    const m = { ps, drag:null, time:28, done:false, doneT:0, warm:1.6,
+                moved:0, msg:"", msgT:0 };
+    this.layTray(m);
+    return m;
+  },
+  layTray(m){
+    const T = 20; let x = 16, y = 636;
+    for(const p of m.ps){
+      if(p.placed) continue;
+      const w = pw(p)*T, h = phh(p)*T;
+      if(x + w > W-14){ x = 16; y = 700; }
+      p.tw=w; p.th=h; p.tx=x; p.ty=y-h/2;
+      x += w + 22;
+    }
+    m.T = T;
+  },
+  fits(m, p, gx, gy){
+    for(const [cx,cy] of cellsOf(p)){
+      const x=gx+cx, y=gy+cy;
+      if(x<0||x>=COLS||y<0||y>=ROWS) return false;
+      for(const q of m.ps){
+        if(q===p || !q.placed) continue;
+        for(const [qx,qy] of cellsOf(q)) if(q.gx+qx===x && q.gy+qy===y) return false;
+      }
+    }
+    return true;
+  },
+  usedRows(m){
+    let mx=0;
+    for(const p of m.ps) if(p.placed)
+      for(const [,cy] of cellsOf(p)) mx = Math.max(mx, p.gy+cy+1);
+    return mx;
+  },
+  badGrain(m){ return m.ps.filter(p=>p.placed && !grainOK(p)).length; },
+  score(m){
+    if(!m.ps.every(p=>p.placed)) return 0;
+    const r = this.usedRows(m), bad = this.badGrain(m);
+    let s = r<=5 ? 3 : r<=6 ? 2 : r<=7 ? 1 : 0;
+    if(bad>0) s = Math.max(0, s-1);              /* 地の目を外すと1つ減る */
+    if(bad>2) s = 0;
+    return s;
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0) return;
+    m.moved = 0;
+    for(const p of m.ps){
+      if(p.placed) continue;
+      if(x>=p.tx-9 && x<=p.tx+p.tw+9 && y>=p.ty-11 && y<=p.ty+p.th+11){
+        m.drag = { p, ox:(pw(p)*CELL)/2, oy:(phh(p)*CELL)/2 };
+        m.dragX=x; m.dragY=y; return;
+      }
+    }
+    const gx = Math.floor((x-GX)/CELL), gy = Math.floor((y-GY)/CELL);
+    for(const p of m.ps){
+      if(!p.placed) continue;
+      for(const [cx,cy] of cellsOf(p)) if(p.gx+cx===gx && p.gy+cy===gy){
+        m.drag = { p, ox:(gx-p.gx)*CELL + (x-GX-gx*CELL),
+                      oy:(gy-p.gy)*CELL + (y-GY-gy*CELL) };
+        p.placed=false; this.layTray(m); m.dragX=x; m.dragY=y; return;
+      }
+    }
+  },
+  move(m,x,y){
+    if(!m.drag) return;
+    m.moved += Math.abs(x-m.dragX)+Math.abs(y-m.dragY); m.dragX=x; m.dragY=y;
+  },
+  up(m,x,y){
+    if(!m.drag) return;
+    const p = m.drag.p;
+    if(m.moved < 12){
+      p.rot = (p.rot+1)&3; m.drag=null; this.layTray(m);
+      m.msg = grainOK(p) ? "地の目が通った" : "地の目が横向き（減点）"; m.msgT=1.2;
+      return;
+    }
+    const tlx = x-m.drag.ox, tly = y-m.drag.oy-LIFT;
+    const gx = Math.round((tlx-GX)/CELL), gy = Math.round((tly-GY)/CELL);
+    if(this.fits(m,p,gx,gy)){ p.placed=true; p.gx=gx; p.gy=gy; }
+    m.drag=null; this.layTray(m);
+    if(m.ps.every(q=>q.placed)){ m.done=true; m.doneT=0; }
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m), this.msg(m)); return; }
+    if(m.msgT>0) m.msgT-=dt;
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  msg(m){
+    const bad=this.badGrain(m);
+    if(!m.ps.every(p=>p.placed)) return "置ききれなかった";
+    return "使った丈 "+this.usedRows(m)+"段"+(bad?"　地の目ちがい "+bad+"枚":"　地の目すべて◎");
+  },
+  draw(m, gg){
+    gg.fillStyle=C.mat; gg.fillRect(0,0,W,H);
+    gg.fillStyle=shade(C.mat,.965);
+    for(let y=0;y<H;y+=26) gg.fillRect(0,y,W,1);
+    for(let x=0;x<W;x+=26) gg.fillRect(x,0,1,H);
+    const used=this.usedRows(m);
+
+    /* 反物。使った丈が上から伸びる */
+    const FAB = mix(C.sand, C.cloth, .30);
+    gg.fillStyle="rgba(40,30,44,.16)"; gg.fillRect(GX-4,GY-2,COLS*CELL+8,ROWS*CELL+8);
+    for(let r=0;r<ROWS;r++){
+      gg.fillStyle = r<used ? FAB : shade(FAB,.93);
+      gg.fillRect(GX,GY+r*CELL,COLS*CELL,CELL);
+    }
+    gg.strokeStyle="rgba(90,70,60,.10)"; gg.lineWidth=1;
+    for(let i=1;i<COLS;i++){gg.beginPath();gg.moveTo(GX+i*CELL,GY);gg.lineTo(GX+i*CELL,GY+ROWS*CELL);gg.stroke();}
+    for(let i=1;i<ROWS;i++){gg.beginPath();gg.moveTo(GX,GY+i*CELL);gg.lineTo(GX+COLS*CELL,GY+i*CELL);gg.stroke();}
+    /* たて糸＝地の目の向き。うっすら縦線 */
+    gg.strokeStyle="rgba(120,90,60,.13)";
+    for(let x=GX+8;x<GX+COLS*CELL;x+=11){gg.beginPath();gg.moveTo(x,GY);gg.lineTo(x,GY+ROWS*CELL);gg.stroke();}
+
+    gg.textAlign="right"; gg.font="800 10px sans-serif";
+    for(let r=0;r<ROWS;r++){
+      gg.fillStyle = r<used ? C.plum : "rgba(90,70,60,.28)";
+      gg.fillText((r+1)+"", GX-9, GY+r*CELL+CELL/2+4);
+    }
+    if(used>0){ gg.fillStyle=C.plum; gg.fillRect(GX-4,GY+used*CELL-1.5,COLS*CELL+8,3); }
+
+    for(const p of m.ps) if(p.placed)
+      drawPiece(gg, p, GX+p.gx*CELL, GY+p.gy*CELL, CELL, {});
+
+    /* 手もと */
+    gg.fillStyle="rgba(42,36,48,.055)"; gg.fillRect(0,590,W,180);
+    gg.textAlign="left"; gg.font="800 11px sans-serif"; gg.fillStyle="#8a7c88";
+    gg.fillText("のこりの型紙", 16, 610);
+    for(const p of m.ps){
+      if(p.placed || (m.drag&&m.drag.p===p)) continue;
+      drawPiece(gg, p, p.tx, p.ty, m.T, {noGrainMark:true});
+      gg.textAlign="center"; gg.font="800 9.5px sans-serif"; gg.fillStyle="#8a7c88";
+      gg.fillText(p.def.n, p.tx+p.tw/2, p.ty+p.th+13);
+    }
+    if(m.drag){
+      const p=m.drag.p;
+      const tlx=m.dragX-m.drag.ox, tly=m.dragY-m.drag.oy-LIFT;
+      const gx=Math.round((tlx-GX)/CELL), gy=Math.round((tly-GY)/CELL);
+      if(this.fits(m,p,gx,gy)){
+        gg.fillStyle="rgba(124,90,112,.20)";
+        for(const [cx,cy] of cellsOf(p))
+          gg.fillRect(GX+(gx+cx)*CELL+2, GY+(gy+cy)*CELL+2, CELL-4, CELL-4);
+      }
+      drawPiece(gg, p, tlx, tly, CELL, {shadow:true});
+    }
+
+    timeBar(gg,m.time,28);
+    gg.textAlign="center"; gg.font="800 13px sans-serif"; gg.fillStyle=C.ink;
+    const left=m.ps.filter(p=>!p.placed).length;
+    gg.fillText(left>0 ? ("のこり "+left+"枚　／　使った丈 "+used+"段")
+                       : ("ぜんぶ置けた！　使った丈 "+used+"段"), W/2, 106);
+    const bad=this.badGrain(m);
+    gg.font="700 10.5px sans-serif";
+    gg.fillStyle = bad? C.coral : "#8a7c88";
+    gg.fillText(bad? ("地の目が横向き "+bad+"枚（減点）") : "たて糸の向き＝地の目をそろえる", W/2, 124);
+
+    if(m.warm>0){
+      gg.fillStyle="rgba(42,36,48,.88)"; gg.fillRect(0,286,W,150);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("反物をむだなく使う", W/2, 326);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("ドラッグで置く／軽く叩くと回る", W/2, 354);
+      gg.fillStyle=C.gold;
+      gg.fillText("矢印（地の目）は、たてに揃えること", W/2, 380);
+      gg.fillStyle="rgba(253,246,236,.6)"; gg.font="700 11px sans-serif";
+      gg.fillText("横向きでも置けますが、点が下がります", W/2, 404);
+    }
+    if(m.msgT>0){
+      gg.textAlign="center";
+      gg.fillStyle = m.msg.indexOf("横")>=0
+        ? "rgba(224,143,140,"+clamp(m.msgT*1.4,0,1)+")"
+        : "rgba(127,174,102,"+clamp(m.msgT*1.4,0,1)+")";
+      gg.font="800 12px sans-serif"; gg.fillText(m.msg, W/2, 580);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.58)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(!m.ps.every(p=>p.placed) ? "時間ぎれ…" :
+        sc>=3?"みごとな型入れ！":sc>=2?"いい型入れ":sc>=1?"まずまず":"布がもったいない", W/2, 384);
+      gg.font="700 13px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      gg.fillText(this.msg(m), W/2, 414);
+      stars(gg,sc,W/2,472);
+    }
+  },
+};
+
+/* ==================================================================
+   A-2 裁ち落とし（落ち型）
+   型紙が上から落ちてきて、下に積み上がる。
+   「使った丈＝積んだ高さ」が目で分かるのが狙い。
+   ================================================================== */
+const DCOLS = 6, DROWS = 10, DCELL = 46, DGX = 57, DGY = 146;
+const PN = {};  PIECES.forEach((d,i)=>PN[d.n]=i);
+
+/* 反物の種類。
+   ・もめん   … 双方向裁ち。矢印は両矢印で、上下どちらでもよい（0度と180度）
+   ・ウール   … **一方裁ち**。矢印は片矢印になり、**下向きにそろえる**（0度だけ）
+   ・ベルベット… 一方裁ちのうえ、**撫で毛か逆毛かがその回ごとに決まる**。
+                 逆毛（毛を起こして色を濃く出す）なら矢印は**上向き**にそろえる */
+const DROP_LV = {
+  1:{ name:"もめん", oneWay:false, pickDir:false, rotChance:0,
+      pool:["前身頃","後ろ身頃","袖","シャツカラー","カフス","ポケット"],
+      note:"双方向裁ち。矢印はたてなら上下どちらでもよい" },
+  2:{ name:"ウール", oneWay:true, pickDir:false, rotChance:.50,
+      pool:["前身頃","後ろ身頃","袖","台衿","ベルト","カフス"],
+      note:"一方裁ち。片矢印を下向きにそろえる" },
+  3:{ name:"ベルベット", oneWay:true, pickDir:true, rotChance:.65,
+      pool:["前身頃","袖","タイトスカート","パンツ前","カフス","衿ぐり見返し"],
+      note:"一方裁ち。裁ち方はこの回の指定にしたがう" },
+};
+/* 撫で毛＝毛の流れに沿う（矢印は下）／逆毛＝毛を起こす。色が濃く出る（矢印は上） */
+const NAPDIR = [
+  { n:"撫で毛", rot:0, why:"毛の流れに沿って裁つ。表面がなめらかに光る" },
+  { n:"逆毛",   rot:2, why:"毛を起こして裁つ。色が濃く、深く見える" },
+];
+
+function makeDrop(lv){
+ const L = DROP_LV[lv];
+ return {
+  title:"裁ち落とし "+lv+"　"+L.name,
+  lv, L,
+  /* この回、正しいとされる向き */
+  okRots(m){ return L.oneWay ? [m.reqRot] : [0,2]; },
+  ok(m,p){ return this.okRots(m).includes(p.rot & 3); },
+  init(){
+    const order = L.pool.map(n=>PN[n]);
+    for(let i=order.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));
+      [order[i],order[j]]=[order[j],order[i]]; }
+    const dir = L.pickDir ? NAPDIR[Math.floor(Math.random()*2)] : NAPDIR[0];
+    return { lv, oneWay:L.oneWay, dir, reqRot:L.oneWay?dir.rot:0,
+             order, idx:0, cur:null, grid:{}, pieces:[],
+             time: lv>=3?40:lv>=2?36:32, done:false, doneT:0,
+             warm: L.pickDir?3.0:2.4, land:0, msg:"", msgT:0, moved:0, drag:false,
+             dropFast:false, bad:0, flash:0, spun:0 };
+  },
+  spawn(m){
+    if(m.idx >= m.order.length){ m.cur=null; m.done=true; m.doneT=0; return; }
+    const def = PIECES[m.order[m.idx]];
+    /* 難度が上がると、すでに回った状態で落ちてくる。
+       直すには回さなければならず、回すと形も変わる＝置き場所も変わる */
+    let rot = m.reqRot;
+    if(Math.random() < L.rotChance){
+      const wrong = [0,1,2,3].filter(r=>!this.okRots(m).includes(r));
+      rot = wrong[Math.floor(Math.random()*wrong.length)];
+    }
+    const p = { def, rot };
+    const w = pw(p);
+    p.gx = clamp(Math.floor((DCOLS-w)/2), 0, DCOLS-w);
+    p.y  = -phh(p);
+    m.cur = p; m.idx++;
+  },
+  occupied(m,x,y){ return !!m.grid[x+","+y]; },
+  /* この型紙が、いまの列で最終的に止まる行 */
+  landRow(m,p){
+    let r = Math.floor(p.y);
+    while(this.canPlace(m,p,p.gx,r+1)) r++;
+    return r;
+  },
+  /* 落ちている途中は行のあいだにまたがるので、上下どちらの行でも置けること */
+  canMoveTo(m,p,gx){
+    const a=Math.floor(p.y), b=Math.ceil(p.y);
+    return this.canPlace(m,p,gx,a) && this.canPlace(m,p,gx,b);
+  },
+  canPlace(m,p,gx,gy){
+    for(const [cx,cy] of cellsOf(p)){
+      const x=gx+cx, y=gy+cy;
+      if(x<0||x>=DCOLS) return false;
+      if(y>=DROWS) return false;
+      if(y>=0 && this.occupied(m,x,y)) return false;
+    }
+    return true;
+  },
+  lock(m){
+    const p=m.cur, gy=Math.floor(p.y+.0001);
+    for(const [cx,cy] of cellsOf(p))
+      if(gy+cy>=0) m.grid[(p.gx+cx)+","+(gy+cy)] = 1;
+    m.pieces.push({ def:p.def, rot:p.rot, gx:p.gx, gy, ok:this.ok(m,p) });
+    if(!this.ok(m,p)) m.bad++;
+    m.flash = .35;
+    m.cur=null; m.land=.16;
+  },
+  pileTop(m){                              /* 積みあがった高さ（上から数えた行） */
+    let top=DROWS;
+    for(const k in m.grid){ const y=+k.split(",")[1]; if(y<top) top=y; }
+    return DROWS-top;
+  },
+  score(m){
+    const h=this.pileTop(m);
+    if(m.idx<m.order.length || m.cur) return 0;
+    const t = this.lv>=2 ? [6,7,8] : [5,6,7];
+    let s = h<=t[0] ? 3 : h<=t[1] ? 2 : h<=t[2] ? 1 : 0;
+    if(m.bad>0) s=Math.max(0,s-1);
+    if(m.bad>2) s=0;
+    return s;
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0||!m.cur) return;
+    m.drag=true; m.moved=0; m.dragX=x; m.dragY=y;
+    /* 下のほうを押したら早く落とす */
+    if(y > 700){ m.dropFast=true; }
+  },
+  move(m,x,y){
+    if(!m.drag||!m.cur) return;
+    m.moved += Math.abs(x-m.dragX)+Math.abs(y-m.dragY);
+    /* 指の x をそのままマスに */
+    const w=pw(m.cur);
+    let gx = clamp(Math.round((x-DGX)/DCELL - w/2), 0, DCOLS-w);
+    /* 山にめり込む位置へは動かせない（動かせると着地位置が上に戻ってしまう） */
+    if(this.canMoveTo(m,m.cur,gx)) m.cur.gx = gx;
+    m.dragX=x; m.dragY=y;
+  },
+  up(m,x,y){
+    if(!m.cur){ m.drag=false; m.dropFast=false; return; }
+    if(m.drag && m.moved < 12 && y <= 700){
+      const p=m.cur, beforeR=p.rot, beforeX=p.gx;
+      p.rot=(p.rot+1)&3;
+      const w=pw(p), gy=Math.round(p.y);
+      /* 回すと形が変わるので、壁や山にぶつかったら少しずらして入れる */
+      let ok=false;
+      for(const dx of [0,-1,1,-2,2]){
+        const nx=clamp(beforeX+dx, 0, DCOLS-w);
+        if(this.canPlace(m,p,nx,gy)){ p.gx=nx; ok=true; break; }
+      }
+      if(!ok){ p.rot=beforeR; p.gx=beforeX; m.msg="ここでは回せない"; m.msgT=.9; }
+      else {
+        m.spun++;
+        m.msg = this.ok(m,p) ? "向きが合った"
+              : (m.oneWay ? "一方裁ちの向きが違う（減点）" : "地の目が横向き（減点）");
+        m.msgT=1.1;
+      }
+    }
+    m.drag=false; m.dropFast=false;
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m), this.info(m)); return; }
+    if(m.msgT>0) m.msgT-=dt;
+    if(m.flash>0) m.flash-=dt;
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.land>0){ m.land-=dt; if(m.land<=0 && !m.cur) this.spawn(m); return; }
+    if(!m.cur){ this.spawn(m); if(!m.cur) return; }
+    const v = m.dropFast ? 13 : (this.lv>=3 ? 1.5 : this.lv>=2 ? 1.6 : 1.7);
+    /* 先に「止まる行」を出しておき、そこを**越えないように**落とす。
+       前は落ちすぎてから丸めて戻していたので、着地で上へ跳ねて見えた */
+    const land = this.landRow(m, m.cur);
+    const ny = m.cur.y + v*dt;
+    if(ny >= land){ m.cur.y = land; this.lock(m); }
+    else m.cur.y = ny;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  info(m){
+    return "使った丈 "+this.pileTop(m)+"段"+
+      (m.bad ? "　向きちがい "+m.bad+"枚"
+             : "　向きすべて◎");
+  },
+  draw(m,gg){
+    gg.fillStyle=C.mat; gg.fillRect(0,0,W,H);
+    gg.fillStyle=shade(C.mat,.965);
+    for(let y=0;y<H;y+=26) gg.fillRect(0,y,W,1);
+    for(let x=0;x<W;x+=26) gg.fillRect(x,0,1,H);
+
+    /* 反物の色は種類で変える */
+    const FAB = this.lv>=3 ? mix("#7a5f74", C.cloth, .34)
+              : this.lv>=2 ? mix("#8d7f63", C.cloth, .36)
+              : mix(C.sand, C.cloth, .30);
+    const top=this.pileTop(m);
+    gg.fillStyle="rgba(40,30,44,.16)";
+    gg.fillRect(DGX-4,DGY-2,DCOLS*DCELL+8,DROWS*DCELL+8);
+    for(let r=0;r<DROWS;r++){
+      gg.fillStyle = r>=DROWS-top ? FAB : shade(FAB,.93);
+      gg.fillRect(DGX,DGY+r*DCELL,DCOLS*DCELL,DCELL);
+    }
+    gg.strokeStyle="rgba(90,70,60,.10)"; gg.lineWidth=1;
+    for(let i=1;i<DCOLS;i++){gg.beginPath();gg.moveTo(DGX+i*DCELL,DGY);gg.lineTo(DGX+i*DCELL,DGY+DROWS*DCELL);gg.stroke();}
+    for(let i=1;i<DROWS;i++){gg.beginPath();gg.moveTo(DGX,DGY+i*DCELL);gg.lineTo(DGX+DCOLS*DCELL,DGY+i*DCELL);gg.stroke();}
+    /* たて糸。毛並みのある反物は、向きが分かるよう矢羽根にする */
+    if(m.oneWay){
+      gg.strokeStyle="rgba(255,255,255,.16)"; gg.lineWidth=1.2;
+      for(let x=DGX+9;x<DGX+DCOLS*DCELL;x+=13)
+        for(let y=DGY+10;y<DGY+DROWS*DCELL-4;y+=17){
+          gg.beginPath(); gg.moveTo(x-3,y+5); gg.lineTo(x,y); gg.lineTo(x+3,y+5); gg.stroke();
+        }
+    } else {
+      gg.strokeStyle="rgba(120,90,60,.13)";
+      for(let x=DGX+8;x<DGX+DCOLS*DCELL;x+=11){
+        gg.beginPath();gg.moveTo(x,DGY);gg.lineTo(x,DGY+DROWS*DCELL);gg.stroke(); }
+    }
+
+    /* 積んだ高さの線 */
+    if(top>0){
+      const yy=DGY+(DROWS-top)*DCELL;
+      gg.fillStyle=C.plum; gg.fillRect(DGX-4,yy-1.5,DCOLS*DCELL+8,3);
+      gg.textAlign="left"; gg.font="800 10.5px sans-serif"; gg.fillStyle=C.plum;
+      /* 上まで積まれたときは、線の下に出す（見出しと重なるため） */
+      gg.fillText("使った丈 "+top+"段", DGX+2, yy < DGY+16 ? yy+15 : yy-7);
+    }
+    /* 目もり（下から） */
+    gg.textAlign="right"; gg.font="800 10px sans-serif";
+    for(let r=0;r<DROWS;r++){
+      const n=DROWS-r;
+      gg.fillStyle = r>=DROWS-top ? C.plum : "rgba(90,70,60,.26)";
+      gg.fillText(n+"", DGX-9, DGY+r*DCELL+DCELL/2+4);
+    }
+
+    /* 積んだ型紙 */
+    for(const q of m.pieces)
+      drawPiece(gg, q, DGX+q.gx*DCELL, DGY+q.gy*DCELL, DCELL, {grainOK:q.ok, oneWay:m.oneWay});
+
+    /* 落ちてくる型紙 */
+    if(m.cur){
+      const px=DGX+m.cur.gx*DCELL, py=DGY+m.cur.y*DCELL;
+      const ok=this.ok(m,m.cur);
+      let gy=Math.round(m.cur.y);
+      while(this.canPlace(m,m.cur,m.cur.gx,gy+1)) gy++;
+      gg.fillStyle = ok ? "rgba(124,90,112,.16)" : "rgba(224,143,140,.20)";
+      for(const [cx,cy] of cellsOf(m.cur)){
+        const yy=gy+cy; if(yy<0) continue;
+        gg.fillRect(DGX+(m.cur.gx+cx)*DCELL+2, DGY+yy*DCELL+2, DCELL-4, DCELL-4);
+      }
+      gg.save();
+      gg.beginPath(); gg.rect(0,DGY-DCELL*1.6,W,DROWS*DCELL+DCELL*1.6); gg.clip();
+      drawPiece(gg, m.cur, px, py, DCELL, {shadow:true, grainOK:ok, oneWay:m.oneWay});
+      gg.restore();
+      /* 地の目が合っていないときは、回すよう促す */
+      if(!ok){
+        gg.textAlign="center"; gg.font="800 11.5px sans-serif"; gg.fillStyle=C.coral;
+        const ty=clamp(py-10, DGY+14, DGY+DROWS*DCELL-6);
+        gg.fillText("軽く叩いて回す", px+pw(m.cur)*DCELL/2, ty);
+      }
+    }
+    if(m.flash>0){
+      gg.fillStyle="rgba(255,255,255,"+(m.flash*.5).toFixed(2)+")";
+      gg.fillRect(DGX,DGY,DCOLS*DCELL,DROWS*DCELL);
+    }
+
+    /* つぎに落ちてくるもの */
+    gg.fillStyle="rgba(42,36,48,.055)"; gg.fillRect(0,616,W,86);
+    gg.textAlign="left"; gg.font="800 10.5px sans-serif"; gg.fillStyle="#8a7c88";
+    gg.fillText("このあと落ちてくる", 16, 636);
+    let nx=16;
+    for(let i=m.idx;i<m.order.length && i<m.idx+4;i++){
+      const q={def:PIECES[m.order[i]],rot:0};
+      drawPiece(gg,q,nx,646,15,{noGrainMark:true,alpha:.85,oneWay:m.oneWay});
+      nx += pw(q)*15 + 18;
+    }
+    /* 早く落とすところ */
+    gg.fillStyle = m.dropFast ? "rgba(124,90,112,.30)" : "rgba(124,90,112,.13)";
+    gg.fillRect(0,706,W,H-706);
+    gg.textAlign="center"; gg.font="800 13px sans-serif"; gg.fillStyle=C.plum;
+    gg.fillText("▼　ここを押すと早く落ちる　▼", W/2, 750);
+    gg.font="700 10.5px sans-serif"; gg.fillStyle="#9c8f9a";
+    gg.fillText("型紙を左右にドラッグ　／　軽く叩くと回る", W/2, 774);
+
+    timeBar(gg,m.time,m.lv>=3?40:m.lv>=2?36:32);
+    gg.textAlign="center"; gg.font="800 13px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("のこり "+(m.order.length-m.idx+(m.cur?1:0))+"枚　／　使った丈 "+top+"段", W/2, 104);
+    gg.font="700 10.5px sans-serif";
+    gg.fillStyle = m.bad? C.coral : "#8a7c88";
+    const rule = L.pickDir ? ("反物：ベルベット　－　この回は【"+m.dir.n+"】"
+                              +(m.reqRot===0?"／矢印は下向き":"／矢印は上向き"))
+                           : ("反物："+L.name+"　－　"+L.note);
+    gg.fillText(m.bad ? ("向きちがい "+m.bad+"枚（減点）") : rule, W/2, 123);
+    /* この回の向きは、常に見えていてほしいので小さく残す */
+    if(L.oneWay && m.warm<=0 && !m.done){
+      gg.save();
+      gg.translate(W-30, 150);
+      gg.fillStyle="rgba(124,90,112,.16)";
+      gg.beginPath(); gg.roundRect(-19,-13,38,30,8); gg.fill();
+      gg.strokeStyle=C.plum; gg.lineWidth=2; gg.lineCap="round";
+      const d = m.reqRot===0 ? 1 : -1;
+      gg.beginPath(); gg.moveTo(0,-9*d); gg.lineTo(0,9*d); gg.stroke();
+      gg.beginPath(); gg.moveTo(-5,9*d-6*d); gg.lineTo(0,9*d); gg.lineTo(5,9*d-6*d); gg.stroke();
+      gg.restore();
+    }
+
+    if(m.warm>0){
+      gg.fillStyle="rgba(42,36,48,.88)"; gg.fillRect(0,286,W,L.pickDir?256:208);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("型紙が落ちてきます", W/2, 324);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("左右にドラッグ　／　軽く叩くと回る", W/2, 352);
+      gg.fillText("下のほうを押すと、早く落ちる", W/2, 374);
+      gg.fillStyle=C.gold;
+      gg.fillText("低く積むほど、反物が余る＝高得点", W/2, 402);
+      gg.fillStyle="#fdf6ec"; gg.font="800 13px sans-serif";
+      gg.fillText("反物は「"+L.name+"」", W/2, 432);
+      gg.font="700 12px sans-serif";
+      gg.fillStyle = this.lv>=2 ? C.coral : "rgba(253,246,236,.75)";
+      gg.fillText(L.note, W/2, 454);
+      if(L.pickDir){
+        /* ベルベットは、逆毛か撫で毛かをこの回のはじめに知らせる */
+        gg.fillStyle=C.gold; gg.font="800 15px sans-serif";
+        gg.fillText("この回は【"+m.dir.n+"】で裁ちます", W/2, 482);
+        gg.font="700 11.5px sans-serif"; gg.fillStyle="rgba(253,246,236,.72)";
+        gg.fillText(m.dir.why, W/2, 503);
+        gg.fillStyle=C.gold; gg.font="800 12.5px sans-serif";
+        gg.fillText("矢印を"+(m.reqRot===0?"下":"上")+"に向けてそろえる", W/2, 525);
+      } else if(this.lv>=2){
+        gg.fillStyle="rgba(253,246,236,.6)"; gg.font="700 11px sans-serif";
+        gg.fillText("回すと形も変わります。詰め方と向きの両立が要る", W/2, 478);
+      }
+    }
+    if(m.msgT>0){
+      gg.textAlign="center";
+      const good = m.msg.indexOf("通った")>=0;
+      gg.fillStyle = good ? "rgba(127,174,102,"+clamp(m.msgT*1.5,0,1)+")"
+                          : "rgba(224,143,140,"+clamp(m.msgT*1.5,0,1)+")";
+      gg.font="800 12px sans-serif"; gg.fillText(m.msg, W/2, 608);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.58)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(sc>=3?"みごとな型入れ！":sc>=2?"いい型入れ":sc>=1?"まずまず":"布がもったいない",
+                  W/2, 384);
+      gg.font="700 13px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      gg.fillText(this.info(m), W/2, 414);
+      stars(gg,sc,W/2,472);
+    }
+  },
+ };
+}
+
+/* ==================================================================
+   B 糸ほどき（改）
+   ・指を離すまで判定しない
+   ・糸が節をかすめている／節どうしが近すぎるのも「まだ」とする
+   ・確かめる間（0.6秒）を置いてから「ほどけた」
+   ================================================================== */
+const sgn=(p,q,r)=>Math.sign((q.x-p.x)*(r.y-p.y)-(q.y-p.y)*(r.x-p.x));
+function segInt(a,b,c,d){
+  const d1=sgn(a,b,c),d2=sgn(a,b,d),d3=sgn(c,d,a),d4=sgn(c,d,b);
+  return d1*d2<0 && d3*d4<0;
+}
+function segCross(a,b,c,d){
+  const A=(b.y-a.y),B=(a.x-b.x),Cc=A*a.x+B*a.y;
+  const D=(d.y-c.y),E=(c.x-d.x),F=D*c.x+E*c.y;
+  const det=A*E-D*B; if(!det) return null;
+  return {x:(E*Cc-B*F)/det, y:(A*F-D*Cc)/det};
+}
+function dSeg(p,a,b){
+  const vx=b.x-a.x,vy=b.y-a.y,wx=p.x-a.x,wy=p.y-a.y;
+  const L=vx*vx+vy*vy; if(!L) return Math.hypot(wx,wy);
+  const t=clamp((wx*vx+wy*vy)/L,0,1);
+  return Math.hypot(p.x-(a.x+vx*t), p.y-(a.y+vy*t));
+}
+function spread(n,x0,y0,x1,y1,minD){
+  const pts=[];
+  for(let i=0;i<n;i++){
+    let p=null;
+    for(let t=0;t<400;t++){
+      const q={x:x0+Math.random()*(x1-x0), y:y0+Math.random()*(y1-y0)};
+      if(pts.every(r=>Math.hypot(r.x-q.x,r.y-q.y)>minD)){p=q;break;}
+    }
+    if(!p) return null; pts.push(p);
+  }
+  return pts;
+}
+
+const NEAR_EDGE = 17;      /* 糸が節をかすめているとみなす距離 */
+const NEAR_NODE = 40;      /* 節どうしが近すぎるとみなす距離 */
+
+const untangle = {
+  title:"糸ほどき",
+  N:7,
+  init(){
+    let G=null;
+    for(let a=0;a<80&&!G;a++) G=this.gen(this.N);
+    for(let n=this.N-1;n>=5&&!G;n--) for(let a=0;a<40&&!G;a++) G=this.gen(n);
+    const N=G.sol.length;
+    let best=null,bestX=-1;
+    for(let a=0;a<60;a++){
+      const pos=spread(N,50,204,340,690,86); if(!pos) continue;
+      const x=this.count(pos,G.E);
+      if(x>bestX){bestX=x;best=pos;}
+      if(bestX>=5) break;
+    }
+    if(!best) best=G.sol.map(p=>({x:p.x,y:p.y}));
+    return { pos:best, E:G.E, drag:-1, time:28, done:false, doneT:0, warm:1.5,
+             best:99, cleared:false, hold:0, hint:"" };
+  },
+  gen(N){
+    const sol=spread(N,58,216,332,676,92); if(!sol) return null;
+    const cand=[];
+    for(let i=0;i<N;i++) for(let j=i+1;j<N;j++)
+      cand.push({i,j,d:Math.hypot(sol[i].x-sol[j].x,sol[i].y-sol[j].y)});
+    cand.sort((a,b)=>a.d-b.d);
+    const E=[];
+    for(const c of cand){
+      if(E.length>=N+4) break;
+      let bad=false;
+      for(const e of E){
+        if(e.i===c.i||e.i===c.j||e.j===c.i||e.j===c.j) continue;
+        if(segInt(sol[c.i],sol[c.j],sol[e.i],sol[e.j])){bad=true;break;}
+      }
+      if(!bad) for(let k=0;k<N;k++){
+        if(k===c.i||k===c.j) continue;
+        if(dSeg(sol[k],sol[c.i],sol[c.j])<34){bad=true;break;}
+      }
+      if(!bad) E.push({i:c.i,j:c.j});
+    }
+    if(E.length<N) return null;
+    const seen=new Set([0]); const st=[0];
+    while(st.length){ const v=st.pop();
+      for(const e of E){ const o=e.i===v?e.j:e.j===v?e.i:-1;
+        if(o>=0&&!seen.has(o)){seen.add(o);st.push(o);} } }
+    if(seen.size!==N) return null;
+    return {sol,E};
+  },
+  count(pos,E){
+    let n=0;
+    for(let a=0;a<E.length;a++) for(let b=a+1;b<E.length;b++){
+      const p=E[a],q=E[b];
+      if(p.i===q.i||p.i===q.j||p.j===q.i||p.j===q.j) continue;
+      if(segInt(pos[p.i],pos[p.j],pos[q.i],pos[q.j])) n++;
+    }
+    return n;
+  },
+  /* 糸が、つながっていない節をかすめている数 */
+  grazes(m){
+    const out=[];
+    for(let a=0;a<m.E.length;a++){
+      const e=m.E[a];
+      for(let k=0;k<m.pos.length;k++){
+        if(k===e.i||k===e.j) continue;
+        if(dSeg(m.pos[k],m.pos[e.i],m.pos[e.j])<NEAR_EDGE) out.push({e:a,k});
+      }
+    }
+    return out;
+  },
+  /* 節どうしが近すぎる組 */
+  hugs(m){
+    const out=[];
+    for(let i=0;i<m.pos.length;i++) for(let j=i+1;j<m.pos.length;j++)
+      if(Math.hypot(m.pos[i].x-m.pos[j].x, m.pos[i].y-m.pos[j].y) < NEAR_NODE) out.push([i,j]);
+    return out;
+  },
+  crossSet(m){
+    const bad=new Set(),pts=[];
+    for(let a=0;a<m.E.length;a++) for(let b=a+1;b<m.E.length;b++){
+      const p=m.E[a],q=m.E[b];
+      if(p.i===q.i||p.i===q.j||p.j===q.i||p.j===q.j) continue;
+      if(segInt(m.pos[p.i],m.pos[p.j],m.pos[q.i],m.pos[q.j])){
+        bad.add(a);bad.add(b);
+        const c=segCross(m.pos[p.i],m.pos[p.j],m.pos[q.i],m.pos[q.j]);
+        if(c) pts.push(c);
+      }
+    }
+    return {bad,pts};
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0) return;
+    let bi=-1,bd=44;
+    for(let i=0;i<m.pos.length;i++){
+      const d=Math.hypot(m.pos[i].x-x,m.pos[i].y-y);
+      if(d<bd){bd=d;bi=i;}
+    }
+    m.drag=bi;
+  },
+  move(m,x,y){
+    if(m.drag<0||m.done) return;
+    m.pos[m.drag].x=clamp(x,34,W-34);
+    m.pos[m.drag].y=clamp(y,172,764);
+  },
+  up(m){ m.drag=-1; },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m), this.info(m)); return; }
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    const x=this.count(m.pos,m.E);
+    m.best=Math.min(m.best,x);
+    const gz=this.grazes(m).length, hg=this.hugs(m).length;
+
+    /* ここが今回の直し：指を離していて、交差もかすめもない状態が
+       0.6秒つづいて、はじめて「ほどけた」 */
+    if(m.drag>=0){ m.hold=0; m.hint = x===0 ? "指をはなして確かめる" : ""; }
+    else if(x>0){ m.hold=0; m.hint=""; }
+    else if(gz>0){ m.hold=0; m.hint="糸が糸巻きに重なっている"; }
+    else if(hg>0){ m.hold=0; m.hint="糸巻きどうしが近すぎる"; }
+    else {
+      m.hold+=dt; m.hint="たしかめています…";
+      if(m.hold>0.6){ m.cleared=true; m.done=true; m.doneT=0; }
+    }
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){
+    if(!m.cleared) return m.best<=1?1:0;
+    return m.time>14?3:m.time>6?2:1;
+  },
+  info(m){
+    return m.cleared ? "きれいにほどけました" : ("いちばん少なくて "+m.best+"か所");
+  },
+  draw(m,gg){
+    const gr=gg.createLinearGradient(0,0,0,H);
+    gr.addColorStop(0,"#2c2136"); gr.addColorStop(1,"#463150");
+    gg.fillStyle=gr; gg.fillRect(0,0,W,H);
+
+    const {bad,pts}=this.crossSet(m);
+    const x=pts.length?this.count(m.pos,m.E):0;
+    const gz=this.grazes(m), hg=this.hugs(m);
+    const gzE=new Set(gz.map(o=>o.e));
+
+    gg.lineCap="round";
+    for(let i=0;i<m.E.length;i++){
+      const e=m.E[i],a=m.pos[e.i],b=m.pos[e.j];
+      const crossed=bad.has(i), graze=gzE.has(i);
+      gg.strokeStyle = crossed ? C.coral
+                     : graze   ? C.gold
+                     : (m.cleared ? C.sage : "#ded0bc");
+      gg.lineWidth = crossed?3.6 : graze?3.2 : 2.8;
+      gg.beginPath(); gg.moveTo(a.x,a.y); gg.lineTo(b.x,b.y); gg.stroke();
+    }
+    for(const p of pts){
+      gg.strokeStyle="rgba(255,255,255,.75)"; gg.lineWidth=2;
+      gg.beginPath();
+      gg.moveTo(p.x-5,p.y-5); gg.lineTo(p.x+5,p.y+5);
+      gg.moveTo(p.x+5,p.y-5); gg.lineTo(p.x-5,p.y+5); gg.stroke();
+    }
+    /* かすめている節を丸で囲む */
+    for(const o of gz){
+      const p=m.pos[o.k];
+      gg.strokeStyle=C.gold; gg.lineWidth=2;
+      gg.beginPath(); gg.arc(p.x,p.y,24,0,6.2832); gg.stroke();
+    }
+    for(const [i,j] of hg){
+      gg.strokeStyle=C.gold; gg.lineWidth=2; gg.setLineDash([4,4]);
+      gg.beginPath(); gg.moveTo(m.pos[i].x,m.pos[i].y); gg.lineTo(m.pos[j].x,m.pos[j].y);
+      gg.stroke(); gg.setLineDash([]);
+    }
+    for(let i=0;i<m.pos.length;i++){
+      const p=m.pos[i],held=m.drag===i;
+      gg.fillStyle="rgba(20,14,26,.32)"; this.oct(gg,p.x,p.y+4,held?19:16);
+      const col=m.cleared?C.sage:held?C.gold:C.wood;
+      gg.fillStyle=col;            this.oct(gg,p.x,p.y,held?18:15);
+      gg.fillStyle=shade(col,.70); this.oct(gg,p.x,p.y,held?11:9);
+      gg.fillStyle=shade(col,1.14);
+      gg.beginPath(); gg.arc(p.x,p.y,held?5:4,0,6.2832); gg.fill();
+    }
+
+    timeBar(gg,m.time,28);
+    gg.textAlign="center";
+    gg.font="800 15px sans-serif";
+    const okAll = x===0 && gz.length===0 && hg.length===0;
+    gg.fillStyle = m.cleared ? C.sage : okAll ? C.gold : "#fdf6ec";
+    gg.fillText(x===0 ? (m.cleared?"ほどけた！":"交差はなくなった") : ("交わっているところ　"+x),
+                W/2, 106);
+    gg.font="700 11px sans-serif";
+    gg.fillStyle = m.hint ? C.gold : "rgba(253,246,236,.55)";
+    gg.fillText(m.hint || "この形は、かならずほどけます", W/2, 126);
+    /* 確かめている間の輪 */
+    if(m.hold>0){
+      gg.strokeStyle=C.sage; gg.lineWidth=3;
+      gg.beginPath(); gg.arc(W/2,150,13,-1.5708,-1.5708+6.2832*clamp(m.hold/0.6,0,1));
+      gg.stroke();
+    }
+
+    if(m.warm>0){
+      gg.fillStyle="rgba(28,20,36,.85)"; gg.fillRect(0,300,W,168);
+      gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+      gg.fillText("糸を、ほどく", W/2, 340);
+      gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+      gg.fillText("糸巻きをドラッグして交差をなくす", W/2, 368);
+      gg.fillStyle=C.gold;
+      gg.fillText("指を離して、重なりがないと確かめてから完成", W/2, 396);
+      gg.fillStyle="rgba(253,246,236,.6)"; gg.font="700 11px sans-serif";
+      gg.fillText("糸が糸巻きをかすめていても、まだ終わりません", W/2, 422);
+    }
+    if(m.done){
+      const sc=this.score(m);
+      gg.fillStyle="rgba(28,20,36,.6)"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+      gg.fillText(m.cleared?(sc>=3?"あざやか！":sc>=2?"ほどけた":"ほどけた（ぎりぎり）"):"時間ぎれ…",
+                  W/2, 384);
+      gg.font="700 13px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+      gg.fillText(this.info(m), W/2, 414);
+      stars(gg,sc,W/2,472);
+    }
+  },
+  oct(gg,cx,cy,r){
+    gg.beginPath();
+    for(let i=0;i<8;i++){
+      const a=i*Math.PI/4+Math.PI/8;
+      const x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r*.92;
+      i?gg.lineTo(x,y):gg.moveTo(x,y);
+    }
+    gg.closePath(); gg.fill();
+  },
+};
+
+/* ==================================================================
+   D アイロンがけ（3段階）
+   Lv1 ただ伸ばす
+   Lv2 しつこい折り目（何度も要る）＋ ボタン（当てると傷む）
+   Lv3 ＋ プリーツ（潰してはいけない）
+   ================================================================== */
+const IW=14, IH=24, IX=42, IY=152;
+const ICW=(W-IX*2)/IW, ICH=528/IH, CW=IW*ICW, CH=IH*ICH;
+
+function makeIron(lv){
+  return {
+    title:"アイロンがけ "+lv,
+    lv,
+    init(){
+      const w=[],deep=[],p1=Math.random()*6.28,p2=Math.random()*6.28,p3=Math.random()*6.28;
+      let sum=0;
+      const hard = lv>=2;
+      for(let j=0;j<IH;j++) for(let i=0;i<IW;i++){
+        let v=.5+.32*Math.sin(i*.85+j*.38+p1)+.30*Math.sin(j*.72-i*.31+p2)
+              +.22*Math.sin((i+j)*1.15+p3);
+        v=clamp((v-(hard?.20:.30))*(hard?1.75:1.55),0,1);
+        w[j*IW+i]=v; deep[j*IW+i]=0; sum+=v;
+      }
+      /* プリーツ。Lv3のみ。**よこの帯**にする。
+         たての帯にすると、列を移るたびに必ずまたいでしまい、
+         正しく遊んでも避けられない（実際に試して分かった）。
+         よこ帯なら、帯と帯のあいだを往復して、端で上下に移れる */
+      const pleats=[];
+      if(lv>=3){
+        const r0=2+Math.floor(Math.random()*3);
+        for(let k=0;k<3;k++){ const r=r0+k*7; if(r<IH-1) pleats.push(r); }
+      }
+      const onPleat = j => pleats.some(r=>Math.abs(r-j)<=1);
+
+      /* しつこい折り目。Lv2から。3本。芯の1行だけが「しつこい」 */
+      const bands=[];
+      if(lv>=2){
+        for(let k=0;k<3;k++){
+          let y0=-1;
+          for(let t=0;t<60;t++){
+            const c=3+Math.floor(Math.random()*(IH-6));
+            if(!onPleat(c) && !bands.some(b=>Math.abs(b-c)<3)){ y0=c; break; }
+          }
+          if(y0<0) continue;
+          bands.push(y0);
+          for(let i=0;i<IW;i++){
+            const idx=y0*IW+i; sum-=w[idx]; w[idx]=1; sum+=1; deep[idx]=1;
+          }
+          for(const j of [y0-1,y0+1]){
+            if(j<0||j>=IH||onPleat(j)) continue;
+            for(let i=0;i<IW;i++){
+              const idx=j*IW+i, nv=Math.max(w[idx],.7);
+              sum += nv-w[idx]; w[idx]=nv;
+            }
+          }
+        }
+      }
+      /* ボタン。Lv2から。プリーツの帯には置かない */
+      const buttons=[];
+      if(lv>=2){
+        const n = lv>=3 ? 5 : 4;
+        for(let k=0;k<n;k++){
+          let b=null;
+          for(let t=0;t<300;t++){
+            const q={ x:IX+26+Math.random()*(CW-52), y:IY+30+Math.random()*(CH-60) };
+            const jj=Math.floor((q.y-IY)/ICH);
+            if(onPleat(jj)) continue;
+            if(buttons.every(o=>Math.hypot(o.x-q.x,o.y-q.y)>66)){ b=q; break; }
+          }
+          if(b) buttons.push(b);
+        }
+        /* ボタンの下はシワ扱いしない。
+           そうしないと「シワを消すにはボタンに当てるしかない」状態になり、
+           よけようがなくなる */
+        for(const b of buttons)
+          for(let j=0;j<IH;j++) for(let i=0;i<IW;i++){
+            const cx=IX+i*ICW+ICW/2, cy=IY+j*ICH+ICH/2;
+            if(Math.hypot(cx-b.x,cy-b.y) < 27){
+              const idx=j*IW+i; sum-=w[idx]; w[idx]=0;
+            }
+          }
+      }
+      /* プリーツの帯も、伸ばす対象から外す */
+      for(const r of pleats)
+        for(let j=Math.max(0,r-1); j<=Math.min(IH-1,r+1); j++)
+          for(let i=0;i<IW;i++){ const idx=j*IW+i; sum-=w[idx]; w[idx]=0; }
+      const creases=[];
+      for(let k=0;k<13;k++)
+        creases.push({ y0:IY+14+Math.random()*(CH-28), amp:8+Math.random()*24,
+                       f:.011+Math.random()*.022, ph:Math.random()*6.28,
+                       tilt:(Math.random()-.5)*.42 });
+      return { lv, w, w0:Math.max(1,sum), deep, bands, buttons, pleats,
+               scorch:new Array(IW*IH).fill(0), steam:[], creases,
+               x:W/2, y:430, tx:W/2, ty:430, press:false, still:0, heat:0,
+               time: lv>=3?34:lv>=2?31:26, time0: lv>=3?34:lv>=2?31:26,
+               done:false, doneT:0, warm:2.0,
+               burns:0, hitBtn:0, flatPleat:0, warnT:0, warnMsg:"",
+               lost:0, lostPop:[], barFlash:0, el:0, burnR:0, stand:false, moved:0, wasStand:false,
+               pleatLife:Object.fromEntries(pleats.map(r=>[r,1])), pleatCool:0 };
+    },
+    /* 指を置いた所にアイロンを下ろす。離すと浮く。
+       前は指を遅れて追わせていたが、60px以上ずれるため
+       「ボタンをよけたのに当たる」ことが起きた。いまは指のところに在る */
+    /* 先生の指摘：「何も触っていなくても、アイロンがそこにある以上、焦げていっていい」
+       → アイロンは**置いてある限り焦げる**。指を離しても浮かない。
+         安全にするには**軽く叩いて、かかとで立てる**（本物のアイロンと同じ）。
+         立てているあいだは焦げないが、かけることもできない。
+         ボタンやプリーツを越えるには、離して向こう側に置き直す（その間も焦げは進む） */
+    down(m,x,y){
+      if(m.done||m.warm>0) return;
+      m.press=true; m.tx=x; m.ty=y; m.moved=0; m.wasStand=m.stand;
+      if(!m.stand){ m.x=x; m.y=y; }        /* 置き直し＝別の場所へ移す */
+    },
+    move(m,x,y){
+      if(!m.press) return;
+      m.moved += Math.abs(x-m.tx)+Math.abs(y-m.ty);
+      if(m.moved>8 && m.stand){ m.stand=false; m.x=x; m.y=y; m.still=0; }   /* 倒して、かけ始める */
+      m.tx=x; m.ty=y;
+    },
+    up(m){
+      if(m.press && m.moved<8){                 /* 軽く叩いた＝立てる／倒す */
+        m.stand = !m.wasStand;
+        m.still=0; m.heat=0;
+        m.warnMsg = m.stand ? "アイロンを立てた（安全）" : "アイロンを置いた";
+        m.warnT=.9;
+      }
+      m.press=false;
+    },
+    /* 通り道の1点にアイロンを当てる */
+    smoothAt(m, ax, ay, per){
+      const R=46, k=Math.min(.15, per*.05);
+      for(let j=0;j<IH;j++) for(let i=0;i<IW;i++){
+        const cx=IX+i*ICW+ICW/2, cy=IY+j*ICH+ICH/2;
+        const d=Math.hypot(cx-ax,cy-ay);
+        if(d>R) continue;
+        const f=1-d/R, idx=j*IW+i;
+        if(m.w[idx]>.02 && !m.scorch[idx]){
+          const before=m.w[idx];
+          const rate = m.deep[idx] ? 0.34 : 1;
+          m.w[idx]=Math.max(0, m.w[idx]-k*f*2.1*rate);
+          if(before-m.w[idx]>.05 && Math.random()<.10)
+            m.steam.push({x:cx+(Math.random()-.5)*14,y:cy,t:0,
+              life:.7+Math.random()*.5,v:34+Math.random()*26,
+              d:(Math.random()-.5)*20,r:5+Math.random()*7});
+        }
+      }
+    },
+    /* しくじると、持ち時間そのものが減る。
+       減点だけだと最後まで気づけないので、ゲージが目の前で削れるようにした */
+    lose(m, sec, msg){
+      m.time = Math.max(0, m.time - sec);
+      m.warnMsg = msg; m.warnT = 1.1;
+      m.barFlash = .5;
+      m.lostPop.push({ t:0, s:sec });
+      m.lost += sec;
+    },
+    /* 通り道の1点で、ボタン・プリーツに触れたか */
+    hazardAt(m, ax, ay){
+      for(const b of m.buttons)
+        if(Math.hypot(b.x-ax,b.y-ay)<22 && !(b.hitT>0)){
+          m.hitBtn++; b.hitT=1.5;
+          this.lose(m, 1.2, "ボタンに当たった！　−1.2秒");
+        }
+      /* プリーツは**その場で潰れて消えていく**。
+         通るたびに折り目がへたり、0になると平らな布に戻る（元に戻らない） */
+      if(m.pleats.length && ax>IX && ax<IX+CW && ay>IY && ay<IY+CH){
+        const rj=Math.floor((ay-IY)/ICH);
+        for(const r of m.pleats){
+          const d=Math.abs(r-rj);
+          if(d>1 || m.pleatLife[r]<=0) continue;
+          const before=m.pleatLife[r];
+          m.pleatLife[r] = Math.max(0, m.pleatLife[r] - (d===0?.10:.05));
+          if(before>0 && m.pleatLife[r]<=0){
+            m.flatPleat++;
+            this.lose(m, 2.4, "プリーツが消えた！　−2.4秒");
+          } else if(!(m.pleatCool>0)){
+            m.pleatCool=.5; m.warnMsg="プリーツがへたる…"; m.warnT=.7;
+          }
+        }
+      }
+    },
+    left(m){ let s=0; for(const v of m.w) s+=v; return s/m.w0; },
+    score(m){
+      const smooth=1-this.left(m);
+      /* 時間を失う罰が主になったので、点の減りは軽くした。
+         プリーツは「へたった量」で見る（消し切らなくても効く） */
+      const pl = m.pleats.length
+        ? m.pleats.reduce((a,r)=>a+(1-m.pleatLife[r]),0)/m.pleats.length : 0;
+      const pen = m.burns/(IW*IH)*1.2 + m.hitBtn*0.012 + pl*0.22;
+      const v=smooth-pen;
+      return v>=.90?3:v>=.72?2:v>=.45?1:0;
+    },
+    info(m){
+      const p=[];
+      p.push("のばした "+Math.round((1-this.left(m))*100)+"%");
+      if(m.burns) p.push("焦げ "+m.burns);
+      if(m.hitBtn) p.push("ボタン "+m.hitBtn+"回");
+      if(m.pleats.length){
+        const alive=m.pleats.filter(r=>m.pleatLife[r]>0).length;
+        p.push("プリーツ "+alive+"／"+m.pleats.length+"本のこった");
+      }
+      if(m.lost>0) p.push("失った時間 "+m.lost.toFixed(1)+"秒");
+      return p.join("　／　");
+    },
+    tick(m,dt){
+      if(m.done){ m.doneT+=dt; if(m.doneT>1.9) end(this.score(m), this.info(m)); return; }
+      for(let i=m.steam.length-1;i>=0;i--){
+        const s=m.steam[i]; s.t+=dt; s.y-=s.v*dt; s.x+=s.d*dt;
+        if(s.t>s.life) m.steam.splice(i,1);
+      }
+      if(m.warnT>0) m.warnT-=dt;
+      if(m.barFlash>0) m.barFlash-=dt;
+      for(let i=m.lostPop.length-1;i>=0;i--){ m.lostPop[i].t+=dt;
+        if(m.lostPop[i].t>1.0) m.lostPop.splice(i,1); }
+      if(m.warm>0){ m.warm-=dt; return; }
+      /* Lv3 は、後半になるほど時間の減りが速くなる */
+      m.el += dt;
+      const rate = this.lv>=3 ? (1 + Math.min(.7, m.el/m.time0*.7)) : 1;
+      m.time -= dt*rate;
+      /* 動かしているあいだだけ、通り道をかける */
+      let dist=0;
+      if(m.press && !m.stand){
+        const px=m.x, py=m.y;
+        m.x=m.tx; m.y=m.ty;                    /* アイロンは指のところに在る */
+        const dx=m.x-px, dy=m.y-py; dist=Math.hypot(dx,dy);
+        if(dist>.3){
+          /* 指が一気に動いても、通り道を飛ばさないように分けて当てる */
+          const steps=Math.max(1, Math.min(30, Math.ceil(dist/7)));
+          const per=dist/steps;
+          for(let s=1;s<=steps;s++){
+            const ax=px+dx*s/steps, ay=py+dy*s/steps;
+            this.smoothAt(m, ax, ay, per);
+            this.hazardAt(m, ax, ay);
+          }
+        }
+      }
+      /* 置いてある（＝立てていない）かぎり、止まっていれば焦げる。
+         指を離していても同じ。0.55秒で焦げはじめ、止め続けるかぎり広がり続ける */
+      if(!m.stand){
+        if(dist<.7) m.still+=dt; else m.still=0;
+        const LIM = this.lv>=2 ? .55 : .70;
+        if(m.still>LIM){
+          m.burnR = Math.min(58, 17 + (m.still-LIM)*26);
+          let did=false;
+          for(let j=0;j<IH;j++) for(let i=0;i<IW;i++){
+            const cx=IX+i*ICW+ICW/2, cy=IY+j*ICH+ICH/2;
+            if(Math.hypot(cx-m.x,cy-m.y)<m.burnR && !m.scorch[j*IW+i]){
+              m.scorch[j*IW+i]=1; m.burns++; did=true;
+            }
+          }
+          if(did) this.lose(m, 1.4, "焦げが広がっている！　−1.4秒");
+        } else m.burnR = 0;
+        m.heat=clamp(m.still/LIM,0,1);
+      } else { m.heat=0; m.burnR=0; m.still=0; }
+      for(const b of m.buttons) if(b.hitT>0) b.hitT-=dt;
+      if(m.pleatCool>0) m.pleatCool-=dt;
+
+      if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+      else if(this.left(m)<.02){ m.done=true; m.doneT=0; }
+    },
+    draw(m,gg){
+      gg.fillStyle="#736881"; gg.fillRect(0,0,W,H);
+      gg.fillStyle="#98899c"; gg.fillRect(14,142,W-28,608);
+      gg.fillStyle="#a496a8"; gg.fillRect(14,142,W-28,10);
+      gg.fillStyle="#87798e"; gg.fillRect(14,738,W-28,12);
+
+      gg.fillStyle="rgba(40,30,44,.20)"; gg.fillRect(IX-5,IY-3,CW+10,CH+12);
+      gg.fillStyle=C.cloth; gg.fillRect(IX,IY,CW,CH);
+
+      /* プリーツ。守るところ。よこの帯。
+         アイロンを当てた分だけ折り目がへたって、最後は平らな布に戻る */
+      for(const r of m.pleats){
+        const life = m.pleatLife[r];
+        const y0=IY+(r-1)*ICH, hh=ICH*3;
+        if(life<=0){                       /* 潰れたあと。折り目のない、のっぺりした帯 */
+          gg.fillStyle="rgba(150,132,120,.13)"; gg.fillRect(IX,y0,CW,hh);
+          gg.fillStyle="rgba(190,120,112,.16)"; gg.fillRect(IX,y0+hh/2-1,CW,2);
+          continue;
+        }
+        gg.fillStyle=mix(C.cloth,C.sage,.18*life); gg.fillRect(IX,y0,CW,hh);
+        for(let k=0;k<4;k++){
+          gg.fillStyle="rgba(88,110,78,"+(.26*life).toFixed(3)+")";
+          gg.fillRect(IX,y0+6+k*15,CW,2.4*life+.6);
+          gg.fillStyle="rgba(255,255,255,"+(.60*life).toFixed(3)+")";
+          gg.fillRect(IX,y0+3+k*15,CW,2*life+.4);
+        }
+        gg.fillStyle="rgba(88,110,78,"+(.42*life).toFixed(3)+")";
+        gg.fillRect(IX,y0,CW,2); gg.fillRect(IX,y0+hh-2,CW,2);
+        if(life<1){                        /* へたり具合を出す */
+          gg.fillStyle="rgba(224,143,140,"+((1-life)*.30).toFixed(3)+")";
+          gg.fillRect(IX,y0,CW,hh);
+        }
+      }
+      /* シワの沈み */
+      for(let j=0;j<IH;j++) for(let i=0;i<IW;i++){
+        const v=m.w[j*IW+i];
+        if(m.scorch[j*IW+i]||v<=.05) continue;
+        gg.fillStyle="rgba(122,100,88,"+(v*.035).toFixed(3)+")";
+        gg.beginPath(); gg.arc(IX+i*ICW+ICW/2,IY+j*ICH+ICH/2,ICW*2.1,0,6.2832); gg.fill();
+      }
+      const wAt=(x,y)=>{
+        const i=Math.floor((x-IX)/ICW), j=Math.floor((y-IY)/ICH);
+        if(i<0||i>=IW||j<0||j>=IH) return 0;
+        return m.scorch[j*IW+i]?0:m.w[j*IW+i];
+      };
+      gg.lineCap="round";
+      for(const c of m.creases){
+        const cy=x=>c.y0+c.amp*Math.sin(x*c.f+c.ph)+(x-IX)*c.tilt;
+        for(let x=IX;x<IX+CW-8;x+=8){
+          const y1=cy(x),y2=cy(x+8);
+          if(y1<IY||y1>IY+CH||y2<IY||y2>IY+CH) continue;
+          const a=wAt(x+4,(y1+y2)/2);
+          if(a<=.07) continue;
+          gg.strokeStyle="rgba(116,92,80,"+(a*.55).toFixed(3)+")"; gg.lineWidth=3.4;
+          gg.beginPath(); gg.moveTo(x,y1+2); gg.lineTo(x+8,y2+2); gg.stroke();
+          gg.strokeStyle="rgba(255,253,247,"+(a*.62).toFixed(3)+")"; gg.lineWidth=2.2;
+          gg.beginPath(); gg.moveTo(x,y1-1.6); gg.lineTo(x+8,y2-1.6); gg.stroke();
+        }
+      }
+      /* しつこい折り目は、はっきりした線で見せる */
+      for(const y0 of m.bands){
+        let any=0;
+        for(let i=0;i<IW;i++) any=Math.max(any, m.w[y0*IW+i]);
+        if(any<=.08) continue;
+        const yy=IY+y0*ICH+ICH/2;
+        gg.strokeStyle="rgba(104,80,66,"+(any*.62).toFixed(3)+")"; gg.lineWidth=5;
+        gg.beginPath(); gg.moveTo(IX+3,yy); gg.lineTo(IX+CW-3,yy); gg.stroke();
+        gg.strokeStyle="rgba(255,252,244,"+(any*.55).toFixed(3)+")"; gg.lineWidth=2.4;
+        gg.beginPath(); gg.moveTo(IX+3,yy-3.6); gg.lineTo(IX+CW-3,yy-3.6); gg.stroke();
+      }
+      /* 焦げ */
+      for(let j=0;j<IH;j++) for(let i=0;i<IW;i++){
+        if(!m.scorch[j*IW+i]) continue;
+        const x=IX+i*ICW,y=IY+j*ICH;
+        gg.fillStyle="#b08a5e"; gg.fillRect(x,y,ICW+.6,ICH+.6);
+        gg.fillStyle="rgba(92,64,38,.55)"; gg.fillRect(x,y,ICW+.6,ICH*.55);
+      }
+      /* ボタン */
+      for(const b of m.buttons){
+        const hit = b.hitT>0;
+        gg.fillStyle="rgba(40,30,44,.24)";
+        gg.beginPath(); gg.ellipse(b.x+1.5,b.y+3.5,11,4,0,0,6.2832); gg.fill();
+        gg.fillStyle = hit ? C.coral : "#cfd6dd";
+        gg.beginPath(); gg.arc(b.x,b.y,11,0,6.2832); gg.fill();
+        gg.fillStyle = shade(hit?C.coral:"#cfd6dd",.78);
+        gg.beginPath(); gg.arc(b.x,b.y,7.2,0,6.2832); gg.fill();
+        gg.fillStyle = shade(hit?C.coral:"#cfd6dd",.5);
+        for(const [ox,oy] of [[-3,-2],[3,-2],[-3,2],[3,2]]){
+          gg.beginPath(); gg.arc(b.x+ox,b.y+oy,1.5,0,6.2832); gg.fill();
+        }
+      }
+      for(const s of m.steam){
+        const a=(1-s.t/s.life)*.42;
+        gg.fillStyle="rgba(255,255,255,"+a.toFixed(3)+")";
+        gg.beginPath(); gg.arc(s.x,s.y,s.r*(1+s.t*1.1),0,6.2832); gg.fill();
+      }
+      this.tool(gg,m);
+
+      /* 持ち時間。しくじると目の前で削れる */
+      gg.fillStyle="rgba(255,255,255,.16)"; gg.fillRect(40,74,W-80,7);
+      if(m.barFlash>0){                       /* 減ったぶんを赤で残す */
+        gg.fillStyle="rgba(224,143,140,"+(m.barFlash).toFixed(2)+")";
+        gg.fillRect(40,72,(W-80)*clamp(m.time+m.lost,0,m.time0)/m.time0,11);
+      }
+      gg.fillStyle = m.time/m.time0<.25 ? C.coral : C.gold;
+      gg.fillRect(40,74,(W-80)*clamp(m.time,0,m.time0)/m.time0,7);
+      for(const p of m.lostPop){
+        gg.textAlign="center"; gg.font="800 13px sans-serif";
+        gg.fillStyle="rgba(224,143,140,"+(1-p.t).toFixed(2)+")";
+        gg.fillText("−"+p.s.toFixed(1)+"秒", W-72, 66-p.t*22);
+      }
+      const pct=Math.round((1-this.left(m))*100);
+      gg.textAlign="center"; gg.font="800 15px sans-serif"; gg.fillStyle="#fdf6ec";
+      gg.fillText("のびた　"+pct+"%", W/2, 106);
+      gg.font="700 11px sans-serif";
+      if(m.warnT>0){ gg.fillStyle=C.coral; gg.fillText(m.warnMsg, W/2, 126); }
+      else {
+        const bits=[];
+        if(m.burns) bits.push("焦げ "+m.burns);
+        if(m.hitBtn) bits.push("ボタン "+m.hitBtn);
+        if(m.pleats.length){
+          const dead=m.pleats.filter(r=>m.pleatLife[r]<=0).length;
+          if(dead) bits.push("プリーツ消滅 "+dead);
+        }
+        gg.fillStyle = bits.length?C.coral:"rgba(253,246,236,.6)";
+        gg.fillText(bits.length?bits.join("　"):
+          (lv>=3?"緑の帯をまたぐと、プリーツが消えます":lv>=2?"ボタンをよけて、太い折り目は往復":"止めると焦げます"),
+          W/2, 126);
+      }
+
+      if(m.warm>0){
+        gg.fillStyle="rgba(42,36,48,.86)"; gg.fillRect(0,300,W,lv>=3?214:lv>=2?166:118);
+        gg.fillStyle="#fdf6ec"; gg.font="800 19px sans-serif";
+        gg.fillText("シワを、のばす", W/2, 338);
+        gg.font="700 12px sans-serif"; gg.fillStyle="rgba(253,246,236,.8)";
+        gg.fillText("指でなでる。置きっぱなしにすると焦げる", W/2, 366);
+        gg.fillStyle=C.sage;
+        gg.fillText("軽く叩くと、かかとで立てられる（安全・かけられない）", W/2, 388);
+        if(lv>=2){
+          gg.fillStyle=C.gold;
+          gg.fillText("太い折り目は、何度も往復しないと消えない", W/2, 412);
+          gg.fillStyle=C.coral;
+          gg.fillText("ボタンは、離して向こう側に置き直してまたぐ", W/2, 434);
+        }
+        if(lv>=3){
+          gg.fillStyle=C.sage;
+          gg.fillText("緑の帯はプリーツ。通るたびに折り目がへたり、消えます", W/2, 458);
+          gg.fillStyle=C.gold;
+          gg.fillText("置き直すあいだも、焦げは進む", W/2, 480);
+        }
+      }
+      if(m.done){
+        const sc=this.score(m);
+        gg.fillStyle="rgba(28,20,36,.6)"; gg.fillRect(0,0,W,H);
+        gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+        gg.fillText(sc>=3?"ぴんと張った！":sc>=2?"きれいになった":sc>=1?"まずまず":"シワだらけ…",
+                    W/2, 384);
+        gg.font="700 12.5px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+        gg.fillText(this.info(m), W/2, 414);
+        stars(gg,sc,W/2,472);
+      }
+    },
+    tool(gg,m){
+      const x=m.x,y=m.y;
+      if(m.stand){                       /* かかとで立てている。斜めにして、かけ面を見せる */
+        gg.save(); gg.translate(x,y+10); gg.rotate(-.62); gg.translate(-x,-y-10);
+        gg.fillStyle="rgba(30,22,34,.20)";
+        gg.beginPath(); gg.ellipse(x+8,y+30,26,9,0,0,6.2832); gg.fill();
+        this.body(gg,m,x,y-6,C.metal);
+        gg.restore();
+        gg.textAlign="center"; gg.font="800 10.5px sans-serif"; gg.fillStyle=C.sage;
+        gg.fillText("立てている", x, y+52);
+        return;
+      }
+      if(m.heat>.30){
+        gg.fillStyle="rgba(224,143,140,"+((m.heat-.30)/.70*.42).toFixed(3)+")";
+        gg.beginPath(); gg.arc(x,y+4,52,0,6.2832); gg.fill();
+      }
+      /* 焦げが広がっている輪 */
+      if(m.burnR>0){
+        gg.strokeStyle="rgba(176,120,74,.75)"; gg.lineWidth=2.4;
+        gg.beginPath(); gg.arc(x,y,m.burnR,0,6.2832); gg.stroke();
+      }
+      gg.fillStyle="rgba(30,22,34,.24)";
+      gg.beginPath(); gg.ellipse(x+3,y+34,38,12,0,0,6.2832); gg.fill();
+      const hot=m.heat>.5?mix(C.metal,C.coral,(m.heat-.5)/.5):C.metal;
+      this.body(gg,m,x,y,hot);
+    },
+    body(gg,m,x,y,hot){
+      const sole=()=>{
+        gg.beginPath();
+        gg.moveTo(x,y-54); gg.lineTo(x+21,y-28);
+        gg.quadraticCurveTo(x+34,y-8,x+34,y+8);
+        gg.lineTo(x+34,y+22);
+        gg.quadraticCurveTo(x+34,y+32,x+24,y+32);
+        gg.lineTo(x-24,y+32);
+        gg.quadraticCurveTo(x-34,y+32,x-34,y+22);
+        gg.lineTo(x-34,y+8);
+        gg.quadraticCurveTo(x-34,y-8,x-21,y-28);
+        gg.closePath();
+      };
+      gg.fillStyle=shade(hot,.58);
+      gg.save(); gg.translate(0,5); sole(); gg.fill(); gg.restore();
+      gg.fillStyle=hot; sole(); gg.fill();
+      gg.fillStyle=shade(hot,1.15);
+      gg.beginPath();
+      gg.moveTo(x,y-54); gg.lineTo(x-21,y-28);
+      gg.quadraticCurveTo(x-34,y-8,x-34,y+8);
+      gg.lineTo(x-34,y+20); gg.lineTo(x-13,y+20); gg.lineTo(x-13,y-34);
+      gg.closePath(); gg.fill();
+      gg.fillStyle=shade(hot,.50);
+      for(const [ox,oy] of [[0,-44],[-8,-36],[8,-36],[-15,-26],[15,-26],[0,-33]]){
+        gg.beginPath(); gg.arc(x+ox,y+oy,2.2,0,6.2832); gg.fill();
+      }
+      gg.fillStyle=C.plum;
+      gg.beginPath();
+      gg.moveTo(x,y-30); gg.lineTo(x+16,y-14);
+      gg.quadraticCurveTo(x+24,y-2,x+24,y+10);
+      gg.lineTo(x+24,y+18);
+      gg.quadraticCurveTo(x+24,y+25,x+16,y+25);
+      gg.lineTo(x-16,y+25);
+      gg.quadraticCurveTo(x-24,y+25,x-24,y+18);
+      gg.lineTo(x-24,y+10);
+      gg.quadraticCurveTo(x-24,y-2,x-16,y-14);
+      gg.closePath(); gg.fill();
+      gg.fillStyle=shade(C.plum,1.24);
+      gg.beginPath();
+      gg.moveTo(x,y-30); gg.lineTo(x-16,y-14);
+      gg.quadraticCurveTo(x-24,y-2,x-24,y+10);
+      gg.lineTo(x-24,y+18); gg.lineTo(x-10,y+18); gg.lineTo(x-10,y-22);
+      gg.closePath(); gg.fill();
+      gg.fillStyle=shade(C.ink,1.55);
+      gg.beginPath(); gg.roundRect(x-8.5,y-17,17,38,8.5); gg.fill();
+      gg.fillStyle=C.ink;
+      gg.beginPath(); gg.roundRect(x-8.5,y-19,17,38,8.5); gg.fill();
+      gg.fillStyle=shade(C.ink,1.9);
+      gg.beginPath(); gg.roundRect(x-5.5,y-16,5,30,2.6); gg.fill();
+      gg.fillStyle=C.gold;
+      gg.beginPath(); gg.arc(x,y+21,3.4,0,6.2832); gg.fill();
+    },
+  };
+}
+
+const GAMES = { marker, untangle,
+                drop1:makeDrop(1), drop2:makeDrop(2), drop3:makeDrop(3),
+                iron1:makeIron(1), iron2:makeIron(2), iron3:makeIron(3) };
+
+/* ================================================================ */
+let cur=null, m=null, last=0;
+const menuEl=document.getElementById("menu");
+const barEl=document.getElementById("bar");
+const resEl=document.getElementById("res");
+
+function start(name){
+  cur=GAMES[name]; m=cur.init(); m.name=name;
+  barEl.querySelector(".t").textContent=cur.title;
+  menuEl.style.display="none"; barEl.classList.add("on"); resEl.classList.remove("on");
+}
+function end(score, detail){
+  const sc=clamp(score|0,0,3);
+  resEl.querySelector(".rt").textContent =
+    sc>=3?"みごと":sc>=2?"よくできました":sc>=1?"まずまず":"つぎ、いこう";
+  resEl.querySelector(".rs").textContent="★".repeat(sc)+"☆".repeat(3-sc);
+  resEl.querySelector(".rd").textContent =
+    (detail?detail+"\n":"") + (sc>0?("ボタンを "+(sc+(sc>=3?1:0))+"つ手に入れた"):"もう一回どうぞ");
+  resEl.classList.add("on"); barEl.classList.remove("on"); cur=null;
+  if(loopOn && demoName) setTimeout(()=>{ if(demoName) start(demoName); }, 1500);
+}
+function toMenu(){
+  cur=null; m=null;
+  resEl.classList.remove("on"); barEl.classList.remove("on");
+  menuEl.style.display=""; g.clearRect(0,0,W,H);
+}
+for(const b of document.querySelectorAll(".card"))
+  b.addEventListener("click",()=>start(b.dataset.g));
+document.getElementById("quit").onclick=()=>toMenu();
+document.getElementById("back").onclick=()=>toMenu();
+document.getElementById("again").onclick=()=>{ const n=m&&m.name; if(n) start(n); };
+
+
+/* ---- 見本の動き ---- */
+function dropDemo(m,dt){
+  const G=cur; if(!m.cur) return;
+  m._t=(m._t||0)+dt;
+  /* 地の目を直す */
+  if(!G.ok(m,m.cur) && m._t>.35){
+    m._t=0; const bR=m.cur.rot,bX=m.cur.gx; m.cur.rot=(m.cur.rot+1)&3;
+    const w=pw(m.cur); let ok=false;
+    for(const dx of [0,-1,1,-2,2]){ const nx=clamp(bX+dx,0,DCOLS-w); if(G.canMoveTo(m,m.cur,nx)){ m.cur.gx=nx; ok=true; break; } }
+    if(!ok){ m.cur.rot=bR; m.cur.gx=bX; }
+    return;
+  }
+  if(!G.ok(m,m.cur)) return;
+  /* いちばん深く着地する列へ、少しずつ寄せる */
+  if(m._want==null || m._wantFor!==m.idx){ const w=pw(m.cur); let bx=m.cur.gx,bd=-1;
+    for(let x=0;x<=DCOLS-w;x++){ if(!G.canMoveTo(m,m.cur,x)) continue; const sv=m.cur.gx; m.cur.gx=x; const d=G.landRow(m,m.cur); m.cur.gx=sv; if(d>bd){bd=d;bx=x;} }
+    m._want=bx; m._wantFor=m.idx; }
+  if(m.cur.gx!==m._want && m._t>.16){ m._t=0; const nx=m.cur.gx+(m._want>m.cur.gx?1:-1); if(G.canMoveTo(m,m.cur,nx)) m.cur.gx=nx; }
+  else if(m.cur.gx===m._want) m.dropFast=true;
+}
+function untangleDemo(m,dt){
+  const G=cur; m._t=(m._t||0)+dt;
+  if(m._mv){ const a=m._mv; a.k=Math.min(1,a.k+dt*2.2);
+    m.pos[a.i].x=a.x0+(a.x1-a.x0)*a.k; m.pos[a.i].y=a.y0+(a.y1-a.y0)*a.k;
+    if(a.k>=1){ m._mv=null; m.drag=-1; } return; }
+  if(m._t<.5) return; m._t=0;
+  const base=G.count(m.pos,m.E)*10+G.grazes(m).length+G.hugs(m).length;
+  if(base===0) return;
+  let best=null,bv=base;
+  for(let i=0;i<m.pos.length;i++){ const ox=m.pos[i].x,oy=m.pos[i].y;
+    for(let k=0;k<14;k++){ const nx=54+Math.random()*282, ny=210+Math.random()*450;
+      m.pos[i].x=nx;m.pos[i].y=ny; const v=G.count(m.pos,m.E)*10+G.grazes(m).length+G.hugs(m).length;
+      if(v<bv){ bv=v; best={i,x1:nx,y1:ny}; } }
+    m.pos[i].x=ox;m.pos[i].y=oy; }
+  if(best){ m.drag=best.i; m._mv={i:best.i,x0:m.pos[best.i].x,y0:m.pos[best.i].y,x1:best.x1,y1:best.y1,k:0}; }
+}
+function ironDemo(m,dt){
+  const I=cur;
+  if(!m._path){
+    const pl=r=>m.pleats.some(q=>Math.abs(q-r)<=1);
+    const pts=[];
+    for(let j=0;j<IH;j++){
+      if(pl(j)) continue;
+      const y=IY+j*ICH+ICH/2, L2R=(j%2===0);
+      for(let s=0;s<=12;s++){ const x=L2R? IX+8+s*(CW-16)/12 : IX+CW-8-s*(CW-16)/12;
+        const near=m.buttons.some(b=>Math.hypot(b.x-x,b.y-y)<40);
+        pts.push({x,y,down:!near}); }
+    }
+    m._path=pts; m._i=0; m._x=pts[0].x; m._y=pts[0].y;
+  }
+  const p=m._path[m._i%m._path.length];
+  const dx=p.x-m._x, dy=p.y-m._y, d=Math.hypot(dx,dy), v=210*dt;
+  if(d<=v){ m._x=p.x; m._y=p.y; m._i++; } else { m._x+=dx/d*v; m._y+=dy/d*v; }
+  if(p.down){ if(!m.press||m.stand) I.down(m,m._x,m._y); I.move(m,m._x,m._y); }
+  else { if(m.press) I.up(m); m.x=m._x; m.y=m._y; }
+}
+function markerDemo(m,dt){
+  const M=cur; m._t=(m._t||0)+dt; if(m._t<.7) return; m._t=0;
+  const p=m.ps.find(q=>!q.placed); if(!p) return;
+  for(let gy=0;gy<ROWS;gy++) for(let gx=0;gx<COLS;gx++)
+    if(M.fits(m,p,gx,gy)){ p.placed=true; p.gx=gx; p.gy=gy; M.layTray(m);
+      if(m.ps.every(q=>q.placed)){ m.done=true; m.doneT=0; } return; }
+}
+const DEMO={ drop1:dropDemo, drop2:dropDemo, drop3:dropDemo, untangle:untangleDemo,
+             iron1:ironDemo, iron2:ironDemo, iron3:ironDemo, marker:markerDemo };
+
+/* ===== 見本の動き。一覧ページ（overview.html）から #g=名前&demo=1&loop=1 で呼ばれる ===== */
+let demoOn=false, loopOn=false, demoName=null;
+function demoTick(dt){ if(!demoOn||!cur||!m) return; const f=DEMO[m.name]; if(f){ try{ f(m,dt); }catch(e){} } }
+(function(){
+  const q=new URLSearchParams(location.hash.replace(/^#/,""));
+  const gname=q.get("g");
+  if(gname && GAMES[gname]){
+    demoOn=q.get("demo")==="1"; loopOn=q.get("loop")==="1"; demoName=gname;
+    document.body.classList.add("embed");
+    addEventListener("load",()=>start(gname));
+    if(document.readyState==="complete") start(gname);
+  }
+})();
+
+function pt(e){
+  const r=cv.getBoundingClientRect();
+  return [(e.clientX-r.left)/r.width*W, (e.clientY-r.top)/r.height*H];
+}
+cv.addEventListener("pointerdown",e=>{ if(!cur)return; e.preventDefault();
+  cv.setPointerCapture(e.pointerId); const [x,y]=pt(e); if(cur.down)cur.down(m,x,y); });
+cv.addEventListener("pointermove",e=>{ if(!cur)return; e.preventDefault();
+  const [x,y]=pt(e); if(cur.move)cur.move(m,x,y); });
+cv.addEventListener("pointerup",e=>{ if(!cur)return; e.preventDefault();
+  const [x,y]=pt(e); if(cur.up)cur.up(m,x,y); });
+cv.addEventListener("pointercancel",()=>{ if(cur&&cur.up)cur.up(m,0,0); });
+
+function loop(ts){
+  requestAnimationFrame(loop);
+  const dt=Math.min(.05,(ts-last)/1000||0); last=ts;
+  if(!cur||!m) return;
+  demoTick(dt); if(!cur||!m) return; cur.tick(m,dt);
+  if(!cur||!m) return;
+  g.clearRect(0,0,W,H);
+  cur.draw(m,g);
+}
+requestAnimationFrame(loop);
+
+window.__mini = { start, end, toMenu, GAMES,
+  get m(){return m;}, get cur(){return cur;},
+  helpers:{ cellsOf, pw, ph:phh, grainOK, PIECES } };
+</script>
+</body>
+</html>

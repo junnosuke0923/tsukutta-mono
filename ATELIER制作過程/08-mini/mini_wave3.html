@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>ミニゲーム 第3便 ── 針の流れ／ルレット／まち針／はさみ／道具あて／工程ならべ</title>
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body{ margin:0; padding:0; height:100%; background:#e7e0d6;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif; }
+  body{ display:flex; align-items:center; justify-content:center; overscroll-behavior:none; }
+  #phone{ position:relative; width:390px; height:844px; background:#241b2e;
+    overflow:hidden; box-shadow:0 18px 60px rgba(60,44,58,.34); }
+  @media (max-width:420px), (max-height:880px){ #phone{ width:100vw; height:100vh; height:100dvh; } }
+  #cv{ position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; }
+  #menu{ position:absolute; inset:0; z-index:5; background:#f3eee7; padding:22px 18px 40px; overflow-y:auto; }
+  #menu h1{ font-size:18px; font-weight:800; color:#2a2430; margin:2px 0 3px; }
+  #menu .sub{ font-size:11.5px; font-weight:700; color:#8a7c88; line-height:1.7; margin:0 0 14px; }
+  #menu h2{ font-size:11px; font-weight:800; color:#7c5a70; margin:16px 0 8px; letter-spacing:.08em; }
+  .card{ display:block; width:100%; text-align:left; border:0; cursor:pointer; background:#fbf3e6;
+    border-radius:15px; padding:12px 14px; margin:0 0 10px; box-shadow:0 2px 0 rgba(124,90,112,.13); }
+  .card:active{ transform:translateY(1px); }
+  .card .top{ display:flex; align-items:center; gap:9px; margin-bottom:6px; }
+  .card .tag{ font-size:9.5px; font-weight:800; color:#fbf3e6; background:#7c5a70; border-radius:5px;
+    padding:3px 6px; white-space:nowrap; }
+  .card .nm{ font-size:15.5px; font-weight:800; color:#2a2430; }
+  .card .ds{ font-size:11.5px; font-weight:700; color:#6d6270; line-height:1.7; }
+  .card .mt{ font-size:10.5px; font-weight:800; color:#96887f; margin-top:5px; }
+  .card .mt b{ color:#7c5a70; }
+  .note{ font-size:10.5px; font-weight:700; color:#8f8279; line-height:1.8; background:#ece2d3;
+    border-radius:11px; padding:11px 13px; margin-top:14px; }
+  #bar{ position:absolute; top:0; left:0; right:0; height:52px; z-index:4; display:none;
+    align-items:center; justify-content:space-between; padding:0 14px; }
+  #bar.on{ display:flex; }
+  #bar .t{ font-size:14px; font-weight:800; color:#fdf6ec; }
+  #bar button{ border:0; background:rgba(255,255,255,.14); color:#fdf6ec; font-size:11.5px;
+    font-weight:800; border-radius:9px; padding:7px 12px; cursor:pointer; font-family:inherit; }
+  #res{ position:absolute; inset:0; z-index:6; display:none; background:rgba(28,20,36,.72);
+    align-items:center; justify-content:center; padding:26px; }
+  #res.on{ display:flex; }
+  #res .box{ width:100%; background:#f3eee7; border-radius:20px; padding:22px 20px 18px; text-align:center; }
+  #res .rt{ font-size:19px; font-weight:800; color:#2a2430; margin-bottom:5px; }
+  #res .rs{ font-size:32px; letter-spacing:.06em; color:#f2c14e; margin-bottom:8px; }
+  #res .rd{ font-size:12px; font-weight:700; color:#6d6270; line-height:1.8; margin-bottom:15px; white-space:pre-line; }
+  #res button{ width:100%; border:0; border-radius:12px; padding:13px; font-size:14px; font-weight:800;
+    cursor:pointer; font-family:inherit; margin-bottom:8px; }
+  #again{ background:#7c5a70; color:#fbf3e6; }
+  #back{ background:#e6d8c4; color:#5a4d58; }
+
+  /* 一覧ページに埋め込まれたとき */
+  body.embed #menu{ display:none !important; }
+  body.embed #bar{ display:none !important; }
+  body.embed #res .box button{ display:none; }
+  body.embed #phone{ box-shadow:none; }
+</style>
+</head>
+<body>
+<div id="phone">
+  <canvas id="cv"></canvas>
+  <div id="bar"><span class="t"></span><button id="quit">やめる</button></div>
+  <div id="menu">
+    <h1>ミニゲーム　第3便</h1>
+    <p class="sub">先生の案（横スクロールの糸通し／ルレットとチャコペーパー／まち針／はさみ／
+      道具と用語）を形にしたものです。<b>建物ごとに違う遊び</b>を置けるよう、
+      それぞれ「どこで出すか」も書いてあります。</p>
+
+    <h2>手わざ ── 動きの遊び</h2>
+    <button class="card" data-g="run">
+      <div class="top"><span class="tag">L</span><span class="nm">針の流れ</span></div>
+      <div class="ds">糸は左から伸びている。針が右から次々に流れてくる。
+        指で糸先を上下に動かして、<b>ぜんぶの針穴に通す</b>。だんだん速く、穴は小さく。</div>
+      <div class="mt"><b>先生の案</b>／横スクロール／出す場所：<b>縫製室・工場</b></div>
+    </button>
+    <button class="card" data-g="roulette">
+      <div class="top"><span class="tag">M</span><span class="nm">ルレットで印付け</span></div>
+      <div class="ds">布と布のあいだにチャコペーパーをはさみ、型紙の線の上でルレットを転がす。
+        速すぎると点が飛ぶ。終わると下の布をめくって、<b>写った点線</b>が見える。</div>
+      <div class="mt"><b>先生の案</b>／出す場所：<b>パターン室・裁断台</b></div>
+    </button>
+    <button class="card" data-g="pins">
+      <div class="top"><span class="tag">N</span><span class="nm">まち針</span></div>
+      <div class="ds">合印のところに、まち針を打つ。針は<b>縫い線に対して直角</b>に。
+        指をすべらせた向きが、そのまま針の向きになる。</div>
+      <div class="mt"><b>先生の案</b>（ピンクッション）／出す場所：<b>縫製室・自宅の机</b></div>
+    </button>
+    <button class="card" data-g="shears">
+      <div class="top"><span class="tag">O</span><span class="nm">裁ちばさみ</span></div>
+      <div class="ds">はさみは線に沿って進む。<b>タップで短く、長押しで長く</b>切る。
+        カーブで長く切ると布がガタつく。まっすぐは長く、曲がりは短く。</div>
+      <div class="mt"><b>先生の案</b>／裁断とは別の手ざわり／出す場所：<b>裁断台</b></div>
+    </button>
+
+    <h2>知る ── 道具と用語の遊び</h2>
+    <button class="card" data-g="tools">
+      <div class="top"><span class="tag">P</span><span class="nm">道具あて</span></div>
+      <div class="ds"><b>先生の資料「洋裁道具・材料の説明」どおり</b>。絵から名前／用途の文から名前／
+        針と糸の番号の決まり、の3種を混ぜて8問。道具は21種（裁断ばさみ・チャコナー・待ち針・ボビンケース・釦のみ・文鎮…）。</div>
+      <div class="mt"><b>先生の案</b>（道具のワード）／答えたあとに用途が一行出る／出す場所：<b>入学直後・資材庫</b></div>
+    </button>
+    <button class="card" data-g="steps">
+      <div class="top"><span class="tag">Q</span><span class="nm">工程ならべ</span></div>
+      <div class="ds">ばらばらに置かれた工程を、正しい順に押す。「服ができるまで」
+        「型紙ができるまで」「一本の縫い目」の3題。</div>
+      <div class="mt"><b>先生の案</b>（作業のワード）／出す場所：<b>教室・講評会の前</b></div>
+    </button>
+
+    <p class="note">色は docs/ART.md の表のとおり。前の便：<b>mini_v2.html</b>（裁ち落とし・糸ほどき・アイロン）／
+      <b>mini_more.html</b>（生地の山・配色・シルエット・採寸・ビーズ・検品・ボタン付け）</p>
+  </div>
+  <div id="res"><div class="box">
+    <div class="rt"></div><div class="rs"></div><div class="rd"></div>
+    <button id="again">もう一回</button><button id="back">ほかのゲーム</button>
+  </div></div>
+</div>
+
+<script>
+"use strict";
+const W=390,H=844;
+const cv=document.getElementById("cv"), g=cv.getContext("2d");
+(function(){ const d=Math.min(2,window.devicePixelRatio||1);
+  cv.width=W*d; cv.height=H*d; g.setTransform(d,0,0,d,0,0); })();
+const C={ paper:"#f3eee7", wall:"#fbf3e6", wall2:"#ece2d3", skirt:"#e6d8c4", wood:"#c9a982",
+  metal:"#8a929c", metalD:"#5c6470", cloth:"#efe6da", paper2:"#f6f1e6", mat:"#dfe4e8", ink:"#2a2430",
+  plum:"#7c5a70", sage:"#7fae66", sand:"#c9a982", coral:"#e08f8c", gold:"#f2c14e" };
+const hx=c=>[parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)];
+const rgbs=a=>"#"+a.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,"0")).join("");
+const shade=(c,k)=>rgbs(hx(c).map(v=>v*k));
+const mix=(c1,c2,t)=>{const a=hx(c1),b=hx(c2);return rgbs(a.map((v,i)=>v+(b[i]-v)*t));};
+const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+function stars(gg,n,cx,cy){ gg.textAlign="center"; gg.font="800 40px sans-serif"; gg.fillStyle=C.gold;
+  gg.fillText("★".repeat(n)+"☆".repeat(3-n),cx,cy); }
+function timeBar(gg,t,max){ gg.fillStyle="rgba(255,255,255,.16)"; gg.fillRect(40,74,W-80,7);
+  gg.fillStyle=t/max<.25?C.coral:C.gold; gg.fillRect(40,74,(W-80)*clamp(t,0,max)/max,7); }
+function banner(gg,lines,y0,h){
+  gg.fillStyle="rgba(42,36,48,.87)"; gg.fillRect(0,y0,W,h);
+  gg.textAlign="center";
+  lines.forEach((L,i)=>{ gg.font=L.f||"700 12px sans-serif"; gg.fillStyle=L.c||"rgba(253,246,236,.82)";
+    gg.fillText(L.t, W/2, y0+34+i*24); });
+}
+function finish(gg,title,info,sc){
+  gg.fillStyle="rgba(28,20,36,.6)"; gg.fillRect(0,0,W,H);
+  gg.textAlign="center"; gg.fillStyle="#fdf6ec"; gg.font="800 25px sans-serif";
+  gg.fillText(title,W/2,384);
+  gg.font="700 12.5px sans-serif"; gg.fillStyle="rgba(253,246,236,.82)";
+  info.split("\n").forEach((L,i)=>gg.fillText(L,W/2,414+i*20));
+  stars(gg,sc,W/2,486);
+}
+/* 布地（夜の作業台） */
+function nightCloth(gg,oy){
+  const gr=gg.createLinearGradient(0,0,0,H); gr.addColorStop(0,"#2c2136"); gr.addColorStop(1,"#4a3550");
+  gg.fillStyle=gr; gg.fillRect(0,0,W,H);
+  gg.strokeStyle="rgba(255,255,255,.045)"; gg.lineWidth=1;
+  for(let i=-1;i<30;i++){ const y=((i*32+(oy||0))%(H+64))-32;
+    gg.beginPath(); gg.moveTo(0,y); gg.lineTo(W,y+14); gg.stroke(); }
+}
+/* 針（縦）。金属のグラデーション。穴の位置と大きさを渡す */
+function drawNeedle(gg,nx,eyeY,eyeR,len){
+  const grad=gg.createLinearGradient(nx-8,0,nx+8,0);
+  grad.addColorStop(0,"#b9c2cc"); grad.addColorStop(.45,"#eef3f7"); grad.addColorStop(1,"#98a2ae");
+  gg.fillStyle=grad;
+  gg.beginPath();
+  gg.moveTo(nx-6.5,eyeY-46); gg.quadraticCurveTo(nx,eyeY-62,nx+6.5,eyeY-46);
+  gg.lineTo(nx+4,eyeY+len*.55); gg.lineTo(nx,eyeY+len); gg.lineTo(nx-4,eyeY+len*.55);
+  gg.closePath(); gg.fill();
+  gg.fillStyle="#241b2e";
+  gg.beginPath(); gg.ellipse(nx,eyeY,Math.max(3.2,eyeR*.42),eyeR,0,0,6.2832); gg.fill();
+  gg.strokeStyle="rgba(255,255,255,.5)"; gg.lineWidth=1.3;
+  gg.beginPath(); gg.ellipse(nx,eyeY,Math.max(3.2,eyeR*.42),eyeR,0,0,6.2832); gg.stroke();
+}
+
+/* ==================================================================
+   L 針の流れ（横スクロールの糸通し）
+   糸は左から。針が右から流れてくる。糸先を上下に動かして穴に通す。
+   ================================================================== */
+const run = {
+  title:"針の流れ",
+  TIPX:112, SPOOLX:26,
+  init(){
+    return { ty:H/2, target:H/2, needles:[], t:0, spawnT:1.2, spawnEvery:1.9,
+             passed:0, missed:0, combo:0, best:0, total:0, spark:[], shake:0,
+             time:32, done:false, doneT:0, warm:2.0, press:false, flick:0, oy:0 };
+  },
+  down(m,x,y){ if(m.done||m.warm>0) return; m.press=true; m.target=y; },
+  move(m,x,y){ if(!m.press) return; m.target=y; },
+  up(m){ m.press=false; },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m),this.info(m)); return; }
+    for(let i=m.spark.length-1;i>=0;i--){ m.spark[i].t+=dt; if(m.spark[i].t>.6) m.spark.splice(i,1); }
+    if(m.shake>0) m.shake-=dt;
+    if(m.flick>0) m.flick-=dt;
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.t+=dt; m.time-=dt; m.oy+=dt*18;
+    /* 糸先は指を追う（少しだけ遅れる。糸のしなり） */
+    m.ty += (m.target-m.ty)*clamp(dt*14,0,1);
+    m.ty = clamp(m.ty, 150, 700);
+    /* 針の流れ。だんだん速く、間隔は詰まり、穴は小さく */
+    const speed = 120 + m.t*4.2;
+    m.spawnT-=dt;
+    if(m.spawnT<=0){
+      m.spawnEvery = Math.max(.95, 1.9 - m.t*.03);
+      m.spawnT = m.spawnEvery;
+      const eyeR = Math.max(9, 22 - m.t*.42);
+      m.needles.push({ x:W+30, eyeY: 200+Math.random()*440, eyeR, state:"in", len:150 });
+      m.total++;
+    }
+    for(const n of m.needles){
+      n.x -= speed*dt;
+      if(n.state==="in" && n.x <= this.TIPX){
+        const d=Math.abs(n.eyeY-m.ty);
+        if(d<=n.eyeR){ n.state="pass"; m.passed++; m.combo++; m.best=Math.max(m.best,m.combo);
+          for(let k=0;k<7;k++) m.spark.push({x:n.x,y:n.eyeY,t:0,a:Math.random()*6.28,v:40+Math.random()*60}); }
+        else { n.state="miss"; m.missed++; m.combo=0; m.shake=.35; m.flick=.4; n.tilt=(m.ty>n.eyeY?1:-1); }
+      }
+    }
+    m.needles = m.needles.filter(n=>n.x>-80);
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){ const seen=m.passed+m.missed; if(seen<6) return 0;
+    const r=m.passed/seen; return r>=.9?3:r>=.7?2:r>=.45?1:0; },
+  info(m){ return "通した "+m.passed+"／"+(m.passed+m.missed)+"本　最長 "+m.best+"連"; },
+  draw(m,gg){
+    nightCloth(gg,m.oy);
+    const sx = m.shake>0 ? Math.sin(m.shake*60)*4 : 0;
+
+    /* 通った針の穴を、糸が順につないでいく */
+    const passed = m.needles.filter(n=>n.state==="pass").sort((a,b)=>a.x-b.x);
+    gg.strokeStyle="#e8506a"; gg.lineWidth=3.2; gg.lineCap="round"; gg.lineJoin="round";
+    gg.beginPath();
+    gg.moveTo(this.SPOOLX, m.ty+8);
+    let px=this.SPOOLX, py=m.ty+8;
+    for(const n of passed){
+      gg.quadraticCurveTo((px+n.x)/2, (py+n.eyeY)/2+16, n.x, n.eyeY);
+      px=n.x; py=n.eyeY;
+    }
+    gg.quadraticCurveTo((px+this.TIPX)/2, (py+m.ty)/2+10, this.TIPX+sx, m.ty);
+    gg.stroke();
+    /* 外れた瞬間、糸先がはじかれる */
+    if(m.flick>0){
+      gg.strokeStyle="rgba(232,80,106,"+(m.flick*2).toFixed(2)+")";
+      gg.beginPath(); gg.moveTo(this.TIPX,m.ty);
+      gg.quadraticCurveTo(this.TIPX-14,m.ty-30*(1-m.flick),this.TIPX-30,m.ty-12); gg.stroke();
+    }
+    /* 糸先 */
+    gg.fillStyle="#e8506a"; gg.beginPath(); gg.arc(this.TIPX+sx,m.ty,4.6,0,6.2832); gg.fill();
+    gg.fillStyle="rgba(255,255,255,.35)"; gg.beginPath(); gg.arc(this.TIPX+sx-1.4,m.ty-1.4,1.8,0,6.2832); gg.fill();
+
+    /* 糸まき（左端） */
+    gg.fillStyle="#8a6a4a"; gg.fillRect(4,m.ty-30,30,60);
+    gg.fillStyle="#c9485e"; gg.fillRect(6,m.ty-22,26,44);
+    gg.strokeStyle="rgba(255,255,255,.14)"; gg.lineWidth=2;
+    for(let i=0;i<4;i++){ gg.beginPath(); gg.moveTo(6,m.ty-16+i*10); gg.lineTo(32,m.ty-14+i*10); gg.stroke(); }
+    gg.fillStyle="#a8845c";
+    gg.beginPath(); gg.ellipse(19,m.ty-30,15,5,0,0,6.2832); gg.fill();
+    gg.beginPath(); gg.ellipse(19,m.ty+30,15,5,0,0,6.2832); gg.fill();
+
+    /* 針 */
+    for(const n of m.needles){
+      gg.save();
+      if(n.state==="miss"){ gg.translate(n.x,n.eyeY); gg.rotate(n.tilt*.18); gg.translate(-n.x,-n.eyeY); gg.globalAlpha=.55; }
+      drawNeedle(gg,n.x,n.eyeY,n.eyeR,n.len);
+      gg.restore();
+    }
+    for(const s of m.spark){
+      const a=1-s.t/.6, r=s.t*s.v;
+      gg.fillStyle="rgba(255,226,130,"+(a*.9).toFixed(2)+")";
+      gg.beginPath(); gg.arc(s.x+Math.cos(s.a)*r,s.y+Math.sin(s.a)*r,2.4*a+.4,0,6.2832); gg.fill();
+    }
+    /* 糸先の目安線 */
+    gg.strokeStyle="rgba(255,255,255,.10)"; gg.setLineDash([3,6]);
+    gg.beginPath(); gg.moveTo(this.TIPX,150); gg.lineTo(this.TIPX,700); gg.stroke(); gg.setLineDash([]);
+
+    timeBar(gg,m.time,32);
+    gg.textAlign="center"; gg.font="800 15px sans-serif"; gg.fillStyle="#fdf6ec";
+    gg.fillText("通した "+m.passed+"　／　外した "+m.missed, W/2, 106);
+    gg.font="700 11px sans-serif"; gg.fillStyle= m.combo>=3?C.gold:"rgba(253,246,236,.6)";
+    gg.fillText(m.combo>=2?(m.combo+" 連！"):"糸先を上下に動かして、穴に通す", W/2, 126);
+
+    if(m.warm>0) banner(gg,[
+      {t:"針が流れてくる",f:"800 19px sans-serif",c:"#fdf6ec"},
+      {t:"指を上下に動かすと、糸先が動く"},
+      {t:"針穴が糸先に来た瞬間に通る。だんだん速く、穴は小さく",c:C.gold}],330,110);
+    if(m.done) finish(gg, this.score(m)>=3?"あざやかな手さばき！":this.score(m)>=2?"よく通した":this.score(m)>=1?"まずまず":"外しすぎ…", this.info(m), this.score(m));
+  },
+};
+
+/* ==================================================================
+   M ルレットで印付け
+   布と布のあいだにチャコペーパー。線の上でルレットを転がすと点が写る。
+   ================================================================== */
+const roulette = {
+  title:"ルレットで印付け",
+  init(){
+    /* 型紙の線：ダーツ（くの字）＋ 裾のカーブ */
+    const kind=Math.floor(Math.random()*3);
+    const pts=[];
+    if(kind===0){        /* ダーツ */
+      pts.push([120,250],[196,470],[272,250]);
+    } else if(kind===1){ /* 脇線のカーブ */
+      for(let i=0;i<=24;i++){ const u=i/24; pts.push([120+u*150+Math.sin(u*3.1)*40, 240+u*280]); }
+    } else {             /* 裾のカーブ＋ダーツ */
+      for(let i=0;i<=16;i++){ const u=i/16; pts.push([90+u*210, 460-Math.sin(u*3.14)*46]); }
+      pts.push([300,460],[300,300]);
+    }
+    /* 線を細かく分割 */
+    const seg=[]; let L=0;
+    for(let i=0;i+1<pts.length;i++){
+      const [x0,y0]=pts[i],[x1,y1]=pts[i+1]; const d=Math.hypot(x1-x0,y1-y0);
+      const n=Math.max(1,Math.ceil(d/6));
+      for(let k=0;k<n;k++){ const u=k/n; seg.push({x:x0+(x1-x0)*u,y:y0+(y1-y0)*u,hit:false}); }
+      L+=d;
+    }
+    seg.push({x:pts[pts.length-1][0],y:pts[pts.length-1][1],hit:false});
+    return { seg, marks:[], off:0, wx:null, wy:null, spin:0, press:false,
+             time:30, done:false, doneT:0, warm:2.2, reveal:0, dust:[], skid:0, kind };
+  },
+  down(m,x,y){ if(m.done||m.warm>0) return; if(y>720 && this.cover(m)>.2){ m.done=true; m.doneT=0; return; }
+    m.press=true; m.wx=x; m.wy=y; },
+  move(m,x,y){
+    if(!m.press||m.done) return;
+    const dx=x-m.wx, dy=y-m.wy, dist=Math.hypot(dx,dy);
+    if(dist<.5) return;
+    /* 転がした距離に応じて点を落とす。速すぎると点の間隔が飛ぶ */
+    /* 速いと点が飛ぶ（間隔が開く）。線からの許しは 6px */
+    const fast = dist>22;
+    const gap = fast ? 16 : 6;
+    if(fast) m.skid = .5;
+    const n=Math.max(1,Math.floor(dist/gap));
+    for(let k=1;k<=n;k++){
+      const ax=m.wx+dx*k/n, ay=m.wy+dy*k/n;
+      let best=99, bi=-1;
+      for(let i=0;i<m.seg.length;i++){ const d=Math.hypot(m.seg[i].x-ax,m.seg[i].y-ay); if(d<best){best=d;bi=i;} }
+      if(best<=6){ m.marks.push({x:ax,y:ay,ok:true});
+        /* ゆっくりなら前後1点も写る。速いと真下の1点だけ */
+        const w = fast ? 0 : 1;
+        for(let i=Math.max(0,bi-w);i<=Math.min(m.seg.length-1,bi+w);i++) m.seg[i].hit=true; }
+      else { m.marks.push({x:ax,y:ay,ok:false}); m.off++; }
+      if(Math.random()<.35) m.dust.push({x:ax+(Math.random()-.5)*10,y:ay+(Math.random()-.5)*10,t:0});
+    }
+    m.spin += dist/9;
+    m.wx=x; m.wy=y;
+  },
+  up(m){ m.press=false; },
+  cover(m){ return m.seg.filter(s=>s.hit).length/m.seg.length; },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; m.reveal=clamp(m.reveal+dt*1.4,0,1);
+      if(m.doneT>3.2) end(this.score(m),this.info(m)); return; }
+    for(let i=m.dust.length-1;i>=0;i--){ m.dust[i].t+=dt; if(m.dust[i].t>.6) m.dust.splice(i,1); }
+    if(m.skid>0) m.skid-=dt;
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){
+    const c=this.cover(m), offR = m.marks.length? m.off/m.marks.length : 0;
+    const v=c - offR*.6;
+    return v>=.9?3:v>=.72?2:v>=.45?1:0;
+  },
+  info(m){ return "写った線 "+Math.round(this.cover(m)*100)+"%　線の外に打った点 "+m.off; },
+  draw(m,gg){
+    gg.fillStyle="#d8cfc0"; gg.fillRect(0,0,W,H);
+    /* 下の布（めくって見せる） */
+    gg.fillStyle="#efe6da"; gg.fillRect(40,180,310,400);
+    /* めくれ：done のあと上の布が右上へめくれる */
+    const rv=m.reveal;
+    /* 下の布に写った点線（reveal に応じて見える） */
+    if(rv>0){
+      for(const k of m.marks){
+        gg.fillStyle = k.ok ? "rgba(70,110,180,"+(rv*.85).toFixed(2)+")" : "rgba(70,110,180,"+(rv*.5).toFixed(2)+")";
+        gg.beginPath(); gg.arc(k.x,k.y,1.7,0,6.2832); gg.fill();
+      }
+    }
+    /* めくれの形。上の布と、その下のチャコペーパーが一緒に右上へめくれる
+       （チャコペーパーのほうが少し先にめくれるので、写った点線が見える） */
+    const peel=(gg,r)=>{ gg.beginPath();
+      if(r<1){ const f=r*380; gg.moveTo(40,180+f); gg.lineTo(350-f,180); gg.lineTo(350,180); gg.lineTo(350,580); gg.lineTo(40,580); gg.closePath(); }
+      else gg.rect(0,0,0,0); };
+    /* チャコペーパー（青） */
+    gg.save(); peel(gg, clamp(rv*1.25,0,1)); gg.clip();
+    gg.fillStyle="#6f9fd8"; gg.fillRect(46,186,298,388);
+    gg.fillStyle="rgba(255,255,255,.08)"; gg.fillRect(46,186,298,60);
+    gg.restore();
+    /* 上の布 */
+    gg.save(); peel(gg, rv); gg.clip();
+    gg.fillStyle=C.cloth; gg.fillRect(40,180,310,400);
+    gg.strokeStyle="rgba(120,96,84,.06)"; gg.lineWidth=1;
+    for(let y=180;y<580;y+=6){ gg.beginPath(); gg.moveTo(40,y); gg.lineTo(350,y); gg.stroke(); }
+    /* 型紙（薄い紙）と線 */
+    gg.fillStyle="rgba(246,241,230,.72)"; gg.fillRect(70,220,250,300);
+    gg.setLineDash([5,5]); gg.strokeStyle="rgba(90,70,60,.55)"; gg.lineWidth=1.6;
+    gg.beginPath(); m.seg.forEach((s,i)=>i?gg.lineTo(s.x,s.y):gg.moveTo(s.x,s.y)); gg.stroke(); gg.setLineDash([]);
+    /* 打った点（上から見える凹み） */
+    for(const k of m.marks){
+      gg.fillStyle = k.ok ? "rgba(90,70,60,.55)" : "rgba(200,90,96,.6)";
+      gg.beginPath(); gg.arc(k.x,k.y,1.5,0,6.2832); gg.fill();
+    }
+    gg.restore();
+    if(rv>0 && rv<1){ /* めくれた布の裏 */
+      const f=rv*380;
+      gg.fillStyle=shade(C.cloth,.86);
+      gg.beginPath(); gg.moveTo(40,180+f); gg.lineTo(350-f,180);
+      gg.lineTo(350-f*.5,180+f*.5); gg.closePath(); gg.fill();
+    }
+    /* チャコの粉 */
+    for(const d of m.dust){ gg.fillStyle="rgba(120,160,220,"+(1-d.t/.6)*.5+")";
+      gg.beginPath(); gg.arc(d.x,d.y-d.t*20,1.6,0,6.2832); gg.fill(); }
+
+    /* ルレット */
+    if(m.wx!=null && !m.done){
+      const x=m.wx,y=m.wy;
+      gg.fillStyle="rgba(30,22,34,.22)"; gg.beginPath(); gg.ellipse(x+3,y+18,18,6,0,0,6.2832); gg.fill();
+      /* 柄 */
+      gg.strokeStyle=C.wood; gg.lineWidth=9; gg.lineCap="round";
+      gg.beginPath(); gg.moveTo(x+6,y-14); gg.lineTo(x+52,y-72); gg.stroke();
+      gg.strokeStyle=shade(C.wood,.72); gg.lineWidth=3;
+      gg.beginPath(); gg.moveTo(x+10,y-16); gg.lineTo(x+52,y-70); gg.stroke();
+      gg.strokeStyle=C.metalD; gg.lineWidth=3.5;
+      gg.beginPath(); gg.moveTo(x,y-2); gg.lineTo(x+8,y-16); gg.stroke();
+      /* 歯車 */
+      gg.save(); gg.translate(x,y); gg.rotate(m.spin);
+      gg.fillStyle=C.metal;
+      gg.beginPath();
+      for(let i=0;i<14;i++){ const a=i*6.2832/14, a2=a+6.2832/28;
+        gg.lineTo(Math.cos(a)*13,Math.sin(a)*13); gg.lineTo(Math.cos(a2)*8.5,Math.sin(a2)*8.5); }
+      gg.closePath(); gg.fill();
+      gg.fillStyle=shade(C.metal,.62); gg.beginPath(); gg.arc(0,0,3.2,0,6.2832); gg.fill();
+      gg.restore();
+      if(m.skid>0){ gg.textAlign="center"; gg.font="800 11px sans-serif"; gg.fillStyle=C.coral;
+        gg.fillText("速い！点が飛ぶ", x, y-30); }
+    }
+    /* 決定 */
+    if(!m.done && m.warm<=0){
+      const can=this.cover(m)>.2;
+      gg.fillStyle= can?C.plum:"rgba(124,90,112,.22)"; gg.fillRect(60,724,W-120,54);
+      gg.fillStyle= can?"#fbf3e6":"rgba(251,243,230,.55)"; gg.font="800 15px sans-serif"; gg.textAlign="center";
+      gg.fillText(can?"めくって確かめる":"線の上を転がす", W/2, 757);
+    }
+    timeBar(gg,m.time,30);
+    gg.textAlign="center"; gg.font="800 14px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("写った線　"+Math.round(this.cover(m)*100)+"%", W/2, 106);
+    gg.font="700 10.5px sans-serif"; gg.fillStyle= m.off>0?C.coral:"#8a7c88";
+    gg.fillText(m.off>0?("線の外に "+m.off+"点"):"ゆっくり、線の上を。速いと点が飛ぶ", W/2, 126);
+    if(m.warm>0) banner(gg,[
+      {t:"ルレットで印をうつす",f:"800 19px sans-serif",c:"#fdf6ec"},
+      {t:"布と布のあいだに、青いチャコペーパー"},
+      {t:"型紙の線の上でルレットを転がす。下の布に点線が写る",c:C.gold},
+      {t:"速すぎると点が飛ぶ。線から外れた点は消せない",c:C.coral}],320,134);
+    if(m.done) finish(gg, this.score(m)>=3?"きれいに写った！":this.score(m)>=2?"写った":this.score(m)>=1?"とぎれとぎれ":"写っていない…", this.info(m), this.score(m));
+  },
+};
+
+/* ==================================================================
+   N まち針
+   合印に、縫い線と直角にまち針を打つ。指をすべらせた向き＝針の向き
+   ================================================================== */
+const pins = {
+  title:"まち針",
+  init(){
+    /* 縫い線（ゆるいカーブ）と、その上の合印6つ */
+    const p1=Math.random()*6.28;
+    const line=[]; for(let i=0;i<=40;i++){ const u=i/40;
+      line.push({x:60+u*270, y:330+Math.sin(u*2.6+p1)*60+Math.sin(u*5.1)*18}); }
+    const marks=[];
+    for(let k=0;k<6;k++){ const i=4+k*6.4|0; const a=line[i], b=line[Math.min(40,i+1)];
+      const tx=b.x-a.x, ty=b.y-a.y, L=Math.hypot(tx,ty);
+      marks.push({ x:a.x, y:a.y, tx:tx/L, ty:ty/L, pin:null }); }
+    return { line, marks, drag:null, dirx:0, diry:-1, time:30, done:false, doneT:0, warm:2.2,
+             placed:0, msg:"", msgT:0, wobble:0 };
+  },
+  down(m,x,y){ if(m.done||m.warm>0) return; m.drag={x,y,px:x,py:y}; },
+  move(m,x,y){
+    if(!m.drag) return;
+    const dx=x-m.drag.px, dy=y-m.drag.py, d=Math.hypot(dx,dy);
+    if(d>1.5){ /* 動いた向きを、なめらかに針の向きへ */
+      const nx=dx/d, ny=dy/d;
+      m.dirx = m.dirx*.7+nx*.3; m.diry = m.diry*.7+ny*.3;
+      const L=Math.hypot(m.dirx,m.diry)||1; m.dirx/=L; m.diry/=L;
+    }
+    m.drag.px=x; m.drag.py=y; m.drag.x=x; m.drag.y=y;
+  },
+  up(m,x,y){
+    if(!m.drag) return;
+    /* 近い合印に打つ */
+    let best=null,bd=28;
+    for(const k of m.marks){ if(k.pin) continue; const d=Math.hypot(k.x-x,k.y-y); if(d<bd){bd=d;best=k;} }
+    if(best){
+      /* 縫い線の接線と針の向きのなす角。90度が理想 */
+      const dot=Math.abs(m.dirx*best.tx+m.diry*best.ty);
+      const ang=Math.acos(clamp(dot,0,1))*180/Math.PI;    /* 0=平行 90=直角 */
+      const dev=90-ang;
+      best.pin={ dx:m.dirx, dy:m.diry, dev, off:bd };
+      m.placed++;
+      m.msg = dev<=15?"直角。よし":dev<=35?"すこし斜め":"寝ている…"; m.msgT=1.1;
+      if(m.placed>=6){ m.done=true; m.doneT=0; }
+    }
+    m.drag=null;
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m),this.info(m)); return; }
+    if(m.msgT>0) m.msgT-=dt;
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  avgDev(m){ const ps=m.marks.filter(k=>k.pin); if(!ps.length) return 90;
+    return ps.reduce((a,k)=>a+k.pin.dev,0)/ps.length; },
+  score(m){ if(m.placed<6) return m.placed>=4?1:0; const d=this.avgDev(m);
+    return d<=14?3:d<=28?2:d<=45?1:0; },
+  info(m){ return "打った "+m.placed+"／6　直角からのずれ 平均 "+this.avgDev(m).toFixed(0)+"°"; },
+  drawPin(gg,x,y,dx,dy,col,alpha){
+    gg.save(); gg.globalAlpha=alpha==null?1:alpha;
+    const L=44;
+    const hx0=x-dx*L*.55, hy0=y-dy*L*.55, tx=x+dx*L*.45, ty=y+dy*L*.45;
+    gg.strokeStyle="rgba(30,22,34,.25)"; gg.lineWidth=3;
+    gg.beginPath(); gg.moveTo(hx0+2,hy0+3); gg.lineTo(tx+2,ty+3); gg.stroke();
+    gg.strokeStyle="#c9d0d8"; gg.lineWidth=2.4; gg.lineCap="round";
+    gg.beginPath(); gg.moveTo(hx0,hy0); gg.lineTo(tx,ty); gg.stroke();
+    gg.strokeStyle="#f2f5f8"; gg.lineWidth=.9;
+    gg.beginPath(); gg.moveTo(hx0,hy0); gg.lineTo(tx,ty); gg.stroke();
+    /* ガラス玉 */
+    gg.fillStyle="rgba(30,22,34,.25)"; gg.beginPath(); gg.arc(hx0+2,hy0+3,6,0,6.2832); gg.fill();
+    gg.fillStyle=col; gg.beginPath(); gg.arc(hx0,hy0,6,0,6.2832); gg.fill();
+    gg.fillStyle="rgba(255,255,255,.55)"; gg.beginPath(); gg.arc(hx0-2,hy0-2,2,0,6.2832); gg.fill();
+    gg.restore();
+  },
+  draw(m,gg){
+    gg.fillStyle="#e4dbcd"; gg.fillRect(0,0,W,H);
+    /* 二枚の布 */
+    gg.fillStyle="rgba(50,38,44,.14)"; gg.fillRect(36,196,318,300);
+    gg.fillStyle=shade(C.cloth,.9); gg.fillRect(30,190,318,300);
+    gg.fillStyle=C.cloth; gg.fillRect(40,180,318,300);
+    gg.strokeStyle="rgba(120,96,84,.06)"; gg.lineWidth=1;
+    for(let y=180;y<480;y+=6){ gg.beginPath(); gg.moveTo(40,y); gg.lineTo(358,y); gg.stroke(); }
+    /* 縫い線 */
+    gg.setLineDash([6,5]); gg.strokeStyle="rgba(90,70,60,.55)"; gg.lineWidth=1.6;
+    gg.beginPath(); m.line.forEach((p,i)=>i?gg.lineTo(p.x,p.y):gg.moveTo(p.x,p.y)); gg.stroke(); gg.setLineDash([]);
+    /* 合印 */
+    for(const k of m.marks){
+      if(k.pin) continue;
+      gg.strokeStyle=C.plum; gg.lineWidth=2;
+      gg.beginPath(); gg.moveTo(k.x-k.ty*7,k.y+k.tx*7); gg.lineTo(k.x+k.ty*7,k.y-k.tx*7); gg.stroke();
+      const pu=.5+.5*Math.sin(performance.now()/220);
+      gg.strokeStyle="rgba(124,90,112,"+(pu*.6).toFixed(2)+")"; gg.lineWidth=1.5;
+      gg.beginPath(); gg.arc(k.x,k.y,16,0,6.2832); gg.stroke();
+    }
+    /* 打った針 */
+    const cols=["#e08f8c","#f2c14e","#7fae66","#6f9fd8","#a97fb0","#e0966f"];
+    m.marks.forEach((k,i)=>{ if(!k.pin) return;
+      this.drawPin(gg,k.x,k.y,k.pin.dx,k.pin.dy,cols[i]);
+      gg.textAlign="center"; gg.font="800 10px sans-serif";
+      gg.fillStyle= k.pin.dev<=15?C.sage:k.pin.dev<=35?C.gold:C.coral;
+      gg.fillText(k.pin.dev<=15?"◎":k.pin.dev<=35?"○":"×", k.x, k.y+34); });
+
+    /* ピンクッション（トマト） */
+    const cx=300,cy=600;
+    gg.fillStyle="rgba(50,38,44,.18)"; gg.beginPath(); gg.ellipse(cx+3,cy+30,46,12,0,0,6.2832); gg.fill();
+    gg.fillStyle="#c9485e";
+    gg.beginPath(); for(let i=0;i<8;i++){ const a=i*Math.PI/4+Math.PI/8;
+      const x=cx+Math.cos(a)*44,y=cy+Math.sin(a)*32; i?gg.lineTo(x,y):gg.moveTo(x,y); } gg.closePath(); gg.fill();
+    gg.fillStyle=shade("#c9485e",.72);
+    gg.beginPath(); for(let i=0;i<8;i++){ const a=i*Math.PI/4+Math.PI/8;
+      const x=cx+Math.cos(a)*44,y=cy+12+Math.sin(a)*32; i?gg.lineTo(x,y):gg.moveTo(x,y); } gg.closePath();
+    gg.save(); gg.beginPath(); gg.rect(cx-50,cy+8,100,40); gg.clip(); gg.fill(); gg.restore();
+    gg.strokeStyle="rgba(60,20,30,.35)"; gg.lineWidth=1.6;
+    for(let i=0;i<4;i++){ const a=i*Math.PI/4;
+      gg.beginPath(); gg.moveTo(cx-Math.cos(a)*40,cy-Math.sin(a)*29); gg.lineTo(cx+Math.cos(a)*40,cy+Math.sin(a)*29); gg.stroke(); }
+    gg.fillStyle="#7fae66"; gg.beginPath(); gg.ellipse(cx,cy-30,10,5,0,0,6.2832); gg.fill();
+    /* 刺さっている針（残り本数ぶん） */
+    for(let i=0;i<6-m.placed;i++){ const a=-1.9+i*.42;
+      this.drawPin(gg,cx+Math.cos(a)*22,cy-6+Math.sin(a)*14,Math.cos(a+1.57)*.3+Math.cos(a)*.95,Math.sin(a)*.95-.3,cols[(m.placed+i)%6]); }
+    gg.textAlign="center"; gg.font="700 10px sans-serif"; gg.fillStyle="#8a7c88";
+    gg.fillText("のこり "+(6-m.placed)+"本", cx, cy+58);
+
+    /* つまんでいる針 */
+    if(m.drag){ this.drawPin(gg,m.drag.x,m.drag.y,m.dirx,m.diry,cols[m.placed%6],.95); }
+
+    timeBar(gg,m.time,30);
+    gg.textAlign="center"; gg.font="800 14px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("打った　"+m.placed+" ／ 6", W/2, 106);
+    gg.font="700 10.5px sans-serif";
+    gg.fillStyle= m.msgT>0?(m.msg.indexOf("よし")>=0?C.sage:C.coral):"#8a7c88";
+    gg.fillText(m.msgT>0?m.msg:"すべらせた向きが、針の向きになる", W/2, 126);
+    if(m.warm>0) banner(gg,[
+      {t:"合印にまち針を打つ",f:"800 19px sans-serif",c:"#fdf6ec"},
+      {t:"どこからでも指を置き、すべらせて、合印の上で離す"},
+      {t:"すべらせた向きが針の向き。縫い線と直角に",c:C.gold},
+      {t:"直角ならミシンで縫うときに抜きやすい",c:"rgba(253,246,236,.6)"}],330,134);
+    if(m.done) finish(gg, this.score(m)>=3?"きれいに打てた！":this.score(m)>=2?"打てた":this.score(m)>=1?"針が寝ている":"打てなかった", this.info(m), this.score(m));
+  },
+};
+
+/* ==================================================================
+   O 裁ちばさみ
+   はさみは線に沿って進む。タップ＝短く、長押し＝長く。カーブで長く切るとガタつく
+   ================================================================== */
+const shears = {
+  title:"裁ちばさみ",
+  init(){
+    /* 線：直線とカーブが交ざる */
+    const pts=[]; const p1=Math.random()*6.28;
+    for(let i=0;i<=120;i++){ const u=i/120;
+      const bend = u<.3 ? 0 : u<.55 ? Math.sin((u-.3)/.25*3.14)*70 : u<.75 ? 0 : Math.sin((u-.75)/.25*3.14)*-52;
+      pts.push({x:195+bend+Math.sin(u*9+p1)*4, y:190+u*430}); }
+    /* 各点の曲がり具合（角度変化） */
+    const curv=pts.map((p,i)=>{ if(i===0||i===pts.length-1) return 0;
+      const a=Math.atan2(pts[i+1].y-pts[i].y,pts[i+1].x-pts[i].x), b=Math.atan2(p.y-pts[i-1].y,p.x-pts[i-1].x);
+      let d=a-b; while(d>Math.PI)d-=6.2832; while(d<-Math.PI)d+=6.2832; return Math.abs(d); });
+    return { pts, curv, i:0, cut:[], hold:0, press:false, open:1, animT:0, jag:0, snips:0,
+             time:28, done:false, doneT:0, warm:2.2, msg:"", msgT:0 };
+  },
+  down(m){ if(m.done||m.warm>0) return; m.press=true; m.hold=0; },
+  up(m){
+    if(!m.press||m.done) return;
+    m.press=false;
+    const long = m.hold>.28;
+    this.snip(m, long?22:8, long);
+  },
+  snip(m,n,long){
+    if(m.i>=m.pts.length-1) return;
+    const from=m.i, to=Math.min(m.pts.length-1, m.i+n);
+    /* この区間の曲がりの合計。長切りで曲がっていると布がガタつく */
+    let c=0; for(let k=from;k<=to;k++) c+=m.curv[k];
+    const bad = long && c>0.42;
+    m.cut.push({from,to,bad});
+    if(bad){ m.jag++; m.msg="カーブで長く切った。ガタついた"; m.msgT=1.1; }
+    m.i=to; m.snips++; m.animT=.22; m.open=0;
+    if(m.i>=m.pts.length-1){ m.done=true; m.doneT=0; }
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m),this.info(m)); return; }
+    if(m.msgT>0) m.msgT-=dt;
+    if(m.press) m.hold+=dt;
+    if(m.animT>0){ m.animT-=dt; m.open=clamp(1-m.animT/.22,0,1); } else m.open= m.press? clamp(.4+m.hold*1.5,.4,1.3):1;
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){ if(m.i<m.pts.length-1) return m.i/m.pts.length>=.6?1:0;
+    return m.jag===0?3:m.jag<=2?2:1; },
+  info(m){ return "切った "+Math.round(m.i/(m.pts.length-1)*100)+"%　ガタつき "+m.jag+"か所　"+m.snips+"はさみ"; },
+  draw(m,gg){
+    gg.fillStyle="#33523f"; gg.fillRect(0,0,W,H);
+    gg.strokeStyle="rgba(255,255,255,.07)"; gg.lineWidth=1;
+    for(let x=0;x<=W;x+=26){ gg.beginPath(); gg.moveTo(x,0); gg.lineTo(x,H); gg.stroke(); }
+    for(let y=0;y<=H;y+=26){ gg.beginPath(); gg.moveTo(0,y); gg.lineTo(W,y); gg.stroke(); }
+    /* 布。切ったところは左側がわずかに開く */
+    const P=m.pts, cur=P[m.i];
+    gg.fillStyle="rgba(0,0,0,.18)"; gg.fillRect(56,176,282,470);
+    gg.fillStyle=C.cloth;
+    /* 右側の布 */
+    gg.beginPath(); gg.moveTo(P[0].x,170); gg.lineTo(334,170); gg.lineTo(334,640); gg.lineTo(P[P.length-1].x,640);
+    for(let k=P.length-1;k>=0;k--) gg.lineTo(P[k].x,P[k].y); gg.closePath(); gg.fill();
+    /* 左側の布（切れた分だけ離れる） */
+    gg.beginPath(); gg.moveTo(60,170); gg.lineTo(P[0].x-1,170);
+    for(let k=0;k<P.length;k++){ const cutHere=k<=m.i; gg.lineTo(P[k].x-(cutHere?7:0), P[k].y); }
+    gg.lineTo(60,640); gg.closePath(); gg.fill();
+    /* 切り口。ガタついた区間は赤いジグザグ */
+    for(const c of m.cut){
+      gg.strokeStyle= c.bad?"rgba(224,143,140,.95)":"rgba(90,70,60,.35)"; gg.lineWidth= c.bad?2.2:1.2;
+      gg.beginPath();
+      for(let k=c.from;k<=c.to;k++){ const jx= c.bad?((k%2)?4:-4):0; const x=P[k].x-3.5+jx, y=P[k].y; k===c.from?gg.moveTo(x,y):gg.lineTo(x,y); }
+      gg.stroke();
+    }
+    /* まだ切っていない線 */
+    gg.setLineDash([6,5]); gg.strokeStyle="rgba(90,70,60,.6)"; gg.lineWidth=1.6;
+    gg.beginPath(); for(let k=m.i;k<P.length;k++) k===m.i?gg.moveTo(P[k].x,P[k].y):gg.lineTo(P[k].x,P[k].y); gg.stroke(); gg.setLineDash([]);
+    /* 予告：長押しならここまで、タップならここまで */
+    if(!m.done && m.warm<=0){
+      const s=Math.min(P.length-1,m.i+8), l=Math.min(P.length-1,m.i+22);
+      let c=0; for(let k=m.i;k<=l;k++) c+=m.curv[k];
+      gg.fillStyle="rgba(127,174,102,.9)"; gg.beginPath(); gg.arc(P[s].x,P[s].y,4,0,6.2832); gg.fill();
+      gg.fillStyle= c>0.42?"rgba(224,143,140,.9)":"rgba(242,193,78,.9)"; gg.beginPath(); gg.arc(P[l].x,P[l].y,4,0,6.2832); gg.fill();
+    }
+    /* はさみ */
+    const dir = m.i<P.length-1 ? Math.atan2(P[m.i+1].y-cur.y,P[m.i+1].x-cur.x) : Math.PI/2;
+    gg.save(); gg.translate(cur.x,cur.y); gg.rotate(dir-Math.PI/2);
+    const op=m.open*.32;
+    gg.fillStyle="rgba(0,0,0,.22)"; gg.beginPath(); gg.ellipse(4,26,26,10,0,0,6.2832); gg.fill();
+    for(const s of [-1,1]){
+      gg.save(); gg.rotate(s*op);
+      /* 刃 */
+      const gr=gg.createLinearGradient(-6,0,6,0); gr.addColorStop(0,"#b9c2cc"); gr.addColorStop(.5,"#eef3f7"); gr.addColorStop(1,"#98a2ae");
+      gg.fillStyle=gr; gg.beginPath(); gg.moveTo(0,4); gg.lineTo(s*5,4); gg.lineTo(s*1.5,-58); gg.lineTo(0,-62); gg.closePath(); gg.fill();
+      /* 持ち手 */
+      gg.strokeStyle=C.ink; gg.lineWidth=6; gg.lineCap="round";
+      gg.beginPath(); gg.ellipse(s*13,26,9,15,0,0,6.2832); gg.stroke();
+      gg.restore();
+    }
+    gg.fillStyle=C.gold; gg.beginPath(); gg.arc(0,4,3.2,0,6.2832); gg.fill();
+    gg.restore();
+
+    timeBar(gg,m.time,28);
+    gg.textAlign="center"; gg.font="800 14px sans-serif"; gg.fillStyle="#fdf6ec";
+    gg.fillText("切った　"+Math.round(m.i/(P.length-1)*100)+"%", W/2, 106);
+    gg.font="700 10.5px sans-serif"; gg.fillStyle= m.msgT>0?C.coral:"rgba(253,246,236,.6)";
+    gg.fillText(m.msgT>0?m.msg:"タップ＝短く　長押し＝長く。緑と黄の点まで進む", W/2, 126);
+    if(m.jag>0){ gg.fillStyle=C.coral; gg.font="700 10.5px sans-serif"; gg.fillText("ガタつき "+m.jag, W/2, 664); }
+    if(m.warm>0) banner(gg,[
+      {t:"裁ちばさみで切る",f:"800 19px sans-serif",c:"#fdf6ec"},
+      {t:"はさみは線に沿って進む。あなたは「どれだけ切るか」だけ"},
+      {t:"タップ＝短く切る（緑の点まで）／長押し＝長く切る（黄の点まで）",c:C.gold},
+      {t:"カーブで長く切ると布がガタつく。まっすぐは長く、曲がりは短く",c:C.coral}],320,134);
+    if(m.done) finish(gg, this.score(m)>=3?"なめらかな切り口！":this.score(m)>=2?"切れた":this.score(m)>=1?"ガタガタ":"切りきれなかった", this.info(m), this.score(m));
+  },
+};
+
+/* ==================================================================
+   P 道具あて
+   道具の絵 → 名前を4つから。絵はローポリの面で描く
+   ================================================================== */
+/* 先生の資料「01_洋裁道具・材料の説明.pptx」から。
+   名前は資料の表記どおり。use は資料の用途文を短くしたもの。絵は写真を見て描いた。
+   own: ★＝各自で用意／◇＝こちらで用意／△＝この授業では使わない（資料の区分） */
+const TOOLS = [
+  { n:"裁断ばさみ", own:"★", use:"布地の裁断に使うはさみ。24〜30cm前後が使いやすい",
+    d:(gg)=>{ /* 黒い持ち手、長い刃 */
+      gg.save(); gg.rotate(-.55);
+      for(const s of [-1,1]){ gg.save(); gg.rotate(s*.10);
+        const gr=gg.createLinearGradient(-6,0,6,0); gr.addColorStop(0,"#b9c2cc"); gr.addColorStop(.5,"#eef3f7"); gr.addColorStop(1,"#98a2ae");
+        gg.fillStyle=gr; gg.beginPath(); gg.moveTo(0,6); gg.lineTo(s*6,6); gg.lineTo(s*2,-70); gg.lineTo(0,-76); gg.closePath(); gg.fill();
+        gg.strokeStyle=C.ink; gg.lineWidth=7; gg.lineCap="round"; gg.lineJoin="round";
+        gg.beginPath(); gg.ellipse(s*14,34,10,s>0?20:15,0,0,6.2832); gg.stroke(); gg.restore(); }
+      gg.fillStyle=C.gold; gg.beginPath(); gg.arc(0,6,3.4,0,6.2832); gg.fill(); gg.restore(); } },
+  { n:"糸切りばさみ", own:"★", use:"糸切り専用のはさみ。18cm前後が使いやすい",
+    d:(gg)=>{ /* 握りばさみ。黒い柄がU字につながり、先だけ銀の刃 */
+      gg.save(); gg.rotate(-.35);
+      gg.fillStyle="rgba(50,38,44,.12)"; gg.beginPath(); gg.ellipse(3,50,22,7,0,0,6.2832); gg.fill();
+      const gr=gg.createLinearGradient(-8,0,8,0); gr.addColorStop(0,"#b9c2cc"); gr.addColorStop(.5,"#eef3f7"); gr.addColorStop(1,"#98a2ae");
+      for(const sd of [-1,1]){
+        gg.fillStyle=gr; gg.beginPath(); gg.moveTo(sd*1.5,-58); gg.lineTo(sd*7,-14); gg.lineTo(sd*3,-14); gg.lineTo(0,-30); gg.closePath(); gg.fill();
+        gg.fillStyle=C.ink; gg.beginPath(); gg.moveTo(sd*3,-16); gg.lineTo(sd*9,-14); gg.lineTo(sd*12,30); gg.lineTo(sd*7,44); gg.lineTo(sd*4,44); gg.lineTo(sd*4,-8); gg.closePath(); gg.fill();
+        gg.fillStyle="rgba(255,255,255,.14)"; gg.beginPath(); gg.moveTo(sd*4,-8); gg.lineTo(sd*6,-12); gg.lineTo(sd*8,30); gg.lineTo(sd*5,32); gg.closePath(); gg.fill();
+      }
+      gg.strokeStyle=C.ink; gg.lineWidth=7; gg.lineCap="round"; gg.beginPath(); gg.moveTo(-9,42); gg.quadraticCurveTo(0,60,9,42); gg.stroke();
+      gg.restore(); } },
+  { n:"ピンクッション", own:"★", use:"針や待ち針を刺しておくクッション。針山ともいう",
+    d:(gg)=>{ /* 丸いパステルの針山、黒い台 */
+      gg.fillStyle="rgba(50,38,44,.14)"; gg.beginPath(); gg.ellipse(2,32,40,10,0,0,6.2832); gg.fill();
+      gg.fillStyle=C.ink; gg.beginPath(); gg.ellipse(0,22,36,11,0,0,6.2832); gg.fill();
+      gg.fillStyle="#f0cfd0"; gg.beginPath(); gg.ellipse(0,4,32,26,0,0,6.2832); gg.fill();
+      gg.fillStyle="#f7e0e0"; gg.beginPath(); gg.ellipse(-8,-6,18,12,0,0,6.2832); gg.fill();
+      gg.strokeStyle="rgba(120,80,90,.25)"; gg.lineWidth=1.4; gg.beginPath(); gg.moveTo(0,-22); gg.lineTo(0,28); gg.moveTo(-30,4); gg.lineTo(30,4); gg.stroke();
+      for(let i=0;i<4;i++){ const a=-2.4+i*.55; gg.strokeStyle="#c9d0d8"; gg.lineWidth=2; gg.beginPath(); gg.moveTo(Math.cos(a)*10,4+Math.sin(a)*8); gg.lineTo(Math.cos(a)*30,4+Math.sin(a)*26); gg.stroke();
+        gg.fillStyle=[C.coral,C.gold,"#6f9fd8",C.sage][i]; gg.beginPath(); gg.arc(Math.cos(a)*32,4+Math.sin(a)*28,4.5,0,6.2832); gg.fill(); } } },
+  { n:"待ち針（玉ピン）", own:"★", use:"布に型紙をとめたり、2枚の布を合わせるときに使う",
+    d:(gg)=>{ for(let i=0;i<3;i++){ const a=-.5+i*.5; gg.save(); gg.rotate(a);
+      gg.strokeStyle="#c9d0d8"; gg.lineWidth=2.6; gg.lineCap="round"; gg.beginPath(); gg.moveTo(0,-30); gg.lineTo(0,44); gg.stroke();
+      gg.fillStyle=[C.coral,C.gold,C.sage][i]; gg.beginPath(); gg.arc(0,-34,7,0,6.2832); gg.fill();
+      gg.fillStyle="rgba(255,255,255,.55)"; gg.beginPath(); gg.arc(-2,-36,2.4,0,6.2832); gg.fill(); gg.restore(); } } },
+  { n:"チャコナー", own:"★", use:"手を汚さず印線が引けるパウダーのチャコ。歯車が回って粉が出る",
+    d:(gg)=>{ /* ハート形の黒いケース、下に小さな歯車 */
+      gg.fillStyle="rgba(50,38,44,.14)"; gg.beginPath(); gg.ellipse(2,44,26,7,0,0,6.2832); gg.fill();
+      gg.fillStyle=C.ink; gg.beginPath(); gg.moveTo(0,40); gg.quadraticCurveTo(-42,10,-36,-18); gg.quadraticCurveTo(-30,-42,-8,-32);
+      gg.quadraticCurveTo(0,-26,0,-20); gg.quadraticCurveTo(0,-26,8,-32); gg.quadraticCurveTo(30,-42,36,-18); gg.quadraticCurveTo(42,10,0,40); gg.closePath(); gg.fill();
+      gg.fillStyle="rgba(255,255,255,.14)"; gg.beginPath(); gg.moveTo(-6,34); gg.quadraticCurveTo(-36,10,-30,-14); gg.quadraticCurveTo(-26,-30,-14,-26); gg.lineTo(-6,34); gg.closePath(); gg.fill();
+      gg.fillStyle=C.metal; gg.beginPath(); for(let i=0;i<10;i++){ const a=i*6.2832/10,a2=a+6.2832/20; gg.lineTo(Math.cos(a)*7,42+Math.sin(a)*7); gg.lineTo(Math.cos(a2)*4.5,42+Math.sin(a2)*4.5);} gg.closePath(); gg.fill();
+      gg.fillStyle="#fff"; gg.font="800 7px sans-serif"; gg.textAlign="center"; gg.fillText("CHACONER",0,6); } },
+  { n:"リッパー", own:"◇", use:"ミシンやしつけの縫い目をほどくときに使う",
+    d:(gg)=>{ /* 木の柄、二又の刃、赤い玉 */
+      gg.fillStyle=C.wood; gg.beginPath(); gg.roundRect(-8,-4,16,54,6); gg.fill();
+      gg.fillStyle=shade(C.wood,1.15); gg.fillRect(-8,-2,5,48);
+      gg.fillStyle=C.metal; gg.beginPath(); gg.moveTo(-3,-4); gg.lineTo(-10,-46); gg.lineTo(-4,-30); gg.lineTo(6,-40); gg.lineTo(3,-4); gg.closePath(); gg.fill();
+      gg.fillStyle=C.coral; gg.beginPath(); gg.arc(6,-40,3.6,0,6.2832); gg.fill(); } },
+  { n:"ルレット", own:"◇", use:"パターンを写したり、チャコペーパーをはさんで布に印を付ける",
+    d:(gg)=>{ gg.strokeStyle=C.wood; gg.lineWidth=10; gg.lineCap="round";
+      gg.beginPath(); gg.moveTo(6,-2); gg.lineTo(30,-46); gg.stroke();
+      gg.strokeStyle=C.metalD; gg.lineWidth=4; gg.beginPath(); gg.moveTo(0,14); gg.lineTo(6,-2); gg.stroke();
+      gg.fillStyle=C.metal; gg.beginPath(); for(let i=0;i<16;i++){ const a=i*6.2832/16,a2=a+6.2832/32;
+        gg.lineTo(Math.cos(a)*22,14+Math.sin(a)*22); gg.lineTo(Math.cos(a2)*15,14+Math.sin(a2)*15);} gg.closePath(); gg.fill();
+      gg.fillStyle=shade(C.metal,.6); gg.beginPath(); gg.arc(0,14,4,0,6.2832); gg.fill(); } },
+  { n:"方眼定規", own:"◇", use:"0.5cmの方眼が入った透明の定規。作図や縫い代付けに使う",
+    d:(gg)=>{ gg.save(); gg.rotate(-.5);
+      gg.fillStyle="rgba(255,255,255,.55)"; gg.fillRect(-60,-14,120,28);
+      gg.strokeStyle="rgba(200,60,70,.55)"; gg.lineWidth=.8;
+      for(let x=-60;x<=60;x+=6){ gg.beginPath(); gg.moveTo(x,-14); gg.lineTo(x,14); gg.stroke(); }
+      for(let y=-14;y<=14;y+=7){ gg.beginPath(); gg.moveTo(-60,y); gg.lineTo(60,y); gg.stroke(); }
+      gg.strokeStyle="rgba(200,60,70,.9)"; gg.lineWidth=1.6; gg.strokeRect(-60,-14,120,28); gg.restore(); } },
+  { n:"テープメジャー", own:"◇", use:"人体の計測や、作図の曲線を測るのに使う",
+    d:(gg)=>{ gg.fillStyle="rgba(50,38,44,.12)"; gg.beginPath(); gg.ellipse(4,40,34,8,0,0,6.2832); gg.fill();
+      gg.strokeStyle="#f2e2b8"; gg.lineWidth=13; gg.lineCap="butt";
+      gg.beginPath(); for(let a=0;a<=6.2832*2.4;a+=.12){ const r=8+a*3.6; const x=Math.cos(a)*r, y=Math.sin(a)*r*.7; a?gg.lineTo(x,y):gg.moveTo(x,y); } gg.stroke();
+      gg.strokeStyle="rgba(70,54,40,.55)"; gg.lineWidth=1.3;
+      for(let a=.3;a<=6.2832*2.4;a+=.36){ const r=8+a*3.6; const x=Math.cos(a)*r, y=Math.sin(a)*r*.7; const nx=Math.cos(a), ny=Math.sin(a)*.7;
+        gg.beginPath(); gg.moveTo(x-nx*5,y-ny*5); gg.lineTo(x+nx*(a%0.72<0.36?1:-2),y+ny*(a%0.72<0.36?1:-2)); gg.stroke(); }
+      const aE=6.2832*2.4, rE=8+aE*3.6; gg.fillStyle=C.metalD; gg.fillRect(Math.cos(aE)*rE-4,Math.sin(aE)*rE*.7-8,7,16); } },
+  { n:"1/4縮尺定規", own:"◇", use:"縮尺の目盛りが付いた三角定規。中の雲形はカーブルーラーにも",
+    d:(gg)=>{ gg.fillStyle="rgba(255,255,255,.6)"; gg.beginPath(); gg.moveTo(-54,36); gg.lineTo(54,36); gg.lineTo(-54,-40); gg.closePath(); gg.fill();
+      gg.strokeStyle="rgba(60,50,60,.6)"; gg.lineWidth=1.2; gg.beginPath(); gg.moveTo(-54,36); gg.lineTo(54,36); gg.lineTo(-54,-40); gg.closePath(); gg.stroke();
+      for(let x=-50;x<50;x+=8){ gg.beginPath(); gg.moveTo(x,36); gg.lineTo(x,x%16?30:26); gg.stroke(); }
+      gg.fillStyle="#f3eee7"; gg.beginPath(); gg.moveTo(-40,26); gg.quadraticCurveTo(-30,-4,-14,4); gg.quadraticCurveTo(0,10,6,26); gg.closePath(); gg.fill();
+      gg.strokeStyle="rgba(60,50,60,.5)"; gg.beginPath(); gg.moveTo(-40,26); gg.quadraticCurveTo(-30,-4,-14,4); gg.quadraticCurveTo(0,10,6,26); gg.closePath(); gg.stroke(); } },
+  { n:"チャコペーパー（両面）", own:"◇", use:"両面にチョークが塗られた複写紙。綿の布の印付けに",
+    d:(gg)=>{ gg.fillStyle="rgba(50,38,44,.12)"; gg.fillRect(-26,-46,52,96);
+      gg.fillStyle="#2f8f5a"; gg.fillRect(-28,-50,52,96);
+      gg.fillStyle="#1e5f3c"; gg.fillRect(-28,-50,52,16);
+      gg.fillStyle="#f2f2f2"; gg.font="800 7px sans-serif"; gg.textAlign="center"; gg.fillText("CHACO",-2,-39); gg.fillText("PAPER",-2,-31);
+      gg.fillStyle="#6f9fd8"; gg.fillRect(-20,-10,36,42);
+      gg.fillStyle="rgba(255,255,255,.35)"; gg.fillRect(-20,-10,36,8); } },
+  { n:"しつけ糸（しろも）", own:"◇", use:"ミシンで縫う前に、布がずれないよう仮縫いする撚りの甘い綿糸",
+    d:(gg)=>{ /* かせ糸。輪にした束を、ねじって、中ほどで結ぶ */
+      gg.save(); gg.rotate(.55);
+      gg.fillStyle="rgba(50,38,44,.10)"; gg.beginPath(); gg.ellipse(3,4,16,58,0,0,6.2832); gg.fill();
+      for(let i=0;i<9;i++){ const o=(i-4)*2.6;
+        gg.strokeStyle= i%2?"#efe6d3":"#f7f0e2"; gg.lineWidth=3; gg.lineCap="round";
+        gg.beginPath(); gg.moveTo(o*.4,-56); gg.bezierCurveTo(-14+o,-20,14+o,20,o*.4,56); gg.stroke(); }
+      gg.strokeStyle="#e0d2b8"; gg.lineWidth=2; for(let y=-44;y<50;y+=12){ gg.beginPath(); gg.moveTo(-9,y); gg.lineTo(9,y+4); gg.stroke(); }
+      gg.strokeStyle="#d8c9ad"; gg.lineWidth=5; gg.beginPath(); gg.moveTo(-14,-2); gg.lineTo(14,4); gg.stroke();
+      gg.strokeStyle="#f7f0e2"; gg.lineWidth=2.4; gg.beginPath(); gg.moveTo(-14,-2); gg.lineTo(14,4); gg.stroke();
+      gg.restore(); } },
+  { n:"ボビン（職業用）", own:"◇", use:"直線ミシンの下糸を巻く。ボビンケースにはめて釜にセットする",
+    d:(gg)=>{ gg.fillStyle=C.metal; gg.beginPath(); gg.ellipse(0,-14,28,10,0,0,6.2832); gg.fill();
+      gg.fillStyle=shade(C.metal,.8); gg.fillRect(-22,-14,44,26);
+      gg.fillStyle=shade(C.metal,.85); gg.beginPath(); gg.ellipse(0,12,28,10,0,0,6.2832); gg.fill();
+      gg.fillStyle=shade(C.metal,1.12); gg.beginPath(); gg.ellipse(0,-14,22,7,0,0,6.2832); gg.fill();
+      gg.fillStyle="#241b2e"; gg.beginPath(); gg.ellipse(0,-14,5,2,0,0,6.2832); gg.fill();
+      gg.strokeStyle="rgba(0,0,0,.18)"; gg.lineWidth=1.2; for(let y=-8;y<12;y+=4){ gg.beginPath(); gg.moveTo(-22,y); gg.lineTo(22,y); gg.stroke(); } } },
+  { n:"ボビンケース", own:"◇", use:"ボビンをセットする用具。小さいネジで下糸の糸調子を決める",
+    d:(gg)=>{ gg.fillStyle=C.metal; gg.beginPath(); gg.arc(0,4,30,0,6.2832); gg.fill();
+      gg.fillStyle=shade(C.metal,.72); gg.beginPath(); gg.arc(0,4,22,0,6.2832); gg.fill();
+      gg.fillStyle=shade(C.metal,.5); gg.beginPath(); gg.arc(0,4,6,0,6.2832); gg.fill();
+      gg.fillStyle=shade(C.metal,1.1); gg.beginPath(); gg.moveTo(-6,-40); gg.lineTo(6,-40); gg.lineTo(8,-8); gg.lineTo(-8,-8); gg.closePath(); gg.fill();   /* つまみ */
+      gg.fillStyle=shade(C.metal,.6); gg.fillRect(-32,10,10,4); gg.beginPath(); gg.arc(-30,12,3,0,6.2832); gg.fill(); } },
+  { n:"指貫", own:"△", use:"手縫いのとき指にはめて、針の当たりやすべりを防ぐ",
+    d:(gg)=>{ /* 金属の輪、くぼみ */
+      gg.fillStyle=C.metal; gg.beginPath(); gg.moveTo(-26,30); gg.lineTo(-22,-26); gg.quadraticCurveTo(0,-40,22,-26); gg.lineTo(26,30); gg.closePath(); gg.fill();
+      gg.fillStyle=shade(C.metal,1.16); gg.beginPath(); gg.moveTo(-26,30); gg.lineTo(-22,-26); gg.quadraticCurveTo(-8,-34,-4,-30); gg.lineTo(-8,30); gg.closePath(); gg.fill();
+      gg.fillStyle=shade(C.metal,.6); for(let y=-20;y<24;y+=9) for(let x=-18;x<18;x+=9){ gg.beginPath(); gg.arc(x+((y/9)%2?4:0),y,1.6,0,6.2832); gg.fill(); }
+      gg.fillStyle=shade(C.metal,.7); gg.fillRect(-27,26,54,6); } },
+  { n:"目打ち", own:"△", use:"先の尖った金属の用具。衿先の角を出す、細かい所を押さえる、ほどく",
+    d:(gg)=>{ gg.fillStyle=C.wood; gg.beginPath(); gg.moveTo(-11,44); gg.lineTo(-13,6); gg.quadraticCurveTo(0,-2,13,6); gg.lineTo(11,44); gg.closePath(); gg.fill();
+      gg.fillStyle=shade(C.wood,1.15); gg.beginPath(); gg.moveTo(-11,44); gg.lineTo(-13,6); gg.lineTo(-6,4); gg.lineTo(-5,44); gg.closePath(); gg.fill();
+      gg.fillStyle=C.metalD; gg.fillRect(-13,4,26,6);
+      gg.fillStyle=C.metal; gg.beginPath(); gg.moveTo(-3,4); gg.lineTo(0,-50); gg.lineTo(3,4); gg.closePath(); gg.fill(); } },
+  { n:"毛抜き", own:"△", use:"しつけ糸を抜き取るときに使う。正確に噛み合うものがよい",
+    d:(gg)=>{ /* 二本の板が上でつながる。下で先がぴたりと合う */
+      gg.save(); gg.rotate(-.5);
+      const gr=gg.createLinearGradient(-12,0,12,0); gr.addColorStop(0,"#aeb7c1"); gr.addColorStop(.5,"#eef3f7"); gr.addColorStop(1,"#98a2ae");
+      gg.fillStyle=gr;
+      gg.beginPath(); gg.moveTo(-9,-54); gg.lineTo(9,-54); gg.lineTo(9,-40); gg.lineTo(6,-40); gg.lineTo(3,44); gg.lineTo(1,52); gg.lineTo(0,52);
+        gg.lineTo(-1,52); gg.lineTo(-3,44); gg.lineTo(-6,-40); gg.lineTo(-9,-40); gg.closePath(); gg.fill();
+      gg.fillStyle="#f3eee7"; gg.beginPath(); gg.moveTo(-3.2,-38); gg.lineTo(3.2,-38); gg.lineTo(.6,44); gg.lineTo(-.6,44); gg.closePath(); gg.fill();  /* すきま */
+      gg.fillStyle="rgba(0,0,0,.14)"; gg.fillRect(-9,-54,18,4);
+      gg.restore(); } },
+  { n:"文鎮", own:"△", use:"鉄の重し。作図を写すときや裁断のとき、布や型紙がずれないよう押さえる",
+    d:(gg)=>{ gg.fillStyle="rgba(50,38,44,.16)"; gg.beginPath(); gg.ellipse(6,30,54,10,0,0,6.2832); gg.fill();
+      gg.fillStyle=shade(C.metalD,1.05); gg.beginPath(); gg.moveTo(-56,6); gg.lineTo(56,6); gg.lineTo(60,22); gg.lineTo(-52,22); gg.closePath(); gg.fill();
+      gg.fillStyle=C.metal; gg.beginPath(); gg.moveTo(-58,-8); gg.lineTo(54,-8); gg.lineTo(56,6); gg.lineTo(-56,6); gg.closePath(); gg.fill();
+      gg.fillStyle=shade(C.metal,1.18); gg.beginPath(); gg.moveTo(-58,-8); gg.lineTo(54,-8); gg.lineTo(50,-14); gg.lineTo(-54,-14); gg.closePath(); gg.fill(); } },
+  { n:"釦のみ", own:"△", use:"ボタンホールをあける刃物。ボタンホールカッターともいう",
+    d:(gg)=>{ gg.save(); gg.rotate(.5);
+      gg.fillStyle=C.wood; gg.beginPath(); gg.roundRect(-9,-4,18,56,7); gg.fill();
+      gg.fillStyle=shade(C.wood,1.15); gg.fillRect(-9,-2,5,50);
+      gg.fillStyle=C.metalD; gg.fillRect(-10,-8,20,6);
+      gg.fillStyle=C.metal; gg.beginPath(); gg.moveTo(-5,-8); gg.lineTo(5,-8); gg.lineTo(6,-46); gg.lineTo(-6,-40); gg.closePath(); gg.fill();
+      gg.fillStyle="rgba(255,255,255,.4)"; gg.beginPath(); gg.moveTo(-6,-40); gg.lineTo(6,-46); gg.lineTo(6,-43); gg.lineTo(-6,-37); gg.closePath(); gg.fill(); gg.restore(); } },
+  { n:"ロータリーカッター", own:"△", use:"刃が円形のカッター。布を浮かせず裁てる。カッター板の上で使う",
+    d:(gg)=>{ gg.fillStyle=C.gold; gg.beginPath(); gg.roundRect(-8,-8,16,60,7); gg.fill();
+      gg.fillStyle=shade(C.gold,.78); gg.fillRect(3,-4,5,50);
+      gg.fillStyle=C.metal; gg.beginPath(); gg.arc(0,-30,20,0,6.2832); gg.fill();
+      gg.fillStyle=shade(C.metal,.6); gg.beginPath(); gg.arc(0,-30,4,0,6.2832); gg.fill();
+      gg.fillStyle="rgba(255,255,255,.4)"; gg.beginPath(); gg.arc(-6,-36,6,0,6.2832); gg.fill();
+      gg.fillStyle=C.ink; gg.beginPath(); gg.moveTo(-8,-30); gg.quadraticCurveTo(-24,-30,-16,-8); gg.lineTo(-8,-8); gg.closePath(); gg.fill(); } },
+  { n:"ハトロン紙", own:"★", use:"実大の作図やパターンを作るときに使う紙。ザラザラした面が表",
+    d:(gg)=>{ gg.fillStyle="rgba(50,38,44,.12)"; gg.beginPath(); gg.ellipse(4,40,50,10,0,0,6.2832); gg.fill();
+      gg.fillStyle="#f0e6cf"; gg.beginPath(); gg.moveTo(-50,-16); gg.lineTo(40,-16); gg.lineTo(40,20); gg.lineTo(-50,20); gg.closePath(); gg.fill();
+      gg.fillStyle="#e2d5b8"; gg.beginPath(); gg.ellipse(40,2,10,18,0,0,6.2832); gg.fill();
+      gg.fillStyle="#f6efdc"; gg.beginPath(); gg.ellipse(40,2,6,12,0,0,6.2832); gg.fill();
+      gg.fillStyle="#f6efdc"; gg.beginPath(); gg.moveTo(-50,-16); gg.lineTo(-56,-40); gg.lineTo(20,-40); gg.lineTo(40,-16); gg.closePath(); gg.fill(); } },
+  { n:"原型（文化式）", own:"△", use:"トップスを作図するときの基準となる原型。サイズの線を写して使う",
+    d:(gg)=>{ gg.fillStyle="#fbf6ea"; gg.fillRect(-58,-44,116,88);
+      gg.strokeStyle="rgba(60,50,60,.75)"; gg.lineWidth=1.2;
+      gg.beginPath(); gg.moveTo(-50,-30); gg.quadraticCurveTo(-30,-36,-18,-30); gg.lineTo(-6,-16); gg.lineTo(-6,36); gg.lineTo(-50,36); gg.closePath(); gg.stroke();
+      gg.beginPath(); gg.moveTo(8,-14); gg.quadraticCurveTo(24,-40,44,-32); gg.lineTo(50,-8); gg.lineTo(50,36); gg.lineTo(8,36); gg.closePath(); gg.stroke();
+      gg.setLineDash([2,2]); gg.beginPath(); gg.moveTo(-36,36); gg.lineTo(-30,4); gg.lineTo(-24,36); gg.moveTo(24,36); gg.lineTo(30,6); gg.lineTo(36,36); gg.stroke(); gg.setLineDash([]); } },
+];
+/* 針と糸の決まり（資料 42〜43枚目） */
+const NTQ = [
+  { q:"ミシン糸は、番号が大きくなると？", a:"細くなる", w:["太くなる","変わらない","強くなる"] },
+  { q:"ミシン針は、番号が大きくなると？", a:"太くなる", w:["細くなる","変わらない","短くなる"] },
+  { q:"ふつうの布地（綿など）に使うミシン糸は？", a:"#60", w:["#30","#90","#20"] },
+  { q:"厚地に使うミシン糸は？", a:"#30", w:["#60","#90","#100"] },
+  { q:"薄地に使うミシン糸は？", a:"#90", w:["#30","#60","#8"] },
+  { q:"ミシンで縫う前の仮縫いに使う糸は？", a:"しつけ糸", w:["ロックミシン糸","シャッペスパン","ボビン"] },
+];
+const tools = {
+  title:"道具あて",
+  ROUNDS:8,
+  init(){
+    /* 3種の問いを混ぜる：絵→名前／用途→名前／針と糸 */
+    const kinds=[];
+    const pic=shuffle(TOOLS.map((_,i)=>i)).slice(0,4).map(i=>({k:"pic",i}));
+    const use=shuffle(TOOLS.map((_,i)=>i)).slice(0,3).map(i=>({k:"use",i}));
+    const nt=[{k:"nt",i:Math.floor(Math.random()*NTQ.length)}];
+    const order=shuffle([...pic,...use,...nt]);
+    return { order, r:0, choices:null, sel:-1, ph:"ask", pt:0, ok:0, wrong:0,
+             time:44, done:false, doneT:0, warm:1.8, learned:[] };
+  },
+  setup(m){
+    const q=m.order[m.r]; m.sel=-1; m.ph="ask"; m.pt=0;
+    if(q.k==="nt"){ const Q=NTQ[q.i]; m.choices=shuffle([Q.a,...Q.w]); m.answer=Q.a; }
+    else { const others=shuffle(TOOLS.map((_,i)=>i).filter(i=>i!==q.i)).slice(0,3);
+      m.choices=shuffle([q.i,...others]).map(i=>TOOLS[i].n); m.answer=TOOLS[q.i].n; }
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0||m.ph!=="ask") return;
+    for(let i=0;i<4;i++){ const cy=560+i*52; if(y>=cy-22&&y<=cy+22&&x>40&&x<W-40){
+      m.sel=i; m.ph="show"; m.pt=0;
+      const q=m.order[m.r];
+      if(m.choices[i]===m.answer) m.ok++; else { m.wrong++; if(q.k!=="nt") m.learned.push(TOOLS[q.i]); }
+      return; } }
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.2) end(this.score(m),this.info(m)); return; }
+    if(m.warm>0){ m.warm-=dt; if(m.warm<=0) this.setup(m); return; }
+    m.time-=dt; m.pt+=dt;
+    if(m.ph==="show" && m.pt>1.3){ m.r++; if(m.r>=this.ROUNDS){ m.done=true; m.doneT=0; } else this.setup(m); }
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){ return m.ok>=8?3:m.ok>=6?2:m.ok>=3?1:0; },
+  info(m){ return "正解 "+m.ok+"／"+this.ROUNDS+(m.learned.length?"\nまちがえた："+m.learned.map(t=>t.n).join("・"):""); },
+  draw(m,gg){
+    gg.fillStyle="#f3eee7"; gg.fillRect(0,0,W,H);
+    gg.fillStyle="#e6d8c4"; gg.fillRect(60,170,270,320);
+    gg.fillStyle="#efe6da"; gg.fillRect(66,176,258,308);
+    if(m.choices && m.r<this.ROUNDS){
+      const q=m.order[m.r];
+      gg.textAlign="center";
+      if(q.k==="pic"){
+        const t=TOOLS[q.i];
+        gg.save(); gg.translate(195,318); gg.scale(2.0,2.0);
+        gg.fillStyle="rgba(50,38,44,.16)"; gg.beginPath(); gg.ellipse(3,54,34,7,0,0,6.2832); gg.fill();
+        t.d(gg); gg.restore();
+        gg.font="800 13px sans-serif"; gg.fillStyle=C.plum; gg.fillText("この道具の名前は？", W/2, 470);
+      } else if(q.k==="use"){
+        const t=TOOLS[q.i];
+        gg.font="800 13px sans-serif"; gg.fillStyle=C.plum; gg.fillText("こんな用途の道具は？", W/2, 214);
+        gg.font="700 14px sans-serif"; gg.fillStyle=C.ink;
+        const words=t.use; let line="", ly=270;
+        for(const ch of words){ line+=ch; if(gg.measureText(line).width>226){ gg.fillText(line,W/2,ly); line=""; ly+=26; } }
+        if(line) gg.fillText(line,W/2,ly);
+        if(m.ph==="show"){ gg.save(); gg.translate(195,412); gg.scale(1.1,1.1); t.d(gg); gg.restore(); }
+      } else {
+        const Q=NTQ[q.i];
+        gg.font="800 13px sans-serif"; gg.fillStyle=C.plum; gg.fillText("針と糸の決まり", W/2, 214);
+        gg.font="800 16px sans-serif"; gg.fillStyle=C.ink;
+        let line="", ly=290; for(const ch of Q.q){ line+=ch; if(gg.measureText(line).width>236){ gg.fillText(line,W/2,ly); line=""; ly+=30; } }
+        if(line) gg.fillText(line,W/2,ly);
+        /* 糸巻きの絵 */
+        for(let i=0;i<3;i++){ const x=125+i*70, col=["#6f9fd8","#e08f8c","#f2c14e"][i], lab=["#30","#60","#90"][i];
+          gg.fillStyle="rgba(50,38,44,.14)"; gg.beginPath(); gg.ellipse(x+2,432,20,6,0,0,6.2832); gg.fill();
+          gg.fillStyle=col; gg.fillRect(x-16,384,32,44); gg.fillStyle=shade(col,1.15); gg.beginPath(); gg.ellipse(x,384,16,6,0,0,6.2832); gg.fill();
+          gg.fillStyle="#fff"; gg.font="800 10px sans-serif"; gg.fillText(lab,x,410); }
+      }
+      for(let i=0;i<4;i++){
+        const cy=560+i*52, name=m.choices[i], isAns=name===m.answer;
+        let bg=C.wall, fg=C.ink;
+        if(m.ph==="show"){ if(isAns){bg=C.sage;fg="#fff";} else if(i===m.sel){bg=C.coral;fg="#fff";} }
+        gg.fillStyle="rgba(124,90,112,.13)"; gg.fillRect(40,cy-20,W-80,44);
+        gg.fillStyle=bg; gg.fillRect(40,cy-22,W-80,44);
+        gg.textAlign="center"; gg.font="800 15px sans-serif"; gg.fillStyle=fg; gg.fillText(name, W/2, cy+5);
+      }
+      /* 答えたあと、用途を一行見せる（覚えるため） */
+      if(m.ph==="show" && q.k!=="nt"){
+        gg.fillStyle="rgba(124,90,112,.10)"; gg.fillRect(20,772,W-40,52);
+        gg.font="700 10.5px sans-serif"; gg.fillStyle=C.plum; gg.textAlign="center";
+        const t=TOOLS[q.i]; let line="", ly=792; for(const ch of t.use){ line+=ch; if(gg.measureText(line).width>W-70){ gg.fillText(line,W/2,ly); line=""; ly+=16; } }
+        if(line) gg.fillText(line,W/2,ly);
+      }
+    }
+    for(let i=0;i<this.ROUNDS;i++){ gg.beginPath(); gg.arc(W/2-((this.ROUNDS-1)*13)+i*26,140,6,0,6.2832);
+      gg.fillStyle= i<m.r?C.sage:"rgba(90,74,80,.18)"; gg.fill(); }
+    timeBar(gg,m.time,44);
+    gg.textAlign="center"; gg.font="800 14px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("洋裁道具", W/2, 106);
+    gg.font="700 10.5px sans-serif"; gg.fillStyle="#8a7c88";
+    gg.fillText((m.r+1)+"問め　／　"+this.ROUNDS+"問　　正解 "+m.ok, W/2, 126);
+    if(m.warm>0) banner(gg,[
+      {t:"洋裁道具をあてる",f:"800 19px sans-serif",c:"#fdf6ec"},
+      {t:"絵から名前／用途から名前／針と糸の決まり。全8問"},
+      {t:"名前と用途は、先生の資料のとおり",c:C.gold}],330,110);
+    if(m.done) finish(gg, this.score(m)>=3?"全問正解！":this.score(m)>=2?"よく知っている":this.score(m)>=1?"半分":"まだこれから", this.info(m), this.score(m));
+  },
+};
+
+/* ==================================================================
+   Q 工程ならべ
+   ばらばらの工程を、正しい順に押す
+   ================================================================== */
+const STEPSETS = [
+  { n:"服ができるまで", s:["デザイン画","パターン","裁断","仮縫い","本縫い","仕上げ"] },
+  { n:"型紙ができるまで", s:["採寸","原型","展開","縫い代つけ","合印","裁ち合わせ"] },
+  { n:"一本の縫い目", s:["まち針","しつけ","地縫い","縫い代を割る","端の始末","アイロン"] },
+];
+const steps = {
+  title:"工程ならべ",
+  init(){
+    const set=pick(STEPSETS);
+    const tiles=shuffle(set.s.map((t,i)=>({t,i,done:false,shake:0})));
+    return { set, tiles, next:0, miss:0, time:30, done:false, doneT:0, warm:2.0, msg:"", msgT:0 };
+  },
+  down(m,x,y){
+    if(m.done||m.warm>0) return;
+    for(let k=0;k<m.tiles.length;k++){
+      const cx=k%2?W/2+82:W/2-82, cy=260+Math.floor(k/2)*96;
+      if(Math.abs(x-cx)<76&&Math.abs(y-cy)<38){
+        const tl=m.tiles[k]; if(tl.done) return;
+        if(tl.i===m.next){ tl.done=true; m.next++; if(m.next>=m.tiles.length){ m.done=true; m.doneT=0; } }
+        else { m.miss++; tl.shake=.4; m.msg="その前に、まだやることがある"; m.msgT=1.0; }
+        return;
+      }
+    }
+  },
+  tick(m,dt){
+    if(m.done){ m.doneT+=dt; if(m.doneT>2.0) end(this.score(m),this.info(m)); return; }
+    if(m.msgT>0) m.msgT-=dt;
+    for(const t of m.tiles) if(t.shake>0) t.shake-=dt;
+    if(m.warm>0){ m.warm-=dt; return; }
+    m.time-=dt;
+    if(m.time<=0){ m.time=0; m.done=true; m.doneT=0; }
+  },
+  score(m){ if(m.next<m.tiles.length) return m.next>=4?1:0; return m.miss===0?3:m.miss<=2?2:1; },
+  info(m){ return "《"+m.set.n+"》　ならべた "+m.next+"／"+m.tiles.length+"　まちがい "+m.miss; },
+  draw(m,gg){
+    gg.fillStyle="#f3eee7"; gg.fillRect(0,0,W,H);
+    gg.textAlign="center"; gg.font="800 20px sans-serif"; gg.fillStyle=C.plum;
+    gg.fillText("《"+m.set.n+"》", W/2, 178);
+    for(let k=0;k<m.tiles.length;k++){
+      const t=m.tiles[k]; const sx= t.shake>0?Math.sin(t.shake*50)*5:0;
+      const cx=(k%2?W/2+82:W/2-82)+sx, cy=260+Math.floor(k/2)*96;
+      gg.fillStyle="rgba(124,90,112,.13)"; gg.fillRect(cx-76,cy-36,152,76);
+      gg.fillStyle= t.done? C.sage : C.wall; gg.fillRect(cx-76,cy-38,152,76);
+      gg.fillStyle= t.done? "#fff": C.ink; gg.font="800 15px sans-serif";
+      gg.fillText(t.t, cx, cy+5);
+      if(t.done){ gg.fillStyle="rgba(255,255,255,.9)"; gg.beginPath(); gg.arc(cx-58,cy-20,11,0,6.2832); gg.fill();
+        gg.fillStyle=C.sage; gg.font="800 12px sans-serif"; gg.fillText((t.i+1)+"", cx-58, cy-16); }
+    }
+    /* 進み */
+    gg.fillStyle="#e6d8c4"; gg.fillRect(40,590,W-80,10);
+    gg.fillStyle=C.plum; gg.fillRect(40,590,(W-80)*m.next/m.tiles.length,10);
+    timeBar(gg,m.time,30);
+    gg.font="800 14px sans-serif"; gg.fillStyle=C.ink;
+    gg.fillText("正しい順に押す　（次は "+(m.next+1)+"番め）", W/2, 106);
+    gg.font="700 10.5px sans-serif"; gg.fillStyle= m.msgT>0?C.coral:"#8a7c88";
+    gg.fillText(m.msgT>0?m.msg:"まちがえても、続けられます", W/2, 126);
+    if(m.warm>0) banner(gg,[
+      {t:"工程を順にならべる",f:"800 19px sans-serif",c:"#fdf6ec"},
+      {t:"ばらばらに置かれた工程を、最初から順に押す"},
+      {t:"まちがえると札がふるえる。3題のうち1つが出る",c:C.gold}],330,110);
+    if(m.done) finish(gg, this.score(m)>=3?"手順が身についている！":this.score(m)>=2?"だいたい合っている":this.score(m)>=1?"あやしい":"順番がちがう", this.info(m), this.score(m));
+  },
+};
+
+const GAMES={ run, roulette, pins, shears, tools, steps };
+
+/* ================================================================ */
+let cur=null,m=null,last=0;
+const menuEl=document.getElementById("menu"), barEl=document.getElementById("bar"), resEl=document.getElementById("res");
+function start(name){ cur=GAMES[name]; m=cur.init(); m.name=name;
+  barEl.querySelector(".t").textContent=cur.title;
+  menuEl.style.display="none"; barEl.classList.add("on"); resEl.classList.remove("on"); }
+function end(score,detail){
+  const sc=clamp(score|0,0,3);
+  resEl.querySelector(".rt").textContent= sc>=3?"みごと":sc>=2?"よくできました":sc>=1?"まずまず":"つぎ、いこう";
+  resEl.querySelector(".rs").textContent="★".repeat(sc)+"☆".repeat(3-sc);
+  resEl.querySelector(".rd").textContent=(detail?detail+"\n":"")+(sc>0?("ボタンを "+(sc+(sc>=3?1:0))+"つ手に入れた"):"もう一回どうぞ");
+  resEl.classList.add("on"); barEl.classList.remove("on"); cur=null;
+  if(loopOn && demoName) setTimeout(()=>{ if(demoName) start(demoName); }, 1500); }
+function toMenu(){ cur=null;m=null; resEl.classList.remove("on"); barEl.classList.remove("on");
+  menuEl.style.display=""; g.clearRect(0,0,W,H); }
+for(const b of document.querySelectorAll(".card")) b.addEventListener("click",()=>start(b.dataset.g));
+document.getElementById("quit").onclick=()=>toMenu();
+document.getElementById("back").onclick=()=>toMenu();
+document.getElementById("again").onclick=()=>{const n=m&&m.name; if(n)start(n);};
+
+/* ---- 見本の動き ---- */
+const DEMO={
+  run(m,dt){ const G=cur; if(m.warm>0) return; if(!m.press) G.down(m,200,m.ty);
+    const n=m.needles.filter(q=>q.state==="in").sort((a,b)=>a.x-b.x)[0];
+    G.move(m,200, n? n.eyeY : m.ty); },
+  roulette(m,dt){ const G=cur; if(m.warm>0||m.done) return;
+    m._i=m._i||0;
+    if(m._i>=m.seg.length){ if(!m.done){ G.up(m); m.done=true; m.doneT=0; } return; }
+    const s=m.seg[m._i];
+    if(m._i===0 && m.wx==null) G.down(m,s.x,s.y); else G.move(m,s.x,s.y);
+    m._a=(m._a||0)+dt; if(m._a>.028){ m._a=0; m._i+=1; } },
+  pins(m,dt){ const G=cur; if(m.warm>0||m.done) return;
+    m._t=(m._t||0)+dt;
+    const k=m.marks.find(q=>!q.pin); if(!k) return;
+    const nx=-k.ty, ny=k.tx;
+    if(!m.drag){ if(m._t<.5) return; m._t=0; G.down(m,k.x-nx*46,k.y-ny*46); m._k=0; return; }
+    m._k=(m._k||0)+dt*2.4;
+    const u=Math.min(1,m._k);
+    G.move(m, k.x-nx*46+nx*46*u, k.y-ny*46+ny*46*u);
+    if(u>=1){ G.up(m,k.x,k.y); m._t=0; } },
+  shears(m,dt){ const G=cur; if(m.warm>0||m.done) return;
+    m._t=(m._t||0)+dt;
+    if(!m.press){ if(m._t<.28) return; m._t=0;
+      const l=Math.min(m.pts.length-1,m.i+22); let c=0; for(let k=m.i;k<=l;k++) c+=m.curv[k];
+      m._long = c<=0.42; G.down(m); return; }
+    if(m.hold > (m._long?.34:.10)) { G.up(m); m._t=0; } },
+  tools(m,dt){ const G=cur; if(m.warm>0||m.done||m.ph!=="ask") return;
+    m._t=(m._t||0)+dt; if(m._t<1.2) return; m._t=0;
+    const i=m.choices.indexOf(m.answer); G.down(m,195,560+i*52); },
+  steps(m,dt){ const G=cur; if(m.warm>0||m.done) return;
+    m._t=(m._t||0)+dt; if(m._t<.7) return; m._t=0;
+    const k=m.tiles.findIndex(t=>t.i===m.next); if(k<0) return;
+    G.down(m, k%2?W/2+82:W/2-82, 260+Math.floor(k/2)*96); },
+};
+
+/* ===== 見本の動き。一覧ページ（overview.html）から #g=名前&demo=1&loop=1 で呼ばれる ===== */
+let demoOn=false, loopOn=false, demoName=null;
+function demoTick(dt){ if(!demoOn||!cur||!m) return; const f=DEMO[m.name]; if(f){ try{ f(m,dt); }catch(e){} } }
+(function(){
+  const q=new URLSearchParams(location.hash.replace(/^#/,""));
+  const gname=q.get("g");
+  if(gname && GAMES[gname]){
+    demoOn=q.get("demo")==="1"; loopOn=q.get("loop")==="1"; demoName=gname;
+    document.body.classList.add("embed");
+    addEventListener("load",()=>start(gname));
+    if(document.readyState==="complete") start(gname);
+  }
+})();
+
+function pt(e){ const r=cv.getBoundingClientRect(); return [(e.clientX-r.left)/r.width*W,(e.clientY-r.top)/r.height*H]; }
+cv.addEventListener("pointerdown",e=>{ if(!cur)return; e.preventDefault(); cv.setPointerCapture(e.pointerId);
+  const [x,y]=pt(e); if(cur.down)cur.down(m,x,y); });
+cv.addEventListener("pointermove",e=>{ if(!cur)return; e.preventDefault(); const [x,y]=pt(e); if(cur.move)cur.move(m,x,y); });
+cv.addEventListener("pointerup",e=>{ if(!cur)return; e.preventDefault(); const [x,y]=pt(e); if(cur.up)cur.up(m,x,y); });
+cv.addEventListener("pointercancel",()=>{ if(cur&&cur.up)cur.up(m,0,0); });
+function loop(ts){ requestAnimationFrame(loop); const dt=Math.min(.05,(ts-last)/1000||0); last=ts;
+  if(!cur||!m) return; demoTick(dt); if(!cur||!m) return; cur.tick(m,dt); if(!cur||!m) return; g.clearRect(0,0,W,H); cur.draw(m,g); }
+requestAnimationFrame(loop);
+window.__mini={ start,end,toMenu,GAMES, get m(){return m;}, get cur(){return cur;}, TOOLS, NTQ, STEPSETS };
+</script>
+</body>
+</html>
